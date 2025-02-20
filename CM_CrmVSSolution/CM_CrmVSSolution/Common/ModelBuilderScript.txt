@@ -1,0 +1,11 @@
+pac modelbuilder build ^
+  --entitynamesfilter account;contact;salesorder;lead;opportunity;connection;team;cm_programassociation;cm_province ^
+  --generatesdkmessages ^
+  --messagenamesfilter execute* ^
+  --emitfieldsclasses ^
+  --emitVirtualAttributes ^
+  --namespace CM_CrmVSSolution.Common.Models ^
+  --outdirectory "C:\Users\Marcos Garcia\source\repos\Circular\CM_CrmVSSolution\CM_CrmVSSolution\Common\Models" ^
+  --writesettingsTemplateFile ^
+  --serviceContextName OrgContext ^
+  --environment https://cmdynamicsdev.crm3.dynamics.com

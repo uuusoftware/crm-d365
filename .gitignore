@@ -1,0 +1,81 @@
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.dbmdl
+*.dbproj.schemaview
+*.jfm
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+[Bb]in/
+[Oo]bj/
+*.dll
+*.exe
+*.pdb
+*.mdb
+*.cache
+*.log
+*.dSYM/
+*.ilk
+*.obj
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# NuGet Packages
+*.nupkg
+*.snupkg
+packages/
+*.nuspec
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.log
+*.cache
+*.zip
+
+# ReSharper
+*.DotSettings
+_ReSharper*/
+*.[Rr]eSharper*
+
+# Rider
+.idea/
+.idea_modules/
+*.sln.iml
+
+# Azure Function artifacts
+bin/
+obj/
+local.settings.json # Keep this out of source control for local secrets
+
+# Miscellaneous
+*.publishsettings
+*.dbmdl
+*.jfm
+*.vspscc
+*.vssscc
+
+# Backup files
+*~ 
+*.swp
+
+# User-specific files
+*.sublime-workspace
+*.sublime-project
+
+# Exclude other common file types that might be generated
+*.pdb
+*.cache
+*.msi
+*.log
+*.json
+
+node_modules
