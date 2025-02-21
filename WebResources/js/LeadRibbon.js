@@ -74,7 +74,7 @@ var CC;
                                 return [2 /*return*/];
                             }
                             isUpdated = null;
-                            formContext = primaryControl;
+                            const formContext = primaryControl.ui.formContext;
                             _a.label = 1;
                         case 1:
                             _a.trys.push([1, 5, 6, 7]);

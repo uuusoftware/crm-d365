@@ -41,17 +41,13 @@ namespace Plugins
 
             // Construct the local plug-in context.
             var localPluginContext = new LocalPluginContext(serviceProvider);
-
-            localPluginContext.Trace($"Entered {PluginClassName}.Execute() " +
-                $"Correlation Id: {localPluginContext.PluginExecutionContext.CorrelationId}, " +
-                $"Initiating User: {localPluginContext.PluginExecutionContext.InitiatingUserId}");
+            var context = localPluginContext.PluginExecutionContext;
 
             try
             {
                 // Invoke the custom implementation
                 ExecuteDataversePlugin(localPluginContext);
 
-                // Now exit - if the derived plugin has incorrectly registered overlapping event registrations, guard against multiple executions.
                 return;
             }
             catch (FaultException<OrganizationServiceFault> orgServiceFault)
@@ -62,7 +58,16 @@ namespace Plugins
             }
             finally
             {
-                localPluginContext.Trace($"Exiting {PluginClassName}.Execute()");
+                if (!context.SharedVariables.Contains("isRecursion") && !context.SharedVariables.Contains("mustSkip")) {
+                    localPluginContext.Trace($"{PluginClassName}.Execute() \n" +
+                        $"Correlation Id: {localPluginContext.PluginExecutionContext.CorrelationId}, \n" +
+                        $"Initiating User: {localPluginContext.PluginExecutionContext.InitiatingUserId} \n" +
+                        $"Entity Name: {context.PrimaryEntityName} \n" +
+                        $"Record Id: {context.PrimaryEntityId}\n" +
+                        $"Message: {context.MessageName}\n");
+
+                    localPluginContext.Trace($"Exiting {PluginClassName}.Execute()");
+                }
             }
         }
 

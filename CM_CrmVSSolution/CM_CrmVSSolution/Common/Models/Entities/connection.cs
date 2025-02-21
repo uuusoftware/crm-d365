@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CM_CrmVSSolution.Common.Models
+namespace Common.Models
 {
 	
 	
@@ -1873,16 +1873,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// 1:N connection_related_connection
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("connection_related_connection", Microsoft.Xrm.Sdk.EntityRole.Referenced)]
-		public System.Collections.Generic.IEnumerable<CM_CrmVSSolution.Common.Models.Connection> Referencedconnection_related_connection
+		public System.Collections.Generic.IEnumerable<Common.Models.Connection> Referencedconnection_related_connection
 		{
 			get
 			{
-				return this.GetRelatedEntities<CM_CrmVSSolution.Common.Models.Connection>("connection_related_connection", Microsoft.Xrm.Sdk.EntityRole.Referenced);
+				return this.GetRelatedEntities<Common.Models.Connection>("connection_related_connection", Microsoft.Xrm.Sdk.EntityRole.Referenced);
 			}
 			set
 			{
 				this.OnPropertyChanging("Referencedconnection_related_connection");
-				this.SetRelatedEntities<CM_CrmVSSolution.Common.Models.Connection>("connection_related_connection", Microsoft.Xrm.Sdk.EntityRole.Referenced, value);
+				this.SetRelatedEntities<Common.Models.Connection>("connection_related_connection", Microsoft.Xrm.Sdk.EntityRole.Referenced, value);
 				this.OnPropertyChanged("Referencedconnection_related_connection");
 			}
 		}
@@ -1892,16 +1892,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("account_connections1")]
-		public CM_CrmVSSolution.Common.Models.Account account_connections1
+		public Common.Models.Account account_connections1
 		{
 			get
 			{
-				return this.GetRelatedEntity<CM_CrmVSSolution.Common.Models.Account>("account_connections1", null);
+				return this.GetRelatedEntity<Common.Models.Account>("account_connections1", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("account_connections1");
-				this.SetRelatedEntity<CM_CrmVSSolution.Common.Models.Account>("account_connections1", null, value);
+				this.SetRelatedEntity<Common.Models.Account>("account_connections1", null, value);
 				this.OnPropertyChanged("account_connections1");
 			}
 		}
@@ -1911,16 +1911,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("account_connections2")]
-		public CM_CrmVSSolution.Common.Models.Account account_connections2
+		public Common.Models.Account account_connections2
 		{
 			get
 			{
-				return this.GetRelatedEntity<CM_CrmVSSolution.Common.Models.Account>("account_connections2", null);
+				return this.GetRelatedEntity<Common.Models.Account>("account_connections2", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("account_connections2");
-				this.SetRelatedEntity<CM_CrmVSSolution.Common.Models.Account>("account_connections2", null, value);
+				this.SetRelatedEntity<Common.Models.Account>("account_connections2", null, value);
 				this.OnPropertyChanged("account_connections2");
 			}
 		}
@@ -1930,11 +1930,11 @@ namespace CM_CrmVSSolution.Common.Models
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("relatedconnectionid")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("connection_related_connection", Microsoft.Xrm.Sdk.EntityRole.Referencing)]
-		public CM_CrmVSSolution.Common.Models.Connection Referencingconnection_related_connection
+		public Common.Models.Connection Referencingconnection_related_connection
 		{
 			get
 			{
-				return this.GetRelatedEntity<CM_CrmVSSolution.Common.Models.Connection>("connection_related_connection", Microsoft.Xrm.Sdk.EntityRole.Referencing);
+				return this.GetRelatedEntity<Common.Models.Connection>("connection_related_connection", Microsoft.Xrm.Sdk.EntityRole.Referencing);
 			}
 		}
 		
@@ -1943,16 +1943,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("contact_connections1")]
-		public CM_CrmVSSolution.Common.Models.Contact contact_connections1
+		public Common.Models.Contact contact_connections1
 		{
 			get
 			{
-				return this.GetRelatedEntity<CM_CrmVSSolution.Common.Models.Contact>("contact_connections1", null);
+				return this.GetRelatedEntity<Common.Models.Contact>("contact_connections1", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("contact_connections1");
-				this.SetRelatedEntity<CM_CrmVSSolution.Common.Models.Contact>("contact_connections1", null, value);
+				this.SetRelatedEntity<Common.Models.Contact>("contact_connections1", null, value);
 				this.OnPropertyChanged("contact_connections1");
 			}
 		}
@@ -1962,16 +1962,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("contact_connections2")]
-		public CM_CrmVSSolution.Common.Models.Contact contact_connections2
+		public Common.Models.Contact contact_connections2
 		{
 			get
 			{
-				return this.GetRelatedEntity<CM_CrmVSSolution.Common.Models.Contact>("contact_connections2", null);
+				return this.GetRelatedEntity<Common.Models.Contact>("contact_connections2", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("contact_connections2");
-				this.SetRelatedEntity<CM_CrmVSSolution.Common.Models.Contact>("contact_connections2", null, value);
+				this.SetRelatedEntity<Common.Models.Contact>("contact_connections2", null, value);
 				this.OnPropertyChanged("contact_connections2");
 			}
 		}
@@ -1981,16 +1981,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lead_connections1")]
-		public CM_CrmVSSolution.Common.Models.Lead lead_connections1
+		public Common.Models.Lead lead_connections1
 		{
 			get
 			{
-				return this.GetRelatedEntity<CM_CrmVSSolution.Common.Models.Lead>("lead_connections1", null);
+				return this.GetRelatedEntity<Common.Models.Lead>("lead_connections1", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("lead_connections1");
-				this.SetRelatedEntity<CM_CrmVSSolution.Common.Models.Lead>("lead_connections1", null, value);
+				this.SetRelatedEntity<Common.Models.Lead>("lead_connections1", null, value);
 				this.OnPropertyChanged("lead_connections1");
 			}
 		}
@@ -2000,16 +2000,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lead_connections2")]
-		public CM_CrmVSSolution.Common.Models.Lead lead_connections2
+		public Common.Models.Lead lead_connections2
 		{
 			get
 			{
-				return this.GetRelatedEntity<CM_CrmVSSolution.Common.Models.Lead>("lead_connections2", null);
+				return this.GetRelatedEntity<Common.Models.Lead>("lead_connections2", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("lead_connections2");
-				this.SetRelatedEntity<CM_CrmVSSolution.Common.Models.Lead>("lead_connections2", null, value);
+				this.SetRelatedEntity<Common.Models.Lead>("lead_connections2", null, value);
 				this.OnPropertyChanged("lead_connections2");
 			}
 		}
@@ -2019,16 +2019,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("opportunity_connections1")]
-		public CM_CrmVSSolution.Common.Models.Opportunity opportunity_connections1
+		public Common.Models.Opportunity opportunity_connections1
 		{
 			get
 			{
-				return this.GetRelatedEntity<CM_CrmVSSolution.Common.Models.Opportunity>("opportunity_connections1", null);
+				return this.GetRelatedEntity<Common.Models.Opportunity>("opportunity_connections1", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("opportunity_connections1");
-				this.SetRelatedEntity<CM_CrmVSSolution.Common.Models.Opportunity>("opportunity_connections1", null, value);
+				this.SetRelatedEntity<Common.Models.Opportunity>("opportunity_connections1", null, value);
 				this.OnPropertyChanged("opportunity_connections1");
 			}
 		}
@@ -2038,16 +2038,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("opportunity_connections2")]
-		public CM_CrmVSSolution.Common.Models.Opportunity opportunity_connections2
+		public Common.Models.Opportunity opportunity_connections2
 		{
 			get
 			{
-				return this.GetRelatedEntity<CM_CrmVSSolution.Common.Models.Opportunity>("opportunity_connections2", null);
+				return this.GetRelatedEntity<Common.Models.Opportunity>("opportunity_connections2", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("opportunity_connections2");
-				this.SetRelatedEntity<CM_CrmVSSolution.Common.Models.Opportunity>("opportunity_connections2", null, value);
+				this.SetRelatedEntity<Common.Models.Opportunity>("opportunity_connections2", null, value);
 				this.OnPropertyChanged("opportunity_connections2");
 			}
 		}
@@ -2057,16 +2057,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("salesorder_connections1")]
-		public CM_CrmVSSolution.Common.Models.SalesOrder salesorder_connections1
+		public Common.Models.SalesOrder salesorder_connections1
 		{
 			get
 			{
-				return this.GetRelatedEntity<CM_CrmVSSolution.Common.Models.SalesOrder>("salesorder_connections1", null);
+				return this.GetRelatedEntity<Common.Models.SalesOrder>("salesorder_connections1", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("salesorder_connections1");
-				this.SetRelatedEntity<CM_CrmVSSolution.Common.Models.SalesOrder>("salesorder_connections1", null, value);
+				this.SetRelatedEntity<Common.Models.SalesOrder>("salesorder_connections1", null, value);
 				this.OnPropertyChanged("salesorder_connections1");
 			}
 		}
@@ -2076,16 +2076,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("salesorder_connections2")]
-		public CM_CrmVSSolution.Common.Models.SalesOrder salesorder_connections2
+		public Common.Models.SalesOrder salesorder_connections2
 		{
 			get
 			{
-				return this.GetRelatedEntity<CM_CrmVSSolution.Common.Models.SalesOrder>("salesorder_connections2", null);
+				return this.GetRelatedEntity<Common.Models.SalesOrder>("salesorder_connections2", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("salesorder_connections2");
-				this.SetRelatedEntity<CM_CrmVSSolution.Common.Models.SalesOrder>("salesorder_connections2", null, value);
+				this.SetRelatedEntity<Common.Models.SalesOrder>("salesorder_connections2", null, value);
 				this.OnPropertyChanged("salesorder_connections2");
 			}
 		}
@@ -2095,16 +2095,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_connections1")]
-		public CM_CrmVSSolution.Common.Models.Team team_connections1
+		public Common.Models.Team team_connections1
 		{
 			get
 			{
-				return this.GetRelatedEntity<CM_CrmVSSolution.Common.Models.Team>("team_connections1", null);
+				return this.GetRelatedEntity<Common.Models.Team>("team_connections1", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("team_connections1");
-				this.SetRelatedEntity<CM_CrmVSSolution.Common.Models.Team>("team_connections1", null, value);
+				this.SetRelatedEntity<Common.Models.Team>("team_connections1", null, value);
 				this.OnPropertyChanged("team_connections1");
 			}
 		}
@@ -2114,16 +2114,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_connections2")]
-		public CM_CrmVSSolution.Common.Models.Team team_connections2
+		public Common.Models.Team team_connections2
 		{
 			get
 			{
-				return this.GetRelatedEntity<CM_CrmVSSolution.Common.Models.Team>("team_connections2", null);
+				return this.GetRelatedEntity<Common.Models.Team>("team_connections2", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("team_connections2");
-				this.SetRelatedEntity<CM_CrmVSSolution.Common.Models.Team>("team_connections2", null, value);
+				this.SetRelatedEntity<Common.Models.Team>("team_connections2", null, value);
 				this.OnPropertyChanged("team_connections2");
 			}
 		}

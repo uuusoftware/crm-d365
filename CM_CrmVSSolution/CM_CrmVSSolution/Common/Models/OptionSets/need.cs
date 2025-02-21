@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CM_CrmVSSolution.Common.Models
+namespace Common.Models
 {
 	
 	

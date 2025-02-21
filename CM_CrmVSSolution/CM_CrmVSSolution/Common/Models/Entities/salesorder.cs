@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CM_CrmVSSolution.Common.Models
+namespace Common.Models
 {
 	
 	
@@ -2596,16 +2596,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// 1:N salesorder_connections1
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("salesorder_connections1")]
-		public System.Collections.Generic.IEnumerable<CM_CrmVSSolution.Common.Models.Connection> salesorder_connections1
+		public System.Collections.Generic.IEnumerable<Common.Models.Connection> salesorder_connections1
 		{
 			get
 			{
-				return this.GetRelatedEntities<CM_CrmVSSolution.Common.Models.Connection>("salesorder_connections1", null);
+				return this.GetRelatedEntities<Common.Models.Connection>("salesorder_connections1", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("salesorder_connections1");
-				this.SetRelatedEntities<CM_CrmVSSolution.Common.Models.Connection>("salesorder_connections1", null, value);
+				this.SetRelatedEntities<Common.Models.Connection>("salesorder_connections1", null, value);
 				this.OnPropertyChanged("salesorder_connections1");
 			}
 		}
@@ -2614,16 +2614,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// 1:N salesorder_connections2
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("salesorder_connections2")]
-		public System.Collections.Generic.IEnumerable<CM_CrmVSSolution.Common.Models.Connection> salesorder_connections2
+		public System.Collections.Generic.IEnumerable<Common.Models.Connection> salesorder_connections2
 		{
 			get
 			{
-				return this.GetRelatedEntities<CM_CrmVSSolution.Common.Models.Connection>("salesorder_connections2", null);
+				return this.GetRelatedEntities<Common.Models.Connection>("salesorder_connections2", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("salesorder_connections2");
-				this.SetRelatedEntities<CM_CrmVSSolution.Common.Models.Connection>("salesorder_connections2", null, value);
+				this.SetRelatedEntities<Common.Models.Connection>("salesorder_connections2", null, value);
 				this.OnPropertyChanged("salesorder_connections2");
 			}
 		}
@@ -2632,16 +2632,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// N:N contactorders_association
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("contactorders_association")]
-		public System.Collections.Generic.IEnumerable<CM_CrmVSSolution.Common.Models.Contact> contactorders_association
+		public System.Collections.Generic.IEnumerable<Common.Models.Contact> contactorders_association
 		{
 			get
 			{
-				return this.GetRelatedEntities<CM_CrmVSSolution.Common.Models.Contact>("contactorders_association", null);
+				return this.GetRelatedEntities<Common.Models.Contact>("contactorders_association", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("contactorders_association");
-				this.SetRelatedEntities<CM_CrmVSSolution.Common.Models.Contact>("contactorders_association", null, value);
+				this.SetRelatedEntities<Common.Models.Contact>("contactorders_association", null, value);
 				this.OnPropertyChanged("contactorders_association");
 			}
 		}
@@ -2651,16 +2651,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("opportunityid")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("opportunity_sales_orders")]
-		public CM_CrmVSSolution.Common.Models.Opportunity opportunity_sales_orders
+		public Common.Models.Opportunity opportunity_sales_orders
 		{
 			get
 			{
-				return this.GetRelatedEntity<CM_CrmVSSolution.Common.Models.Opportunity>("opportunity_sales_orders", null);
+				return this.GetRelatedEntity<Common.Models.Opportunity>("opportunity_sales_orders", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("opportunity_sales_orders");
-				this.SetRelatedEntity<CM_CrmVSSolution.Common.Models.Opportunity>("opportunity_sales_orders", null, value);
+				this.SetRelatedEntity<Common.Models.Opportunity>("opportunity_sales_orders", null, value);
 				this.OnPropertyChanged("opportunity_sales_orders");
 			}
 		}
@@ -2670,16 +2670,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("customerid")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("order_customer_accounts")]
-		public CM_CrmVSSolution.Common.Models.Account order_customer_accounts
+		public Common.Models.Account order_customer_accounts
 		{
 			get
 			{
-				return this.GetRelatedEntity<CM_CrmVSSolution.Common.Models.Account>("order_customer_accounts", null);
+				return this.GetRelatedEntity<Common.Models.Account>("order_customer_accounts", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("order_customer_accounts");
-				this.SetRelatedEntity<CM_CrmVSSolution.Common.Models.Account>("order_customer_accounts", null, value);
+				this.SetRelatedEntity<Common.Models.Account>("order_customer_accounts", null, value);
 				this.OnPropertyChanged("order_customer_accounts");
 			}
 		}
@@ -2689,16 +2689,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("customerid")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("order_customer_contacts")]
-		public CM_CrmVSSolution.Common.Models.Contact order_customer_contacts
+		public Common.Models.Contact order_customer_contacts
 		{
 			get
 			{
-				return this.GetRelatedEntity<CM_CrmVSSolution.Common.Models.Contact>("order_customer_contacts", null);
+				return this.GetRelatedEntity<Common.Models.Contact>("order_customer_contacts", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("order_customer_contacts");
-				this.SetRelatedEntity<CM_CrmVSSolution.Common.Models.Contact>("order_customer_contacts", null, value);
+				this.SetRelatedEntity<Common.Models.Contact>("order_customer_contacts", null, value);
 				this.OnPropertyChanged("order_customer_contacts");
 			}
 		}
@@ -2708,11 +2708,11 @@ namespace CM_CrmVSSolution.Common.Models
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_orders")]
-		public CM_CrmVSSolution.Common.Models.Team team_orders
+		public Common.Models.Team team_orders
 		{
 			get
 			{
-				return this.GetRelatedEntity<CM_CrmVSSolution.Common.Models.Team>("team_orders", null);
+				return this.GetRelatedEntity<Common.Models.Team>("team_orders", null);
 			}
 		}
 	}

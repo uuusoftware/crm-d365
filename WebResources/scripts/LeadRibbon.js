@@ -53,7 +53,7 @@ CC.LeadRibbon = (function () {
 
             } finally {
                 Xrm.Utility.closeProgressIndicator()
-                Helpers.notifyUser(formContext, isUpdated !== null ? "Lead qualified. Processing Opportunities" : "Lead not qualified");
+                Helpers.notifyUser(formContext, isUpdated ? "Lead qualified. Processing Opportunities" : "Lead not qualified");
             }
         },
         //Error Handler

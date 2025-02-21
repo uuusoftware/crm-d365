@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CM_CrmVSSolution.Common.Models
+namespace Common.Models
 {
 	
 	
@@ -4771,16 +4771,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// 1:N account_connections1
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("account_connections1")]
-		public System.Collections.Generic.IEnumerable<CM_CrmVSSolution.Common.Models.Connection> account_connections1
+		public System.Collections.Generic.IEnumerable<Common.Models.Connection> account_connections1
 		{
 			get
 			{
-				return this.GetRelatedEntities<CM_CrmVSSolution.Common.Models.Connection>("account_connections1", null);
+				return this.GetRelatedEntities<Common.Models.Connection>("account_connections1", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("account_connections1");
-				this.SetRelatedEntities<CM_CrmVSSolution.Common.Models.Connection>("account_connections1", null, value);
+				this.SetRelatedEntities<Common.Models.Connection>("account_connections1", null, value);
 				this.OnPropertyChanged("account_connections1");
 			}
 		}
@@ -4789,16 +4789,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// 1:N account_connections2
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("account_connections2")]
-		public System.Collections.Generic.IEnumerable<CM_CrmVSSolution.Common.Models.Connection> account_connections2
+		public System.Collections.Generic.IEnumerable<Common.Models.Connection> account_connections2
 		{
 			get
 			{
-				return this.GetRelatedEntities<CM_CrmVSSolution.Common.Models.Connection>("account_connections2", null);
+				return this.GetRelatedEntities<Common.Models.Connection>("account_connections2", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("account_connections2");
-				this.SetRelatedEntities<CM_CrmVSSolution.Common.Models.Connection>("account_connections2", null, value);
+				this.SetRelatedEntities<Common.Models.Connection>("account_connections2", null, value);
 				this.OnPropertyChanged("account_connections2");
 			}
 		}
@@ -4807,16 +4807,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// 1:N account_master_account
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("account_master_account", Microsoft.Xrm.Sdk.EntityRole.Referenced)]
-		public System.Collections.Generic.IEnumerable<CM_CrmVSSolution.Common.Models.Account> Referencedaccount_master_account
+		public System.Collections.Generic.IEnumerable<Common.Models.Account> Referencedaccount_master_account
 		{
 			get
 			{
-				return this.GetRelatedEntities<CM_CrmVSSolution.Common.Models.Account>("account_master_account", Microsoft.Xrm.Sdk.EntityRole.Referenced);
+				return this.GetRelatedEntities<Common.Models.Account>("account_master_account", Microsoft.Xrm.Sdk.EntityRole.Referenced);
 			}
 			set
 			{
 				this.OnPropertyChanging("Referencedaccount_master_account");
-				this.SetRelatedEntities<CM_CrmVSSolution.Common.Models.Account>("account_master_account", Microsoft.Xrm.Sdk.EntityRole.Referenced, value);
+				this.SetRelatedEntities<Common.Models.Account>("account_master_account", Microsoft.Xrm.Sdk.EntityRole.Referenced, value);
 				this.OnPropertyChanged("Referencedaccount_master_account");
 			}
 		}
@@ -4825,16 +4825,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// 1:N account_parent_account
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("account_parent_account", Microsoft.Xrm.Sdk.EntityRole.Referenced)]
-		public System.Collections.Generic.IEnumerable<CM_CrmVSSolution.Common.Models.Account> Referencedaccount_parent_account
+		public System.Collections.Generic.IEnumerable<Common.Models.Account> Referencedaccount_parent_account
 		{
 			get
 			{
-				return this.GetRelatedEntities<CM_CrmVSSolution.Common.Models.Account>("account_parent_account", Microsoft.Xrm.Sdk.EntityRole.Referenced);
+				return this.GetRelatedEntities<Common.Models.Account>("account_parent_account", Microsoft.Xrm.Sdk.EntityRole.Referenced);
 			}
 			set
 			{
 				this.OnPropertyChanging("Referencedaccount_parent_account");
-				this.SetRelatedEntities<CM_CrmVSSolution.Common.Models.Account>("account_parent_account", Microsoft.Xrm.Sdk.EntityRole.Referenced, value);
+				this.SetRelatedEntities<Common.Models.Account>("account_parent_account", Microsoft.Xrm.Sdk.EntityRole.Referenced, value);
 				this.OnPropertyChanged("Referencedaccount_parent_account");
 			}
 		}
@@ -4843,16 +4843,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// 1:N contact_customer_accounts
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("contact_customer_accounts")]
-		public System.Collections.Generic.IEnumerable<CM_CrmVSSolution.Common.Models.Contact> contact_customer_accounts
+		public System.Collections.Generic.IEnumerable<Common.Models.Contact> contact_customer_accounts
 		{
 			get
 			{
-				return this.GetRelatedEntities<CM_CrmVSSolution.Common.Models.Contact>("contact_customer_accounts", null);
+				return this.GetRelatedEntities<Common.Models.Contact>("contact_customer_accounts", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("contact_customer_accounts");
-				this.SetRelatedEntities<CM_CrmVSSolution.Common.Models.Contact>("contact_customer_accounts", null, value);
+				this.SetRelatedEntities<Common.Models.Contact>("contact_customer_accounts", null, value);
 				this.OnPropertyChanged("contact_customer_accounts");
 			}
 		}
@@ -4861,16 +4861,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// 1:N lead_customer_accounts
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lead_customer_accounts")]
-		public System.Collections.Generic.IEnumerable<CM_CrmVSSolution.Common.Models.Lead> lead_customer_accounts
+		public System.Collections.Generic.IEnumerable<Common.Models.Lead> lead_customer_accounts
 		{
 			get
 			{
-				return this.GetRelatedEntities<CM_CrmVSSolution.Common.Models.Lead>("lead_customer_accounts", null);
+				return this.GetRelatedEntities<Common.Models.Lead>("lead_customer_accounts", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("lead_customer_accounts");
-				this.SetRelatedEntities<CM_CrmVSSolution.Common.Models.Lead>("lead_customer_accounts", null, value);
+				this.SetRelatedEntities<Common.Models.Lead>("lead_customer_accounts", null, value);
 				this.OnPropertyChanged("lead_customer_accounts");
 			}
 		}
@@ -4879,16 +4879,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// 1:N lead_parent_account
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lead_parent_account")]
-		public System.Collections.Generic.IEnumerable<CM_CrmVSSolution.Common.Models.Lead> lead_parent_account
+		public System.Collections.Generic.IEnumerable<Common.Models.Lead> lead_parent_account
 		{
 			get
 			{
-				return this.GetRelatedEntities<CM_CrmVSSolution.Common.Models.Lead>("lead_parent_account", null);
+				return this.GetRelatedEntities<Common.Models.Lead>("lead_parent_account", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("lead_parent_account");
-				this.SetRelatedEntities<CM_CrmVSSolution.Common.Models.Lead>("lead_parent_account", null, value);
+				this.SetRelatedEntities<Common.Models.Lead>("lead_parent_account", null, value);
 				this.OnPropertyChanged("lead_parent_account");
 			}
 		}
@@ -4897,16 +4897,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// 1:N msa_account_managingpartner
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msa_account_managingpartner", Microsoft.Xrm.Sdk.EntityRole.Referenced)]
-		public System.Collections.Generic.IEnumerable<CM_CrmVSSolution.Common.Models.Account> Referencedmsa_account_managingpartner
+		public System.Collections.Generic.IEnumerable<Common.Models.Account> Referencedmsa_account_managingpartner
 		{
 			get
 			{
-				return this.GetRelatedEntities<CM_CrmVSSolution.Common.Models.Account>("msa_account_managingpartner", Microsoft.Xrm.Sdk.EntityRole.Referenced);
+				return this.GetRelatedEntities<Common.Models.Account>("msa_account_managingpartner", Microsoft.Xrm.Sdk.EntityRole.Referenced);
 			}
 			set
 			{
 				this.OnPropertyChanging("Referencedmsa_account_managingpartner");
-				this.SetRelatedEntities<CM_CrmVSSolution.Common.Models.Account>("msa_account_managingpartner", Microsoft.Xrm.Sdk.EntityRole.Referenced, value);
+				this.SetRelatedEntities<Common.Models.Account>("msa_account_managingpartner", Microsoft.Xrm.Sdk.EntityRole.Referenced, value);
 				this.OnPropertyChanged("Referencedmsa_account_managingpartner");
 			}
 		}
@@ -4915,16 +4915,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// 1:N msa_contact_managingpartner
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msa_contact_managingpartner")]
-		public System.Collections.Generic.IEnumerable<CM_CrmVSSolution.Common.Models.Contact> msa_contact_managingpartner
+		public System.Collections.Generic.IEnumerable<Common.Models.Contact> msa_contact_managingpartner
 		{
 			get
 			{
-				return this.GetRelatedEntities<CM_CrmVSSolution.Common.Models.Contact>("msa_contact_managingpartner", null);
+				return this.GetRelatedEntities<Common.Models.Contact>("msa_contact_managingpartner", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("msa_contact_managingpartner");
-				this.SetRelatedEntities<CM_CrmVSSolution.Common.Models.Contact>("msa_contact_managingpartner", null, value);
+				this.SetRelatedEntities<Common.Models.Contact>("msa_contact_managingpartner", null, value);
 				this.OnPropertyChanged("msa_contact_managingpartner");
 			}
 		}
@@ -4933,16 +4933,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// 1:N opportunity_customer_accounts
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("opportunity_customer_accounts")]
-		public System.Collections.Generic.IEnumerable<CM_CrmVSSolution.Common.Models.Opportunity> opportunity_customer_accounts
+		public System.Collections.Generic.IEnumerable<Common.Models.Opportunity> opportunity_customer_accounts
 		{
 			get
 			{
-				return this.GetRelatedEntities<CM_CrmVSSolution.Common.Models.Opportunity>("opportunity_customer_accounts", null);
+				return this.GetRelatedEntities<Common.Models.Opportunity>("opportunity_customer_accounts", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("opportunity_customer_accounts");
-				this.SetRelatedEntities<CM_CrmVSSolution.Common.Models.Opportunity>("opportunity_customer_accounts", null, value);
+				this.SetRelatedEntities<Common.Models.Opportunity>("opportunity_customer_accounts", null, value);
 				this.OnPropertyChanged("opportunity_customer_accounts");
 			}
 		}
@@ -4951,16 +4951,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// 1:N opportunity_parent_account
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("opportunity_parent_account")]
-		public System.Collections.Generic.IEnumerable<CM_CrmVSSolution.Common.Models.Opportunity> opportunity_parent_account
+		public System.Collections.Generic.IEnumerable<Common.Models.Opportunity> opportunity_parent_account
 		{
 			get
 			{
-				return this.GetRelatedEntities<CM_CrmVSSolution.Common.Models.Opportunity>("opportunity_parent_account", null);
+				return this.GetRelatedEntities<Common.Models.Opportunity>("opportunity_parent_account", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("opportunity_parent_account");
-				this.SetRelatedEntities<CM_CrmVSSolution.Common.Models.Opportunity>("opportunity_parent_account", null, value);
+				this.SetRelatedEntities<Common.Models.Opportunity>("opportunity_parent_account", null, value);
 				this.OnPropertyChanged("opportunity_parent_account");
 			}
 		}
@@ -4969,16 +4969,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// 1:N order_customer_accounts
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("order_customer_accounts")]
-		public System.Collections.Generic.IEnumerable<CM_CrmVSSolution.Common.Models.SalesOrder> order_customer_accounts
+		public System.Collections.Generic.IEnumerable<Common.Models.SalesOrder> order_customer_accounts
 		{
 			get
 			{
-				return this.GetRelatedEntities<CM_CrmVSSolution.Common.Models.SalesOrder>("order_customer_accounts", null);
+				return this.GetRelatedEntities<Common.Models.SalesOrder>("order_customer_accounts", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("order_customer_accounts");
-				this.SetRelatedEntities<CM_CrmVSSolution.Common.Models.SalesOrder>("order_customer_accounts", null, value);
+				this.SetRelatedEntities<Common.Models.SalesOrder>("order_customer_accounts", null, value);
 				this.OnPropertyChanged("order_customer_accounts");
 			}
 		}
@@ -4987,16 +4987,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// N:N accountleads_association
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("accountleads_association")]
-		public System.Collections.Generic.IEnumerable<CM_CrmVSSolution.Common.Models.Lead> accountleads_association
+		public System.Collections.Generic.IEnumerable<Common.Models.Lead> accountleads_association
 		{
 			get
 			{
-				return this.GetRelatedEntities<CM_CrmVSSolution.Common.Models.Lead>("accountleads_association", null);
+				return this.GetRelatedEntities<Common.Models.Lead>("accountleads_association", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("accountleads_association");
-				this.SetRelatedEntities<CM_CrmVSSolution.Common.Models.Lead>("accountleads_association", null, value);
+				this.SetRelatedEntities<Common.Models.Lead>("accountleads_association", null, value);
 				this.OnPropertyChanged("accountleads_association");
 			}
 		}
@@ -5006,11 +5006,11 @@ namespace CM_CrmVSSolution.Common.Models
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("masterid")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("account_master_account", Microsoft.Xrm.Sdk.EntityRole.Referencing)]
-		public CM_CrmVSSolution.Common.Models.Account Referencingaccount_master_account
+		public Common.Models.Account Referencingaccount_master_account
 		{
 			get
 			{
-				return this.GetRelatedEntity<CM_CrmVSSolution.Common.Models.Account>("account_master_account", Microsoft.Xrm.Sdk.EntityRole.Referencing);
+				return this.GetRelatedEntity<Common.Models.Account>("account_master_account", Microsoft.Xrm.Sdk.EntityRole.Referencing);
 			}
 		}
 		
@@ -5019,16 +5019,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("originatingleadid")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("account_originating_lead")]
-		public CM_CrmVSSolution.Common.Models.Lead account_originating_lead
+		public Common.Models.Lead account_originating_lead
 		{
 			get
 			{
-				return this.GetRelatedEntity<CM_CrmVSSolution.Common.Models.Lead>("account_originating_lead", null);
+				return this.GetRelatedEntity<Common.Models.Lead>("account_originating_lead", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("account_originating_lead");
-				this.SetRelatedEntity<CM_CrmVSSolution.Common.Models.Lead>("account_originating_lead", null, value);
+				this.SetRelatedEntity<Common.Models.Lead>("account_originating_lead", null, value);
 				this.OnPropertyChanged("account_originating_lead");
 			}
 		}
@@ -5038,16 +5038,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("parentaccountid")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("account_parent_account", Microsoft.Xrm.Sdk.EntityRole.Referencing)]
-		public CM_CrmVSSolution.Common.Models.Account Referencingaccount_parent_account
+		public Common.Models.Account Referencingaccount_parent_account
 		{
 			get
 			{
-				return this.GetRelatedEntity<CM_CrmVSSolution.Common.Models.Account>("account_parent_account", Microsoft.Xrm.Sdk.EntityRole.Referencing);
+				return this.GetRelatedEntity<Common.Models.Account>("account_parent_account", Microsoft.Xrm.Sdk.EntityRole.Referencing);
 			}
 			set
 			{
 				this.OnPropertyChanging("Referencingaccount_parent_account");
-				this.SetRelatedEntity<CM_CrmVSSolution.Common.Models.Account>("account_parent_account", Microsoft.Xrm.Sdk.EntityRole.Referencing, value);
+				this.SetRelatedEntity<Common.Models.Account>("account_parent_account", Microsoft.Xrm.Sdk.EntityRole.Referencing, value);
 				this.OnPropertyChanged("Referencingaccount_parent_account");
 			}
 		}
@@ -5057,16 +5057,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("primarycontactid")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("account_primary_contact")]
-		public CM_CrmVSSolution.Common.Models.Contact account_primary_contact
+		public Common.Models.Contact account_primary_contact
 		{
 			get
 			{
-				return this.GetRelatedEntity<CM_CrmVSSolution.Common.Models.Contact>("account_primary_contact", null);
+				return this.GetRelatedEntity<Common.Models.Contact>("account_primary_contact", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("account_primary_contact");
-				this.SetRelatedEntity<CM_CrmVSSolution.Common.Models.Contact>("account_primary_contact", null, value);
+				this.SetRelatedEntity<Common.Models.Contact>("account_primary_contact", null, value);
 				this.OnPropertyChanged("account_primary_contact");
 			}
 		}
@@ -5076,16 +5076,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msa_managingpartnerid")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msa_account_managingpartner", Microsoft.Xrm.Sdk.EntityRole.Referencing)]
-		public CM_CrmVSSolution.Common.Models.Account Referencingmsa_account_managingpartner
+		public Common.Models.Account Referencingmsa_account_managingpartner
 		{
 			get
 			{
-				return this.GetRelatedEntity<CM_CrmVSSolution.Common.Models.Account>("msa_account_managingpartner", Microsoft.Xrm.Sdk.EntityRole.Referencing);
+				return this.GetRelatedEntity<Common.Models.Account>("msa_account_managingpartner", Microsoft.Xrm.Sdk.EntityRole.Referencing);
 			}
 			set
 			{
 				this.OnPropertyChanging("Referencingmsa_account_managingpartner");
-				this.SetRelatedEntity<CM_CrmVSSolution.Common.Models.Account>("msa_account_managingpartner", Microsoft.Xrm.Sdk.EntityRole.Referencing, value);
+				this.SetRelatedEntity<Common.Models.Account>("msa_account_managingpartner", Microsoft.Xrm.Sdk.EntityRole.Referencing, value);
 				this.OnPropertyChanged("Referencingmsa_account_managingpartner");
 			}
 		}
@@ -5095,11 +5095,11 @@ namespace CM_CrmVSSolution.Common.Models
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_accounts")]
-		public CM_CrmVSSolution.Common.Models.Team team_accounts
+		public Common.Models.Team team_accounts
 		{
 			get
 			{
-				return this.GetRelatedEntity<CM_CrmVSSolution.Common.Models.Team>("team_accounts", null);
+				return this.GetRelatedEntity<Common.Models.Team>("team_accounts", null);
 			}
 		}
 	}

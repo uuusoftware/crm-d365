@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CM_CrmVSSolution.Common.Models
+namespace Common.Models
 {
 	
 	
@@ -1058,16 +1058,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// 1:N cm_programassociation_Program_team
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_programassociation_Program_team")]
-		public System.Collections.Generic.IEnumerable<CM_CrmVSSolution.Common.Models.cm_ProgramAssociation> cm_programassociation_Program_team
+		public System.Collections.Generic.IEnumerable<Common.Models.cm_ProgramAssociation> cm_programassociation_Program_team
 		{
 			get
 			{
-				return this.GetRelatedEntities<CM_CrmVSSolution.Common.Models.cm_ProgramAssociation>("cm_programassociation_Program_team", null);
+				return this.GetRelatedEntities<Common.Models.cm_ProgramAssociation>("cm_programassociation_Program_team", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("cm_programassociation_Program_team");
-				this.SetRelatedEntities<CM_CrmVSSolution.Common.Models.cm_ProgramAssociation>("cm_programassociation_Program_team", null, value);
+				this.SetRelatedEntities<Common.Models.cm_ProgramAssociation>("cm_programassociation_Program_team", null, value);
 				this.OnPropertyChanged("cm_programassociation_Program_team");
 			}
 		}
@@ -1076,16 +1076,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// 1:N lead_owning_team
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lead_owning_team")]
-		public System.Collections.Generic.IEnumerable<CM_CrmVSSolution.Common.Models.Lead> lead_owning_team
+		public System.Collections.Generic.IEnumerable<Common.Models.Lead> lead_owning_team
 		{
 			get
 			{
-				return this.GetRelatedEntities<CM_CrmVSSolution.Common.Models.Lead>("lead_owning_team", null);
+				return this.GetRelatedEntities<Common.Models.Lead>("lead_owning_team", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("lead_owning_team");
-				this.SetRelatedEntities<CM_CrmVSSolution.Common.Models.Lead>("lead_owning_team", null, value);
+				this.SetRelatedEntities<Common.Models.Lead>("lead_owning_team", null, value);
 				this.OnPropertyChanged("lead_owning_team");
 			}
 		}
@@ -1094,16 +1094,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// 1:N team_accounts
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_accounts")]
-		public System.Collections.Generic.IEnumerable<CM_CrmVSSolution.Common.Models.Account> team_accounts
+		public System.Collections.Generic.IEnumerable<Common.Models.Account> team_accounts
 		{
 			get
 			{
-				return this.GetRelatedEntities<CM_CrmVSSolution.Common.Models.Account>("team_accounts", null);
+				return this.GetRelatedEntities<Common.Models.Account>("team_accounts", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("team_accounts");
-				this.SetRelatedEntities<CM_CrmVSSolution.Common.Models.Account>("team_accounts", null, value);
+				this.SetRelatedEntities<Common.Models.Account>("team_accounts", null, value);
 				this.OnPropertyChanged("team_accounts");
 			}
 		}
@@ -1112,16 +1112,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// 1:N team_cm_programassociation
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_cm_programassociation")]
-		public System.Collections.Generic.IEnumerable<CM_CrmVSSolution.Common.Models.cm_ProgramAssociation> team_cm_programassociation
+		public System.Collections.Generic.IEnumerable<Common.Models.cm_ProgramAssociation> team_cm_programassociation
 		{
 			get
 			{
-				return this.GetRelatedEntities<CM_CrmVSSolution.Common.Models.cm_ProgramAssociation>("team_cm_programassociation", null);
+				return this.GetRelatedEntities<Common.Models.cm_ProgramAssociation>("team_cm_programassociation", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("team_cm_programassociation");
-				this.SetRelatedEntities<CM_CrmVSSolution.Common.Models.cm_ProgramAssociation>("team_cm_programassociation", null, value);
+				this.SetRelatedEntities<Common.Models.cm_ProgramAssociation>("team_cm_programassociation", null, value);
 				this.OnPropertyChanged("team_cm_programassociation");
 			}
 		}
@@ -1130,16 +1130,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// 1:N team_cm_province
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_cm_province")]
-		public System.Collections.Generic.IEnumerable<CM_CrmVSSolution.Common.Models.cm_Province> team_cm_province
+		public System.Collections.Generic.IEnumerable<Common.Models.cm_Province> team_cm_province
 		{
 			get
 			{
-				return this.GetRelatedEntities<CM_CrmVSSolution.Common.Models.cm_Province>("team_cm_province", null);
+				return this.GetRelatedEntities<Common.Models.cm_Province>("team_cm_province", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("team_cm_province");
-				this.SetRelatedEntities<CM_CrmVSSolution.Common.Models.cm_Province>("team_cm_province", null, value);
+				this.SetRelatedEntities<Common.Models.cm_Province>("team_cm_province", null, value);
 				this.OnPropertyChanged("team_cm_province");
 			}
 		}
@@ -1148,16 +1148,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// 1:N team_connections1
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_connections1")]
-		public System.Collections.Generic.IEnumerable<CM_CrmVSSolution.Common.Models.Connection> team_connections1
+		public System.Collections.Generic.IEnumerable<Common.Models.Connection> team_connections1
 		{
 			get
 			{
-				return this.GetRelatedEntities<CM_CrmVSSolution.Common.Models.Connection>("team_connections1", null);
+				return this.GetRelatedEntities<Common.Models.Connection>("team_connections1", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("team_connections1");
-				this.SetRelatedEntities<CM_CrmVSSolution.Common.Models.Connection>("team_connections1", null, value);
+				this.SetRelatedEntities<Common.Models.Connection>("team_connections1", null, value);
 				this.OnPropertyChanged("team_connections1");
 			}
 		}
@@ -1166,16 +1166,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// 1:N team_connections2
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_connections2")]
-		public System.Collections.Generic.IEnumerable<CM_CrmVSSolution.Common.Models.Connection> team_connections2
+		public System.Collections.Generic.IEnumerable<Common.Models.Connection> team_connections2
 		{
 			get
 			{
-				return this.GetRelatedEntities<CM_CrmVSSolution.Common.Models.Connection>("team_connections2", null);
+				return this.GetRelatedEntities<Common.Models.Connection>("team_connections2", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("team_connections2");
-				this.SetRelatedEntities<CM_CrmVSSolution.Common.Models.Connection>("team_connections2", null, value);
+				this.SetRelatedEntities<Common.Models.Connection>("team_connections2", null, value);
 				this.OnPropertyChanged("team_connections2");
 			}
 		}
@@ -1184,16 +1184,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// 1:N team_contacts
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_contacts")]
-		public System.Collections.Generic.IEnumerable<CM_CrmVSSolution.Common.Models.Contact> team_contacts
+		public System.Collections.Generic.IEnumerable<Common.Models.Contact> team_contacts
 		{
 			get
 			{
-				return this.GetRelatedEntities<CM_CrmVSSolution.Common.Models.Contact>("team_contacts", null);
+				return this.GetRelatedEntities<Common.Models.Contact>("team_contacts", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("team_contacts");
-				this.SetRelatedEntities<CM_CrmVSSolution.Common.Models.Contact>("team_contacts", null, value);
+				this.SetRelatedEntities<Common.Models.Contact>("team_contacts", null, value);
 				this.OnPropertyChanged("team_contacts");
 			}
 		}
@@ -1202,16 +1202,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// 1:N team_opportunities
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_opportunities")]
-		public System.Collections.Generic.IEnumerable<CM_CrmVSSolution.Common.Models.Opportunity> team_opportunities
+		public System.Collections.Generic.IEnumerable<Common.Models.Opportunity> team_opportunities
 		{
 			get
 			{
-				return this.GetRelatedEntities<CM_CrmVSSolution.Common.Models.Opportunity>("team_opportunities", null);
+				return this.GetRelatedEntities<Common.Models.Opportunity>("team_opportunities", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("team_opportunities");
-				this.SetRelatedEntities<CM_CrmVSSolution.Common.Models.Opportunity>("team_opportunities", null, value);
+				this.SetRelatedEntities<Common.Models.Opportunity>("team_opportunities", null, value);
 				this.OnPropertyChanged("team_opportunities");
 			}
 		}
@@ -1220,16 +1220,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// 1:N team_orders
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_orders")]
-		public System.Collections.Generic.IEnumerable<CM_CrmVSSolution.Common.Models.SalesOrder> team_orders
+		public System.Collections.Generic.IEnumerable<Common.Models.SalesOrder> team_orders
 		{
 			get
 			{
-				return this.GetRelatedEntities<CM_CrmVSSolution.Common.Models.SalesOrder>("team_orders", null);
+				return this.GetRelatedEntities<Common.Models.SalesOrder>("team_orders", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("team_orders");
-				this.SetRelatedEntities<CM_CrmVSSolution.Common.Models.SalesOrder>("team_orders", null, value);
+				this.SetRelatedEntities<Common.Models.SalesOrder>("team_orders", null, value);
 				this.OnPropertyChanged("team_orders");
 			}
 		}
@@ -1239,16 +1239,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_province")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_Team_cm_Province_cm_Province")]
-		public CM_CrmVSSolution.Common.Models.cm_Province cm_Team_cm_Province_cm_Province
+		public Common.Models.cm_Province cm_Team_cm_Province_cm_Province
 		{
 			get
 			{
-				return this.GetRelatedEntity<CM_CrmVSSolution.Common.Models.cm_Province>("cm_Team_cm_Province_cm_Province", null);
+				return this.GetRelatedEntity<Common.Models.cm_Province>("cm_Team_cm_Province_cm_Province", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("cm_Team_cm_Province_cm_Province");
-				this.SetRelatedEntity<CM_CrmVSSolution.Common.Models.cm_Province>("cm_Team_cm_Province_cm_Province", null, value);
+				this.SetRelatedEntity<Common.Models.cm_Province>("cm_Team_cm_Province_cm_Province", null, value);
 				this.OnPropertyChanged("cm_Team_cm_Province_cm_Province");
 			}
 		}
@@ -1258,16 +1258,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("opportunity_Teams")]
-		public CM_CrmVSSolution.Common.Models.Opportunity opportunity_Teams
+		public Common.Models.Opportunity opportunity_Teams
 		{
 			get
 			{
-				return this.GetRelatedEntity<CM_CrmVSSolution.Common.Models.Opportunity>("opportunity_Teams", null);
+				return this.GetRelatedEntity<Common.Models.Opportunity>("opportunity_Teams", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("opportunity_Teams");
-				this.SetRelatedEntity<CM_CrmVSSolution.Common.Models.Opportunity>("opportunity_Teams", null, value);
+				this.SetRelatedEntity<Common.Models.Opportunity>("opportunity_Teams", null, value);
 				this.OnPropertyChanged("opportunity_Teams");
 			}
 		}

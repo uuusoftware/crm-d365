@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CM_CrmVSSolution.Common.Models
+namespace Common.Models
 {
 	
 	
@@ -3544,16 +3544,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// 1:N lead_qualifying_opportunity
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lead_qualifying_opportunity")]
-		public System.Collections.Generic.IEnumerable<CM_CrmVSSolution.Common.Models.Lead> lead_qualifying_opportunity
+		public System.Collections.Generic.IEnumerable<Common.Models.Lead> lead_qualifying_opportunity
 		{
 			get
 			{
-				return this.GetRelatedEntities<CM_CrmVSSolution.Common.Models.Lead>("lead_qualifying_opportunity", null);
+				return this.GetRelatedEntities<Common.Models.Lead>("lead_qualifying_opportunity", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("lead_qualifying_opportunity");
-				this.SetRelatedEntities<CM_CrmVSSolution.Common.Models.Lead>("lead_qualifying_opportunity", null, value);
+				this.SetRelatedEntities<Common.Models.Lead>("lead_qualifying_opportunity", null, value);
 				this.OnPropertyChanged("lead_qualifying_opportunity");
 			}
 		}
@@ -3562,16 +3562,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// 1:N opportunity_connections1
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("opportunity_connections1")]
-		public System.Collections.Generic.IEnumerable<CM_CrmVSSolution.Common.Models.Connection> opportunity_connections1
+		public System.Collections.Generic.IEnumerable<Common.Models.Connection> opportunity_connections1
 		{
 			get
 			{
-				return this.GetRelatedEntities<CM_CrmVSSolution.Common.Models.Connection>("opportunity_connections1", null);
+				return this.GetRelatedEntities<Common.Models.Connection>("opportunity_connections1", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("opportunity_connections1");
-				this.SetRelatedEntities<CM_CrmVSSolution.Common.Models.Connection>("opportunity_connections1", null, value);
+				this.SetRelatedEntities<Common.Models.Connection>("opportunity_connections1", null, value);
 				this.OnPropertyChanged("opportunity_connections1");
 			}
 		}
@@ -3580,16 +3580,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// 1:N opportunity_connections2
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("opportunity_connections2")]
-		public System.Collections.Generic.IEnumerable<CM_CrmVSSolution.Common.Models.Connection> opportunity_connections2
+		public System.Collections.Generic.IEnumerable<Common.Models.Connection> opportunity_connections2
 		{
 			get
 			{
-				return this.GetRelatedEntities<CM_CrmVSSolution.Common.Models.Connection>("opportunity_connections2", null);
+				return this.GetRelatedEntities<Common.Models.Connection>("opportunity_connections2", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("opportunity_connections2");
-				this.SetRelatedEntities<CM_CrmVSSolution.Common.Models.Connection>("opportunity_connections2", null, value);
+				this.SetRelatedEntities<Common.Models.Connection>("opportunity_connections2", null, value);
 				this.OnPropertyChanged("opportunity_connections2");
 			}
 		}
@@ -3598,16 +3598,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// 1:N opportunity_sales_orders
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("opportunity_sales_orders")]
-		public System.Collections.Generic.IEnumerable<CM_CrmVSSolution.Common.Models.SalesOrder> opportunity_sales_orders
+		public System.Collections.Generic.IEnumerable<Common.Models.SalesOrder> opportunity_sales_orders
 		{
 			get
 			{
-				return this.GetRelatedEntities<CM_CrmVSSolution.Common.Models.SalesOrder>("opportunity_sales_orders", null);
+				return this.GetRelatedEntities<Common.Models.SalesOrder>("opportunity_sales_orders", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("opportunity_sales_orders");
-				this.SetRelatedEntities<CM_CrmVSSolution.Common.Models.SalesOrder>("opportunity_sales_orders", null, value);
+				this.SetRelatedEntities<Common.Models.SalesOrder>("opportunity_sales_orders", null, value);
 				this.OnPropertyChanged("opportunity_sales_orders");
 			}
 		}
@@ -3616,16 +3616,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// 1:N opportunity_Teams
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("opportunity_Teams")]
-		public System.Collections.Generic.IEnumerable<CM_CrmVSSolution.Common.Models.Team> opportunity_Teams
+		public System.Collections.Generic.IEnumerable<Common.Models.Team> opportunity_Teams
 		{
 			get
 			{
-				return this.GetRelatedEntities<CM_CrmVSSolution.Common.Models.Team>("opportunity_Teams", null);
+				return this.GetRelatedEntities<Common.Models.Team>("opportunity_Teams", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("opportunity_Teams");
-				this.SetRelatedEntities<CM_CrmVSSolution.Common.Models.Team>("opportunity_Teams", null, value);
+				this.SetRelatedEntities<Common.Models.Team>("opportunity_Teams", null, value);
 				this.OnPropertyChanged("opportunity_Teams");
 			}
 		}
@@ -3635,16 +3635,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_associatedprogram")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_Opportunity_AssociatedProgram_cm_ProgramAssociation")]
-		public CM_CrmVSSolution.Common.Models.cm_ProgramAssociation cm_Opportunity_AssociatedProgram_cm_ProgramAssociation
+		public Common.Models.cm_ProgramAssociation cm_Opportunity_AssociatedProgram_cm_ProgramAssociation
 		{
 			get
 			{
-				return this.GetRelatedEntity<CM_CrmVSSolution.Common.Models.cm_ProgramAssociation>("cm_Opportunity_AssociatedProgram_cm_ProgramAssociation", null);
+				return this.GetRelatedEntity<Common.Models.cm_ProgramAssociation>("cm_Opportunity_AssociatedProgram_cm_ProgramAssociation", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("cm_Opportunity_AssociatedProgram_cm_ProgramAssociation");
-				this.SetRelatedEntity<CM_CrmVSSolution.Common.Models.cm_ProgramAssociation>("cm_Opportunity_AssociatedProgram_cm_ProgramAssociation", null, value);
+				this.SetRelatedEntity<Common.Models.cm_ProgramAssociation>("cm_Opportunity_AssociatedProgram_cm_ProgramAssociation", null, value);
 				this.OnPropertyChanged("cm_Opportunity_AssociatedProgram_cm_ProgramAssociation");
 			}
 		}
@@ -3654,16 +3654,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("customerid")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("opportunity_customer_accounts")]
-		public CM_CrmVSSolution.Common.Models.Account opportunity_customer_accounts
+		public Common.Models.Account opportunity_customer_accounts
 		{
 			get
 			{
-				return this.GetRelatedEntity<CM_CrmVSSolution.Common.Models.Account>("opportunity_customer_accounts", null);
+				return this.GetRelatedEntity<Common.Models.Account>("opportunity_customer_accounts", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("opportunity_customer_accounts");
-				this.SetRelatedEntity<CM_CrmVSSolution.Common.Models.Account>("opportunity_customer_accounts", null, value);
+				this.SetRelatedEntity<Common.Models.Account>("opportunity_customer_accounts", null, value);
 				this.OnPropertyChanged("opportunity_customer_accounts");
 			}
 		}
@@ -3673,16 +3673,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("customerid")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("opportunity_customer_contacts")]
-		public CM_CrmVSSolution.Common.Models.Contact opportunity_customer_contacts
+		public Common.Models.Contact opportunity_customer_contacts
 		{
 			get
 			{
-				return this.GetRelatedEntity<CM_CrmVSSolution.Common.Models.Contact>("opportunity_customer_contacts", null);
+				return this.GetRelatedEntity<Common.Models.Contact>("opportunity_customer_contacts", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("opportunity_customer_contacts");
-				this.SetRelatedEntity<CM_CrmVSSolution.Common.Models.Contact>("opportunity_customer_contacts", null, value);
+				this.SetRelatedEntity<Common.Models.Contact>("opportunity_customer_contacts", null, value);
 				this.OnPropertyChanged("opportunity_customer_contacts");
 			}
 		}
@@ -3692,16 +3692,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("originatingleadid")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("opportunity_originating_lead")]
-		public CM_CrmVSSolution.Common.Models.Lead opportunity_originating_lead
+		public Common.Models.Lead opportunity_originating_lead
 		{
 			get
 			{
-				return this.GetRelatedEntity<CM_CrmVSSolution.Common.Models.Lead>("opportunity_originating_lead", null);
+				return this.GetRelatedEntity<Common.Models.Lead>("opportunity_originating_lead", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("opportunity_originating_lead");
-				this.SetRelatedEntity<CM_CrmVSSolution.Common.Models.Lead>("opportunity_originating_lead", null, value);
+				this.SetRelatedEntity<Common.Models.Lead>("opportunity_originating_lead", null, value);
 				this.OnPropertyChanged("opportunity_originating_lead");
 			}
 		}
@@ -3711,16 +3711,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("parentaccountid")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("opportunity_parent_account")]
-		public CM_CrmVSSolution.Common.Models.Account opportunity_parent_account
+		public Common.Models.Account opportunity_parent_account
 		{
 			get
 			{
-				return this.GetRelatedEntity<CM_CrmVSSolution.Common.Models.Account>("opportunity_parent_account", null);
+				return this.GetRelatedEntity<Common.Models.Account>("opportunity_parent_account", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("opportunity_parent_account");
-				this.SetRelatedEntity<CM_CrmVSSolution.Common.Models.Account>("opportunity_parent_account", null, value);
+				this.SetRelatedEntity<Common.Models.Account>("opportunity_parent_account", null, value);
 				this.OnPropertyChanged("opportunity_parent_account");
 			}
 		}
@@ -3730,16 +3730,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("parentcontactid")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("opportunity_parent_contact")]
-		public CM_CrmVSSolution.Common.Models.Contact opportunity_parent_contact
+		public Common.Models.Contact opportunity_parent_contact
 		{
 			get
 			{
-				return this.GetRelatedEntity<CM_CrmVSSolution.Common.Models.Contact>("opportunity_parent_contact", null);
+				return this.GetRelatedEntity<Common.Models.Contact>("opportunity_parent_contact", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("opportunity_parent_contact");
-				this.SetRelatedEntity<CM_CrmVSSolution.Common.Models.Contact>("opportunity_parent_contact", null, value);
+				this.SetRelatedEntity<Common.Models.Contact>("opportunity_parent_contact", null, value);
 				this.OnPropertyChanged("opportunity_parent_contact");
 			}
 		}
@@ -3749,11 +3749,11 @@ namespace CM_CrmVSSolution.Common.Models
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_opportunities")]
-		public CM_CrmVSSolution.Common.Models.Team team_opportunities
+		public Common.Models.Team team_opportunities
 		{
 			get
 			{
-				return this.GetRelatedEntity<CM_CrmVSSolution.Common.Models.Team>("team_opportunities", null);
+				return this.GetRelatedEntity<Common.Models.Team>("team_opportunities", null);
 			}
 		}
 	}

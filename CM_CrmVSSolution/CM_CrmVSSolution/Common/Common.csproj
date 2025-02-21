@@ -30,6 +30,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Common.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -41,7 +47,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common.cs" />
     <Compile Include="Models\Entities\account.cs" />
     <Compile Include="Models\Entities\cm_programassociation.cs" />
     <Compile Include="Models\Entities\cm_province.cs" />
@@ -78,6 +83,7 @@
     <Content Include="ModelBuilderScript.txt" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Common.snk" />
     <None Include="Models\builderSettings.json" />
   </ItemGroup>
   <ItemGroup>

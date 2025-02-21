@@ -4,8 +4,8 @@ pac modelbuilder build ^
   --messagenamesfilter execute* ^
   --emitfieldsclasses ^
   --emitVirtualAttributes ^
-  --namespace CM_CrmVSSolution.Common.Models ^
-  --outdirectory "C:\Users\Marcos Garcia\source\repos\Circular\CM_CrmVSSolution\CM_CrmVSSolution\Common\Models" ^
+  --namespace Plugins.Models ^
+  --outdirectory "C:\Users\Marcos Garcia\source\repos\Circular\CM_CrmVSSolution\CM_CrmVSSolution\Plugins\Models" ^
   --writesettingsTemplateFile ^
   --serviceContextName OrgContext ^
   --environment https://cmdynamicsdev.crm3.dynamics.com

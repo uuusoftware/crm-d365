@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CM_CrmVSSolution.Common.Models
+namespace Common.Models
 {
 	
 	
@@ -778,16 +778,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// 1:N cm_Opportunity_AssociatedProgram_cm_ProgramAssociation
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_Opportunity_AssociatedProgram_cm_ProgramAssociation")]
-		public System.Collections.Generic.IEnumerable<CM_CrmVSSolution.Common.Models.Opportunity> cm_Opportunity_AssociatedProgram_cm_ProgramAssociation
+		public System.Collections.Generic.IEnumerable<Common.Models.Opportunity> cm_Opportunity_AssociatedProgram_cm_ProgramAssociation
 		{
 			get
 			{
-				return this.GetRelatedEntities<CM_CrmVSSolution.Common.Models.Opportunity>("cm_Opportunity_AssociatedProgram_cm_ProgramAssociation", null);
+				return this.GetRelatedEntities<Common.Models.Opportunity>("cm_Opportunity_AssociatedProgram_cm_ProgramAssociation", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("cm_Opportunity_AssociatedProgram_cm_ProgramAssociation");
-				this.SetRelatedEntities<CM_CrmVSSolution.Common.Models.Opportunity>("cm_Opportunity_AssociatedProgram_cm_ProgramAssociation", null, value);
+				this.SetRelatedEntities<Common.Models.Opportunity>("cm_Opportunity_AssociatedProgram_cm_ProgramAssociation", null, value);
 				this.OnPropertyChanged("cm_Opportunity_AssociatedProgram_cm_ProgramAssociation");
 			}
 		}
@@ -797,16 +797,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_lead")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_Lead_Lead_cm_ProgramAssociation")]
-		public CM_CrmVSSolution.Common.Models.Lead cm_Lead_Lead_cm_ProgramAssociation
+		public Common.Models.Lead cm_Lead_Lead_cm_ProgramAssociation
 		{
 			get
 			{
-				return this.GetRelatedEntity<CM_CrmVSSolution.Common.Models.Lead>("cm_Lead_Lead_cm_ProgramAssociation", null);
+				return this.GetRelatedEntity<Common.Models.Lead>("cm_Lead_Lead_cm_ProgramAssociation", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("cm_Lead_Lead_cm_ProgramAssociation");
-				this.SetRelatedEntity<CM_CrmVSSolution.Common.Models.Lead>("cm_Lead_Lead_cm_ProgramAssociation", null, value);
+				this.SetRelatedEntity<Common.Models.Lead>("cm_Lead_Lead_cm_ProgramAssociation", null, value);
 				this.OnPropertyChanged("cm_Lead_Lead_cm_ProgramAssociation");
 			}
 		}
@@ -816,16 +816,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_program")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_programassociation_Program_team")]
-		public CM_CrmVSSolution.Common.Models.Team cm_programassociation_Program_team
+		public Common.Models.Team cm_programassociation_Program_team
 		{
 			get
 			{
-				return this.GetRelatedEntity<CM_CrmVSSolution.Common.Models.Team>("cm_programassociation_Program_team", null);
+				return this.GetRelatedEntity<Common.Models.Team>("cm_programassociation_Program_team", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("cm_programassociation_Program_team");
-				this.SetRelatedEntity<CM_CrmVSSolution.Common.Models.Team>("cm_programassociation_Program_team", null, value);
+				this.SetRelatedEntity<Common.Models.Team>("cm_programassociation_Program_team", null, value);
 				this.OnPropertyChanged("cm_programassociation_Program_team");
 			}
 		}
@@ -835,16 +835,16 @@ namespace CM_CrmVSSolution.Common.Models
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_province")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_programassociation_Province_cm_province")]
-		public CM_CrmVSSolution.Common.Models.cm_Province cm_programassociation_Province_cm_province
+		public Common.Models.cm_Province cm_programassociation_Province_cm_province
 		{
 			get
 			{
-				return this.GetRelatedEntity<CM_CrmVSSolution.Common.Models.cm_Province>("cm_programassociation_Province_cm_province", null);
+				return this.GetRelatedEntity<Common.Models.cm_Province>("cm_programassociation_Province_cm_province", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("cm_programassociation_Province_cm_province");
-				this.SetRelatedEntity<CM_CrmVSSolution.Common.Models.cm_Province>("cm_programassociation_Province_cm_province", null, value);
+				this.SetRelatedEntity<Common.Models.cm_Province>("cm_programassociation_Province_cm_province", null, value);
 				this.OnPropertyChanged("cm_programassociation_Province_cm_province");
 			}
 		}
@@ -854,11 +854,11 @@ namespace CM_CrmVSSolution.Common.Models
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_cm_programassociation")]
-		public CM_CrmVSSolution.Common.Models.Team team_cm_programassociation
+		public Common.Models.Team team_cm_programassociation
 		{
 			get
 			{
-				return this.GetRelatedEntity<CM_CrmVSSolution.Common.Models.Team>("team_cm_programassociation", null);
+				return this.GetRelatedEntity<Common.Models.Team>("team_cm_programassociation", null);
 			}
 		}
 	}

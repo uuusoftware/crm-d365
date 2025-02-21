@@ -10,7 +10,7 @@
 
 [assembly: Microsoft.Xrm.Sdk.Client.ProxyTypesAssemblyAttribute()]
 
-namespace CM_CrmVSSolution.Common.Models
+namespace Common.Models
 {
 	
 	
@@ -30,101 +30,101 @@ namespace CM_CrmVSSolution.Common.Models
 		}
 		
 		/// <summary>
-		/// Gets a binding to the set of all <see cref="CM_CrmVSSolution.Common.Models.Account"/> entities.
+		/// Gets a binding to the set of all <see cref="Common.Models.Account"/> entities.
 		/// </summary>
-		public System.Linq.IQueryable<CM_CrmVSSolution.Common.Models.Account> AccountSet
+		public System.Linq.IQueryable<Common.Models.Account> AccountSet
 		{
 			get
 			{
-				return this.CreateQuery<CM_CrmVSSolution.Common.Models.Account>();
+				return this.CreateQuery<Common.Models.Account>();
 			}
 		}
 		
 		/// <summary>
-		/// Gets a binding to the set of all <see cref="CM_CrmVSSolution.Common.Models.cm_ProgramAssociation"/> entities.
+		/// Gets a binding to the set of all <see cref="Common.Models.cm_ProgramAssociation"/> entities.
 		/// </summary>
-		public System.Linq.IQueryable<CM_CrmVSSolution.Common.Models.cm_ProgramAssociation> cm_ProgramAssociationSet
+		public System.Linq.IQueryable<Common.Models.cm_ProgramAssociation> cm_ProgramAssociationSet
 		{
 			get
 			{
-				return this.CreateQuery<CM_CrmVSSolution.Common.Models.cm_ProgramAssociation>();
+				return this.CreateQuery<Common.Models.cm_ProgramAssociation>();
 			}
 		}
 		
 		/// <summary>
-		/// Gets a binding to the set of all <see cref="CM_CrmVSSolution.Common.Models.cm_Province"/> entities.
+		/// Gets a binding to the set of all <see cref="Common.Models.cm_Province"/> entities.
 		/// </summary>
-		public System.Linq.IQueryable<CM_CrmVSSolution.Common.Models.cm_Province> cm_ProvinceSet
+		public System.Linq.IQueryable<Common.Models.cm_Province> cm_ProvinceSet
 		{
 			get
 			{
-				return this.CreateQuery<CM_CrmVSSolution.Common.Models.cm_Province>();
+				return this.CreateQuery<Common.Models.cm_Province>();
 			}
 		}
 		
 		/// <summary>
-		/// Gets a binding to the set of all <see cref="CM_CrmVSSolution.Common.Models.Connection"/> entities.
+		/// Gets a binding to the set of all <see cref="Common.Models.Connection"/> entities.
 		/// </summary>
-		public System.Linq.IQueryable<CM_CrmVSSolution.Common.Models.Connection> ConnectionSet
+		public System.Linq.IQueryable<Common.Models.Connection> ConnectionSet
 		{
 			get
 			{
-				return this.CreateQuery<CM_CrmVSSolution.Common.Models.Connection>();
+				return this.CreateQuery<Common.Models.Connection>();
 			}
 		}
 		
 		/// <summary>
-		/// Gets a binding to the set of all <see cref="CM_CrmVSSolution.Common.Models.Contact"/> entities.
+		/// Gets a binding to the set of all <see cref="Common.Models.Contact"/> entities.
 		/// </summary>
-		public System.Linq.IQueryable<CM_CrmVSSolution.Common.Models.Contact> ContactSet
+		public System.Linq.IQueryable<Common.Models.Contact> ContactSet
 		{
 			get
 			{
-				return this.CreateQuery<CM_CrmVSSolution.Common.Models.Contact>();
+				return this.CreateQuery<Common.Models.Contact>();
 			}
 		}
 		
 		/// <summary>
-		/// Gets a binding to the set of all <see cref="CM_CrmVSSolution.Common.Models.Lead"/> entities.
+		/// Gets a binding to the set of all <see cref="Common.Models.Lead"/> entities.
 		/// </summary>
-		public System.Linq.IQueryable<CM_CrmVSSolution.Common.Models.Lead> LeadSet
+		public System.Linq.IQueryable<Common.Models.Lead> LeadSet
 		{
 			get
 			{
-				return this.CreateQuery<CM_CrmVSSolution.Common.Models.Lead>();
+				return this.CreateQuery<Common.Models.Lead>();
 			}
 		}
 		
 		/// <summary>
-		/// Gets a binding to the set of all <see cref="CM_CrmVSSolution.Common.Models.Opportunity"/> entities.
+		/// Gets a binding to the set of all <see cref="Common.Models.Opportunity"/> entities.
 		/// </summary>
-		public System.Linq.IQueryable<CM_CrmVSSolution.Common.Models.Opportunity> OpportunitySet
+		public System.Linq.IQueryable<Common.Models.Opportunity> OpportunitySet
 		{
 			get
 			{
-				return this.CreateQuery<CM_CrmVSSolution.Common.Models.Opportunity>();
+				return this.CreateQuery<Common.Models.Opportunity>();
 			}
 		}
 		
 		/// <summary>
-		/// Gets a binding to the set of all <see cref="CM_CrmVSSolution.Common.Models.SalesOrder"/> entities.
+		/// Gets a binding to the set of all <see cref="Common.Models.SalesOrder"/> entities.
 		/// </summary>
-		public System.Linq.IQueryable<CM_CrmVSSolution.Common.Models.SalesOrder> SalesOrderSet
+		public System.Linq.IQueryable<Common.Models.SalesOrder> SalesOrderSet
 		{
 			get
 			{
-				return this.CreateQuery<CM_CrmVSSolution.Common.Models.SalesOrder>();
+				return this.CreateQuery<Common.Models.SalesOrder>();
 			}
 		}
 		
 		/// <summary>
-		/// Gets a binding to the set of all <see cref="CM_CrmVSSolution.Common.Models.Team"/> entities.
+		/// Gets a binding to the set of all <see cref="Common.Models.Team"/> entities.
 		/// </summary>
-		public System.Linq.IQueryable<CM_CrmVSSolution.Common.Models.Team> TeamSet
+		public System.Linq.IQueryable<Common.Models.Team> TeamSet
 		{
 			get
 			{
-				return this.CreateQuery<CM_CrmVSSolution.Common.Models.Team>();
+				return this.CreateQuery<Common.Models.Team>();
 			}
 		}
 	}
