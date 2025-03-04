@@ -87,6 +87,8 @@ namespace Plugins.Models
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
 			public const string cm_programassociation_Province_cm_province = "cm_programassociation_Province_cm_province";
+			public const string cm_questioncatalog_Province_cm_province = "cm_questioncatalog_Province_cm_province";
+			public const string cm_questionresponse_Province_cm_province = "cm_questionresponse_Province_cm_province";
 			public const string cm_Team_cm_Province_cm_Province = "cm_Team_cm_Province_cm_Province";
 			public const string team_cm_province = "team_cm_province";
 		}
@@ -654,6 +656,42 @@ namespace Plugins.Models
 				this.OnPropertyChanging("cm_programassociation_Province_cm_province");
 				this.SetRelatedEntities<Plugins.Models.cm_ProgramAssociation>("cm_programassociation_Province_cm_province", null, value);
 				this.OnPropertyChanged("cm_programassociation_Province_cm_province");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N cm_questioncatalog_Province_cm_province
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_questioncatalog_Province_cm_province")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.cm_QuestionCatalog> cm_questioncatalog_Province_cm_province
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.cm_QuestionCatalog>("cm_questioncatalog_Province_cm_province", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_questioncatalog_Province_cm_province");
+				this.SetRelatedEntities<Plugins.Models.cm_QuestionCatalog>("cm_questioncatalog_Province_cm_province", null, value);
+				this.OnPropertyChanged("cm_questioncatalog_Province_cm_province");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N cm_questionresponse_Province_cm_province
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_questionresponse_Province_cm_province")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.cm_QuestionResponse> cm_questionresponse_Province_cm_province
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.cm_QuestionResponse>("cm_questionresponse_Province_cm_province", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_questionresponse_Province_cm_province");
+				this.SetRelatedEntities<Plugins.Models.cm_QuestionResponse>("cm_questionresponse_Province_cm_province", null, value);
+				this.OnPropertyChanged("cm_questionresponse_Province_cm_province");
 			}
 		}
 		

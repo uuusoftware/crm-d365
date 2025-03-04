@@ -63,6 +63,28 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// Gets a binding to the set of all <see cref="Plugins.Models.cm_QuestionCatalog"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<Plugins.Models.cm_QuestionCatalog> cm_QuestionCatalogSet
+		{
+			get
+			{
+				return this.CreateQuery<Plugins.Models.cm_QuestionCatalog>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="Plugins.Models.cm_QuestionResponse"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<Plugins.Models.cm_QuestionResponse> cm_QuestionResponseSet
+		{
+			get
+			{
+				return this.CreateQuery<Plugins.Models.cm_QuestionResponse>();
+			}
+		}
+		
+		/// <summary>
 		/// Gets a binding to the set of all <see cref="Plugins.Models.Connection"/> entities.
 		/// </summary>
 		public System.Linq.IQueryable<Plugins.Models.Connection> ConnectionSet

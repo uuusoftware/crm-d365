@@ -353,6 +353,7 @@ namespace Plugins.Models
 			public const string TraversedPath = "traversedpath";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
+			public const string cm_questionresponse_Opportunity_opportunity = "cm_questionresponse_Opportunity_opportunity";
 			public const string lead_qualifying_opportunity = "lead_qualifying_opportunity";
 			public const string opportunity_connections1 = "opportunity_connections1";
 			public const string opportunity_connections2 = "opportunity_connections2";
@@ -3537,6 +3538,24 @@ namespace Plugins.Models
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<long>>("versionnumber");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N cm_questionresponse_Opportunity_opportunity
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_questionresponse_Opportunity_opportunity")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.cm_QuestionResponse> cm_questionresponse_Opportunity_opportunity
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.cm_QuestionResponse>("cm_questionresponse_Opportunity_opportunity", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_questionresponse_Opportunity_opportunity");
+				this.SetRelatedEntities<Plugins.Models.cm_QuestionResponse>("cm_questionresponse_Opportunity_opportunity", null, value);
+				this.OnPropertyChanged("cm_questionresponse_Opportunity_opportunity");
 			}
 		}
 		

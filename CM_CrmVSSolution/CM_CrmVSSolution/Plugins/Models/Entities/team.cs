@@ -125,10 +125,14 @@ namespace Plugins.Models
 			public const string VersionNumber = "versionnumber";
 			public const string YomiName = "yominame";
 			public const string cm_programassociation_Program_team = "cm_programassociation_Program_team";
+			public const string cm_questioncatalog_Program_team = "cm_questioncatalog_Program_team";
+			public const string cm_questionresponse_Program_team = "cm_questionresponse_Program_team";
 			public const string lead_owning_team = "lead_owning_team";
 			public const string team_accounts = "team_accounts";
 			public const string team_cm_programassociation = "team_cm_programassociation";
 			public const string team_cm_province = "team_cm_province";
+			public const string team_cm_questioncatalog = "team_cm_questioncatalog";
+			public const string team_cm_questionresponse = "team_cm_questionresponse";
 			public const string team_connections1 = "team_connections1";
 			public const string team_connections2 = "team_connections2";
 			public const string team_contacts = "team_contacts";
@@ -1073,6 +1077,42 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// 1:N cm_questioncatalog_Program_team
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_questioncatalog_Program_team")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.cm_QuestionCatalog> cm_questioncatalog_Program_team
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.cm_QuestionCatalog>("cm_questioncatalog_Program_team", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_questioncatalog_Program_team");
+				this.SetRelatedEntities<Plugins.Models.cm_QuestionCatalog>("cm_questioncatalog_Program_team", null, value);
+				this.OnPropertyChanged("cm_questioncatalog_Program_team");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N cm_questionresponse_Program_team
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_questionresponse_Program_team")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.cm_QuestionResponse> cm_questionresponse_Program_team
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.cm_QuestionResponse>("cm_questionresponse_Program_team", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_questionresponse_Program_team");
+				this.SetRelatedEntities<Plugins.Models.cm_QuestionResponse>("cm_questionresponse_Program_team", null, value);
+				this.OnPropertyChanged("cm_questionresponse_Program_team");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N lead_owning_team
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lead_owning_team")]
@@ -1141,6 +1181,42 @@ namespace Plugins.Models
 				this.OnPropertyChanging("team_cm_province");
 				this.SetRelatedEntities<Plugins.Models.cm_Province>("team_cm_province", null, value);
 				this.OnPropertyChanged("team_cm_province");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N team_cm_questioncatalog
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_cm_questioncatalog")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.cm_QuestionCatalog> team_cm_questioncatalog
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.cm_QuestionCatalog>("team_cm_questioncatalog", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("team_cm_questioncatalog");
+				this.SetRelatedEntities<Plugins.Models.cm_QuestionCatalog>("team_cm_questioncatalog", null, value);
+				this.OnPropertyChanged("team_cm_questioncatalog");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N team_cm_questionresponse
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_cm_questionresponse")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.cm_QuestionResponse> team_cm_questionresponse
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.cm_QuestionResponse>("team_cm_questionresponse", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("team_cm_questionresponse");
+				this.SetRelatedEntities<Plugins.Models.cm_QuestionResponse>("team_cm_questionresponse", null, value);
+				this.OnPropertyChanged("team_cm_questionresponse");
 			}
 		}
 		

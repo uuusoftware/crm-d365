@@ -587,6 +587,8 @@ namespace Plugins.Models
 			public const string Aging90_Base = "aging90_base";
 			public const string BusinessTypeCode = "businesstypecode";
 			public const string BusinessTypeCodeName = "businesstypecodename";
+			public const string cm_Role = "cm_role";
+			public const string cm_roleName = "cm_rolename";
 			public const string CreatedBy = "createdby";
 			public const string CreatedByExternalParty = "createdbyexternalparty";
 			public const string CreatedByExternalPartyName = "createdbyexternalpartyname";
@@ -758,6 +760,8 @@ namespace Plugins.Models
 			public const string account_connections2 = "account_connections2";
 			public const string Referencedaccount_master_account = "Referencedaccount_master_account";
 			public const string Referencedaccount_parent_account = "Referencedaccount_parent_account";
+			public const string cm_Account_Account_cm_ProgramAssociation = "cm_Account_Account_cm_ProgramAssociation";
+			public const string cm_questionresponse_Account_account = "cm_questionresponse_Account_account";
 			public const string contact_customer_accounts = "contact_customer_accounts";
 			public const string lead_customer_accounts = "lead_customer_accounts";
 			public const string lead_parent_account = "lead_parent_account";
@@ -2074,6 +2078,40 @@ namespace Plugins.Models
 				if (this.FormattedValues.Contains("businesstypecode"))
 				{
 					return this.FormattedValues["businesstypecode"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		/// <summary>
+		/// Role - Producer or Service Provider
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_role")]
+		public virtual System.Collections.Generic.IEnumerable<cm_leadopptype> cm_Role
+		{
+			get
+			{
+				return EntityOptionSetEnum.GetMultiEnum<cm_leadopptype>(this, "cm_role");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_Role");
+				this.SetAttributeValue("cm_role", EntityOptionSetEnum.GetMultiEnum(this, "cm_role", value));
+				this.OnPropertyChanged("cm_Role");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_rolename")]
+		public string cm_roleName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_role"))
+				{
+					return this.FormattedValues["cm_role"];
 				}
 				else
 				{
@@ -4836,6 +4874,42 @@ namespace Plugins.Models
 				this.OnPropertyChanging("Referencedaccount_parent_account");
 				this.SetRelatedEntities<Plugins.Models.Account>("account_parent_account", Microsoft.Xrm.Sdk.EntityRole.Referenced, value);
 				this.OnPropertyChanged("Referencedaccount_parent_account");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N cm_Account_Account_cm_ProgramAssociation
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_Account_Account_cm_ProgramAssociation")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.cm_ProgramAssociation> cm_Account_Account_cm_ProgramAssociation
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.cm_ProgramAssociation>("cm_Account_Account_cm_ProgramAssociation", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_Account_Account_cm_ProgramAssociation");
+				this.SetRelatedEntities<Plugins.Models.cm_ProgramAssociation>("cm_Account_Account_cm_ProgramAssociation", null, value);
+				this.OnPropertyChanged("cm_Account_Account_cm_ProgramAssociation");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N cm_questionresponse_Account_account
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_questionresponse_Account_account")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.cm_QuestionResponse> cm_questionresponse_Account_account
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.cm_QuestionResponse>("cm_questionresponse_Account_account", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_questionresponse_Account_account");
+				this.SetRelatedEntities<Plugins.Models.cm_QuestionResponse>("cm_questionresponse_Account_account", null, value);
+				this.OnPropertyChanged("cm_questionresponse_Account_account");
 			}
 		}
 		
