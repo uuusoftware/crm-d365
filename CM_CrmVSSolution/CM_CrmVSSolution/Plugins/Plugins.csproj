@@ -23,6 +23,12 @@
     <Company>MyCompany</Company>
     <Description>This is a sample nuget package which contains a Dataverse plugin and its runtime dependencies like Newtonsoft.Json</Description>
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="ModelBuilderScript.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ModelBuilderScript.txt" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CrmSdk.CoreAssemblies" Version="9.0.2.*" PrivateAssets="All" />
