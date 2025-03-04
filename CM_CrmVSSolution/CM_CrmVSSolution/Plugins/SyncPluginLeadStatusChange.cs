@@ -62,7 +62,7 @@ namespace Plugins {
                 tracingService.Trace($"Error: {detailedError}");
                 throw new InvalidPluginExecutionException(detailedError, ex);
             } finally {
-                tracingService.Trace($"AsyncPluginContactUpdate Process End");
+                tracingService.Trace($"SyncPluginLeadStatusChange Process End");
             }
         }
     }
