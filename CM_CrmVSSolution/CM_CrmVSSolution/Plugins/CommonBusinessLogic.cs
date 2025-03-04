@@ -30,6 +30,12 @@ namespace Plugins {
                 case "cm_programassociation":
                     return svcContext.cm_ProgramAssociationSet.FirstOrDefault(record => record.Id == id);
 
+                case "cm_QuestionCatalog":
+                    return svcContext.cm_QuestionCatalogSet.FirstOrDefault(record => record.Id == id);
+
+                case "cm_QuestionResponse":
+                    return svcContext.cm_QuestionResponseSet.FirstOrDefault(record => record.Id == id);
+
                 case "salesorder":
                     return svcContext.SalesOrderSet.FirstOrDefault(record => record.Id == id);
 
@@ -212,6 +218,34 @@ namespace Plugins {
                 ParentCustomerId = new EntityReference(Account.EntityLogicalName, accountId)
             };
             _service.Update(contact);
+        }
+
+        internal List<cm_QuestionCatalog> GetQuestionsListByTeam(Guid teamId, cm_leadopptype? type) {
+            var svcContext = new OrgContext(_service);
+            return svcContext.cm_QuestionCatalogSet.Where(
+                record => record.Id == teamId
+                && record.statuscode == cm_questioncatalog_statuscode.Active
+                && record.cm_QuestionFor == type).ToList();
+        }
+
+        internal void CreateQuestionResponses(List<cm_QuestionCatalog> questions, Opportunity opportunity) {
+
+
+            questions.ForEach(question => {
+                cm_QuestionResponse questionResponse = new cm_QuestionResponse() {
+                    Id = Guid.NewGuid(),
+                    cm_ResponseID = question.Id.ToString(),
+                    cm_QuestionText = question.cm_QuestionText,
+                    cm_AnswerType = question.cm_AnswerType,
+                    cm_Province = question.cm_Province,
+                    cm_Program = question.cm_Program,
+                    cm_Opportunity = new EntityReference(Opportunity.EntityLogicalName, opportunity.Id),
+                    cm_Account = opportunity.AccountId,
+                    cm_Question = new EntityReference(cm_QuestionCatalog.EntityLogicalName, question.Id),
+                };
+                _service.Create(questionResponse);
+            });
+
         }
     }
 }
