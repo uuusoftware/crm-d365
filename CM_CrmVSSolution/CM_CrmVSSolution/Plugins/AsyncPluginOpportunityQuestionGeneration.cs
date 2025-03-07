@@ -3,7 +3,6 @@ using Microsoft.Xrm.Sdk;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Metadata.W3cXsd2001;
 
 namespace Plugins {
     public class AsyncPluginOpportunityQuestionGeneration : PluginBase {
@@ -29,18 +28,30 @@ namespace Plugins {
             try {
 
                 Opportunity opportunityRecord = commonBusinessLogic
-                    .GetRecordById(context.PrimaryEntityId, Opportunity.EntityLogicalName) as Opportunity;
+                    .GetRecordById<Opportunity>(context.PrimaryEntityId, Opportunity.EntityLogicalName);
+                tracingService.Trace($"opportunityRecord {opportunityRecord.Id}");
 
                 cm_ProgramAssociation programAssociationRecord = commonBusinessLogic
-                    .GetRecordById(opportunityRecord.cm_AssociatedProgram.Id, cm_ProgramAssociation.EntityLogicalName) as cm_ProgramAssociation;
+                    .GetRecordById<cm_ProgramAssociation>(opportunityRecord.cm_AssociatedProgram.Id, cm_ProgramAssociation.EntityLogicalName);
+                tracingService.Trace($"programAssociationRecord {programAssociationRecord.Id}");
 
                 Team teamRecord = commonBusinessLogic
-                    .GetRecordById(programAssociationRecord.cm_Program.Id, Team.EntityLogicalName) as Team;
+                    .GetRecordById<Team>(programAssociationRecord.cm_Program.Id, Team.EntityLogicalName);
+                tracingService.Trace($"teamRecord {teamRecord.Id}");
 
                 List<cm_QuestionCatalog> questionsList = commonBusinessLogic.GetQuestionsListByTeam(teamRecord.Id, opportunityRecord.cm_OpportunityType);
+                tracingService.Trace($"questionsList {string.Join(" ,", questionsList.Select(q => q.Id))}");
 
-                commonBusinessLogic.CreateQuestionResponses(questionsList, opportunityRecord);
+                if (questionsList.Any()) {
+                    commonBusinessLogic.CreateQuestionResponses(questionsList, opportunityRecord);
+                }
 
+            } catch (AggregateException aggregateException) {
+                var exceptions = aggregateException.InnerExceptions;
+                foreach (var inner in aggregateException.InnerExceptions) {
+                    tracingService.Trace($"Inner exception: {inner.Message}");
+                }
+                throw new InvalidPluginExecutionException("Aggregate exception occurred.", aggregateException);
             } catch (Exception ex) {
                 // Check if the exception is an AggregateException and unwrap it
                 if (ex is AggregateException aggregateException && aggregateException.InnerExceptions.Count > 0) {

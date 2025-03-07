@@ -14,64 +14,67 @@ namespace Plugins {
             _service = service ?? throw new ArgumentNullException(nameof(service));
             _tracingService = tracingService ?? throw new ArgumentNullException(nameof(tracingService));
         }
-        public Entity GetRecordById(Guid id, string entityLogicalName) {
-            var svcContext = new OrgContext(_service);
+        public T GetRecordById<T>(Guid id, string entityLogicalName) where T : Entity {
+            using (var svcContext = new OrgContext(_service)) {
+                switch (entityLogicalName) {
+                    case Account.EntityLogicalName:
+                        return svcContext.AccountSet.FirstOrDefault(record => record.Id == id).ToEntity<T>();
 
-            switch (entityLogicalName) {
-                case "account":
-                    return svcContext.AccountSet.FirstOrDefault(record => record.Id == id);
+                    case Contact.EntityLogicalName:
+                        return svcContext.ContactSet.FirstOrDefault(record => record.Id == id).ToEntity<T>();
 
-                case "contact":
-                    return svcContext.ContactSet.FirstOrDefault(record => record.Id == id);
+                    case cm_Province.EntityLogicalName:
+                        return svcContext.cm_ProvinceSet.FirstOrDefault(record => record.Id == id).ToEntity<T>();
 
-                case "cm_province":
-                    return svcContext.cm_ProvinceSet.FirstOrDefault(record => record.Id == id);
+                    case cm_ProgramAssociation.EntityLogicalName:
+                        return svcContext.cm_ProgramAssociationSet.FirstOrDefault(record => record.Id == id).ToEntity<T>();
 
-                case "cm_programassociation":
-                    return svcContext.cm_ProgramAssociationSet.FirstOrDefault(record => record.Id == id);
+                    case cm_QuestionCatalog.EntityLogicalName:
+                        return svcContext.cm_QuestionCatalogSet.FirstOrDefault(record => record.Id == id).ToEntity<T>();
 
-                case "cm_QuestionCatalog":
-                    return svcContext.cm_QuestionCatalogSet.FirstOrDefault(record => record.Id == id);
+                    case cm_QuestionResponse.EntityLogicalName:
+                        return svcContext.cm_QuestionResponseSet.FirstOrDefault(record => record.Id == id).ToEntity<T>();
 
-                case "cm_QuestionResponse":
-                    return svcContext.cm_QuestionResponseSet.FirstOrDefault(record => record.Id == id);
+                    case SalesOrder.EntityLogicalName:
+                        return svcContext.SalesOrderSet.FirstOrDefault(record => record.Id == id).ToEntity<T>();
 
-                case "salesorder":
-                    return svcContext.SalesOrderSet.FirstOrDefault(record => record.Id == id);
+                    case Connection.EntityLogicalName:
+                        return svcContext.ConnectionSet.FirstOrDefault(record => record.Id == id).ToEntity<T>();
 
-                case "connection":
-                    return svcContext.ConnectionSet.FirstOrDefault(record => record.Id == id);
+                    case Lead.EntityLogicalName:
+                        return svcContext.LeadSet.FirstOrDefault(record => record.Id == id).ToEntity<T>();
 
-                case "lead":
-                    return svcContext.LeadSet.FirstOrDefault(record => record.Id == id);
+                    case Opportunity.EntityLogicalName:
+                        return svcContext.OpportunitySet.FirstOrDefault(record => record.Id == id).ToEntity<T>();
 
-                case "opportinuty":
-                    return svcContext.OpportunitySet.FirstOrDefault(record => record.Id == id);
+                    case Team.EntityLogicalName:
+                        return svcContext.TeamSet.FirstOrDefault(record => record.Id == id).ToEntity<T>();
 
-                case "team":
-                    return svcContext.TeamSet.FirstOrDefault(record => record.Id == id);
-
-                default:
-                    throw new ArgumentException($"Unsupported entity type: {entityLogicalName}");
+                    default:
+                        throw new ArgumentException($"Unsupported entity type: {entityLogicalName}");
+                }
             }
         }
 
         public bool? HasProgramAssociation(Guid leadId) {
-            var svcContext = new OrgContext(_service);
-            bool result = svcContext.cm_ProgramAssociationSet.Any(programAssociation => programAssociation.cm_Lead.Id == leadId);
-            if (!result) {
-                return null;
+            using (var svcContext = new OrgContext(_service)) {
+                bool result = svcContext.cm_ProgramAssociationSet
+                    .Any(programAssociation => programAssociation.cm_Lead.Id == leadId);
+                if (!result) {
+                    return null;
+                }
+                return result;
             }
-            return result;
         }
 
         public List<cm_ProgramAssociation> GetAllProgramAssociationsByLead(Guid leadId) {
-            var svcContext = new OrgContext(_service);
-
-            return svcContext.cm_ProgramAssociationSet
+            using (var svcContext = new OrgContext(_service)) {
+                return svcContext.cm_ProgramAssociationSet
                 .Where(programAssociation => programAssociation.cm_Lead.Id == leadId)
                 .ToList();
+            }
         }
+
         public Guid CreateAccountForLead(Lead leadRecord, Guid contactId) {
             // Fields were selected according to Lead To Account relationship mapping with some exceptions
             if (leadRecord == null || contactId == null) {
@@ -83,6 +86,11 @@ namespace Plugins {
                 PrimaryContactId = new EntityReference(Contact.EntityLogicalName, contactId),
                 OriginatingLeadId = new EntityReference(Lead.EntityLogicalName, leadRecord.Id),
                 CustomerTypeCode = account_customertypecode.Prospect,
+                cm_Role = leadRecord.cm_LeadType.HasValue
+                    ? new List<cm_leadopptype> { leadRecord.cm_LeadType.Value }
+                    : new List<cm_leadopptype>(),
+                cm_Industry = leadRecord.cm_Industry,
+                cm_SubIndustry = leadRecord.cm_SubIndustry,
                 Name = leadRecord.CompanyName,
                 WebSiteURL = leadRecord.WebSiteUrl,
                 Address1_Line1 = leadRecord.Address1_Line1,
@@ -148,7 +156,7 @@ namespace Plugins {
                 Pager = leadRecord.Pager,
                 PreferredContactMethodCode = leadRecord.PreferredContactMethodCode.HasValue
                     ? (contact_preferredcontactmethodcode)leadRecord.PreferredContactMethodCode.Value
-                    : default, 
+                    : default,
                 Salutation = leadRecord.Salutation,
                 WebSiteUrl = leadRecord.WebSiteUrl,
                 Address1_Telephone1 = leadRecord.Address1_Telephone1,
@@ -195,7 +203,7 @@ namespace Plugins {
                 Description = leadRecord.Description,
                 CustomerId = leadRecord.CustomerId,
                 CampaignId = leadRecord.CampaignId,
-                Name = leadRecord.Subject,
+                Name = leadRecord.cm_LeadID + " " + programAssociationRecord.cm_Name,
                 OriginatingLeadId = new EntityReference(Lead.EntityLogicalName, leadRecord.Id),
                 OpportunityRatingCode = leadRecord.LeadQualityCode.HasValue
                     ? (opportunity_opportunityratingcode)leadRecord.LeadQualityCode.Value
@@ -220,32 +228,43 @@ namespace Plugins {
             _service.Update(contact);
         }
 
+        public void UpdateProgramAsscAccount(cm_ProgramAssociation programAssc, Guid accountId) {
+            cm_ProgramAssociation programAssociation = new cm_ProgramAssociation() {
+                Id = programAssc.Id,
+                cm_Account = new EntityReference(Account.EntityLogicalName, accountId)
+            };
+            _service.Update(programAssociation);
+        }
+
         internal List<cm_QuestionCatalog> GetQuestionsListByTeam(Guid teamId, cm_leadopptype? type) {
-            var svcContext = new OrgContext(_service);
-            return svcContext.cm_QuestionCatalogSet.Where(
-                record => record.Id == teamId
+            using (var svcContext = new OrgContext(_service)) {
+                return svcContext.cm_QuestionCatalogSet.Where(
+                record => record.cm_Program.Id == teamId
                 && record.statuscode == cm_questioncatalog_statuscode.Active
                 && record.cm_QuestionFor == type).ToList();
+            }
         }
 
         internal void CreateQuestionResponses(List<cm_QuestionCatalog> questions, Opportunity opportunity) {
-
+            List<Guid> responseGuids = new List<Guid>();
 
             questions.ForEach(question => {
                 cm_QuestionResponse questionResponse = new cm_QuestionResponse() {
                     Id = Guid.NewGuid(),
-                    cm_ResponseID = question.Id.ToString(),
+                    //cm_ResponseID = question.cm_QuestionID,
                     cm_QuestionText = question.cm_QuestionText,
                     cm_AnswerType = question.cm_AnswerType,
                     cm_Province = question.cm_Province,
                     cm_Program = question.cm_Program,
                     cm_Opportunity = new EntityReference(Opportunity.EntityLogicalName, opportunity.Id),
-                    cm_Account = opportunity.AccountId,
+                    cm_Account = opportunity.CustomerId,
                     cm_Question = new EntityReference(cm_QuestionCatalog.EntityLogicalName, question.Id),
+                    cm_AnswerYesNo = null
                 };
-                _service.Create(questionResponse);
+                Guid questionId = _service.Create(questionResponse);
+                responseGuids.Add(questionId);
             });
-
+            _tracingService.Trace("Question responses created: " + string.Join(", ", responseGuids));
         }
     }
 }
