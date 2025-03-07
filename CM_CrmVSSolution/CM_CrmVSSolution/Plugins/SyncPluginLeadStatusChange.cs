@@ -46,6 +46,7 @@ namespace Plugins {
 
                 programAssociation.ForEach(association => {
                     programAssociationGuids.Add(commonBusinessLogic.CreateOpportunityForLead(leadRecord, association, contactId, accountId));
+                    commonBusinessLogic.UpdateProgramAsscAccount(association, accountId);
                 });
 
                 commonBusinessLogic.SetParentCustomer(contactId, accountId);
