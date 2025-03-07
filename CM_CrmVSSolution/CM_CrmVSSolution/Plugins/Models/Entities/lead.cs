@@ -406,9 +406,13 @@ namespace Plugins.Models
 			public const string BusinessCardAttributes = "businesscardattributes";
 			public const string CampaignId = "campaignid";
 			public const string CampaignIdName = "campaignidname";
+			public const string cm_Industry = "cm_industry";
+			public const string cm_IndustryName = "cm_industryname";
 			public const string cm_LeadID = "cm_leadid";
 			public const string cm_LeadType = "cm_leadtype";
 			public const string cm_leadtypeName = "cm_leadtypename";
+			public const string cm_SubIndustry = "cm_subindustry";
+			public const string cm_SubIndustryName = "cm_subindustryname";
 			public const string CompanyName = "companyname";
 			public const string ConfirmInterest = "confirminterest";
 			public const string ConfirmInterestName = "confirminterestname";
@@ -1655,6 +1659,37 @@ namespace Plugins.Models
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_industry")]
+		public Microsoft.Xrm.Sdk.EntityReference cm_Industry
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cm_industry");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_Industry");
+				this.SetAttributeValue("cm_industry", value);
+				this.OnPropertyChanged("cm_Industry");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_industryname")]
+		public string cm_IndustryName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_industry"))
+				{
+					return this.FormattedValues["cm_industry"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_leadid")]
 		public string cm_LeadID
 		{
@@ -1693,6 +1728,37 @@ namespace Plugins.Models
 				if (this.FormattedValues.Contains("cm_leadtype"))
 				{
 					return this.FormattedValues["cm_leadtype"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_subindustry")]
+		public Microsoft.Xrm.Sdk.EntityReference cm_SubIndustry
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cm_subindustry");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_SubIndustry");
+				this.SetAttributeValue("cm_subindustry", value);
+				this.OnPropertyChanged("cm_SubIndustry");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_subindustryname")]
+		public string cm_SubIndustryName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_subindustry"))
+				{
+					return this.FormattedValues["cm_subindustry"];
 				}
 				else
 				{

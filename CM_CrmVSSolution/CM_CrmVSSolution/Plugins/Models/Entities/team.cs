@@ -74,6 +74,8 @@ namespace Plugins.Models
 			public const string AzureActiveDirectoryObjectId = "azureactivedirectoryobjectid";
 			public const string BusinessUnitId = "businessunitid";
 			public const string BusinessUnitIdName = "businessunitidname";
+			public const string cm_LeadType = "cm_leadtype";
+			public const string cm_leadtypeName = "cm_leadtypename";
 			public const string cm_Province = "cm_province";
 			public const string cm_ProvinceName = "cm_provincename";
 			public const string CreatedBy = "createdby";
@@ -270,6 +272,37 @@ namespace Plugins.Models
 				if (this.FormattedValues.Contains("businessunitid"))
 				{
 					return this.FormattedValues["businessunitid"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_leadtype")]
+		public virtual cm_leadopptype? cm_LeadType
+		{
+			get
+			{
+				return ((cm_leadopptype?)(EntityOptionSetEnum.GetEnum(this, "cm_leadtype")));
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_LeadType");
+				this.SetAttributeValue("cm_leadtype", value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null);
+				this.OnPropertyChanged("cm_LeadType");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_leadtypename")]
+		public string cm_leadtypeName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_leadtype"))
+				{
+					return this.FormattedValues["cm_leadtype"];
 				}
 				else
 				{

@@ -121,6 +121,21 @@ namespace Plugins.Models
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		OutSold = 5,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		LosttoaCompetitor = 121540001,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		NotInterested = 121540002,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		NotObligated = 121540003,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ReportUnderParent = 121540004,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		BusinessClosed = 121540005,
 	}
 	
 	/// <summary>
