@@ -13,22 +13,22 @@ namespace Plugins.Models
 {
 	
 	
+	/// <summary>
+	/// The service process stage that this entity is in.
+	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
-	public enum msdyn_leadgradeoptset
+	public enum servicestage
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		GradeA = 0,
+		Identify = 0,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		GradeB = 1,
+		Research = 1,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		GradeC = 2,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		GradeD = 3,
+		Resolve = 2,
 	}
 }
 #pragma warning restore CS1591

@@ -15,20 +15,26 @@ namespace Plugins.Models
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
-	public enum msdyn_leadgradeoptset
+	public enum cm_serviceprovidertype
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		GradeA = 0,
+		Contractor = 121540000,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		GradeB = 1,
+		CollectionSite = 121540001,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		GradeC = 2,
+		ReceivingFacility = 121540002,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		GradeD = 3,
+		ProcessingFacility = 121540003,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		EndMarketSite = 121540004,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		BrokerforMaterialMarketing = 121540005,
 	}
 }
 #pragma warning restore CS1591

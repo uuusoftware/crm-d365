@@ -13,22 +13,31 @@ namespace Plugins.Models
 {
 	
 	
+	/// <summary>
+	/// Information that specifies the source of the case information, such as Web, telephone, or email.
+	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
-	public enum msdyn_leadgradeoptset
+	public enum incident_caseorigincode
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		GradeA = 0,
+		Phone = 1,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		GradeB = 1,
+		Email = 2,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		GradeC = 2,
+		Web = 3,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		GradeD = 3,
+		Facebook = 2483,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Twitter = 3986,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		IoT = 700610000,
 	}
 }
 #pragma warning restore CS1591

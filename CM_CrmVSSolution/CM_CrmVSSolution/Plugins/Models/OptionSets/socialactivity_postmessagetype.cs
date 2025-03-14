@@ -13,22 +13,19 @@ namespace Plugins.Models
 {
 	
 	
+	/// <summary>
+	/// Post message type private or direct.
+	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
-	public enum msdyn_leadgradeoptset
+	public enum socialactivity_postmessagetype
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		GradeA = 0,
+		PublicMessage = 0,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		GradeB = 1,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		GradeC = 2,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		GradeD = 3,
+		PrivateMessage = 1,
 	}
 }
 #pragma warning restore CS1591

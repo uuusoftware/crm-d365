@@ -13,24 +13,12 @@ namespace Plugins.Models
 {
 	
 	
-	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
-	public enum cm_questionresponse_cm_answeryesno
-	{
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Yes = 121540000,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		No = 121540001,
-	}
-	
 	/// <summary>
-	/// Status of the Question Response
+	/// Status of the Case Checklist Catalog
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
-	public enum cm_questionresponse_statecode
+	public enum cm_casechecklistcatalog_statecode
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -41,11 +29,11 @@ namespace Plugins.Models
 	}
 	
 	/// <summary>
-	/// Reason for the status of the Question Response
+	/// Reason for the status of the Case Checklist Catalog
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
-	public enum cm_questionresponse_statuscode
+	public enum cm_casechecklistcatalog_statuscode
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -56,38 +44,33 @@ namespace Plugins.Models
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("cm_questionresponse")]
+	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("cm_casechecklistcatalog")]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
-	public partial class cm_QuestionResponse : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	public partial class cm_CaseChecklistCatalog : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
 		/// <summary>
-		/// Available fields, a the time of codegen, for the cm_questionresponse entity
+		/// Available fields, a the time of codegen, for the cm_casechecklistcatalog entity
 		/// </summary>
 		public partial class Fields
 		{
-			public const string cm_Account = "cm_account";
-			public const string cm_AccountName = "cm_accountname";
-			public const string cm_AccountYomiName = "cm_accountyominame";
-			public const string cm_AnswerText = "cm_answertext";
+			public const string cm_Acitve = "cm_acitve";
+			public const string cm_acitveName = "cm_acitvename";
 			public const string cm_AnswerType = "cm_answertype";
 			public const string cm_answertypeName = "cm_answertypename";
-			public const string cm_AnswerYesNo = "cm_answeryesno";
-			public const string cm_answeryesnoName = "cm_answeryesnoname";
-			public const string cm_Opportunity = "cm_opportunity";
-			public const string cm_OpportunityName = "cm_opportunityname";
-			public const string cm_Program = "cm_program";
-			public const string cm_ProgramName = "cm_programname";
-			public const string cm_ProgramYomiName = "cm_programyominame";
-			public const string cm_Province = "cm_province";
-			public const string cm_ProvinceName = "cm_provincename";
-			public const string cm_Question = "cm_question";
-			public const string cm_QuestionName = "cm_questionname";
-			public const string cm_QuestionResponseId = "cm_questionresponseid";
-			public const string Id = "cm_questionresponseid";
-			public const string cm_QuestionText = "cm_questiontext";
-			public const string cm_ResponseDate = "cm_responsedate";
-			public const string cm_ResponseID = "cm_responseid";
+			public const string cm_CaseCategory = "cm_casecategory";
+			public const string cm_CaseCategoryName = "cm_casecategoryname";
+			public const string cm_CaseChecklistCatalogId = "cm_casechecklistcatalogid";
+			public const string Id = "cm_casechecklistcatalogid";
+			public const string cm_CaseSubCategory = "cm_casesubcategory";
+			public const string cm_CaseSubCategoryName = "cm_casesubcategoryname";
+			public const string cm_DisplayOrder = "cm_displayorder";
+			public const string cm_IsConditional = "cm_isconditional";
+			public const string cm_isconditionalName = "cm_isconditionalname";
+			public const string cm_Itemtext = "cm_itemtext";
+			public const string cm_Name = "cm_name";
+			public const string cm_ParentItem = "cm_parentitem";
+			public const string cm_ParentItemName = "cm_parentitemname";
 			public const string CreatedBy = "createdby";
 			public const string CreatedByName = "createdbyname";
 			public const string CreatedByYomiName = "createdbyyominame";
@@ -118,27 +101,25 @@ namespace Plugins.Models
 			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
-			public const string cm_questionresponse_Account_account = "cm_questionresponse_Account_account";
-			public const string cm_questionresponse_Opportunity_opportunity = "cm_questionresponse_Opportunity_opportunity";
-			public const string cm_questionresponse_Program_team = "cm_questionresponse_Program_team";
-			public const string cm_questionresponse_Province_cm_province = "cm_questionresponse_Province_cm_province";
-			public const string cm_questionresponse_Question_cm_questioncatalog = "cm_questionresponse_Question_cm_questioncatalog";
-			public const string team_cm_questionresponse = "team_cm_questionresponse";
+			public const string Referencedcm_casechecklistcatalog_ParentItem_cm_casechecklistcatalog = "Referencedcm_casechecklistcatalog_ParentItem_cm_casechecklistcatalog";
+			public const string cm_programassociation_CaseChecklistCatalog_cm_casechecklistcatalog = "cm_programassociation_CaseChecklistCatalog_cm_casechecklistcatalog";
+			public const string Referencingcm_casechecklistcatalog_ParentItem_cm_casechecklistcatalog = "cm_casechecklistcatalog_ParentItem_cm_casechecklistcatalog";
+			public const string team_cm_casechecklistcatalog = "team_cm_casechecklistcatalog";
 		}
 		
 		/// <summary>
 		/// Default Constructor.
 		/// </summary>
-		public cm_QuestionResponse() : 
+		public cm_CaseChecklistCatalog() : 
 				base(EntityLogicalName)
 		{
 		}
 		
-		public const string EntityLogicalName = "cm_questionresponse";
+		public const string EntityLogicalName = "cm_casechecklistcatalog";
 		
-		public const string EntityLogicalCollectionName = "cm_questionresponses";
+		public const string EntityLogicalCollectionName = "cm_casechecklistcatalogs";
 		
-		public const string EntitySetName = "cm_questionresponses";
+		public const string EntitySetName = "cm_casechecklistcatalogs";
 		
 		public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
 		
@@ -160,68 +141,34 @@ namespace Plugins.Models
 			}
 		}
 		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_account")]
-		public Microsoft.Xrm.Sdk.EntityReference cm_Account
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_acitve")]
+		public System.Nullable<bool> cm_Acitve
 		{
 			get
 			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cm_account");
+				return this.GetAttributeValue<System.Nullable<bool>>("cm_acitve");
 			}
 			set
 			{
-				this.OnPropertyChanging("cm_Account");
-				this.SetAttributeValue("cm_account", value);
-				this.OnPropertyChanged("cm_Account");
+				this.OnPropertyChanging("cm_Acitve");
+				this.SetAttributeValue("cm_acitve", value);
+				this.OnPropertyChanged("cm_Acitve");
 			}
 		}
 		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_accountname")]
-		public string cm_AccountName
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_acitvename")]
+		public string cm_acitveName
 		{
 			get
 			{
-				if (this.FormattedValues.Contains("cm_account"))
+				if (this.FormattedValues.Contains("cm_acitve"))
 				{
-					return this.FormattedValues["cm_account"];
+					return this.FormattedValues["cm_acitve"];
 				}
 				else
 				{
 					return default(string);
 				}
-			}
-		}
-		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_accountyominame")]
-		public string cm_AccountYomiName
-		{
-			get
-			{
-				if (this.FormattedValues.Contains("cm_account"))
-				{
-					return this.FormattedValues["cm_account"];
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-		
-		/// <summary>
-		/// Answer Text field if the question answer type is Text
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_answertext")]
-		public string cm_AnswerText
-		{
-			get
-			{
-				return this.GetAttributeValue<string>("cm_answertext");
-			}
-			set
-			{
-				this.OnPropertyChanging("cm_AnswerText");
-				this.SetAttributeValue("cm_answertext", value);
-				this.OnPropertyChanged("cm_AnswerText");
 			}
 		}
 		
@@ -256,184 +203,29 @@ namespace Plugins.Models
 			}
 		}
 		
-		/// <summary>
-		/// Answer Yes/No field if the question answer type is Yes/No.
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_answeryesno")]
-		public virtual cm_questionresponse_cm_answeryesno? cm_AnswerYesNo
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_casecategory")]
+		public Microsoft.Xrm.Sdk.EntityReference cm_CaseCategory
 		{
 			get
 			{
-				return ((cm_questionresponse_cm_answeryesno?)(EntityOptionSetEnum.GetEnum(this, "cm_answeryesno")));
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cm_casecategory");
 			}
 			set
 			{
-				this.OnPropertyChanging("cm_AnswerYesNo");
-				this.SetAttributeValue("cm_answeryesno", value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null);
-				this.OnPropertyChanged("cm_AnswerYesNo");
+				this.OnPropertyChanging("cm_CaseCategory");
+				this.SetAttributeValue("cm_casecategory", value);
+				this.OnPropertyChanged("cm_CaseCategory");
 			}
 		}
 		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_answeryesnoname")]
-		public string cm_answeryesnoName
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_casecategoryname")]
+		public string cm_CaseCategoryName
 		{
 			get
 			{
-				if (this.FormattedValues.Contains("cm_answeryesno"))
+				if (this.FormattedValues.Contains("cm_casecategory"))
 				{
-					return this.FormattedValues["cm_answeryesno"];
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-		
-		/// <summary>
-		/// The opportunity the responses are linked to.
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_opportunity")]
-		public Microsoft.Xrm.Sdk.EntityReference cm_Opportunity
-		{
-			get
-			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cm_opportunity");
-			}
-			set
-			{
-				this.OnPropertyChanging("cm_Opportunity");
-				this.SetAttributeValue("cm_opportunity", value);
-				this.OnPropertyChanged("cm_Opportunity");
-			}
-		}
-		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_opportunityname")]
-		public string cm_OpportunityName
-		{
-			get
-			{
-				if (this.FormattedValues.Contains("cm_opportunity"))
-				{
-					return this.FormattedValues["cm_opportunity"];
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-		
-		/// <summary>
-		/// Program related to the question, inherited from the Question Master.
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_program")]
-		public Microsoft.Xrm.Sdk.EntityReference cm_Program
-		{
-			get
-			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cm_program");
-			}
-			set
-			{
-				this.OnPropertyChanging("cm_Program");
-				this.SetAttributeValue("cm_program", value);
-				this.OnPropertyChanged("cm_Program");
-			}
-		}
-		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_programname")]
-		public string cm_ProgramName
-		{
-			get
-			{
-				if (this.FormattedValues.Contains("cm_program"))
-				{
-					return this.FormattedValues["cm_program"];
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_programyominame")]
-		public string cm_ProgramYomiName
-		{
-			get
-			{
-				if (this.FormattedValues.Contains("cm_program"))
-				{
-					return this.FormattedValues["cm_program"];
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-		
-		/// <summary>
-		/// Province related to the question, inherited from the Question Master.
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_province")]
-		public Microsoft.Xrm.Sdk.EntityReference cm_Province
-		{
-			get
-			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cm_province");
-			}
-			set
-			{
-				this.OnPropertyChanging("cm_Province");
-				this.SetAttributeValue("cm_province", value);
-				this.OnPropertyChanged("cm_Province");
-			}
-		}
-		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_provincename")]
-		public string cm_ProvinceName
-		{
-			get
-			{
-				if (this.FormattedValues.Contains("cm_province"))
-				{
-					return this.FormattedValues["cm_province"];
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-		
-		/// <summary>
-		/// Lookup to the Question Master table to identify which question this response is for.
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_question")]
-		public Microsoft.Xrm.Sdk.EntityReference cm_Question
-		{
-			get
-			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cm_question");
-			}
-			set
-			{
-				this.OnPropertyChanging("cm_Question");
-				this.SetAttributeValue("cm_question", value);
-				this.OnPropertyChanged("cm_Question");
-			}
-		}
-		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_questionname")]
-		public string cm_QuestionName
-		{
-			get
-			{
-				if (this.FormattedValues.Contains("cm_question"))
-				{
-					return this.FormattedValues["cm_question"];
+					return this.FormattedValues["cm_casecategory"];
 				}
 				else
 				{
@@ -445,17 +237,17 @@ namespace Plugins.Models
 		/// <summary>
 		/// Unique identifier for entity instances
 		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_questionresponseid")]
-		public System.Nullable<System.Guid> cm_QuestionResponseId
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_casechecklistcatalogid")]
+		public System.Nullable<System.Guid> cm_CaseChecklistCatalogId
 		{
 			get
 			{
-				return this.GetAttributeValue<System.Nullable<System.Guid>>("cm_questionresponseid");
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("cm_casechecklistcatalogid");
 			}
 			set
 			{
-				this.OnPropertyChanging("cm_QuestionResponseId");
-				this.SetAttributeValue("cm_questionresponseid", value);
+				this.OnPropertyChanging("cm_CaseChecklistCatalogId");
+				this.SetAttributeValue("cm_casechecklistcatalogid", value);
 				if (value.HasValue)
 				{
 					base.Id = value.Value;
@@ -464,11 +256,11 @@ namespace Plugins.Models
 				{
 					base.Id = System.Guid.Empty;
 				}
-				this.OnPropertyChanged("cm_QuestionResponseId");
+				this.OnPropertyChanged("cm_CaseChecklistCatalogId");
 			}
 		}
 		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_questionresponseid")]
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_casechecklistcatalogid")]
 		public override System.Guid Id
 		{
 			get
@@ -477,58 +269,148 @@ namespace Plugins.Models
 			}
 			set
 			{
-				this.cm_QuestionResponseId = value;
+				this.cm_CaseChecklistCatalogId = value;
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_casesubcategory")]
+		public Microsoft.Xrm.Sdk.EntityReference cm_CaseSubCategory
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cm_casesubcategory");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_CaseSubCategory");
+				this.SetAttributeValue("cm_casesubcategory", value);
+				this.OnPropertyChanged("cm_CaseSubCategory");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_casesubcategoryname")]
+		public string cm_CaseSubCategoryName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_casesubcategory"))
+				{
+					return this.FormattedValues["cm_casesubcategory"];
+				}
+				else
+				{
+					return default(string);
+				}
 			}
 		}
 		
 		/// <summary>
-		/// Question Text
+		/// Defines sequence in which questions should be displayed
 		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_questiontext")]
-		public string cm_QuestionText
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_displayorder")]
+		public System.Nullable<int> cm_DisplayOrder
 		{
 			get
 			{
-				return this.GetAttributeValue<string>("cm_questiontext");
+				return this.GetAttributeValue<System.Nullable<int>>("cm_displayorder");
 			}
 			set
 			{
-				this.OnPropertyChanging("cm_QuestionText");
-				this.SetAttributeValue("cm_questiontext", value);
-				this.OnPropertyChanged("cm_QuestionText");
+				this.OnPropertyChanging("cm_DisplayOrder");
+				this.SetAttributeValue("cm_displayorder", value);
+				this.OnPropertyChanged("cm_DisplayOrder");
 			}
 		}
 		
-		/// <summary>
-		/// Timestamp of when the response was recorded.
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_responsedate")]
-		public System.Nullable<System.DateTime> cm_ResponseDate
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_isconditional")]
+		public System.Nullable<bool> cm_IsConditional
 		{
 			get
 			{
-				return this.GetAttributeValue<System.Nullable<System.DateTime>>("cm_responsedate");
+				return this.GetAttributeValue<System.Nullable<bool>>("cm_isconditional");
 			}
 			set
 			{
-				this.OnPropertyChanging("cm_ResponseDate");
-				this.SetAttributeValue("cm_responsedate", value);
-				this.OnPropertyChanged("cm_ResponseDate");
+				this.OnPropertyChanging("cm_IsConditional");
+				this.SetAttributeValue("cm_isconditional", value);
+				this.OnPropertyChanged("cm_IsConditional");
 			}
 		}
 		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_responseid")]
-		public string cm_ResponseID
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_isconditionalname")]
+		public string cm_isconditionalName
 		{
 			get
 			{
-				return this.GetAttributeValue<string>("cm_responseid");
+				if (this.FormattedValues.Contains("cm_isconditional"))
+				{
+					return this.FormattedValues["cm_isconditional"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_itemtext")]
+		public string cm_Itemtext
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("cm_itemtext");
 			}
 			set
 			{
-				this.OnPropertyChanging("cm_ResponseID");
-				this.SetAttributeValue("cm_responseid", value);
-				this.OnPropertyChanged("cm_ResponseID");
+				this.OnPropertyChanging("cm_Itemtext");
+				this.SetAttributeValue("cm_itemtext", value);
+				this.OnPropertyChanged("cm_Itemtext");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_name")]
+		public string cm_Name
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("cm_name");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_Name");
+				this.SetAttributeValue("cm_name", value);
+				this.OnPropertyChanged("cm_Name");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_parentitem")]
+		public Microsoft.Xrm.Sdk.EntityReference cm_ParentItem
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cm_parentitem");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_ParentItem");
+				this.SetAttributeValue("cm_parentitem", value);
+				this.OnPropertyChanged("cm_ParentItem");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_parentitemname")]
+		public string cm_ParentItemName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_parentitem"))
+				{
+					return this.FormattedValues["cm_parentitem"];
+				}
+				else
+				{
+					return default(string);
+				}
 			}
 		}
 		
@@ -877,14 +759,14 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
-		/// Status of the Question Response
+		/// Status of the Case Checklist Catalog
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statecode")]
-		public virtual cm_questionresponse_statecode? statecode
+		public virtual cm_casechecklistcatalog_statecode? statecode
 		{
 			get
 			{
-				return ((cm_questionresponse_statecode?)(EntityOptionSetEnum.GetEnum(this, "statecode")));
+				return ((cm_casechecklistcatalog_statecode?)(EntityOptionSetEnum.GetEnum(this, "statecode")));
 			}
 			set
 			{
@@ -911,14 +793,14 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
-		/// Reason for the status of the Question Response
+		/// Reason for the status of the Case Checklist Catalog
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual cm_questionresponse_statuscode? statuscode
+		public virtual cm_casechecklistcatalog_statuscode? statuscode
 		{
 			get
 			{
-				return ((cm_questionresponse_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((cm_casechecklistcatalog_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			set
 			{
@@ -993,110 +875,70 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
-		/// N:1 cm_questionresponse_Account_account
+		/// 1:N cm_casechecklistcatalog_ParentItem_cm_casechecklistcatalog
 		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_account")]
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_questionresponse_Account_account")]
-		public Plugins.Models.Account cm_questionresponse_Account_account
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_casechecklistcatalog_ParentItem_cm_casechecklistcatalog", Microsoft.Xrm.Sdk.EntityRole.Referenced)]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.cm_CaseChecklistCatalog> Referencedcm_casechecklistcatalog_ParentItem_cm_casechecklistcatalog
 		{
 			get
 			{
-				return this.GetRelatedEntity<Plugins.Models.Account>("cm_questionresponse_Account_account", null);
+				return this.GetRelatedEntities<Plugins.Models.cm_CaseChecklistCatalog>("cm_casechecklistcatalog_ParentItem_cm_casechecklistcatalog", Microsoft.Xrm.Sdk.EntityRole.Referenced);
 			}
 			set
 			{
-				this.OnPropertyChanging("cm_questionresponse_Account_account");
-				this.SetRelatedEntity<Plugins.Models.Account>("cm_questionresponse_Account_account", null, value);
-				this.OnPropertyChanged("cm_questionresponse_Account_account");
+				this.OnPropertyChanging("Referencedcm_casechecklistcatalog_ParentItem_cm_casechecklistcatalog");
+				this.SetRelatedEntities<Plugins.Models.cm_CaseChecklistCatalog>("cm_casechecklistcatalog_ParentItem_cm_casechecklistcatalog", Microsoft.Xrm.Sdk.EntityRole.Referenced, value);
+				this.OnPropertyChanged("Referencedcm_casechecklistcatalog_ParentItem_cm_casechecklistcatalog");
 			}
 		}
 		
 		/// <summary>
-		/// N:1 cm_questionresponse_Opportunity_opportunity
+		/// 1:N cm_programassociation_CaseChecklistCatalog_cm_casechecklistcatalog
 		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_opportunity")]
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_questionresponse_Opportunity_opportunity")]
-		public Plugins.Models.Opportunity cm_questionresponse_Opportunity_opportunity
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_programassociation_CaseChecklistCatalog_cm_casechecklistcatalog")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.cm_ProgramAssociation> cm_programassociation_CaseChecklistCatalog_cm_casechecklistcatalog
 		{
 			get
 			{
-				return this.GetRelatedEntity<Plugins.Models.Opportunity>("cm_questionresponse_Opportunity_opportunity", null);
+				return this.GetRelatedEntities<Plugins.Models.cm_ProgramAssociation>("cm_programassociation_CaseChecklistCatalog_cm_casechecklistcatalog", null);
 			}
 			set
 			{
-				this.OnPropertyChanging("cm_questionresponse_Opportunity_opportunity");
-				this.SetRelatedEntity<Plugins.Models.Opportunity>("cm_questionresponse_Opportunity_opportunity", null, value);
-				this.OnPropertyChanged("cm_questionresponse_Opportunity_opportunity");
+				this.OnPropertyChanging("cm_programassociation_CaseChecklistCatalog_cm_casechecklistcatalog");
+				this.SetRelatedEntities<Plugins.Models.cm_ProgramAssociation>("cm_programassociation_CaseChecklistCatalog_cm_casechecklistcatalog", null, value);
+				this.OnPropertyChanged("cm_programassociation_CaseChecklistCatalog_cm_casechecklistcatalog");
 			}
 		}
 		
 		/// <summary>
-		/// N:1 cm_questionresponse_Program_team
+		/// N:1 cm_casechecklistcatalog_ParentItem_cm_casechecklistcatalog
 		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_program")]
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_questionresponse_Program_team")]
-		public Plugins.Models.Team cm_questionresponse_Program_team
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_parentitem")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_casechecklistcatalog_ParentItem_cm_casechecklistcatalog", Microsoft.Xrm.Sdk.EntityRole.Referencing)]
+		public Plugins.Models.cm_CaseChecklistCatalog Referencingcm_casechecklistcatalog_ParentItem_cm_casechecklistcatalog
 		{
 			get
 			{
-				return this.GetRelatedEntity<Plugins.Models.Team>("cm_questionresponse_Program_team", null);
+				return this.GetRelatedEntity<Plugins.Models.cm_CaseChecklistCatalog>("cm_casechecklistcatalog_ParentItem_cm_casechecklistcatalog", Microsoft.Xrm.Sdk.EntityRole.Referencing);
 			}
 			set
 			{
-				this.OnPropertyChanging("cm_questionresponse_Program_team");
-				this.SetRelatedEntity<Plugins.Models.Team>("cm_questionresponse_Program_team", null, value);
-				this.OnPropertyChanged("cm_questionresponse_Program_team");
+				this.OnPropertyChanging("Referencingcm_casechecklistcatalog_ParentItem_cm_casechecklistcatalog");
+				this.SetRelatedEntity<Plugins.Models.cm_CaseChecklistCatalog>("cm_casechecklistcatalog_ParentItem_cm_casechecklistcatalog", Microsoft.Xrm.Sdk.EntityRole.Referencing, value);
+				this.OnPropertyChanged("Referencingcm_casechecklistcatalog_ParentItem_cm_casechecklistcatalog");
 			}
 		}
 		
 		/// <summary>
-		/// N:1 cm_questionresponse_Province_cm_province
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_province")]
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_questionresponse_Province_cm_province")]
-		public Plugins.Models.cm_Province cm_questionresponse_Province_cm_province
-		{
-			get
-			{
-				return this.GetRelatedEntity<Plugins.Models.cm_Province>("cm_questionresponse_Province_cm_province", null);
-			}
-			set
-			{
-				this.OnPropertyChanging("cm_questionresponse_Province_cm_province");
-				this.SetRelatedEntity<Plugins.Models.cm_Province>("cm_questionresponse_Province_cm_province", null, value);
-				this.OnPropertyChanged("cm_questionresponse_Province_cm_province");
-			}
-		}
-		
-		/// <summary>
-		/// N:1 cm_questionresponse_Question_cm_questioncatalog
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_question")]
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_questionresponse_Question_cm_questioncatalog")]
-		public Plugins.Models.cm_QuestionCatalog cm_questionresponse_Question_cm_questioncatalog
-		{
-			get
-			{
-				return this.GetRelatedEntity<Plugins.Models.cm_QuestionCatalog>("cm_questionresponse_Question_cm_questioncatalog", null);
-			}
-			set
-			{
-				this.OnPropertyChanging("cm_questionresponse_Question_cm_questioncatalog");
-				this.SetRelatedEntity<Plugins.Models.cm_QuestionCatalog>("cm_questionresponse_Question_cm_questioncatalog", null, value);
-				this.OnPropertyChanged("cm_questionresponse_Question_cm_questioncatalog");
-			}
-		}
-		
-		/// <summary>
-		/// N:1 team_cm_questionresponse
+		/// N:1 team_cm_casechecklistcatalog
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_cm_questionresponse")]
-		public Plugins.Models.Team team_cm_questionresponse
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_cm_casechecklistcatalog")]
+		public Plugins.Models.Team team_cm_casechecklistcatalog
 		{
 			get
 			{
-				return this.GetRelatedEntity<Plugins.Models.Team>("team_cm_questionresponse", null);
+				return this.GetRelatedEntity<Plugins.Models.Team>("team_cm_casechecklistcatalog", null);
 			}
 		}
 	}
