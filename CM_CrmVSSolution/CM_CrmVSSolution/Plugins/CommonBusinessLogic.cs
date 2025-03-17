@@ -266,5 +266,28 @@ namespace Plugins {
             });
             _tracingService.Trace("Question responses created: " + string.Join(", ", responseGuids));
         }
+
+        internal List<Guid> CreateCasechecklistResponse(List<cm_CaseChecklistCatalog> questions, Incident incident) {
+            List<Guid> responseGuids = new List<Guid>();
+            try {
+                questions.ForEach(question => {
+                    cm_CaseChecklistResponse responseRecord = new cm_CaseChecklistResponse() {
+                        Id = Guid.NewGuid(),
+                        cm_AnswerType = question.cm_AnswerType,
+                        cm_Name = question.cm_Name,
+                        cm_AnswerYesNo = null,
+                        cm_Case = new EntityReference(Incident.EntityLogicalName, incident.Id),
+                        cm_ItemLink = new EntityReference(Incident.EntityLogicalName, question.Id),
+                    };
+                    Guid responseId = _service.Create(responseRecord);
+                    responseGuids.Add(responseId);
+                });
+                _tracingService.Trace("Question responses created: " + string.Join(", ", responseGuids));
+                return responseGuids;
+            } catch (Exception ex) {
+                _tracingService.Trace($"CreateCasechecklistResponse Error: {ex.Message}");
+                throw new InvalidPluginExecutionException(ex.Message, ex);
+            }
+        }
     }
 }
