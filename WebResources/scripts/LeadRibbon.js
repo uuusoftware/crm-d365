@@ -2,11 +2,11 @@
 /*global window */
 /*global Common, CC */
 
-if (!(window.hasOwnProperty("CC"))) {
-    window.CC = {};
+if (!(window.hasOwnProperty("CM"))) {
+    window.CM = {};
 }
 
-CC.LeadRibbon = (function () {
+CM.LeadRibbon = (function () {
     "use strict";
     const Constants = Object.freeze({
         OptionSets: Object.freeze({
