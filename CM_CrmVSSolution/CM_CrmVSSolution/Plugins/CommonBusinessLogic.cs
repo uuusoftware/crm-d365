@@ -318,10 +318,10 @@ namespace Plugins {
             try {
                 questions.ForEach(question => {
                     cm_CaseChecklistResponse responseRecord = new cm_CaseChecklistResponse() {
-                        Id = Guid.NewGuid(),
                         cm_AnswerType = question.cm_AnswerType,
                         cm_Name = question.cm_Name,
                         cm_AnswerYesNo = null,
+                        cm_ItemText = question.cm_Itemtext,
                         cm_Case = new EntityReference(Incident.EntityLogicalName, incident.Id),
                         cm_ItemLink = new EntityReference(Incident.EntityLogicalName, question.Id),
                     };
