@@ -1,4 +1,7 @@
-
+/**
+ * Do not use
+ * This file is a test to get xrm while not in the context of a triggered event from D365
+ */
 if (!(window.hasOwnProperty("CM"))) {
     window.CM = {};
 }
@@ -11,30 +14,37 @@ CM.Lead = (function () {
     });
 
     const Helpers = {
+        waitForXrm: (callback) => {
+            if (typeof Xrm !== "undefined" && Xrm.Utility && Xrm.WebApi) {
+                callback(); // Xrm is ready, run the function
+            } else {
+                console.warn("Waiting for Xrm to load...");
+                setTimeout(() => Helpers.waitForXrm(callback), 500); // Retry every 500ms
+            }
+        },
+    
         loadTasksFromD365: async () => {
-            if (typeof Xrm !== "undefined" && Xrm.WebApi) {
+            Helpers.waitForXrm(async () => {
                 const recordId = Xrm.Utility.getPageContext().input.entityId.replace(/[{}]/g, "");
                 try {
-                    const record = await Xrm.WebApi.retrieveRecord(Constants.entityName, recordId, "?$select=salutation")
+                    const record = await Xrm.WebApi.retrieveRecord(Constants.entityName, recordId, "?$select=salutation");
                     if (record.salutation) {
                         const tasks = JSON.parse(record.salutation);
                         window.dispatchEvent(new CustomEvent(Constants.customEventName, { detail: tasks }));
                     }
                 } catch (err) {
                     console.error({ "Error": `An error occurred: ${err}` });
-                    throw err;
                 }
-            } else {
-                console.warn("Xrm context is not available.");
-            }
+            });
         },
+    
         saveTasksToD365: async (tasks) => {
-            if (typeof Xrm !== "undefined" && Xrm.WebApi) {
+            Helpers.waitForXrm(async () => {
                 const recordId = Xrm.Utility.getPageContext().input.entityId.replace(/[{}]/g, "");
                 const tasksString = JSON.stringify(tasks);
-
+    
                 const data = {
-                    salutation: tasksString  // Replace with the correct field schema name
+                    salutation: tasksString
                 };
                 try {
                     await Xrm.WebApi.updateRecord(Constants.entityName, recordId, data);
@@ -42,11 +52,9 @@ CM.Lead = (function () {
                     console.error({ "Error": `An error occurred: ${err}` });
                     throw err;
                 }
-            } else {
-                console.warn("Xrm context is not available.");
-            }
+            });
         }
-    };
+    };    
     return {
         loadTasksFromD365: Helpers.loadTasksFromD365,
         saveTasksToD365: Helpers.saveTasksToD365
