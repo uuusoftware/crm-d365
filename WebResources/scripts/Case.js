@@ -48,7 +48,7 @@ CM.Case = (function () {
                 const isRespAvailable = await Helpers.areAnyRespCatAvailable(subCatId,caseCatId);
                 if (!isRespAvailable){
                     formContext.data.process.setActiveStage(identifyId);                    
-                    throw new Error("No checklist available for this category");
+                    throw ("No checklist available for this category");
                 }
             } catch (err) {
                 Helpers.openStringifiedErrorDialog("An error occurred ", err);
