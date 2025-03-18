@@ -45,7 +45,7 @@ CM.Case = (function () {
                 const subCatId = caseRecord.entities.at(0)._cm_causecategory_value;
                 const caseCatId = caseRecord.entities.at(0)._cm_incidentcategory_value;
 
-                const isRespAvailable = Helpers.areAnyRespCatAvailable(subCatId,caseCatId);
+                const isRespAvailable = await Helpers.areAnyRespCatAvailable(subCatId,caseCatId);
                 if (!isRespAvailable){
                     formContext.data.process.setActiveStage(identifyId);                    
                     throw new Error("No checklist available for this category");
@@ -77,7 +77,7 @@ CM.Case = (function () {
 
             const isCaseCatRecordd = await Xrm.WebApi.retrieveMultipleRecords("cm_casechecklistcatalog", `?$select=cm_casechecklistcatalogid&$filter=_cm_casecategory_value eq ${caseCatId}`) ? true : false;
 
-            return !isSubCatRecordValid && !isCaseCatRecordd;
+            return (isSubCatRecordValid !== false && isCaseCatRecordd !== false);
         },
         openStringifiedErrorDialog: (errorHeader = "Please contact your administrator.", error = "Unexpected Error") => {
             Xrm.Navigation.openErrorDialog({
