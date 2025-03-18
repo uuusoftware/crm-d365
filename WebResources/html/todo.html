@@ -1,44 +1,64 @@
 <script type="module">
     import { h, render } from 'https://esm.sh/preact';
-    import { useState } from 'https://esm.sh/preact/hooks';
-  
-    // Import Fluent UI Web Components
+    import { useState, useEffect } from 'https://esm.sh/preact/hooks';
+
     import 'https://cdn.jsdelivr.net/npm/@fluentui/web-components/dist/web-components.min.js';
-  
+
     const App = () => {
-      const [tasks, setTasks] = useState([]);
-      const [input, setInput] = useState('');
-  
-      const addTask = () => {
-        if (input.trim()) {
-          setTasks([...tasks, input]);
-          setInput('');
-        }
-      };
-  
-      const deleteTask = (index) => {
-        setTasks(tasks.filter((_, i) => i !== index));
-      };
-  
-      return h('fluent-card', { style: "padding: 20px; width: 100%; height: 100%; display: flex; flex-direction: column; font-family: 'Segoe UI Semibold', 'Segoe UI Web', sans-serif; font-size: 14px;" },
-        h('div', { style: "text-align: center; margin-bottom: 10px;" }, 'To-Do List'),
-        h('div', { style: "display: flex; gap: 10px; align-items: center; width: 100%;" },
-          h('fluent-text-field', { value: input, onInput: e => setInput(e.target.value), placeholder: 'Enter task...', style: "flex: 1;" }),
-          h('fluent-button', { appearance: "primary", onClick: addTask, style: "white-space: nowrap;" }, 'Add')
-        ),
-        h('div', { style: "flex-grow: 1; overflow-y: auto; border: 1px solid #ddd; border-radius: 5px; padding: 10px; margin-top: 10px;" },
-          h('ul', { style: "list-style: none; padding: 0; margin: 0;" }, 
-            tasks.map((task, index) => 
-              h('li', { style: "display: flex; justify-content: space-between; align-items: center; margin: 5px 0; padding: 10px; background: #f3f3f3; border-radius: 5px; font-family: Segoe UI" }, 
-                h('span', null, task),
-                h('fluent-button', { appearance: "stealth", onClick: () => deleteTask(index) }, '❌')
-              )
+        const [tasks, setTasks] = useState([]);
+        const [input, setInput] = useState('');
+
+        const addTask = () => {
+            if (input.trim()) {
+                const newTasks = [...tasks, input];
+                setTasks(newTasks);
+                window.CM.Lead.saveTasksToD365(newTasks);
+                setInput('');
+            }
+        };
+
+        const deleteTask = (index) => {
+            const newTasks = tasks.filter((_, i) => i !== index);
+            setTasks(newTasks);
+            window.CM.Lead.saveTasksToD365(newTasks);
+        };
+
+        useEffect(() => {
+            window.updateTasksState = setTasks;  // Expose state update function
+            if (window.CM && window.CM.Lead) {
+                window.CM.Lead.loadTasksFromD365();
+            }
+            const handleTasksLoaded = (event) => {
+                setTasks(event.detail);
+            };
+
+            window.addEventListener("d365TasksLoaded", handleTasksLoaded);
+
+            return () => {
+                window.removeEventListener("d365TasksLoaded", handleTasksLoaded);
+            };
+        }, []);
+
+        return h('fluent-card', { style: "padding: 20px; width: 100%; height: 100%; display: flex; flex-direction: column; font-family: 'Segoe UI', 'Segoe UI Web', sans-serif; font-size: 14px;" },
+            h('h2', { style: "text-align: center; margin-bottom: 10px;" }, 'To-Do List'),
+            h('div', { style: "display: flex; gap: 10px; align-items: center; width: 100%;" },
+                h('fluent-text-field', { value: input, onInput: e => setInput(e.target.value), placeholder: 'Enter task...' }),
+                h('fluent-button', { appearance: "primary", onClick: addTask }, 'Add')
+            ),
+            h('div', { style: "flex-grow: 1; overflow-y: auto; border: 1px solid #ddd; border-radius: 5px; padding: 10px; margin-top: 10px;" },
+                h('ul', { style: "list-style: none; padding: 0; margin: 0;" },
+                    tasks.map((task, index) =>
+                        h('li', { style: "display: flex; justify-content: space-between; align-items: center; margin: 5px 0; padding: 10px; background: #f3f3f3; border-radius: 5px;" },
+                            h('span', null, task),
+                            h('fluent-button', { appearance: "stealth", onClick: () => deleteTask(index) }, '❌')
+                        )
+                    )
+                )
             )
-          )
-        )
-      );
+        );
     };
-  
-    render(h(App), document.body); // Render inside the <section>
-  </script>
-  
+
+    render(h(App), document.body);
+</script>
+
+<script src="./cm_Lead" type="text/javascript"></script>
