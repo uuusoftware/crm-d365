@@ -9,6 +9,7 @@ CM.Case = (function () {
         CaseEntityName: "incident",
         SubCatEntityName: "cm_casesubcategory",
         CaseCatEntityName: "cm_casecategory",
+        CheckListCatalogEntity: "cm_casechecklistcatalog",
         BpfStages: {
             Identify: "Identify",
             Research: "Research",
@@ -22,7 +23,7 @@ CM.Case = (function () {
             formContext.data.process.removeOnStageChange(Helpers.isResponseCatalogAvailable);
             formContext.data.process.addOnStageChange(Helpers.isResponseCatalogAvailable);
 
-            //Execution sequesce
+            //Execution sequence
             //1# formContext.data.process.addOnStageSelected => triggers when the BPF is clicked
             //2# formContext.data.process.addOnPreStageChange => triggers when next stage or back  is clicked (best for validation)
             //3# formContext.data.process.addOnStageChange => triggers when next stage changes (best for handling next stage)
@@ -73,10 +74,10 @@ CM.Case = (function () {
         areAnyRespCatAvailable: async (subCatId, caseCatId) => {
 
             const isSubCatRecordValid = await Xrm.WebApi.retrieveMultipleRecords(
-                "cm_casechecklistcatalog", `?$select=cm_casechecklistcatalogid&$filter=_cm_casesubcategory_value eq  ${subCatId}`);
+                Constants.CheckListCatalogEntity, `?$select=cm_casechecklistcatalogid&$filter=_cm_casesubcategory_value eq  ${subCatId}`);
 
             const isCaseCatRecord = await Xrm.WebApi.retrieveMultipleRecords(
-                "cm_casechecklistcatalog", `?$select=cm_casechecklistcatalogid&$filter=_cm_casecategory_value eq ${caseCatId}`);
+                Constants.CheckListCatalogEntity, `?$select=cm_casechecklistcatalogid&$filter=_cm_casecategory_value eq ${caseCatId}`);
 
             return (isSubCatRecordValid.entities.lenght > 0 || isCaseCatRecord.entities.length > 0);
         },
