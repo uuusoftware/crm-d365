@@ -61,20 +61,6 @@ namespace Plugins {
                 }
 
                 throw new InvalidPluginExecutionException("Invalid plugin execution: No Case Category or Sub Category has been found");
-
-                //if (incidentRecord.cm_IncidentCategory != null) {
-                //    List<cm_CaseChecklistCatalog> questionsList = commonBusinessLogic.GetCaseChecklistCatalogCaseCat(incidentRecord.cm_IncidentCategory.Id) ??
-                //        throw new InvalidPluginExecutionException("Invalid plugin execution: cm_CaseChecklistCatalog not found");
-
-                //    if (questionsList.Any()) {
-                //        tracingService.Trace($"questionsList {string.Join(" ,", questionsList.Select(q => q.Id))}");
-                //        commonBusinessLogic.CreateCasechecklistResponse(questionsList, incidentRecord);
-                //    } else {
-                //        throw new InvalidPluginExecutionException("Invalid plugin execution: No cm_CaseChecklistCatalog has been found");
-                //    }
-                //} else {
-                //    throw new InvalidPluginExecutionException("Invalid plugin execution: No Incident.cm_IncidentCategory has been found");
-                //}
             } catch (AggregateException aggregateException) {
                 var exceptions = aggregateException.InnerExceptions;
                 foreach (var inner in aggregateException.InnerExceptions) {
@@ -89,7 +75,7 @@ namespace Plugins {
                 string detailedError = $"Unexpected error while processing {context.PrimaryEntityName} record with ID " +
                     $"{context.PrimaryEntityId}: {ex.Message}\nStack Trace: {ex.StackTrace}";
                 tracingService.Trace($"Error: {detailedError}");
-                throw new InvalidPluginExecutionException(detailedError, ex);
+                throw new InvalidPluginExecutionException(ex.Message);
             } finally {
                 tracingService.Trace($"AsyncPluginIncidentResponseGeneration Process End");
             }

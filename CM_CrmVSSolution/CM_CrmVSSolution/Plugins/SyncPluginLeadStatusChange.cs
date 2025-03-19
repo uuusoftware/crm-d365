@@ -61,7 +61,8 @@ namespace Plugins {
                 string detailedError = $"Unexpected error while processing {context.PrimaryEntityName} record with ID " +
                     $"{context.PrimaryEntityId}: {ex.Message}\nStack Trace: {ex.StackTrace}";
                 tracingService.Trace($"Error: {detailedError}");
-                throw new InvalidPluginExecutionException(detailedError, ex);
+                // ex.Message contains only the error custom text. The stack trace and default Microsoft error message is omitted
+                throw new InvalidPluginExecutionException(ex.Message);
             } finally {
                 tracingService.Trace($"SyncPluginLeadStatusChange Process End");
             }

@@ -60,7 +60,7 @@ namespace Plugins {
                 string detailedError = $"Unexpected error while processing {context.PrimaryEntityName} record with ID " +
                     $"{context.PrimaryEntityId}: {ex.Message}\nStack Trace: {ex.StackTrace}";
                 tracingService.Trace($"Error: {detailedError}");
-                throw new InvalidPluginExecutionException(detailedError, ex);
+                throw new InvalidPluginExecutionException(ex.Message);
             } finally {
                 tracingService.Trace($"AsyncPluginOpportunityQuestionGeneration Process End");
             }
