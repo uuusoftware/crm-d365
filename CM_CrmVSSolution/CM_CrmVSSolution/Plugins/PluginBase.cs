@@ -1,8 +1,10 @@
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Extensions;
 using Microsoft.Xrm.Sdk.PluginTelemetry;
+using Plugins.Helpers;
 using System;
 using System.Runtime.CompilerServices;
+using System.Runtime.Remoting.Services;
 using System.ServiceModel;
 
 namespace Plugins {
@@ -48,9 +50,23 @@ namespace Plugins {
             } catch (FaultException<OrganizationServiceFault> orgServiceFault) {
                 localPluginContext.Trace($"Exception: {orgServiceFault.ToString()}");
 
-                throw new InvalidPluginExecutionException($"OrganizationServiceFault: {orgServiceFault.Message}", orgServiceFault);
-            } finally {
-                if (!context.SharedVariables.Contains("isRecursion") && !context.SharedVariables.Contains("mustSkip")) {
+                throw new InvalidPluginExecutionException($"OrganizationServiceFault: {orgServiceFault.Message}");
+            }
+            catch (InvalidPluginExecutionException ex)
+            {
+                new ExceptionHandler(
+                    //traceService: _tracingService,
+                    exception: ex
+                ).Process();
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidPluginExecutionException(ex.Message + "\n Exception");
+            }
+            finally
+            {
+                if (!context.SharedVariables.Contains("isRecursion") && !context.SharedVariables.Contains("mustSkip"))
+                {
                     localPluginContext.Trace($"{PluginClassName}.Execute() \n" +
                         $"Correlation Id: {localPluginContext.PluginExecutionContext.CorrelationId}, \n" +
                         $"Initiating User: {localPluginContext.PluginExecutionContext.InitiatingUserId} \n" +
