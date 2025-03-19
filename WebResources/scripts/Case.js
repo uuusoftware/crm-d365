@@ -47,8 +47,12 @@ CM.Case = (function () {
 
                 const isRespAvailable = await Helpers.areAnyRespCatAvailable(subCatId,caseCatId);
                 if (!isRespAvailable){
-                    formContext.data.process.setActiveStage(identifyId);                    
-                    throw ("No checklist available for this category");
+                    formContext.data.process.setActiveStage(identifyId);
+
+                    const caseRecord = { cm_generatechecklist: false };
+                    _ = await Xrm.WebApi.updateRecord("incident", caseId, caseRecord);
+
+                    Helpers.openStringifiedErrorDialog("An error occurred ", "No checklist available for this category");
                 }
             } catch (err) {
                 Helpers.openStringifiedErrorDialog("An error occurred ", err);
@@ -67,17 +71,14 @@ CM.Case = (function () {
             });
         },
         areAnyRespCatAvailable: async (subCatId, caseCatId) => {
-            // const subCatRecord = await Xrm.WebApi.retrieveMultipleRecords
-            //     (Constants.SubCatEntityName, `?$select=${Constants.SubCatEntityName}id&$filter=${Constants.SubCatEntityName}id eq ${subCatId}`);
 
-            // const caseCatRecord = await Xrm.WebApi.retrieveMultipleRecords
-            //     (Constants.CaseCatEntityName, `?$select=${Constants.CaseCatEntityName}id&$filter=${Constants.CaseCatEntityName}id eq ${caseCatId}`);
+            const isSubCatRecordValid = await Xrm.WebApi.retrieveMultipleRecords(
+                "cm_casechecklistcatalog", `?$select=cm_casechecklistcatalogid&$filter=_cm_casesubcategory_value eq  ${subCatId}`);
 
-            const isSubCatRecordValid = await Xrm.WebApi.retrieveMultipleRecords("cm_casechecklistcatalog", `?$select=cm_casechecklistcatalogid&$filter=_cm_casesubcategory_value eq  ${subCatId}`) ? true : false;
+            const isCaseCatRecord = await Xrm.WebApi.retrieveMultipleRecords(
+                "cm_casechecklistcatalog", `?$select=cm_casechecklistcatalogid&$filter=_cm_casecategory_value eq ${caseCatId}`);
 
-            const isCaseCatRecordd = await Xrm.WebApi.retrieveMultipleRecords("cm_casechecklistcatalog", `?$select=cm_casechecklistcatalogid&$filter=_cm_casecategory_value eq ${caseCatId}`) ? true : false;
-
-            return (isSubCatRecordValid !== false && isCaseCatRecordd !== false);
+            return (isSubCatRecordValid.entities.lenght > 0 || isCaseCatRecord.entities.length > 0);
         },
         openStringifiedErrorDialog: (errorHeader = "Please contact your administrator.", error = "Unexpected Error") => {
             Xrm.Navigation.openErrorDialog({
