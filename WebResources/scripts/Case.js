@@ -28,7 +28,11 @@ CM.Case = (function () {
             const formContext = executionContext.getFormContext();
             formContext.data.process.removeOnStageChange(Helpers.isResponseCatalogAvailable);
             formContext.data.process.addOnStageChange(Helpers.isResponseCatalogAvailable);
-            // TODO: currently throws an error on Xrm.WebApi.updateRecord: "An error has occurred. {1}{0}"
+            // "This message can not be used to set the state of incident to Resolved. In order to set state of incident to Resolved, use the CloseIncidentRequest message instead."
+            // https://github.com/bcgov/EMCR-DFA/blob/c7581931bbddb637c3ffd678432fa4ffd8e708aa/Dynamics/OldGitRepo/DFA.CRM.Web/JS/incident/dfa_incident.js#L1149
+            // https://xrm-oss.github.io/Xrm-WebApi-Client/module-Requests.html
+
+            // UNCOMMENT AFTER CHANGING THE BPF STATUS BACK TO ACTIVE WHEN THERE'S AN ERROR
             // formContext.data.process.addOnProcessStatusChange(Helpers.onBpfStatusChange)
 
             //Execution sequence
@@ -112,17 +116,21 @@ CM.Case = (function () {
                 }
             }, interval);
         },
-        // onBpfStatusChange: async (executionContext)=> {
-        //     const formContext = executionContext.getFormContext();
-        //     const caseId = formContext.data.entity.getId().replace(/[{}]/g, "").toLowerCase();
+        onBpfStatusChange: async (executionContext)=> {
+            const formContext = executionContext.getFormContext();
+            const caseId = formContext.data.entity.getId().replace(/[{}]/g, "").toLowerCase();
 
-        //     const bpfStatus = formContext.data.process.getStatus();
+            const bpfStatus = formContext.data.process.getStatus();
 
-        //     if(bpfStatus === "finished"){
-        //         const caseRecord = { statecode: 1 };    
-        //         _ = await Xrm.WebApi.updateRecord("incident", caseId, caseRecord);
-        //     }
-        // },
+            if (bpfStatus === "finished") {
+                // const caseRecord = { statecode: 1 };    
+                // _ = await Xrm.WebApi.updateRecord("incident", caseId, caseRecord);
+                //https://learn.microsoft.com/en-us/dotnet/api/microsoft.crm.sdk.messages.closeincidentrequest?view=dataverse-sdk-latest
+                
+                Helpers.resolveCase(formContext, caseId);
+                console.log("Incident successfully resolved.");
+            }
+        },
         showProgressPromise: (text) => {
             "use strict";
             return new Promise(function (resolve, reject) {
@@ -155,6 +163,66 @@ CM.Case = (function () {
                 message: `${errorHeader} \nError: ${JSON.stringify((error?.error?.message || error?.message || error))}`,
                 details: JSON.stringify(error, Object.getOwnPropertyNames(error))
             });
+        },
+        resolveCase: function (formContext, caseId) {
+    
+            var incidentresolution = {
+                "subject": "Case Closed - ",
+                "incidentid@odata.bind": "/incidents(" + caseId + ")",   //Id of incident
+                "@odata.type": "Microsoft.Dynamics.CRM.incidentresolution",
+                "timespent": 0,
+                "description": ""
+            };
+    
+            var newEntityId = "";
+            Xrm.WebApi.online.createRecord("incidentresolution", incidentresolution).then(
+                function success(result) {
+                    newEntityId = result.id;
+                    var parameters = {};
+    
+                    incidentresolution.activityid = newEntityId;
+                    parameters.IncidentResolution = incidentresolution;
+                    parameters.Status = 5;//Closed
+    
+                    var closeIncidentRequest = {
+                        IncidentResolution: parameters.IncidentResolution,
+                        Status: parameters.Status,
+    
+                        getMetadata: function () {
+                            return {
+                                boundParameter: null,
+                                parameterTypes: {
+                                    "IncidentResolution": {
+                                        "typeName": "mscrm.incidentresolution",
+                                        "structuralProperty": 5
+                                    },
+                                    "Status": {
+                                        "typeName": "Edm.Int32",
+                                        "structuralProperty": 1
+                                    }
+                                },
+                                operationType: 0,
+                                operationName: "CloseIncident"
+                            };
+                        }
+                    };
+    
+                    Xrm.WebApi.online.execute(closeIncidentRequest).then(
+                        function success(result) {
+                            if (result.ok) {
+                                formContext.data.refresh(false);
+                            }
+                        },
+                        function (error) {
+                            Xrm.Utility.alertDialog(error.message);
+                        }
+                    );
+    
+                },
+                function (error) {
+                    Xrm.Utility.alertDialog(error.message);
+                }
+            );
         },
     };    
     return {
