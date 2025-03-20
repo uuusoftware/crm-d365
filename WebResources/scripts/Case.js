@@ -14,6 +14,12 @@ CM.Case = (function () {
             Identify: "Identify",
             Research: "Research",
             Resolve: "Resolve"
+        },
+        Tabs: {
+            Checklist: "tab_8"
+        },
+        SetTimeoutInterval: {
+            POPUPDELAY: 5000
         }
     });
 
@@ -22,6 +28,8 @@ CM.Case = (function () {
             const formContext = executionContext.getFormContext();
             formContext.data.process.removeOnStageChange(Helpers.isResponseCatalogAvailable);
             formContext.data.process.addOnStageChange(Helpers.isResponseCatalogAvailable);
+            // TODO: currently throws an error on Xrm.WebApi.updateRecord: "An error has occurred. {1}{0}"
+            // formContext.data.process.addOnProcessStatusChange(Helpers.onBpfStatusChange)
 
             //Execution sequence
             //1# formContext.data.process.addOnStageSelected => triggers when the BPF is clicked
@@ -53,8 +61,12 @@ CM.Case = (function () {
                     const caseRecord = { cm_generatechecklist: false };
                     _ = await Xrm.WebApi.updateRecord("incident", caseId, caseRecord);
 
-                    Helpers.openStringifiedErrorDialog("An error occurred ", "No checklist available for this category");
+                    Helpers.openStringifiedErrorDialog("An error occurred ", "No checklist available for this category. Please choose another Incident Category or Cause Category");
+                    return;
+                } else {
+                    Helpers.checkAndMoveToChecklistTab(formContext, caseId);
                 }
+
             } catch (err) {
                 Helpers.openStringifiedErrorDialog("An error occurred ", err);
                 console.error({ "Error": `An error occurred: ${err}` });
@@ -64,12 +76,69 @@ CM.Case = (function () {
                 Xrm.Utility.closeProgressIndicator();
             }
         },
+        checkAndMoveToChecklistTab: async (formContext, caseId) => {
+            Helpers.notifyUser(formContext, "Checklist is being generated");
+        
+            let attempts = 0;
+            let maxAttempts = 5;
+            const interval = 3000; // 3 seconds
+            const checklistTab = formContext.ui.tabs.get(Constants.Tabs.Checklist);
+        
+            let checkInterval = setInterval(async function () {
+                try {
+                    const responses = await Xrm.WebApi.retrieveMultipleRecords(
+                        "cm_casechecklistresponse",
+                        `?$select=cm_casechecklistresponseid&$filter=_cm_case_value eq ${caseId}`
+                    );
+        
+                    if (responses && responses.entities.length > 0) {
+                        clearInterval(checkInterval); // Stop checking
+        
+                        if (checklistTab) {
+                            checklistTab.setVisible(true);
+                            checklistTab.setFocus();
+                        }
+                    } else {
+                        attempts++;
+                        console.log(`Attempt ${attempts}: No responses found.`);
+        
+                        if (attempts >= maxAttempts) {
+                            clearInterval(checkInterval);
+                            console.warn("Checklist responses not found after 5 attempts.");
+                        }
+                    }
+                } catch (error) {
+                    clearInterval(checkInterval);
+                }
+            }, interval);
+        },
+        // onBpfStatusChange: async (executionContext)=> {
+        //     const formContext = executionContext.getFormContext();
+        //     const caseId = formContext.data.entity.getId().replace(/[{}]/g, "").toLowerCase();
+
+        //     const bpfStatus = formContext.data.process.getStatus();
+
+        //     if(bpfStatus === "finished"){
+        //         const caseRecord = { statecode: 1 };    
+        //         _ = await Xrm.WebApi.updateRecord("incident", caseId, caseRecord);
+        //     }
+        // },
         showProgressPromise: (text) => {
             "use strict";
             return new Promise(function (resolve, reject) {
                 Xrm.Utility.showProgressIndicator(text);
                 setTimeout(resolve, 100);
             });
+        },
+        notifyUser: (formContext, message) => {
+            const formNotificationKey = `${formContext.data.entity.getEntityName()}${Math.random().toString()}`
+
+            formContext.ui.setFormNotification(
+                message,
+                "INFO",
+                formNotificationKey
+            );
+            setTimeout(() => formContext.ui.clearFormNotification(formNotificationKey), Constants.SetTimeoutInterval.POPUPDELAY);
         },
         areAnyRespCatAvailable: async (subCatId, caseCatId) => {
 
