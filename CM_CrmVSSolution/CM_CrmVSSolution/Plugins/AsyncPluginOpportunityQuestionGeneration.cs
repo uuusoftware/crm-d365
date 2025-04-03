@@ -28,15 +28,15 @@ namespace Plugins {
             try {
 
                 Opportunity opportunityRecord = commonBusinessLogic
-                    .GetRecordById<Opportunity>(context.PrimaryEntityId, Opportunity.EntityLogicalName);
+                    .GetRecordById<Opportunity>(context.PrimaryEntityId);
                 tracingService.Trace($"opportunityRecord {opportunityRecord.Id}");
 
                 cm_ProgramAssociation programAssociationRecord = commonBusinessLogic
-                    .GetRecordById<cm_ProgramAssociation>(opportunityRecord.cm_AssociatedProgram.Id, cm_ProgramAssociation.EntityLogicalName);
+                    .GetRecordById<cm_ProgramAssociation>(opportunityRecord.cm_AssociatedProgram.Id);
                 tracingService.Trace($"programAssociationRecord {programAssociationRecord.Id}");
 
                 Team teamRecord = commonBusinessLogic
-                    .GetRecordById<Team>(programAssociationRecord.cm_Program.Id, Team.EntityLogicalName);
+                    .GetRecordById<Team>(programAssociationRecord.cm_Program.Id);
                 tracingService.Trace($"teamRecord {teamRecord.Id}");
 
                 List<cm_QuestionCatalog> questionsList = commonBusinessLogic.GetQuestionsListByTeam(teamRecord.Id, opportunityRecord.cm_OpportunityType);

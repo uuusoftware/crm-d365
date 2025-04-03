@@ -29,7 +29,7 @@ namespace Plugins {
                 }
 
                 Incident incidentRecord = commonBusinessLogic
-                    .GetRecordById<Incident>(context.PrimaryEntityId, Incident.EntityLogicalName) ??
+                    .GetRecordById<Incident>(context.PrimaryEntityId) ??
                     throw new InvalidPluginExecutionException("Invalid plugin execution: Incident/Case not found");
 
                 if (incidentRecord?.cm_GenerateChecklist.Value == null || incidentRecord.cm_GenerateChecklist.Value == false) {

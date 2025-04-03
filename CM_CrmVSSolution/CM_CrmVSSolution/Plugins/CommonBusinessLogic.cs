@@ -14,63 +14,69 @@ namespace Plugins {
             _service = service ?? throw new ArgumentNullException(nameof(service));
             _tracingService = tracingService ?? throw new ArgumentNullException(nameof(tracingService));
         }
-        public T GetRecordById<T>(Guid id, string entityLogicalName) where T : Entity {
-            try {
-                using (var svcContext = new OrgContext(_service)) {
-                    switch (entityLogicalName) {
-                        case Account.EntityLogicalName:
-                            return svcContext.AccountSet.FirstOrDefault(record => record.Id == id).ToEntity<T>();
+        public T GetRecordById<T>(Guid id) where T : Entity
+        {
+            try
+            {
+                using (var svcContext = new OrgContext(_service))
+                {
+                    switch (typeof(T).Name) // Using Name since switch does not support Type directly
+                    {
+                        case "Account":
+                            return svcContext.AccountSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
-                        case Contact.EntityLogicalName:
-                            return svcContext.ContactSet.FirstOrDefault(record => record.Id == id).ToEntity<T>();
+                        case "Contact":
+                            return svcContext.ContactSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
-                        case cm_Province.EntityLogicalName:
-                            return svcContext.cm_ProvinceSet.FirstOrDefault(record => record.Id == id).ToEntity<T>();
+                        case "cm_Province":
+                            return svcContext.cm_ProvinceSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
-                        case cm_ProgramAssociation.EntityLogicalName:
-                            return svcContext.cm_ProgramAssociationSet.FirstOrDefault(record => record.Id == id).ToEntity<T>();
+                        case "cm_ProgramAssociation":
+                            return svcContext.cm_ProgramAssociationSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
-                        case cm_QuestionCatalog.EntityLogicalName:
-                            return svcContext.cm_QuestionCatalogSet.FirstOrDefault(record => record.Id == id).ToEntity<T>();
+                        case "cm_QuestionCatalog":
+                            return svcContext.cm_QuestionCatalogSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
-                        case cm_QuestionResponse.EntityLogicalName:
-                            return svcContext.cm_QuestionResponseSet.FirstOrDefault(record => record.Id == id).ToEntity<T>();
+                        case "cm_QuestionResponse":
+                            return svcContext.cm_QuestionResponseSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
-                        case SalesOrder.EntityLogicalName:
-                            return svcContext.SalesOrderSet.FirstOrDefault(record => record.Id == id).ToEntity<T>();
+                        case "SalesOrder":
+                            return svcContext.SalesOrderSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
-                        case Connection.EntityLogicalName:
-                            return svcContext.ConnectionSet.FirstOrDefault(record => record.Id == id).ToEntity<T>();
+                        case "Connection":
+                            return svcContext.ConnectionSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
-                        case Lead.EntityLogicalName:
-                            return svcContext.LeadSet.FirstOrDefault(record => record.Id == id).ToEntity<T>();
+                        case "Lead":
+                            return svcContext.LeadSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
-                        case Opportunity.EntityLogicalName:
-                            return svcContext.OpportunitySet.FirstOrDefault(record => record.Id == id).ToEntity<T>();
+                        case "Opportunity":
+                            return svcContext.OpportunitySet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
-                        case Team.EntityLogicalName:
-                            return svcContext.TeamSet.FirstOrDefault(record => record.Id == id).ToEntity<T>();
+                        case "Team":
+                            return svcContext.TeamSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
-                        case Incident.EntityLogicalName:
-                            return svcContext.IncidentSet.FirstOrDefault(record => record.Id == id).ToEntity<T>();
+                        case "Incident":
+                            return svcContext.IncidentSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
-                        case cm_CaseCategory.EntityLogicalName:
-                            return svcContext.cm_CaseCategorySet.FirstOrDefault(record => record.Id == id).ToEntity<T>();
+                        case "cm_CaseCategory":
+                            return svcContext.cm_CaseCategorySet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
-                        case cm_CaseChecklistResponse.EntityLogicalName:
-                            return svcContext.cm_CaseChecklistResponseSet.FirstOrDefault(record => record.Id == id).ToEntity<T>();
+                        case "cm_CaseChecklistResponse":
+                            return svcContext.cm_CaseChecklistResponseSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
-                        case cm_CaseChecklistCatalog.EntityLogicalName:
-                            return svcContext.cm_CaseChecklistCatalogSet.FirstOrDefault(record => record.Id == id).ToEntity<T>();
+                        case "cm_CaseChecklistCatalog":
+                            return svcContext.cm_CaseChecklistCatalogSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
-                        case cm_CaseSubCategory.EntityLogicalName:
-                            return svcContext.cm_CaseSubCategorySet.FirstOrDefault(record => record.Id == id).ToEntity<T>();
+                        case "cm_CaseSubCategory":
+                            return svcContext.cm_CaseSubCategorySet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
                         default:
-                            throw new ArgumentException($"Unsupported entity type on CommonBusinessLogic.GetRecordById: {entityLogicalName}");
+                            throw new ArgumentException($"Unsupported entity type: {typeof(T).Name}");
                     }
                 }
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 throw new InvalidPluginExecutionException(ex.Message, ex);
             }
         }
@@ -105,6 +111,8 @@ namespace Plugins {
                 PrimaryContactId = new EntityReference(Contact.EntityLogicalName, contactId),
                 OriginatingLeadId = new EntityReference(Lead.EntityLogicalName, leadRecord.Id),
                 CustomerTypeCode = account_customertypecode.Prospect,
+                cm_ServiceProviderType = leadRecord.cm_ServiceType,
+                cm_OtherType = leadRecord.cm_OtherType,
                 cm_Role = leadRecord.cm_LeadType.HasValue
                     ? new List<cm_leadopptype> { leadRecord.cm_LeadType.Value }
                     : new List<cm_leadopptype>(),
@@ -332,6 +340,24 @@ namespace Plugins {
                 return responseGuids;
             } catch (Exception ex) {
                 _tracingService.Trace($"CreateCasechecklistResponse Error: {ex.Message}");
+                throw new InvalidPluginExecutionException(ex.Message, ex);
+            }
+        }
+
+        internal List<cm_CaseChecklistResponse> GetResponsesByIncident(Incident incidentRecord)
+        {
+            try
+            {
+                using (var svcContext = new OrgContext(_service))
+                {
+                    return svcContext.cm_CaseChecklistResponseSet.Where(
+                        record => record.cm_Case != null
+                            && record.cm_Case.Id == incidentRecord.Id).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                _tracingService.Trace($"GetCaseChecklistCatalogByIncident Error: {ex.Message}");
                 throw new InvalidPluginExecutionException(ex.Message, ex);
             }
         }
