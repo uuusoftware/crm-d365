@@ -13,22 +13,46 @@ namespace Plugins.Models
 {
 	
 	
+	/// <summary>
+	/// Type values if Account Type is Other
+	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
-	public enum msdyn_leadgradeoptset
+	public enum cm_otheraccounttype
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		GradeA = 0,
+		GovernmentPartner = 121540000,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		GradeB = 1,
+		FederalGovernment = 121540001,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		GradeC = 2,
+		InnovatorLead = 121540002,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		GradeD = 3,
+		NationalAssociation = 121540003,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		CMPartners = 121540004,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		CMBoard = 121540005,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ProgramClients = 121540006,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Media = 121540007,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Regulator = 121540008,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		NGONFP = 121540009,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		GlobalOrganizations = 121540010,
 	}
 }
 #pragma warning restore CS1591
