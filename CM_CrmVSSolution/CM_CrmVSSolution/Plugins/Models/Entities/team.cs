@@ -127,6 +127,8 @@ namespace Plugins.Models
 			public const string TraversedPath = "traversedpath";
 			public const string VersionNumber = "versionnumber";
 			public const string YomiName = "yominame";
+			public const string cm_leadclosurechecklistmaster_Program_team = "cm_leadclosurechecklistmaster_Program_team";
+			public const string cm_leadclosurechecklistresponse_Program_team = "cm_leadclosurechecklistresponse_Program_team";
 			public const string cm_programassociation_Program_team = "cm_programassociation_Program_team";
 			public const string cm_questioncatalog_Program_team = "cm_questioncatalog_Program_team";
 			public const string cm_questionresponse_Program_team = "cm_questionresponse_Program_team";
@@ -136,6 +138,9 @@ namespace Plugins.Models
 			public const string team_cm_casechecklistcatalog = "team_cm_casechecklistcatalog";
 			public const string team_cm_casechecklistresponse = "team_cm_casechecklistresponse";
 			public const string team_cm_casesubcategory = "team_cm_casesubcategory";
+			public const string team_cm_leadclosurechecklistcatalog = "team_cm_leadclosurechecklistcatalog";
+			public const string team_cm_leadclosurechecklistmaster = "team_cm_leadclosurechecklistmaster";
+			public const string team_cm_leadclosurechecklistresponse = "team_cm_leadclosurechecklistresponse";
 			public const string team_cm_programassociation = "team_cm_programassociation";
 			public const string team_cm_province = "team_cm_province";
 			public const string team_cm_questioncatalog = "team_cm_questioncatalog";
@@ -1098,6 +1103,42 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// 1:N cm_leadclosurechecklistmaster_Program_team
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_leadclosurechecklistmaster_Program_team")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.cm_LeadClosureChecklistMaster> cm_leadclosurechecklistmaster_Program_team
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.cm_LeadClosureChecklistMaster>("cm_leadclosurechecklistmaster_Program_team", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_leadclosurechecklistmaster_Program_team");
+				this.SetRelatedEntities<Plugins.Models.cm_LeadClosureChecklistMaster>("cm_leadclosurechecklistmaster_Program_team", null, value);
+				this.OnPropertyChanged("cm_leadclosurechecklistmaster_Program_team");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N cm_leadclosurechecklistresponse_Program_team
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_leadclosurechecklistresponse_Program_team")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.cm_LeadClosureChecklistResponse> cm_leadclosurechecklistresponse_Program_team
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.cm_LeadClosureChecklistResponse>("cm_leadclosurechecklistresponse_Program_team", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_leadclosurechecklistresponse_Program_team");
+				this.SetRelatedEntities<Plugins.Models.cm_LeadClosureChecklistResponse>("cm_leadclosurechecklistresponse_Program_team", null, value);
+				this.OnPropertyChanged("cm_leadclosurechecklistresponse_Program_team");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N cm_programassociation_Program_team
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_programassociation_Program_team")]
@@ -1256,6 +1297,60 @@ namespace Plugins.Models
 				this.OnPropertyChanging("team_cm_casesubcategory");
 				this.SetRelatedEntities<Plugins.Models.cm_CaseSubCategory>("team_cm_casesubcategory", null, value);
 				this.OnPropertyChanged("team_cm_casesubcategory");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N team_cm_leadclosurechecklistcatalog
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_cm_leadclosurechecklistcatalog")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.cm_LeadClosureChecklistCatalog> team_cm_leadclosurechecklistcatalog
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.cm_LeadClosureChecklistCatalog>("team_cm_leadclosurechecklistcatalog", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("team_cm_leadclosurechecklistcatalog");
+				this.SetRelatedEntities<Plugins.Models.cm_LeadClosureChecklistCatalog>("team_cm_leadclosurechecklistcatalog", null, value);
+				this.OnPropertyChanged("team_cm_leadclosurechecklistcatalog");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N team_cm_leadclosurechecklistmaster
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_cm_leadclosurechecklistmaster")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.cm_LeadClosureChecklistMaster> team_cm_leadclosurechecklistmaster
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.cm_LeadClosureChecklistMaster>("team_cm_leadclosurechecklistmaster", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("team_cm_leadclosurechecklistmaster");
+				this.SetRelatedEntities<Plugins.Models.cm_LeadClosureChecklistMaster>("team_cm_leadclosurechecklistmaster", null, value);
+				this.OnPropertyChanged("team_cm_leadclosurechecklistmaster");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N team_cm_leadclosurechecklistresponse
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_cm_leadclosurechecklistresponse")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.cm_LeadClosureChecklistResponse> team_cm_leadclosurechecklistresponse
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.cm_LeadClosureChecklistResponse>("team_cm_leadclosurechecklistresponse", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("team_cm_leadclosurechecklistresponse");
+				this.SetRelatedEntities<Plugins.Models.cm_LeadClosureChecklistResponse>("team_cm_leadclosurechecklistresponse", null, value);
+				this.OnPropertyChanged("team_cm_leadclosurechecklistresponse");
 			}
 		}
 		

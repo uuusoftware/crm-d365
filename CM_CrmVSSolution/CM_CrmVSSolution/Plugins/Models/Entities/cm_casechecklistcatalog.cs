@@ -66,6 +66,8 @@ namespace Plugins.Models
 			public const string Id = "cm_casechecklistcatalogid";
 			public const string cm_CaseSubCategory = "cm_casesubcategory";
 			public const string cm_CaseSubCategoryName = "cm_casesubcategoryname";
+			public const string cm_ChecklistMaster = "cm_checklistmaster";
+			public const string cm_ChecklistMasterName = "cm_checklistmastername";
 			public const string cm_DisplayOrder = "cm_displayorder";
 			public const string cm_IsConditional = "cm_isconditional";
 			public const string cm_isconditionalName = "cm_isconditionalname";
@@ -105,7 +107,6 @@ namespace Plugins.Models
 			public const string VersionNumber = "versionnumber";
 			public const string Referencedcm_casechecklistcatalog_ParentItem_cm_casechecklistcatalog = "Referencedcm_casechecklistcatalog_ParentItem_cm_casechecklistcatalog";
 			public const string cm_casechecklistresponse_ItemLink_cm_casechecklistcatalog = "cm_casechecklistresponse_ItemLink_cm_casechecklistcatalog";
-			public const string cm_programassociation_ProgramforChecklistItem_cm_casechecklistcatalog = "cm_programassociation_ProgramforChecklistItem_cm_casechecklistcatalog";
 			public const string cm_casechecklistcatalog_CaseCategory_cm_casecategory = "cm_casechecklistcatalog_CaseCategory_cm_casecategory";
 			public const string cm_casechecklistcatalog_CaseSubCategory_cm_casesubcategory = "cm_casechecklistcatalog_CaseSubCategory_cm_casesubcategory";
 			public const string Referencingcm_casechecklistcatalog_ParentItem_cm_casechecklistcatalog = "cm_casechecklistcatalog_ParentItem_cm_casechecklistcatalog";
@@ -332,6 +333,37 @@ namespace Plugins.Models
 				if (this.FormattedValues.Contains("cm_casesubcategory"))
 				{
 					return this.FormattedValues["cm_casesubcategory"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_checklistmaster")]
+		public Microsoft.Xrm.Sdk.EntityReference cm_ChecklistMaster
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cm_checklistmaster");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_ChecklistMaster");
+				this.SetAttributeValue("cm_checklistmaster", value);
+				this.OnPropertyChanged("cm_ChecklistMaster");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_checklistmastername")]
+		public string cm_ChecklistMasterName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_checklistmaster"))
+				{
+					return this.FormattedValues["cm_checklistmaster"];
 				}
 				else
 				{
@@ -943,24 +975,6 @@ namespace Plugins.Models
 				this.OnPropertyChanging("cm_casechecklistresponse_ItemLink_cm_casechecklistcatalog");
 				this.SetRelatedEntities<Plugins.Models.cm_CaseChecklistResponse>("cm_casechecklistresponse_ItemLink_cm_casechecklistcatalog", null, value);
 				this.OnPropertyChanged("cm_casechecklistresponse_ItemLink_cm_casechecklistcatalog");
-			}
-		}
-		
-		/// <summary>
-		/// 1:N cm_programassociation_ProgramforChecklistItem_cm_casechecklistcatalog
-		/// </summary>
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_programassociation_ProgramforChecklistItem_cm_casechecklistcatalog")]
-		public System.Collections.Generic.IEnumerable<Plugins.Models.cm_ProgramAssociation> cm_programassociation_ProgramforChecklistItem_cm_casechecklistcatalog
-		{
-			get
-			{
-				return this.GetRelatedEntities<Plugins.Models.cm_ProgramAssociation>("cm_programassociation_ProgramforChecklistItem_cm_casechecklistcatalog", null);
-			}
-			set
-			{
-				this.OnPropertyChanging("cm_programassociation_ProgramforChecklistItem_cm_casechecklistcatalog");
-				this.SetRelatedEntities<Plugins.Models.cm_ProgramAssociation>("cm_programassociation_ProgramforChecklistItem_cm_casechecklistcatalog", null, value);
-				this.OnPropertyChanged("cm_programassociation_ProgramforChecklistItem_cm_casechecklistcatalog");
 			}
 		}
 		

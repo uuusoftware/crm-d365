@@ -424,13 +424,13 @@ namespace Plugins.Models
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
 			public const string cm_casechecklistresponse_Case_incident = "cm_casechecklistresponse_Case_incident";
-			public const string cm_programassociation_CaseProgramAssociation_incident = "cm_programassociation_CaseProgramAssociation_incident";
 			public const string incident_connections1 = "incident_connections1";
 			public const string incident_connections2 = "incident_connections2";
 			public const string Referencedincident_existingcase = "Referencedincident_existingcase";
 			public const string Referencedincident_master_incident = "Referencedincident_master_incident";
 			public const string Referencedincident_parent_incident = "Referencedincident_parent_incident";
 			public const string OriginatingCase_Lead = "OriginatingCase_Lead";
+			public const string cm_ProgramAssociation_Incident_Incident = "cm_ProgramAssociation_Incident_Incident";
 			public const string cm_incident_CauseCategory_cm_casesubcategory = "cm_incident_CauseCategory_cm_casesubcategory";
 			public const string cm_incident_IncidentCategory_cm_casecategory = "cm_incident_IncidentCategory_cm_casecategory";
 			public const string contact_as_primary_contact = "contact_as_primary_contact";
@@ -3269,24 +3269,6 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
-		/// 1:N cm_programassociation_CaseProgramAssociation_incident
-		/// </summary>
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_programassociation_CaseProgramAssociation_incident")]
-		public System.Collections.Generic.IEnumerable<Plugins.Models.cm_ProgramAssociation> cm_programassociation_CaseProgramAssociation_incident
-		{
-			get
-			{
-				return this.GetRelatedEntities<Plugins.Models.cm_ProgramAssociation>("cm_programassociation_CaseProgramAssociation_incident", null);
-			}
-			set
-			{
-				this.OnPropertyChanging("cm_programassociation_CaseProgramAssociation_incident");
-				this.SetRelatedEntities<Plugins.Models.cm_ProgramAssociation>("cm_programassociation_CaseProgramAssociation_incident", null, value);
-				this.OnPropertyChanged("cm_programassociation_CaseProgramAssociation_incident");
-			}
-		}
-		
-		/// <summary>
 		/// 1:N incident_connections1
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("incident_connections1")]
@@ -3391,6 +3373,24 @@ namespace Plugins.Models
 				this.OnPropertyChanging("OriginatingCase_Lead");
 				this.SetRelatedEntities<Plugins.Models.Lead>("OriginatingCase_Lead", null, value);
 				this.OnPropertyChanged("OriginatingCase_Lead");
+			}
+		}
+		
+		/// <summary>
+		/// N:N cm_ProgramAssociation_Incident_Incident
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_ProgramAssociation_Incident_Incident")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.cm_ProgramAssociation> cm_ProgramAssociation_Incident_Incident
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.cm_ProgramAssociation>("cm_ProgramAssociation_Incident_Incident", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_ProgramAssociation_Incident_Incident");
+				this.SetRelatedEntities<Plugins.Models.cm_ProgramAssociation>("cm_ProgramAssociation_Incident_Incident", null, value);
+				this.OnPropertyChanged("cm_ProgramAssociation_Incident_Incident");
 			}
 		}
 		

@@ -86,6 +86,39 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// Gets a binding to the set of all <see cref="Plugins.Models.cm_LeadClosureChecklistCatalog"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<Plugins.Models.cm_LeadClosureChecklistCatalog> cm_LeadClosureChecklistCatalogSet
+		{
+			get
+			{
+				return this.CreateQuery<Plugins.Models.cm_LeadClosureChecklistCatalog>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="Plugins.Models.cm_LeadClosureChecklistMaster"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<Plugins.Models.cm_LeadClosureChecklistMaster> cm_LeadClosureChecklistMasterSet
+		{
+			get
+			{
+				return this.CreateQuery<Plugins.Models.cm_LeadClosureChecklistMaster>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="Plugins.Models.cm_LeadClosureChecklistResponse"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<Plugins.Models.cm_LeadClosureChecklistResponse> cm_LeadClosureChecklistResponseSet
+		{
+			get
+			{
+				return this.CreateQuery<Plugins.Models.cm_LeadClosureChecklistResponse>();
+			}
+		}
+		
+		/// <summary>
 		/// Gets a binding to the set of all <see cref="Plugins.Models.cm_ProgramAssociation"/> entities.
 		/// </summary>
 		public System.Linq.IQueryable<Plugins.Models.cm_ProgramAssociation> cm_ProgramAssociationSet

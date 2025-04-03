@@ -13,6 +13,24 @@ namespace Plugins.Models
 {
 	
 	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
+	public enum cm_opportunity_cm_qualificationstatus
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		InProgress = 121540000,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Qualified = 121540001,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		QualifiedasVoluntaryProducer = 121540002,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		NotQualified = 121540003,
+	}
+	
 	/// <summary>
 	/// Categories used for forecasting.
 	/// </summary>
@@ -194,8 +212,21 @@ namespace Plugins.Models
 			public const string CloseProbability = "closeprobability";
 			public const string cm_AssociatedProgram = "cm_associatedprogram";
 			public const string cm_AssociatedProgramName = "cm_associatedprogramname";
+			public const string cm_ConfirmInsuranceCertificates = "cm_confirminsurancecertificates";
+			public const string cm_confirminsurancecertificatesName = "cm_confirminsurancecertificatesname";
+			public const string cm_ConfirmOnboardingform = "cm_confirmonboardingform";
+			public const string cm_confirmonboardingformName = "cm_confirmonboardingformname";
+			public const string cm_Confirmothernecessarydocuments = "cm_confirmothernecessarydocuments";
+			public const string cm_confirmothernecessarydocumentsName = "cm_confirmothernecessarydocumentsname";
+			public const string cm_ConfirmVendorOnboardingform = "cm_confirmvendoronboardingform";
+			public const string cm_confirmvendoronboardingformName = "cm_confirmvendoronboardingformname";
+			public const string cm_NPSAURL = "cm_npsaurl";
 			public const string cm_OpportunityType = "cm_opportunitytype";
 			public const string cm_opportunitytypeName = "cm_opportunitytypename";
+			public const string cm_QualificationStatus = "cm_qualificationstatus";
+			public const string cm_qualificationstatusName = "cm_qualificationstatusname";
+			public const string cm_SAPID = "cm_sapid";
+			public const string cm_ScheduleURL = "cm_scheduleurl";
 			public const string cm_ServiceProviderType = "cm_serviceprovidertype";
 			public const string cm_serviceprovidertypeName = "cm_serviceprovidertypename";
 			public const string CompleteFinalProposal = "completefinalproposal";
@@ -371,6 +402,7 @@ namespace Plugins.Models
 			public const string TraversedPath = "traversedpath";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
+			public const string cm_leadclosurechecklistresponse_Opportunity_opportunity = "cm_leadclosurechecklistresponse_Opportunity_opportunity";
 			public const string cm_questionresponse_Opportunity_opportunity = "cm_questionresponse_Opportunity_opportunity";
 			public const string lead_qualifying_opportunity = "lead_qualifying_opportunity";
 			public const string opportunity_connections1 = "opportunity_connections1";
@@ -693,6 +725,145 @@ namespace Plugins.Models
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_confirminsurancecertificates")]
+		public System.Nullable<bool> cm_ConfirmInsuranceCertificates
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("cm_confirminsurancecertificates");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_ConfirmInsuranceCertificates");
+				this.SetAttributeValue("cm_confirminsurancecertificates", value);
+				this.OnPropertyChanged("cm_ConfirmInsuranceCertificates");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_confirminsurancecertificatesname")]
+		public string cm_confirminsurancecertificatesName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_confirminsurancecertificates"))
+				{
+					return this.FormattedValues["cm_confirminsurancecertificates"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_confirmonboardingform")]
+		public System.Nullable<bool> cm_ConfirmOnboardingform
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("cm_confirmonboardingform");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_ConfirmOnboardingform");
+				this.SetAttributeValue("cm_confirmonboardingform", value);
+				this.OnPropertyChanged("cm_ConfirmOnboardingform");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_confirmonboardingformname")]
+		public string cm_confirmonboardingformName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_confirmonboardingform"))
+				{
+					return this.FormattedValues["cm_confirmonboardingform"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_confirmothernecessarydocuments")]
+		public System.Nullable<bool> cm_Confirmothernecessarydocuments
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("cm_confirmothernecessarydocuments");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_Confirmothernecessarydocuments");
+				this.SetAttributeValue("cm_confirmothernecessarydocuments", value);
+				this.OnPropertyChanged("cm_Confirmothernecessarydocuments");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_confirmothernecessarydocumentsname")]
+		public string cm_confirmothernecessarydocumentsName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_confirmothernecessarydocuments"))
+				{
+					return this.FormattedValues["cm_confirmothernecessarydocuments"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_confirmvendoronboardingform")]
+		public System.Nullable<bool> cm_ConfirmVendorOnboardingform
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("cm_confirmvendoronboardingform");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_ConfirmVendorOnboardingform");
+				this.SetAttributeValue("cm_confirmvendoronboardingform", value);
+				this.OnPropertyChanged("cm_ConfirmVendorOnboardingform");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_confirmvendoronboardingformname")]
+		public string cm_confirmvendoronboardingformName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_confirmvendoronboardingform"))
+				{
+					return this.FormattedValues["cm_confirmvendoronboardingform"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_npsaurl")]
+		public string cm_NPSAURL
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("cm_npsaurl");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_NPSAURL");
+				this.SetAttributeValue("cm_npsaurl", value);
+				this.OnPropertyChanged("cm_NPSAURL");
+			}
+		}
+		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_opportunitytype")]
 		public virtual cm_leadopptype? cm_OpportunityType
 		{
@@ -721,6 +892,67 @@ namespace Plugins.Models
 				{
 					return default(string);
 				}
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_qualificationstatus")]
+		public virtual cm_opportunity_cm_qualificationstatus? cm_QualificationStatus
+		{
+			get
+			{
+				return ((cm_opportunity_cm_qualificationstatus?)(EntityOptionSetEnum.GetEnum(this, "cm_qualificationstatus")));
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_QualificationStatus");
+				this.SetAttributeValue("cm_qualificationstatus", value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null);
+				this.OnPropertyChanged("cm_QualificationStatus");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_qualificationstatusname")]
+		public string cm_qualificationstatusName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_qualificationstatus"))
+				{
+					return this.FormattedValues["cm_qualificationstatus"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_sapid")]
+		public string cm_SAPID
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("cm_sapid");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_SAPID");
+				this.SetAttributeValue("cm_sapid", value);
+				this.OnPropertyChanged("cm_SAPID");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_scheduleurl")]
+		public string cm_ScheduleURL
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("cm_scheduleurl");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_ScheduleURL");
+				this.SetAttributeValue("cm_scheduleurl", value);
+				this.OnPropertyChanged("cm_ScheduleURL");
 			}
 		}
 		
@@ -3587,6 +3819,24 @@ namespace Plugins.Models
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<long>>("versionnumber");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N cm_leadclosurechecklistresponse_Opportunity_opportunity
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_leadclosurechecklistresponse_Opportunity_opportunity")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.cm_LeadClosureChecklistResponse> cm_leadclosurechecklistresponse_Opportunity_opportunity
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.cm_LeadClosureChecklistResponse>("cm_leadclosurechecklistresponse_Opportunity_opportunity", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_leadclosurechecklistresponse_Opportunity_opportunity");
+				this.SetRelatedEntities<Plugins.Models.cm_LeadClosureChecklistResponse>("cm_leadclosurechecklistresponse_Opportunity_opportunity", null, value);
+				this.OnPropertyChanged("cm_leadclosurechecklistresponse_Opportunity_opportunity");
 			}
 		}
 		

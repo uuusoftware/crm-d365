@@ -14,11 +14,11 @@ namespace Plugins.Models
 	
 	
 	/// <summary>
-	/// Status of the Program Association
+	/// Status of the Lead Closure Checklist Master
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
-	public enum cm_programassociation_statecode
+	public enum cm_leadclosurechecklistmaster_statecode
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -29,54 +29,41 @@ namespace Plugins.Models
 	}
 	
 	/// <summary>
-	/// Reason for the status of the Program Association
+	/// Reason for the status of the Lead Closure Checklist Master
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
-	public enum cm_programassociation_statuscode
+	public enum cm_leadclosurechecklistmaster_statuscode
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		InProgress = 121540001,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Qualified = 121540002,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		QualifiedasVoluntaryProducer = 121540003,
+		Active = 1,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Inactive = 2,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		NotQualified = 121540004,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("cm_programassociation")]
+	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("cm_leadclosurechecklistmaster")]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
-	public partial class cm_ProgramAssociation : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	public partial class cm_LeadClosureChecklistMaster : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
 		/// <summary>
-		/// Available fields, a the time of codegen, for the cm_programassociation entity
+		/// Available fields, a the time of codegen, for the cm_leadclosurechecklistmaster entity
 		/// </summary>
 		public partial class Fields
 		{
-			public const string cm_Account = "cm_account";
-			public const string cm_AccountName = "cm_accountname";
-			public const string cm_AccountYomiName = "cm_accountyominame";
-			public const string cm_Lead = "cm_lead";
-			public const string cm_LeadName = "cm_leadname";
-			public const string cm_LeadYomiName = "cm_leadyominame";
+			public const string cm_Active = "cm_active";
+			public const string cm_activeName = "cm_activename";
+			public const string cm_LeadClosureChecklistMasterId = "cm_leadclosurechecklistmasterid";
+			public const string Id = "cm_leadclosurechecklistmasterid";
+			public const string cm_LeadType = "cm_leadtype";
+			public const string cm_leadtypeName = "cm_leadtypename";
 			public const string cm_Name = "cm_name";
 			public const string cm_Program = "cm_program";
-			public const string cm_ProgramAssociationId = "cm_programassociationid";
-			public const string Id = "cm_programassociationid";
 			public const string cm_ProgramName = "cm_programname";
 			public const string cm_ProgramYomiName = "cm_programyominame";
-			public const string cm_Province = "cm_province";
-			public const string cm_ProvinceName = "cm_provincename";
 			public const string CreatedBy = "createdby";
 			public const string CreatedByName = "createdbyname";
 			public const string CreatedByYomiName = "createdbyyominame";
@@ -107,28 +94,27 @@ namespace Plugins.Models
 			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
-			public const string cm_Opportunity_AssociatedProgram_cm_ProgramAssociation = "cm_Opportunity_AssociatedProgram_cm_ProgramAssociation";
-			public const string cm_ProgramAssociation_Incident_Incident = "cm_ProgramAssociation_Incident_Incident";
-			public const string cm_Account_Account_cm_ProgramAssociation = "cm_Account_Account_cm_ProgramAssociation";
-			public const string cm_Lead_Lead_cm_ProgramAssociation = "cm_Lead_Lead_cm_ProgramAssociation";
-			public const string cm_programassociation_Program_team = "cm_programassociation_Program_team";
-			public const string cm_programassociation_Province_cm_province = "cm_programassociation_Province_cm_province";
-			public const string team_cm_programassociation = "team_cm_programassociation";
+			public const string cm_leadclosurechecklistcatalog_LeadClosureChecklistMaster_cm_leadclosurechecklistmaster = "cm_leadclosurechecklistcatalog_LeadClosureChecklistMaster_cm_leadclosurechecklist" +
+		"master";
+			public const string cm_leadclosurechecklistresponse_LeadClosureChecklistMaster_cm_leadclosurechecklistmaster = "cm_leadclosurechecklistresponse_LeadClosureChecklistMaster_cm_leadclosurechecklis" +
+		"tmaster";
+			public const string cm_leadclosurechecklistmaster_Program_team = "cm_leadclosurechecklistmaster_Program_team";
+			public const string team_cm_leadclosurechecklistmaster = "team_cm_leadclosurechecklistmaster";
 		}
 		
 		/// <summary>
 		/// Default Constructor.
 		/// </summary>
-		public cm_ProgramAssociation() : 
+		public cm_LeadClosureChecklistMaster() : 
 				base(EntityLogicalName)
 		{
 		}
 		
-		public const string EntityLogicalName = "cm_programassociation";
+		public const string EntityLogicalName = "cm_leadclosurechecklistmaster";
 		
-		public const string EntityLogicalCollectionName = "cm_programassociations";
+		public const string EntityLogicalCollectionName = "cm_leadclosurechecklistmasters";
 		
-		public const string EntitySetName = "cm_programassociations";
+		public const string EntitySetName = "cm_leadclosurechecklistmasters";
 		
 		public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
 		
@@ -150,29 +136,32 @@ namespace Plugins.Models
 			}
 		}
 		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_account")]
-		public Microsoft.Xrm.Sdk.EntityReference cm_Account
+		/// <summary>
+		/// To make the checklist master Active/Deactivated
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_active")]
+		public System.Nullable<bool> cm_Active
 		{
 			get
 			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cm_account");
+				return this.GetAttributeValue<System.Nullable<bool>>("cm_active");
 			}
 			set
 			{
-				this.OnPropertyChanging("cm_Account");
-				this.SetAttributeValue("cm_account", value);
-				this.OnPropertyChanged("cm_Account");
+				this.OnPropertyChanging("cm_Active");
+				this.SetAttributeValue("cm_active", value);
+				this.OnPropertyChanged("cm_Active");
 			}
 		}
 		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_accountname")]
-		public string cm_AccountName
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_activename")]
+		public string cm_activeName
 		{
 			get
 			{
-				if (this.FormattedValues.Contains("cm_account"))
+				if (this.FormattedValues.Contains("cm_active"))
 				{
-					return this.FormattedValues["cm_account"];
+					return this.FormattedValues["cm_active"];
 				}
 				else
 				{
@@ -181,61 +170,68 @@ namespace Plugins.Models
 			}
 		}
 		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_accountyominame")]
-		public string cm_AccountYomiName
+		/// <summary>
+		/// Unique identifier for entity instances
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_leadclosurechecklistmasterid")]
+		public System.Nullable<System.Guid> cm_LeadClosureChecklistMasterId
 		{
 			get
 			{
-				if (this.FormattedValues.Contains("cm_account"))
-				{
-					return this.FormattedValues["cm_account"];
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_lead")]
-		public Microsoft.Xrm.Sdk.EntityReference cm_Lead
-		{
-			get
-			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cm_lead");
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("cm_leadclosurechecklistmasterid");
 			}
 			set
 			{
-				this.OnPropertyChanging("cm_Lead");
-				this.SetAttributeValue("cm_lead", value);
-				this.OnPropertyChanged("cm_Lead");
-			}
-		}
-		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_leadname")]
-		public string cm_LeadName
-		{
-			get
-			{
-				if (this.FormattedValues.Contains("cm_lead"))
+				this.OnPropertyChanging("cm_LeadClosureChecklistMasterId");
+				this.SetAttributeValue("cm_leadclosurechecklistmasterid", value);
+				if (value.HasValue)
 				{
-					return this.FormattedValues["cm_lead"];
+					base.Id = value.Value;
 				}
 				else
 				{
-					return default(string);
+					base.Id = System.Guid.Empty;
 				}
+				this.OnPropertyChanged("cm_LeadClosureChecklistMasterId");
 			}
 		}
 		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_leadyominame")]
-		public string cm_LeadYomiName
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_leadclosurechecklistmasterid")]
+		public override System.Guid Id
 		{
 			get
 			{
-				if (this.FormattedValues.Contains("cm_lead"))
+				return base.Id;
+			}
+			set
+			{
+				this.cm_LeadClosureChecklistMasterId = value;
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_leadtype")]
+		public virtual cm_leadopptype? cm_LeadType
+		{
+			get
+			{
+				return ((cm_leadopptype?)(EntityOptionSetEnum.GetEnum(this, "cm_leadtype")));
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_LeadType");
+				this.SetAttributeValue("cm_leadtype", value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null);
+				this.OnPropertyChanged("cm_LeadType");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_leadtypename")]
+		public string cm_leadtypeName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_leadtype"))
 				{
-					return this.FormattedValues["cm_lead"];
+					return this.FormattedValues["cm_leadtype"];
 				}
 				else
 				{
@@ -259,6 +255,9 @@ namespace Plugins.Models
 			}
 		}
 		
+		/// <summary>
+		/// Lookup to CM Team
+		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_program")]
 		public Microsoft.Xrm.Sdk.EntityReference cm_Program
 		{
@@ -271,45 +270,6 @@ namespace Plugins.Models
 				this.OnPropertyChanging("cm_Program");
 				this.SetAttributeValue("cm_program", value);
 				this.OnPropertyChanged("cm_Program");
-			}
-		}
-		
-		/// <summary>
-		/// Unique identifier for entity instances
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_programassociationid")]
-		public System.Nullable<System.Guid> cm_ProgramAssociationId
-		{
-			get
-			{
-				return this.GetAttributeValue<System.Nullable<System.Guid>>("cm_programassociationid");
-			}
-			set
-			{
-				this.OnPropertyChanging("cm_ProgramAssociationId");
-				this.SetAttributeValue("cm_programassociationid", value);
-				if (value.HasValue)
-				{
-					base.Id = value.Value;
-				}
-				else
-				{
-					base.Id = System.Guid.Empty;
-				}
-				this.OnPropertyChanged("cm_ProgramAssociationId");
-			}
-		}
-		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_programassociationid")]
-		public override System.Guid Id
-		{
-			get
-			{
-				return base.Id;
-			}
-			set
-			{
-				this.cm_ProgramAssociationId = value;
 			}
 		}
 		
@@ -337,37 +297,6 @@ namespace Plugins.Models
 				if (this.FormattedValues.Contains("cm_program"))
 				{
 					return this.FormattedValues["cm_program"];
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_province")]
-		public Microsoft.Xrm.Sdk.EntityReference cm_Province
-		{
-			get
-			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cm_province");
-			}
-			set
-			{
-				this.OnPropertyChanging("cm_Province");
-				this.SetAttributeValue("cm_province", value);
-				this.OnPropertyChanged("cm_Province");
-			}
-		}
-		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_provincename")]
-		public string cm_ProvinceName
-		{
-			get
-			{
-				if (this.FormattedValues.Contains("cm_province"))
-				{
-					return this.FormattedValues["cm_province"];
 				}
 				else
 				{
@@ -721,14 +650,14 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
-		/// Status of the Program Association
+		/// Status of the Lead Closure Checklist Master
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statecode")]
-		public virtual cm_programassociation_statecode? statecode
+		public virtual cm_leadclosurechecklistmaster_statecode? statecode
 		{
 			get
 			{
-				return ((cm_programassociation_statecode?)(EntityOptionSetEnum.GetEnum(this, "statecode")));
+				return ((cm_leadclosurechecklistmaster_statecode?)(EntityOptionSetEnum.GetEnum(this, "statecode")));
 			}
 			set
 			{
@@ -755,14 +684,14 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
-		/// Reason for the status of the Program Association
+		/// Reason for the status of the Lead Closure Checklist Master
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual cm_programassociation_statuscode? statuscode
+		public virtual cm_leadclosurechecklistmaster_statuscode? statuscode
 		{
 			get
 			{
-				return ((cm_programassociation_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((cm_leadclosurechecklistmaster_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			set
 			{
@@ -837,127 +766,80 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
-		/// 1:N cm_Opportunity_AssociatedProgram_cm_ProgramAssociation
+		/// 1:N cm_leadclosurechecklistcatalog_LeadClosureChecklistMaster_cm_leadclosurechecklistmaster
 		/// </summary>
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_Opportunity_AssociatedProgram_cm_ProgramAssociation")]
-		public System.Collections.Generic.IEnumerable<Plugins.Models.Opportunity> cm_Opportunity_AssociatedProgram_cm_ProgramAssociation
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_leadclosurechecklistcatalog_LeadClosureChecklistMaster_cm_leadclosurechecklist" +
+			"master")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.cm_LeadClosureChecklistCatalog> cm_leadclosurechecklistcatalog_LeadClosureChecklistMaster_cm_leadclosurechecklistmaster
 		{
 			get
 			{
-				return this.GetRelatedEntities<Plugins.Models.Opportunity>("cm_Opportunity_AssociatedProgram_cm_ProgramAssociation", null);
+				return this.GetRelatedEntities<Plugins.Models.cm_LeadClosureChecklistCatalog>("cm_leadclosurechecklistcatalog_LeadClosureChecklistMaster_cm_leadclosurechecklist" +
+						"master", null);
 			}
 			set
 			{
-				this.OnPropertyChanging("cm_Opportunity_AssociatedProgram_cm_ProgramAssociation");
-				this.SetRelatedEntities<Plugins.Models.Opportunity>("cm_Opportunity_AssociatedProgram_cm_ProgramAssociation", null, value);
-				this.OnPropertyChanged("cm_Opportunity_AssociatedProgram_cm_ProgramAssociation");
+				this.OnPropertyChanging("cm_leadclosurechecklistcatalog_LeadClosureChecklistMaster_cm_leadclosurechecklist" +
+						"master");
+				this.SetRelatedEntities<Plugins.Models.cm_LeadClosureChecklistCatalog>("cm_leadclosurechecklistcatalog_LeadClosureChecklistMaster_cm_leadclosurechecklist" +
+						"master", null, value);
+				this.OnPropertyChanged("cm_leadclosurechecklistcatalog_LeadClosureChecklistMaster_cm_leadclosurechecklist" +
+						"master");
 			}
 		}
 		
 		/// <summary>
-		/// N:N cm_ProgramAssociation_Incident_Incident
+		/// 1:N cm_leadclosurechecklistresponse_LeadClosureChecklistMaster_cm_leadclosurechecklistmaster
 		/// </summary>
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_ProgramAssociation_Incident_Incident")]
-		public System.Collections.Generic.IEnumerable<Plugins.Models.Incident> cm_ProgramAssociation_Incident_Incident
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_leadclosurechecklistresponse_LeadClosureChecklistMaster_cm_leadclosurechecklis" +
+			"tmaster")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.cm_LeadClosureChecklistResponse> cm_leadclosurechecklistresponse_LeadClosureChecklistMaster_cm_leadclosurechecklistmaster
 		{
 			get
 			{
-				return this.GetRelatedEntities<Plugins.Models.Incident>("cm_ProgramAssociation_Incident_Incident", null);
+				return this.GetRelatedEntities<Plugins.Models.cm_LeadClosureChecklistResponse>("cm_leadclosurechecklistresponse_LeadClosureChecklistMaster_cm_leadclosurechecklis" +
+						"tmaster", null);
 			}
 			set
 			{
-				this.OnPropertyChanging("cm_ProgramAssociation_Incident_Incident");
-				this.SetRelatedEntities<Plugins.Models.Incident>("cm_ProgramAssociation_Incident_Incident", null, value);
-				this.OnPropertyChanged("cm_ProgramAssociation_Incident_Incident");
+				this.OnPropertyChanging("cm_leadclosurechecklistresponse_LeadClosureChecklistMaster_cm_leadclosurechecklis" +
+						"tmaster");
+				this.SetRelatedEntities<Plugins.Models.cm_LeadClosureChecklistResponse>("cm_leadclosurechecklistresponse_LeadClosureChecklistMaster_cm_leadclosurechecklis" +
+						"tmaster", null, value);
+				this.OnPropertyChanged("cm_leadclosurechecklistresponse_LeadClosureChecklistMaster_cm_leadclosurechecklis" +
+						"tmaster");
 			}
 		}
 		
 		/// <summary>
-		/// N:1 cm_Account_Account_cm_ProgramAssociation
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_account")]
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_Account_Account_cm_ProgramAssociation")]
-		public Plugins.Models.Account cm_Account_Account_cm_ProgramAssociation
-		{
-			get
-			{
-				return this.GetRelatedEntity<Plugins.Models.Account>("cm_Account_Account_cm_ProgramAssociation", null);
-			}
-			set
-			{
-				this.OnPropertyChanging("cm_Account_Account_cm_ProgramAssociation");
-				this.SetRelatedEntity<Plugins.Models.Account>("cm_Account_Account_cm_ProgramAssociation", null, value);
-				this.OnPropertyChanged("cm_Account_Account_cm_ProgramAssociation");
-			}
-		}
-		
-		/// <summary>
-		/// N:1 cm_Lead_Lead_cm_ProgramAssociation
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_lead")]
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_Lead_Lead_cm_ProgramAssociation")]
-		public Plugins.Models.Lead cm_Lead_Lead_cm_ProgramAssociation
-		{
-			get
-			{
-				return this.GetRelatedEntity<Plugins.Models.Lead>("cm_Lead_Lead_cm_ProgramAssociation", null);
-			}
-			set
-			{
-				this.OnPropertyChanging("cm_Lead_Lead_cm_ProgramAssociation");
-				this.SetRelatedEntity<Plugins.Models.Lead>("cm_Lead_Lead_cm_ProgramAssociation", null, value);
-				this.OnPropertyChanged("cm_Lead_Lead_cm_ProgramAssociation");
-			}
-		}
-		
-		/// <summary>
-		/// N:1 cm_programassociation_Program_team
+		/// N:1 cm_leadclosurechecklistmaster_Program_team
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_program")]
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_programassociation_Program_team")]
-		public Plugins.Models.Team cm_programassociation_Program_team
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_leadclosurechecklistmaster_Program_team")]
+		public Plugins.Models.Team cm_leadclosurechecklistmaster_Program_team
 		{
 			get
 			{
-				return this.GetRelatedEntity<Plugins.Models.Team>("cm_programassociation_Program_team", null);
+				return this.GetRelatedEntity<Plugins.Models.Team>("cm_leadclosurechecklistmaster_Program_team", null);
 			}
 			set
 			{
-				this.OnPropertyChanging("cm_programassociation_Program_team");
-				this.SetRelatedEntity<Plugins.Models.Team>("cm_programassociation_Program_team", null, value);
-				this.OnPropertyChanged("cm_programassociation_Program_team");
+				this.OnPropertyChanging("cm_leadclosurechecklistmaster_Program_team");
+				this.SetRelatedEntity<Plugins.Models.Team>("cm_leadclosurechecklistmaster_Program_team", null, value);
+				this.OnPropertyChanged("cm_leadclosurechecklistmaster_Program_team");
 			}
 		}
 		
 		/// <summary>
-		/// N:1 cm_programassociation_Province_cm_province
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_province")]
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_programassociation_Province_cm_province")]
-		public Plugins.Models.cm_Province cm_programassociation_Province_cm_province
-		{
-			get
-			{
-				return this.GetRelatedEntity<Plugins.Models.cm_Province>("cm_programassociation_Province_cm_province", null);
-			}
-			set
-			{
-				this.OnPropertyChanging("cm_programassociation_Province_cm_province");
-				this.SetRelatedEntity<Plugins.Models.cm_Province>("cm_programassociation_Province_cm_province", null, value);
-				this.OnPropertyChanged("cm_programassociation_Province_cm_province");
-			}
-		}
-		
-		/// <summary>
-		/// N:1 team_cm_programassociation
+		/// N:1 team_cm_leadclosurechecklistmaster
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_cm_programassociation")]
-		public Plugins.Models.Team team_cm_programassociation
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_cm_leadclosurechecklistmaster")]
+		public Plugins.Models.Team team_cm_leadclosurechecklistmaster
 		{
 			get
 			{
-				return this.GetRelatedEntity<Plugins.Models.Team>("team_cm_programassociation", null);
+				return this.GetRelatedEntity<Plugins.Models.Team>("team_cm_leadclosurechecklistmaster", null);
 			}
 		}
 	}

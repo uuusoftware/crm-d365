@@ -208,7 +208,7 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
-		/// Answer Text field if the question answer type is Text
+		/// Answer Text field if the question answer type is Text.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_answertext")]
 		public string cm_AnswerText

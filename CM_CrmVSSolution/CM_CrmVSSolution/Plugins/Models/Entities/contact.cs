@@ -605,6 +605,8 @@ namespace Plugins.Models
 			public const string BusinessCardAttributes = "businesscardattributes";
 			public const string Callback = "callback";
 			public const string ChildrensNames = "childrensnames";
+			public const string cm_FacebookURL = "cm_facebookurl";
+			public const string cm_TwitterHandle = "cm_twitterhandle";
 			public const string Company = "company";
 			public const string ContactId = "contactid";
 			public const string Id = "contactid";
@@ -3221,6 +3223,42 @@ namespace Plugins.Models
 				this.OnPropertyChanging("ChildrensNames");
 				this.SetAttributeValue("childrensnames", value);
 				this.OnPropertyChanged("ChildrensNames");
+			}
+		}
+		
+		/// <summary>
+		/// Facebook Profile URL
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_facebookurl")]
+		public string cm_FacebookURL
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("cm_facebookurl");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_FacebookURL");
+				this.SetAttributeValue("cm_facebookurl", value);
+				this.OnPropertyChanged("cm_FacebookURL");
+			}
+		}
+		
+		/// <summary>
+		/// Twitter ID
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_twitterhandle")]
+		public string cm_TwitterHandle
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("cm_twitterhandle");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_TwitterHandle");
+				this.SetAttributeValue("cm_twitterhandle", value);
+				this.OnPropertyChanged("cm_TwitterHandle");
 			}
 		}
 		

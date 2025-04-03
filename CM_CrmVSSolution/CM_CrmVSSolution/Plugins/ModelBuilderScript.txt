@@ -1,5 +1,5 @@
 pac modelbuilder build ^
-  --entitynamesfilter account;contact;salesorder;lead;opportunity;connection;team;cm_programassociation;cm_province;cm_questioncatalog;cm_questionresponse;cm_casechecklistcatalog;incident;cm_casechecklistresponse;cm_casecategory;cm_casesubcategory  ^
+  --entitynamesfilter account;contact;salesorder;lead;opportunity;connection;team;cm_programassociation;cm_province;cm_questioncatalog;cm_questionresponse;cm_casechecklistcatalog;incident;cm_casechecklistresponse;cm_casecategory;cm_casesubcategory;cm_leadclosurechecklistmaster;cm_leadclosurechecklistcatalog;cm_leadclosurechecklistresponse  ^
   --generatesdkmessages ^
   --messagenamesfilter execute* ^
   --emitfieldsclasses ^

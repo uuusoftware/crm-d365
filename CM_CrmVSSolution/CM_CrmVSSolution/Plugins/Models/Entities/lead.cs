@@ -196,34 +196,37 @@ namespace Plugins.Models
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Advertisement = 1,
+		AnonymousReferral = 1,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		EmployeeReferral = 2,
+		Campaign = 2,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		ExternalReferral = 3,
+		Crosspect = 3,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Partner = 4,
+		MOEReferral = 4,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		PublicRelations = 5,
+		ProgramReferral = 5,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Seminar = 6,
+		ProspectResearch = 6,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		TradeShow = 7,
+		Restructuring = 7,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Web = 8,
+		Selfidentified = 8,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		WordofMouth = 9,
+		Internallyidentified = 9,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Other = 10,
+		OrganizationInitiatedrequest = 10,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		PartnerNetwork = 121540001,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]

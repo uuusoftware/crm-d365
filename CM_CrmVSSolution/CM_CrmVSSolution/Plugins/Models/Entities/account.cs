@@ -602,6 +602,7 @@ namespace Plugins.Models
 			public const string BusinessTypeCodeName = "businesstypecodename";
 			public const string cm_ComplianceFlag = "cm_complianceflag";
 			public const string cm_complianceflagName = "cm_complianceflagname";
+			public const string cm_FacebookPage = "cm_facebookpage";
 			public const string cm_Industry = "cm_industry";
 			public const string cm_IndustryName = "cm_industryname";
 			public const string cm_OtherType = "cm_othertype";
@@ -612,6 +613,7 @@ namespace Plugins.Models
 			public const string cm_serviceprovidertypeName = "cm_serviceprovidertypename";
 			public const string cm_SubIndustry = "cm_subindustry";
 			public const string cm_SubIndustryName = "cm_subindustryname";
+			public const string cm_TwitterPage = "cm_twitterpage";
 			public const string CreatedBy = "createdby";
 			public const string CreatedByExternalParty = "createdbyexternalparty";
 			public const string CreatedByExternalPartyName = "createdbyexternalpartyname";
@@ -784,6 +786,7 @@ namespace Plugins.Models
 			public const string Referencedaccount_master_account = "Referencedaccount_master_account";
 			public const string Referencedaccount_parent_account = "Referencedaccount_parent_account";
 			public const string cm_Account_Account_cm_ProgramAssociation = "cm_Account_Account_cm_ProgramAssociation";
+			public const string cm_leadclosurechecklistresponse_Account_account = "cm_leadclosurechecklistresponse_Account_account";
 			public const string cm_questionresponse_Account_account = "cm_questionresponse_Account_account";
 			public const string contact_customer_accounts = "contact_customer_accounts";
 			public const string incident_customer_accounts = "incident_customer_accounts";
@@ -2141,6 +2144,24 @@ namespace Plugins.Models
 			}
 		}
 		
+		/// <summary>
+		/// Facebook Page URL
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_facebookpage")]
+		public string cm_FacebookPage
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("cm_facebookpage");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_FacebookPage");
+				this.SetAttributeValue("cm_facebookpage", value);
+				this.OnPropertyChanged("cm_FacebookPage");
+			}
+		}
+		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_industry")]
 		public Microsoft.Xrm.Sdk.EntityReference cm_Industry
 		{
@@ -2299,6 +2320,24 @@ namespace Plugins.Models
 				{
 					return default(string);
 				}
+			}
+		}
+		
+		/// <summary>
+		/// Twitter Page URL
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_twitterpage")]
+		public string cm_TwitterPage
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("cm_twitterpage");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_TwitterPage");
+				this.SetAttributeValue("cm_twitterpage", value);
+				this.OnPropertyChanged("cm_TwitterPage");
 			}
 		}
 		
@@ -5074,6 +5113,24 @@ namespace Plugins.Models
 				this.OnPropertyChanging("cm_Account_Account_cm_ProgramAssociation");
 				this.SetRelatedEntities<Plugins.Models.cm_ProgramAssociation>("cm_Account_Account_cm_ProgramAssociation", null, value);
 				this.OnPropertyChanged("cm_Account_Account_cm_ProgramAssociation");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N cm_leadclosurechecklistresponse_Account_account
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_leadclosurechecklistresponse_Account_account")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.cm_LeadClosureChecklistResponse> cm_leadclosurechecklistresponse_Account_account
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.cm_LeadClosureChecklistResponse>("cm_leadclosurechecklistresponse_Account_account", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_leadclosurechecklistresponse_Account_account");
+				this.SetRelatedEntities<Plugins.Models.cm_LeadClosureChecklistResponse>("cm_leadclosurechecklistresponse_Account_account", null, value);
+				this.OnPropertyChanged("cm_leadclosurechecklistresponse_Account_account");
 			}
 		}
 		
