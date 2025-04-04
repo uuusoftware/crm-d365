@@ -428,6 +428,7 @@ namespace Plugins.Models
 			public const string incident_connections2 = "incident_connections2";
 			public const string Referencedincident_existingcase = "Referencedincident_existingcase";
 			public const string Referencedincident_master_incident = "Referencedincident_master_incident";
+			public const string incident_OpportunityCloses = "incident_OpportunityCloses";
 			public const string Referencedincident_parent_incident = "Referencedincident_parent_incident";
 			public const string OriginatingCase_Lead = "OriginatingCase_Lead";
 			public const string cm_ProgramAssociation_Incident_Incident = "cm_ProgramAssociation_Incident_Incident";
@@ -3337,6 +3338,24 @@ namespace Plugins.Models
 				this.OnPropertyChanging("Referencedincident_master_incident");
 				this.SetRelatedEntities<Plugins.Models.Incident>("incident_master_incident", Microsoft.Xrm.Sdk.EntityRole.Referenced, value);
 				this.OnPropertyChanged("Referencedincident_master_incident");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N incident_OpportunityCloses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("incident_OpportunityCloses")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.OpportunityClose> incident_OpportunityCloses
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.OpportunityClose>("incident_OpportunityCloses", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("incident_OpportunityCloses");
+				this.SetRelatedEntities<Plugins.Models.OpportunityClose>("incident_OpportunityCloses", null, value);
+				this.OnPropertyChanged("incident_OpportunityCloses");
 			}
 		}
 		

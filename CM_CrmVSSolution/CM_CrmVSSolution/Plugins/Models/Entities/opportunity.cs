@@ -407,6 +407,8 @@ namespace Plugins.Models
 			public const string lead_qualifying_opportunity = "lead_qualifying_opportunity";
 			public const string opportunity_connections1 = "opportunity_connections1";
 			public const string opportunity_connections2 = "opportunity_connections2";
+			public const string Opportunity_OpportunityClose = "Opportunity_OpportunityClose";
+			public const string opportunity_OpportunityCloses = "opportunity_OpportunityCloses";
 			public const string opportunity_sales_orders = "opportunity_sales_orders";
 			public const string opportunity_Teams = "opportunity_Teams";
 			public const string cm_Opportunity_AssociatedProgram_cm_ProgramAssociation = "cm_Opportunity_AssociatedProgram_cm_ProgramAssociation";
@@ -3909,6 +3911,42 @@ namespace Plugins.Models
 				this.OnPropertyChanging("opportunity_connections2");
 				this.SetRelatedEntities<Plugins.Models.Connection>("opportunity_connections2", null, value);
 				this.OnPropertyChanged("opportunity_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N Opportunity_OpportunityClose
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Opportunity_OpportunityClose")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.OpportunityClose> Opportunity_OpportunityClose
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.OpportunityClose>("Opportunity_OpportunityClose", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("Opportunity_OpportunityClose");
+				this.SetRelatedEntities<Plugins.Models.OpportunityClose>("Opportunity_OpportunityClose", null, value);
+				this.OnPropertyChanged("Opportunity_OpportunityClose");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N opportunity_OpportunityCloses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("opportunity_OpportunityCloses")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.OpportunityClose> opportunity_OpportunityCloses
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.OpportunityClose>("opportunity_OpportunityCloses", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("opportunity_OpportunityCloses");
+				this.SetRelatedEntities<Plugins.Models.OpportunityClose>("opportunity_OpportunityCloses", null, value);
+				this.OnPropertyChanged("opportunity_OpportunityCloses");
 			}
 		}
 		

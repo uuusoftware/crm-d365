@@ -218,6 +218,17 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// Gets a binding to the set of all <see cref="Plugins.Models.OpportunityClose"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<Plugins.Models.OpportunityClose> OpportunityCloseSet
+		{
+			get
+			{
+				return this.CreateQuery<Plugins.Models.OpportunityClose>();
+			}
+		}
+		
+		/// <summary>
 		/// Gets a binding to the set of all <see cref="Plugins.Models.SalesOrder"/> entities.
 		/// </summary>
 		public System.Linq.IQueryable<Plugins.Models.SalesOrder> SalesOrderSet

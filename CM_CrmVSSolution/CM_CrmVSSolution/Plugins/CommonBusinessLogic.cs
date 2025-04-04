@@ -70,6 +70,18 @@ namespace Plugins {
                         case "cm_CaseSubCategory":
                             return svcContext.cm_CaseSubCategorySet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
+                        case "OpportunityClose":
+                            return svcContext.OpportunityCloseSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+
+                        case "cm_LeadClosureChecklistCatalog":
+                            return svcContext.cm_LeadClosureChecklistCatalogSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+
+                        case "cm_LeadClosureChecklistResponse":
+                            return svcContext.cm_LeadClosureChecklistResponseSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+
+                        case "cm_LeadClosureChecklistMaster":
+                            return svcContext.cm_LeadClosureChecklistMasterSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+
                         default:
                             throw new ArgumentException($"Unsupported entity type: {typeof(T).Name}");
                     }
@@ -332,6 +344,7 @@ namespace Plugins {
                 && record.cm_LeadType == type).FirstOrDefault();
             }
         }
+
         internal List<cm_LeadClosureChecklistCatalog> GetLeadClosureChecklistCatalogCat(Guid checklistMasterId)
         {
             try

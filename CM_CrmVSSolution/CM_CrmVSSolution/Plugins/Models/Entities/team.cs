@@ -150,6 +150,7 @@ namespace Plugins.Models
 			public const string team_contacts = "team_contacts";
 			public const string team_incidents = "team_incidents";
 			public const string team_opportunities = "team_opportunities";
+			public const string team_opportunityclose = "team_opportunityclose";
 			public const string team_orders = "team_orders";
 			public const string cm_Team_cm_Province_cm_Province = "cm_Team_cm_Province_cm_Province";
 			public const string opportunity_Teams = "opportunity_Teams";
@@ -1513,6 +1514,24 @@ namespace Plugins.Models
 				this.OnPropertyChanging("team_opportunities");
 				this.SetRelatedEntities<Plugins.Models.Opportunity>("team_opportunities", null, value);
 				this.OnPropertyChanged("team_opportunities");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N team_opportunityclose
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_opportunityclose")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.OpportunityClose> team_opportunityclose
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.OpportunityClose>("team_opportunityclose", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("team_opportunityclose");
+				this.SetRelatedEntities<Plugins.Models.OpportunityClose>("team_opportunityclose", null, value);
+				this.OnPropertyChanged("team_opportunityclose");
 			}
 		}
 		

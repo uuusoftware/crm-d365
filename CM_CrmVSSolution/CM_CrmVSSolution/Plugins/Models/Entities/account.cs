@@ -784,6 +784,7 @@ namespace Plugins.Models
 			public const string account_connections1 = "account_connections1";
 			public const string account_connections2 = "account_connections2";
 			public const string Referencedaccount_master_account = "Referencedaccount_master_account";
+			public const string account_OpportunityCloses = "account_OpportunityCloses";
 			public const string Referencedaccount_parent_account = "Referencedaccount_parent_account";
 			public const string cm_Account_Account_cm_ProgramAssociation = "cm_Account_Account_cm_ProgramAssociation";
 			public const string cm_leadclosurechecklistresponse_Account_account = "cm_leadclosurechecklistresponse_Account_account";
@@ -5077,6 +5078,24 @@ namespace Plugins.Models
 				this.OnPropertyChanging("Referencedaccount_master_account");
 				this.SetRelatedEntities<Plugins.Models.Account>("account_master_account", Microsoft.Xrm.Sdk.EntityRole.Referenced, value);
 				this.OnPropertyChanged("Referencedaccount_master_account");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N account_OpportunityCloses
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("account_OpportunityCloses")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.OpportunityClose> account_OpportunityCloses
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.OpportunityClose>("account_OpportunityCloses", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("account_OpportunityCloses");
+				this.SetRelatedEntities<Plugins.Models.OpportunityClose>("account_OpportunityCloses", null, value);
+				this.OnPropertyChanged("account_OpportunityCloses");
 			}
 		}
 		
