@@ -365,6 +365,24 @@ namespace Plugins {
             }
         }
 
+        internal List<cm_LeadClosureChecklistResponse> GetLeadClosureChecklistResponseByMaster(Guid checklistMasterId, Guid opportunityId)
+        {
+            try
+            {
+                using (var svcContext = new OrgContext(_service))
+                {
+                    return svcContext.cm_LeadClosureChecklistResponseSet.Where(
+                        record => record.cm_LeadClosureChecklistMaster.Id == checklistMasterId 
+                        && record.cm_Opportunity.Id == opportunityId).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                _tracingService.Trace($"GetCaseChecklistCatalogByIncident Error: {ex.Message}");
+                throw new InvalidPluginExecutionException(ex.Message, ex);
+            }
+        }
+
         internal void CreateLeadClosureResponses(List<cm_LeadClosureChecklistCatalog> questions, Opportunity opportunity, Guid teamId) {
             List<Guid> responseGuids = new List<Guid>();
 
