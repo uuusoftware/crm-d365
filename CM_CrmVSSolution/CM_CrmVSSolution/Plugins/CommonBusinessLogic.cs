@@ -271,7 +271,7 @@ namespace Plugins {
                 && record.cm_QuestionFor == type).ToList();
             }
         }
-
+        
         internal List<cm_CaseChecklistCatalog> GetCaseChecklistCatalogCaseCat(Guid caseCatId) {
             try {
                 using (var svcContext = new OrgContext(_service)) {
@@ -285,6 +285,7 @@ namespace Plugins {
                 throw new InvalidPluginExecutionException(ex.Message, ex);
             }
         }
+
         internal List<cm_CaseChecklistCatalog> GetCaseChecklistCatalogCaseSub(Guid caseSubId) {
             try {
                 using (var svcContext = new OrgContext(_service)) {
@@ -319,6 +320,61 @@ namespace Plugins {
                 responseGuids.Add(questionId);
             });
             _tracingService.Trace("Question responses created: " + string.Join(", ", responseGuids));
+        }
+
+        internal cm_LeadClosureChecklistMaster GetLeadClosureCheckLMasterByTeam(Guid teamId, cm_leadopptype? type)
+        {
+            using (var svcContext = new OrgContext(_service))
+            {
+                return svcContext.cm_LeadClosureChecklistMasterSet.Where(
+                record => record.cm_Program.Id == teamId
+                && record.statuscode == cm_leadclosurechecklistmaster_statuscode.Active
+                && record.cm_LeadType == type).FirstOrDefault();
+            }
+        }
+        internal List<cm_LeadClosureChecklistCatalog> GetLeadClosureChecklistCatalogCat(Guid checklistMasterId)
+        {
+            try
+            {
+                using (var svcContext = new OrgContext(_service))
+                {
+                    return svcContext.cm_LeadClosureChecklistCatalogSet.Where(
+                        record => record.cm_IsConditional == false
+                            && record.cm_Active == true
+                            && record.cm_LeadClosureChecklistMaster.Id == checklistMasterId
+                            && record.statuscode == cm_leadclosurechecklistcatalog_statuscode.Active).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                _tracingService.Trace($"GetCaseChecklistCatalogByIncident Error: {ex.Message}");
+                throw new InvalidPluginExecutionException(ex.Message, ex);
+            }
+        }
+
+        internal void CreateLeadClosureResponses(List<cm_LeadClosureChecklistCatalog> questions, Opportunity opportunity, Guid teamId) {
+            List<Guid> responseGuids = new List<Guid>();
+
+            questions.ForEach(question => {
+
+                Enum.TryParse(question.cm_AnswerType.ToString(), out cm_answertype answerType);
+
+                var questionResponse = new cm_LeadClosureChecklistResponse() {
+                    Id = Guid.NewGuid(),
+                    cm_Question = question.cm_QuestionText,
+                    cm_AnswerType = answerType,
+                    cm_Program = new EntityReference(Team.EntityLogicalName, teamId),
+                    cm_Opportunity = new EntityReference(Opportunity.EntityLogicalName, opportunity.Id),
+                    cm_Account = opportunity.CustomerId,
+                    cm_LeadClosureChecklistQuestionLink = new EntityReference(cm_LeadClosureChecklistCatalog.EntityLogicalName, question.Id),
+                    cm_LeadClosureChecklistMaster = question.cm_LeadClosureChecklistMaster,
+                    cm_AnswerYesNo = null,
+
+                };
+                Guid questionId = _service.Create(questionResponse);
+                responseGuids.Add(questionId);
+            });
+            _tracingService.Trace("Lead Closure Question responses created: " + string.Join(", ", responseGuids));
         }
 
         internal List<Guid> CreateCasechecklistResponse(List<cm_CaseChecklistCatalog> questions, Incident incident) {
