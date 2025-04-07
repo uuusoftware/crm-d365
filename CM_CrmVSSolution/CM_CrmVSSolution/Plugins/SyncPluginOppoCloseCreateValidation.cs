@@ -72,11 +72,10 @@ namespace Plugins
                 {
                     leadClosureChecklistResponseRecords.ForEach(response =>
                     {
-                        //    if ((response.cm_AnswerType == cm_answertype.YesNo && response.cm_AnswerYesNo == null) ||
-                        //        (response.cm_AnswerType == cm_answertype.TextBox && response.cm_AnswerText == null))
-                        if (response.cm_AnswerType == cm_answertype.YesNo && 
-                            (response.cm_AnswerYesNo == cm_leadclosurechecklistresponse_cm_answeryesno.No ||
-                            response.cm_AnswerYesNo == null))
+                        if ((response.cm_AnswerType == cm_answertype.YesNo &&
+                                (response.cm_AnswerYesNo == null || response.cm_AnswerYesNo == cm_leadclosurechecklistresponse_cm_answeryesno.No)) ||
+                            (response.cm_AnswerType == cm_answertype.TextBox &&
+                                (response.cm_AnswerText == null || response.cm_AnswerText == string.Empty)))
                         {
                             throw new InvalidPluginExecutionException("Failed to meet the closure criteria. You may resolve the closure questions before converting the Opportunity as ‘Won’.");
                         }
