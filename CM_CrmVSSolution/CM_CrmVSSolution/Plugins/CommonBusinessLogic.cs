@@ -372,8 +372,7 @@ namespace Plugins {
                 using (var svcContext = new OrgContext(_service))
                 {
                     return svcContext.cm_LeadClosureChecklistResponseSet.Where(
-                        record => record.cm_LeadClosureChecklistMaster.Id == checklistMasterId 
-                        && record.cm_Opportunity.Id == opportunityId).ToList();
+                        record => record.cm_Opportunity.Id == opportunityId).ToList();
                 }
             }
             catch (Exception ex)
