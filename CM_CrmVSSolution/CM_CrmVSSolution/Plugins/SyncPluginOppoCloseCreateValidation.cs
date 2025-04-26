@@ -72,124 +72,18 @@ namespace Plugins
 
                 // Validation to avoid Opp - producer closure if Qualification Status is In Progress or Not Qualified
                 if (opportunityRecord.cm_OpportunityType == cm_leadopptype.Producer &&
-     ((int)opportunityRecord.cm_QualificationStatus == 121540000 ||  // In Progress
-      (int)opportunityRecord.cm_QualificationStatus == 121540003))   // Not Qualified
+                    (opportunityRecord.cm_QualificationStatus == cm_opportunity_cm_qualificationstatus.InProgress ||  // In Progress
+                    opportunityRecord.cm_QualificationStatus == cm_opportunity_cm_qualificationstatus.NotQualified))   // Not Qualified
                 {
                     throw new InvalidPluginExecutionException("Opportunity cannot be closed when the Qualification Status is In Progress or Not Qualified.");
                 }
 
-
-
-
-
                 List<cm_LeadClosureChecklistResponse> leadClosureChecklistResponseRecords = commonBusinessLogic
                     .GetLeadClosureChecklistResponseByMaster(leadClosureChecklistMasterRecord.Id, opportunityRecord.Id);
 
-                if (opportunityRecord.cm_OpportunityType == cm_leadopptype.Producer)
+                ValidateClosureChecklist(opportunityRecord, leadClosureChecklistResponseRecords);
 
-                {
-                    if (leadClosureChecklistResponseRecords.Any())
-                    {
-                        leadClosureChecklistResponseRecords.ForEach(response =>
-                        {
-                            // Proceed only if the response is marked as "Required to Close"
-                            if (response.cm_RequiredToClose == true)
-                            {
-                                // Check for Yes/No type and compare expected vs actual answer
-
-                                if (response.cm_AnswerType == cm_answertype.YesNo && (int)response.cm_ValidateClosureOnlyifOppQualificationStatus == 121540000)
-                                {
-                                    if (
-        (int?)response.cm_ExpectedAnswerToClose != (int?)response.cm_AnswerYesNo)
-                                    {
-                                        throw new InvalidPluginExecutionException(
-                                            "Failed to meet the closure criteria. You may resolve the closure questions before converting the Opportunity as ‘Won’."
-                                        );
-                                    }
-
-
-                                }
-                                else if (response.cm_AnswerType == cm_answertype.YesNo && (int)response.cm_ValidateClosureOnlyifOppQualificationStatus != 121540000)
-                                {
-                                    if ((int?)response.cm_ValidateClosureOnlyifOppQualificationStatus == (int?)opportunityRecord.cm_QualificationStatus &&
-        (int?)response.cm_ExpectedAnswerToClose != (int?)response.cm_AnswerYesNo)
-                                    {
-                                        throw new InvalidPluginExecutionException(
-                                            "Failed to meet the closure criteria. You may resolve the closure questions before converting the Opportunity as ‘Won’."
-                                        );
-                                    }
-
-
-                                }
-
-                                // Check for TextBox type and validate non-empty response
-                                if (response.cm_AnswerType == cm_answertype.TextBox &&
-                                    (string.IsNullOrEmpty(response.cm_AnswerText)))
-                                {
-                                    throw new InvalidPluginExecutionException(
-                                        "Failed to meet the closure criteria. You may resolve the closure questions before converting the Opportunity as ‘Won’."
-                                    );
-                                }
-                            }
-                        });
-                    }
-
-                }
-                // For Opp Types other than producer
-                else
-                {
-                    if (leadClosureChecklistResponseRecords.Any())
-                    {
-                        leadClosureChecklistResponseRecords.ForEach(response =>
-                        {
-                            // Proceed only if the response is marked as "Required to Close"
-                            if (response.cm_RequiredToClose == true)
-                            {
-                                // Check for Yes/No type and compare expected vs actual answer
-                                if (response.cm_AnswerType == cm_answertype.YesNo)
-                                {
-                                    if (
-        (int?)response.cm_ExpectedAnswerToClose != (int?)response.cm_AnswerYesNo)
-                                    {
-                                        throw new InvalidPluginExecutionException(
-                                            "Failed to meet the closure criteria. You may resolve the closure questions before converting the Opportunity as ‘Won’."
-                                        );
-                                    }
-
-
-                                }
-
-                                // Check for TextBox type and validate non-empty response
-                                if (response.cm_AnswerType == cm_answertype.TextBox &&
-                                    (string.IsNullOrEmpty(response.cm_AnswerText)))
-                                {
-                                    throw new InvalidPluginExecutionException(
-                                        "Failed to meet the closure criteria. You may resolve the closure questions before converting the Opportunity as ‘Won’."
-                                    );
-                                }
-                            }
-                        });
-                    }
-                }
             }
-
-
-            //    if (leadClosureChecklistResponseRecords.Any())
-            //    {
-            //        leadClosureChecklistResponseRecords.ForEach(response =>
-            //        {
-            //            if ((response.cm_AnswerType == cm_answertype.YesNo &&
-            //                    (response.cm_AnswerYesNo == null || response.cm_AnswerYesNo == cm_leadclosurechecklistresponse_cm_answeryesno.No)) ||
-            //                (response.cm_AnswerType == cm_answertype.TextBox &&
-            //                    (response.cm_AnswerText == null || response.cm_AnswerText == string.Empty)))
-            //            {
-            //                throw new InvalidPluginExecutionException("Failed to meet the closure criteria. You may resolve the closure questions before converting the Opportunity as ‘Won’.");
-            //            }
-            //        });
-            //    }
-            //}
-
-
             catch (Exception ex)
             {
                 string detailedError = $"Unexpected error while processing {context.PrimaryEntityName} record with ID " +
@@ -200,6 +94,46 @@ namespace Plugins
             finally
             {
                 tracingService.Trace($"SyncPluginOppoCloseCreateValidation Process End");
+            }
+        }
+
+        private void ValidateClosureChecklist(Opportunity opportunityRecord, List<cm_LeadClosureChecklistResponse> leadClosureChecklistResponseRecords)
+        {
+            if (!leadClosureChecklistResponseRecords.Any())
+                return;
+
+            bool isProducer = opportunityRecord.cm_OpportunityType == cm_leadopptype.Producer;
+            
+            foreach (var response in leadClosureChecklistResponseRecords)
+            {
+                if (response.cm_RequiredToClose != true)
+                    continue;
+
+
+                if (response.cm_AnswerType == cm_answertype.YesNo)
+                {
+                    bool isQualifiedStatusRelevant = response.cm_ValidateClosureOnlyifOppQualificationStatus !=
+                        cm_leadclosurechecklistresponse_cm_validateclosureonlyifoppqualificationstatus.NA;
+
+                    bool shouldValidate =
+                        !isProducer || // For non-producer opps, always validate
+                        !isQualifiedStatusRelevant || // For producer with NA status validation
+                        ((int?)response.cm_ValidateClosureOnlyifOppQualificationStatus == (int?)opportunityRecord.cm_QualificationStatus); // For producer with matching qualified status
+
+                    if (shouldValidate && (int?)response.cm_ExpectedAnswerToClose != (int?)response.cm_AnswerYesNo)
+                    {
+                        throw new InvalidPluginExecutionException(
+                            "Failed to meet the closure criteria. You may resolve the closure questions before converting the Opportunity as ‘Won’."
+                        );
+                    }
+                }
+
+                if (response.cm_AnswerType == cm_answertype.TextBox && string.IsNullOrWhiteSpace(response.cm_AnswerText))
+                {
+                    throw new InvalidPluginExecutionException(
+                        "Failed to meet the closure criteria. You may resolve the closure questions before converting the Opportunity as ‘Won’."
+                    );
+                }
             }
         }
     }
