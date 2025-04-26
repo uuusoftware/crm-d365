@@ -218,15 +218,6 @@ namespace Plugins.Models
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Selfidentified = 8,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Internallyidentified = 9,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		OrganizationInitiatedrequest = 10,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		PartnerNetwork = 121540001,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
@@ -3319,7 +3310,7 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
-		/// Result of the assignment rule process
+		/// (Deprecated)Result of the assignment rule process
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_salesassignmentresult")]
 		public virtual msdyn_lead_msdyn_salesassignmentresult? msdyn_salesassignmentresult

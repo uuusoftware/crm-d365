@@ -268,7 +268,7 @@ namespace Plugins.Models
 		/// Agreement to provide customer service during a specified amount of time or number of cases.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Contract = 1010,
+		Contract_Unused = 1010,
 		
 		/// <summary>
 		/// Generic activity representing work needed to be done.
@@ -523,7 +523,7 @@ namespace Plugins.Models
 		/// Agreement to provide customer service during a specified amount of time or number of cases.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Contract = 1010,
+		Contract_Unused = 1010,
 		
 		/// <summary>
 		/// Send invitations to existing contacts or email addresses and assign them to web roles upon redemption.

@@ -25,6 +25,18 @@ namespace Plugins.Models
 		No = 121540001,
 	}
 	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
+	public enum cm_leadclosurechecklistresponse_cm_validateclosureonlyifoppqualificationstatus
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		NA = 121540000,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		QualifiedasVoluntaryProducer = 121540002,
+	}
+	
 	/// <summary>
 	/// Status of the Lead Closure Checklist Response
 	/// </summary>
@@ -74,6 +86,8 @@ namespace Plugins.Models
 			public const string cm_answertypeName = "cm_answertypename";
 			public const string cm_AnswerYesNo = "cm_answeryesno";
 			public const string cm_answeryesnoName = "cm_answeryesnoname";
+			public const string cm_ExpectedAnswerToClose = "cm_expectedanswertoclose";
+			public const string cm_expectedanswertocloseName = "cm_expectedanswertoclosename";
 			public const string cm_LeadClosureChecklistMaster = "cm_leadclosurechecklistmaster";
 			public const string cm_LeadClosureChecklistMasterName = "cm_leadclosurechecklistmastername";
 			public const string cm_LeadClosureChecklistQuestionLink = "cm_leadclosurechecklistquestionlink";
@@ -86,8 +100,12 @@ namespace Plugins.Models
 			public const string cm_ProgramName = "cm_programname";
 			public const string cm_ProgramYomiName = "cm_programyominame";
 			public const string cm_Question = "cm_question";
+			public const string cm_RequiredToClose = "cm_requiredtoclose";
+			public const string cm_requiredtocloseName = "cm_requiredtoclosename";
 			public const string cm_ResponseDate = "cm_responsedate";
 			public const string cm_ResponseID = "cm_responseid";
+			public const string cm_ValidateClosureOnlyifOppQualificationStatus = "cm_validateclosureonlyifoppqualificationstatus";
+			public const string cm_validateclosureonlyifoppqualificationstatusName = "cm_validateclosureonlyifoppqualificationstatusname";
 			public const string CreatedBy = "createdby";
 			public const string CreatedByName = "createdbyname";
 			public const string CreatedByYomiName = "createdbyyominame";
@@ -287,6 +305,37 @@ namespace Plugins.Models
 				if (this.FormattedValues.Contains("cm_answeryesno"))
 				{
 					return this.FormattedValues["cm_answeryesno"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_expectedanswertoclose")]
+		public virtual cm_expectedanswertoclose? cm_ExpectedAnswerToClose
+		{
+			get
+			{
+				return ((cm_expectedanswertoclose?)(EntityOptionSetEnum.GetEnum(this, "cm_expectedanswertoclose")));
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_ExpectedAnswerToClose");
+				this.SetAttributeValue("cm_expectedanswertoclose", value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null);
+				this.OnPropertyChanged("cm_ExpectedAnswerToClose");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_expectedanswertoclosename")]
+		public string cm_expectedanswertocloseName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_expectedanswertoclose"))
+				{
+					return this.FormattedValues["cm_expectedanswertoclose"];
 				}
 				else
 				{
@@ -501,6 +550,37 @@ namespace Plugins.Models
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_requiredtoclose")]
+		public System.Nullable<bool> cm_RequiredToClose
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("cm_requiredtoclose");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_RequiredToClose");
+				this.SetAttributeValue("cm_requiredtoclose", value);
+				this.OnPropertyChanged("cm_RequiredToClose");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_requiredtoclosename")]
+		public string cm_requiredtocloseName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_requiredtoclose"))
+				{
+					return this.FormattedValues["cm_requiredtoclose"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
 		/// <summary>
 		/// Timestamp of when the response was recorded.
 		/// </summary>
@@ -531,6 +611,40 @@ namespace Plugins.Models
 				this.OnPropertyChanging("cm_ResponseID");
 				this.SetAttributeValue("cm_responseid", value);
 				this.OnPropertyChanged("cm_ResponseID");
+			}
+		}
+		
+		/// <summary>
+		/// Maintain this field value as per the Lead Closure Checklist Catalog
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_validateclosureonlyifoppqualificationstatus")]
+		public virtual cm_leadclosurechecklistresponse_cm_validateclosureonlyifoppqualificationstatus? cm_ValidateClosureOnlyifOppQualificationStatus
+		{
+			get
+			{
+				return ((cm_leadclosurechecklistresponse_cm_validateclosureonlyifoppqualificationstatus?)(EntityOptionSetEnum.GetEnum(this, "cm_validateclosureonlyifoppqualificationstatus")));
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_ValidateClosureOnlyifOppQualificationStatus");
+				this.SetAttributeValue("cm_validateclosureonlyifoppqualificationstatus", value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null);
+				this.OnPropertyChanged("cm_ValidateClosureOnlyifOppQualificationStatus");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_validateclosureonlyifoppqualificationstatusname")]
+		public string cm_validateclosureonlyifoppqualificationstatusName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_validateclosureonlyifoppqualificationstatus"))
+				{
+					return this.FormattedValues["cm_validateclosureonlyifoppqualificationstatus"];
+				}
+				else
+				{
+					return default(string);
+				}
 			}
 		}
 		

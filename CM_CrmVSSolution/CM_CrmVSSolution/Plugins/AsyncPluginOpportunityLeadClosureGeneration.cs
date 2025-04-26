@@ -37,6 +37,8 @@ namespace Plugins
                     .GetRecordById<Opportunity>(context.PrimaryEntityId);
                 tracingService.Trace($"opportunityRecord {opportunityRecord.Id}");
 
+              
+
                 cm_ProgramAssociation programAssociationRecord = commonBusinessLogic
                     .GetRecordById<cm_ProgramAssociation>(opportunityRecord.cm_AssociatedProgram.Id);
                 tracingService.Trace($"programAssociationRecord {programAssociationRecord.Id}");

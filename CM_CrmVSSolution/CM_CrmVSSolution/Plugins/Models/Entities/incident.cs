@@ -31,6 +31,24 @@ namespace Plugins.Models
 		Request = 3,
 	}
 	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
+	public enum cm_incident_cm_casepriority
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Immediate = 121540000,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Urgent = 121540001,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Medium = 121540002,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Low = 121540003,
+	}
+	
 	/// <summary>
 	/// Response level for the case. The response level corresponds to the level of service specified in the contract.
 	/// </summary>
@@ -214,7 +232,16 @@ namespace Plugins.Models
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		ProblemSolved = 5,
+		Resolved = 5,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Open = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		InProgressInternal = 2,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		InProgressExternal = 3,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		InformationProvided = 1000,
@@ -226,16 +253,7 @@ namespace Plugins.Models
 		Merged = 2000,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		InProgress = 1,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		OnHold = 2,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		WaitingforDetails = 3,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Researching = 4,
+		OnHold = 4,
 	}
 	
 	/// <summary>
@@ -268,14 +286,26 @@ namespace Plugins.Models
 			public const string CaseTypeCodeName = "casetypecodename";
 			public const string CheckEmail = "checkemail";
 			public const string CheckEmailName = "checkemailname";
+			public const string cm_CasePriority = "cm_casepriority";
+			public const string cm_casepriorityName = "cm_casepriorityname";
+			public const string cm_CaseProgram = "cm_caseprogram";
+			public const string cm_caseprogramName = "cm_caseprogramname";
 			public const string cm_CauseCategory = "cm_causecategory";
 			public const string cm_CauseCategoryName = "cm_causecategoryname";
 			public const string cm_ComplianceFlagSetonAccount = "cm_complianceflagsetonaccount";
 			public const string cm_complianceflagsetonaccountName = "cm_complianceflagsetonaccountname";
+			public const string cm_Contract = "cm_contract";
+			public const string cm_ContractName = "cm_contractname";
+			public const string cm_EffectiveDate = "cm_effectivedate";
+			public const string cm_From = "cm_from";
 			public const string cm_GenerateChecklist = "cm_generatechecklist";
 			public const string cm_generatechecklistName = "cm_generatechecklistname";
 			public const string cm_IncidentCategory = "cm_incidentcategory";
 			public const string cm_IncidentCategoryName = "cm_incidentcategoryname";
+			public const string cm_ServiceandSupportTeam = "cm_serviceandsupportteam";
+			public const string cm_ServiceandSupportTeamName = "cm_serviceandsupportteamname";
+			public const string cm_ServiceandSupportTeamYomiName = "cm_serviceandsupportteamyominame";
+			public const string cm_To = "cm_to";
 			public const string ContactId = "contactid";
 			public const string ContactIdName = "contactidname";
 			public const string ContactIdYomiName = "contactidyominame";
@@ -434,6 +464,7 @@ namespace Plugins.Models
 			public const string cm_ProgramAssociation_Incident_Incident = "cm_ProgramAssociation_Incident_Incident";
 			public const string cm_incident_CauseCategory_cm_casesubcategory = "cm_incident_CauseCategory_cm_casesubcategory";
 			public const string cm_incident_IncidentCategory_cm_casecategory = "cm_incident_IncidentCategory_cm_casecategory";
+			public const string cm_incident_ServiceandSupportTeam_team = "cm_incident_ServiceandSupportTeam_team";
 			public const string contact_as_primary_contact = "contact_as_primary_contact";
 			public const string contact_as_responsible_contact = "contact_as_responsible_contact";
 			public const string incident_customer_accounts = "incident_customer_accounts";
@@ -740,6 +771,68 @@ namespace Plugins.Models
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_casepriority")]
+		public virtual cm_incident_cm_casepriority? cm_CasePriority
+		{
+			get
+			{
+				return ((cm_incident_cm_casepriority?)(EntityOptionSetEnum.GetEnum(this, "cm_casepriority")));
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_CasePriority");
+				this.SetAttributeValue("cm_casepriority", value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null);
+				this.OnPropertyChanged("cm_CasePriority");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_casepriorityname")]
+		public string cm_casepriorityName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_casepriority"))
+				{
+					return this.FormattedValues["cm_casepriority"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_caseprogram")]
+		public virtual System.Collections.Generic.IEnumerable<cm_caseprogram> cm_CaseProgram
+		{
+			get
+			{
+				return EntityOptionSetEnum.GetMultiEnum<cm_caseprogram>(this, "cm_caseprogram");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_CaseProgram");
+				this.SetAttributeValue("cm_caseprogram", EntityOptionSetEnum.GetMultiEnum(this, "cm_caseprogram", value));
+				this.OnPropertyChanged("cm_CaseProgram");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_caseprogramname")]
+		public string cm_caseprogramName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_caseprogram"))
+				{
+					return this.FormattedValues["cm_caseprogram"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_causecategory")]
 		public Microsoft.Xrm.Sdk.EntityReference cm_CauseCategory
 		{
@@ -802,6 +895,67 @@ namespace Plugins.Models
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_contract")]
+		public Microsoft.Xrm.Sdk.EntityReference cm_Contract
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cm_contract");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_Contract");
+				this.SetAttributeValue("cm_contract", value);
+				this.OnPropertyChanged("cm_Contract");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_contractname")]
+		public string cm_ContractName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_contract"))
+				{
+					return this.FormattedValues["cm_contract"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_effectivedate")]
+		public System.Nullable<System.DateTime> cm_EffectiveDate
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("cm_effectivedate");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_EffectiveDate");
+				this.SetAttributeValue("cm_effectivedate", value);
+				this.OnPropertyChanged("cm_EffectiveDate");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_from")]
+		public string cm_From
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("cm_from");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_From");
+				this.SetAttributeValue("cm_from", value);
+				this.OnPropertyChanged("cm_From");
+			}
+		}
+		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_generatechecklist")]
 		public System.Nullable<bool> cm_GenerateChecklist
 		{
@@ -861,6 +1015,68 @@ namespace Plugins.Models
 				{
 					return default(string);
 				}
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_serviceandsupportteam")]
+		public Microsoft.Xrm.Sdk.EntityReference cm_ServiceandSupportTeam
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cm_serviceandsupportteam");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_ServiceandSupportTeam");
+				this.SetAttributeValue("cm_serviceandsupportteam", value);
+				this.OnPropertyChanged("cm_ServiceandSupportTeam");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_serviceandsupportteamname")]
+		public string cm_ServiceandSupportTeamName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_serviceandsupportteam"))
+				{
+					return this.FormattedValues["cm_serviceandsupportteam"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_serviceandsupportteamyominame")]
+		public string cm_ServiceandSupportTeamYomiName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_serviceandsupportteam"))
+				{
+					return this.FormattedValues["cm_serviceandsupportteam"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_to")]
+		public string cm_To
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("cm_to");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_To");
+				this.SetAttributeValue("cm_to", value);
+				this.OnPropertyChanged("cm_To");
 			}
 		}
 		
@@ -3448,6 +3664,25 @@ namespace Plugins.Models
 				this.OnPropertyChanging("cm_incident_IncidentCategory_cm_casecategory");
 				this.SetRelatedEntity<Plugins.Models.cm_CaseCategory>("cm_incident_IncidentCategory_cm_casecategory", null, value);
 				this.OnPropertyChanged("cm_incident_IncidentCategory_cm_casecategory");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 cm_incident_ServiceandSupportTeam_team
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_serviceandsupportteam")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_incident_ServiceandSupportTeam_team")]
+		public Plugins.Models.Team cm_incident_ServiceandSupportTeam_team
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.Team>("cm_incident_ServiceandSupportTeam_team", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_incident_ServiceandSupportTeam_team");
+				this.SetRelatedEntity<Plugins.Models.Team>("cm_incident_ServiceandSupportTeam_team", null, value);
+				this.OnPropertyChanged("cm_incident_ServiceandSupportTeam_team");
 			}
 		}
 		

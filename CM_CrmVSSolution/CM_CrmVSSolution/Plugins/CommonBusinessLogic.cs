@@ -327,6 +327,7 @@ namespace Plugins {
                     cm_Account = opportunity.CustomerId,
                     cm_Question = new EntityReference(cm_QuestionCatalog.EntityLogicalName, question.Id),
                     cm_AnswerYesNo = null
+
                 };
                 Guid questionId = _service.Create(questionResponse);
                 responseGuids.Add(questionId);
@@ -399,6 +400,13 @@ namespace Plugins {
                     cm_LeadClosureChecklistQuestionLink = new EntityReference(cm_LeadClosureChecklistCatalog.EntityLogicalName, question.Id),
                     cm_LeadClosureChecklistMaster = question.cm_LeadClosureChecklistMaster,
                     cm_AnswerYesNo = null,
+                    cm_RequiredToClose = question.cm_RequiredToClose == cm_leadclosurechecklistcatalog_cm_requiredtoclose.Yes,
+                    cm_ExpectedAnswerToClose = question.cm_ExpectedAnswerToClose,
+                    cm_ValidateClosureOnlyifOppQualificationStatus =
+    (cm_leadclosurechecklistresponse_cm_validateclosureonlyifoppqualificationstatus?)
+        ((int?)question.cm_ValidateClosureOnlyifOppQualificationStatus)
+,
+
 
                 };
                 Guid questionId = _service.Create(questionResponse);

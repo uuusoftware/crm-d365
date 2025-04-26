@@ -5,7 +5,7 @@ pac modelbuilder build ^
   --emitfieldsclasses ^
   --emitVirtualAttributes ^
   --namespace Plugins.Models ^
-  --outdirectory "C:\Users\Marcos Garcia\source\repos\Circular\CM_CrmVSSolution\CM_CrmVSSolution\Plugins\Models" ^
+  --outdirectory "C:\LVS\Projects\Circular Materials\Source Code\cm_repo_backup_041225\CM_CrmVSSolution\CM_CrmVSSolution\Plugins\Models\" ^
   --writesettingsTemplateFile ^
   --serviceContextName OrgContext ^
   --environment https://cmdynamicsdev.crm3.dynamics.com
