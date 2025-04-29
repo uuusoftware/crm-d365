@@ -403,9 +403,9 @@ namespace Plugins {
                     cm_RequiredToClose = question.cm_RequiredToClose == cm_leadclosurechecklistcatalog_cm_requiredtoclose.Yes,
                     cm_ExpectedAnswerToClose = question.cm_ExpectedAnswerToClose,
                     cm_ValidateClosureOnlyifOppQualificationStatus =
-    (cm_leadclosurechecklistresponse_cm_validateclosureonlyifoppqualificationstatus?)
-        ((int?)question.cm_ValidateClosureOnlyifOppQualificationStatus)
-,
+                        (cm_leadclosurechecklistresponse_cm_validateclosureonlyifoppqualificationstatus?)
+                            ((int?)question.cm_ValidateClosureOnlyifOppQualificationStatus)
+                    ,
 
 
                 };
@@ -454,6 +454,136 @@ namespace Plugins {
                 _tracingService.Trace($"GetCaseChecklistCatalogByIncident Error: {ex.Message}");
                 throw new InvalidPluginExecutionException(ex.Message, ex);
             }
+        }
+        
+        internal List<Team> GetTeamsByCaseProgramLeadType(cm_caseprogram caseProgram, cm_leadopptype incidentCustomerRole)
+        {
+            try
+            {
+                using (var svcContext = new OrgContext(_service))
+                {
+                    return svcContext.TeamSet.Where(
+                        record => record.cm_CaseProgram == caseProgram && record.cm_LeadType.Value == incidentCustomerRole
+                        ).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                _tracingService.Trace($"GetTeamsByCaseProgramLeadType Error: {ex.Message}");
+                throw;
+            }
+        }
+
+
+        internal bool AssociateIncidentToTeams(Incident incidentRecord)
+        {
+            try
+            {
+                Account incidentCustomer = GetRecordById<Account>(incidentRecord.CustomerId.Id);
+
+                List<Team> teamList = new List<Team>();
+
+                if (!incidentCustomer.cm_Role.Any())
+                {
+                    var error = "No roles found in customer record";
+                    _tracingService.Trace($"AssociateIncidentToTeams Error: {error}");
+                    throw new Exception(error);
+                }
+
+                foreach (var caseProgram in incidentRecord.cm_CaseProgram)
+                {
+                    teamList.AddRange(GetTeamsByCaseProgramLeadType(caseProgram, incidentCustomer.cm_Role.FirstOrDefault()));
+                }
+
+                if (teamList.Any())
+                {
+                    _service.Associate(Incident.EntityLogicalName,
+                        incidentRecord.Id,
+                        new Relationship(cm_Incident_Team.Fields.cm_Incident_Team_Team),
+                        CreateEntityReferenceCollection(teamList));
+                }
+                else
+                {
+                    _tracingService.Trace("No Teams were found");
+                }
+            }
+            catch (Exception ex)
+            {
+                _tracingService.Trace($"AssociateIncidentToTeams Error: {ex.Message}");
+                throw;
+            }
+
+            return true;
+        }
+
+        private EntityReferenceCollection CreateEntityReferenceCollection(IEnumerable<Entity> recordList)
+        {
+            var referenceCollection = new EntityReferenceCollection();
+
+            foreach (var record in recordList)
+            {
+                referenceCollection.Add(new EntityReference(record.LogicalName, record.Id));
+            }
+
+            return referenceCollection;
+        }
+
+        internal void CreateChildCase(Incident incidentRecord)
+        {
+            List<Guid> createdCases = new List<Guid>();
+            if (incidentRecord.cm_CaseProgram.Count() > 1)
+            {
+                try
+                {
+                    foreach (var caseProgram in incidentRecord.cm_CaseProgram)
+                    {
+                        Account incidentCustomer = GetRecordById<Account>(incidentRecord.CustomerId.Id) ??
+                            throw new InvalidPluginExecutionException("incidentCustomer cannot be null");
+                        Team team = GetTeamsByCaseProgramLeadType(caseProgram, incidentCustomer.cm_Role.FirstOrDefault()).FirstOrDefault() ?? 
+                            throw new InvalidPluginExecutionException($"Case Program \"{caseProgram}\" and Lead Type \"{incidentCustomer.cm_Role.FirstOrDefault()}\" do not return a matching Team record.");
+
+                        _tracingService.Trace($"Processing child case from accountid: {incidentCustomer.Id} and teamid: {team.Id}");
+                        var caseRecord = new Incident()
+                        {
+                            cm_CasePriority = incidentRecord.cm_CasePriority,
+                            cm_CaseProgram = new List<cm_caseprogram> { caseProgram },
+                            cm_CauseCategory = incidentRecord.cm_CauseCategory,
+                            cm_Contract = incidentRecord.cm_Contract,
+                            cm_IncidentCategory = incidentRecord.cm_IncidentCategory,
+                            cm_Program = new EntityReference(Team.EntityLogicalName, team.Id),
+                            CustomerId = incidentRecord.CustomerId,
+                            Description = incidentRecord.Description,
+                            Title = incidentRecord.Title + " " + caseProgram,
+                            PrimaryContactId = incidentRecord.PrimaryContactId,
+                            ParentCaseId = new EntityReference(Incident.EntityLogicalName, incidentRecord.Id),
+                            cm_ComplianceFlagSetonAccount = incidentRecord.cm_ComplianceFlagSetonAccount,
+                            OwnerId = incidentRecord.OwnerId,
+                        };
+
+                        if (incidentCustomer.cm_Role.Contains(cm_leadopptype.ServiceProvider))
+                        {
+                            caseRecord.cm_EffectiveDate = incidentRecord.cm_EffectiveDate;
+                            caseRecord.cm_To = incidentRecord.cm_To;
+                            caseRecord.cm_From = incidentRecord.cm_From;
+                        }
+                        createdCases.Add(_service.Create(caseRecord));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _tracingService.Trace($"CreateChildCase Error: {ex.Message}");
+                    throw;
+                }
+            }
+            else
+            {
+                _tracingService.Trace("One of fewer case programs found. No child cases were created");
+            }
+            if (createdCases.Count() > 0)
+            {
+                _tracingService.Trace($"Cases created: {string.Join(",", createdCases)}");
+            }
+
         }
     }
 }
