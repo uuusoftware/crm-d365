@@ -1,11 +1,11 @@
 pac modelbuilder build ^
-  --entitynamesfilter account;contact;salesorder;lead;opportunity;connection;team;cm_programassociation;cm_province;cm_questioncatalog;cm_questionresponse;cm_casechecklistcatalog;incident;cm_casechecklistresponse;cm_casecategory;cm_casesubcategory;cm_leadclosurechecklistmaster;cm_leadclosurechecklistcatalog;cm_leadclosurechecklistresponse;opportunityclose  ^
+  --entitynamesfilter account;contact;salesorder;lead;opportunity;connection;team;cm_programassociation;cm_province;cm_questioncatalog;cm_questionresponse;cm_casechecklistcatalog;incident;cm_casechecklistresponse;cm_casecategory;cm_casesubcategory;cm_leadclosurechecklistmaster;cm_leadclosurechecklistcatalog;cm_leadclosurechecklistresponse;opportunityclose;cm_incident_team  ^
   --generatesdkmessages ^
   --messagenamesfilter execute* ^
   --emitfieldsclasses ^
   --emitVirtualAttributes ^
   --namespace Plugins.Models ^
-  --outdirectory "C:\LVS\Projects\Circular Materials\Source Code\cm_repo_backup_041225\CM_CrmVSSolution\CM_CrmVSSolution\Plugins\Models\" ^
+  --outdirectory "C:\Users\Marcos Garcia\source\repos\cm_repo_backup_041225\CM_CrmVSSolution\CM_CrmVSSolution\Plugins\Models\" ^
   --writesettingsTemplateFile ^
   --serviceContextName OrgContext ^
   --environment https://cmdynamicsdev.crm3.dynamics.com

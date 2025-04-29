@@ -132,6 +132,7 @@ namespace Plugins.Models
 			public const string TraversedPath = "traversedpath";
 			public const string VersionNumber = "versionnumber";
 			public const string YomiName = "yominame";
+			public const string cm_incident_Program_team = "cm_incident_Program_team";
 			public const string cm_incident_ServiceandSupportTeam_team = "cm_incident_ServiceandSupportTeam_team";
 			public const string cm_leadclosurechecklistmaster_Program_team = "cm_leadclosurechecklistmaster_Program_team";
 			public const string cm_leadclosurechecklistresponse_Program_team = "cm_leadclosurechecklistresponse_Program_team";
@@ -158,6 +159,7 @@ namespace Plugins.Models
 			public const string team_opportunities = "team_opportunities";
 			public const string team_opportunityclose = "team_opportunityclose";
 			public const string team_orders = "team_orders";
+			public const string cm_Incident_Team_Team = "cm_Incident_Team_Team";
 			public const string cm_Team_cm_Province_cm_Province = "cm_Team_cm_Province_cm_Province";
 			public const string opportunity_Teams = "opportunity_Teams";
 		}
@@ -1186,6 +1188,24 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// 1:N cm_incident_Program_team
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_incident_Program_team")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.Incident> cm_incident_Program_team
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.Incident>("cm_incident_Program_team", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_incident_Program_team");
+				this.SetRelatedEntities<Plugins.Models.Incident>("cm_incident_Program_team", null, value);
+				this.OnPropertyChanged("cm_incident_Program_team");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N cm_incident_ServiceandSupportTeam_team
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_incident_ServiceandSupportTeam_team")]
@@ -1650,6 +1670,24 @@ namespace Plugins.Models
 				this.OnPropertyChanging("team_orders");
 				this.SetRelatedEntities<Plugins.Models.SalesOrder>("team_orders", null, value);
 				this.OnPropertyChanged("team_orders");
+			}
+		}
+		
+		/// <summary>
+		/// N:N cm_Incident_Team_Team
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_Incident_Team_Team")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.Incident> cm_Incident_Team_Team
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.Incident>("cm_Incident_Team_Team", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_Incident_Team_Team");
+				this.SetRelatedEntities<Plugins.Models.Incident>("cm_Incident_Team_Team", null, value);
+				this.OnPropertyChanged("cm_Incident_Team_Team");
 			}
 		}
 		

@@ -86,6 +86,17 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// Gets a binding to the set of all <see cref="Plugins.Models.cm_Incident_Team"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<Plugins.Models.cm_Incident_Team> cm_Incident_TeamSet
+		{
+			get
+			{
+				return this.CreateQuery<Plugins.Models.cm_Incident_Team>();
+			}
+		}
+		
+		/// <summary>
 		/// Gets a binding to the set of all <see cref="Plugins.Models.cm_LeadClosureChecklistCatalog"/> entities.
 		/// </summary>
 		public System.Linq.IQueryable<Plugins.Models.cm_LeadClosureChecklistCatalog> cm_LeadClosureChecklistCatalogSet
