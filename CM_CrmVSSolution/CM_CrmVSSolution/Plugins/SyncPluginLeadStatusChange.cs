@@ -9,6 +9,16 @@ namespace Plugins {
         public SyncPluginLeadStatusChange(string unsecureConfiguration, string secureConfiguration)
             : base(typeof(SyncPluginLeadStatusChange)) {
         }
+
+        /// <summary>
+        ///     This plugin fires on updating an Open Lead, fetches its program associations (or aborts if none), 
+        ///     then creates a Contact, Account, and Opportunities per association, linking them together.
+        ///     
+        ///     It mimics the OOB lead to opportunity behavior but instead of one, it creates multiple opportunities
+        /// </summary>
+        /// <param name="localPluginContext"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="InvalidPluginExecutionException"></exception>
         protected override void ExecuteDataversePlugin(ILocalPluginContext localPluginContext) {
             if (localPluginContext == null) {
                 throw new ArgumentNullException(nameof(localPluginContext));
@@ -44,6 +54,7 @@ namespace Plugins {
                 Guid accountId = commonBusinessLogic.CreateAccountForLead(leadRecord, contactId);
                 List<Guid> programAssociationGuids = new List<Guid>();
 
+                // Creates an opportunity for each lead using the same account and contact
                 programAssociation.ForEach(association => {
                     programAssociationGuids.Add(commonBusinessLogic.CreateOpportunityForLead(leadRecord, association, contactId, accountId));
                     commonBusinessLogic.UpdateProgramAsscAccount(association, accountId);

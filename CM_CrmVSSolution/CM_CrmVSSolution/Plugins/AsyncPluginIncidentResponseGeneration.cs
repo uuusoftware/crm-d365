@@ -3,14 +3,18 @@ using Microsoft.Xrm.Sdk;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json;
-using Microsoft.Xrm.Sdk.Messages;
 
 namespace Plugins {
     public class AsyncPluginIncidentResponseGeneration : PluginBase {
         public AsyncPluginIncidentResponseGeneration(string unsecureConfiguration, string secureConfiguration)
             : base(typeof(AsyncPluginIncidentResponseGeneration)) {
         }
+        /// <summary>
+        ///     Steps: Plugins.AsyncPluginIncidentResponseGeneration: Update of incident
+        /// </summary>
+        /// <param name="localPluginContext"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="InvalidPluginExecutionException"></exception>
         protected override void ExecuteDataversePlugin(ILocalPluginContext localPluginContext) {
 
             if (localPluginContext == null) {
@@ -35,6 +39,12 @@ namespace Plugins {
                 if (incidentRecord?.cm_GenerateChecklist.Value == null || incidentRecord.cm_GenerateChecklist.Value == false) {
                     return;
                 }
+
+                // associate teams maching caseProgram and leadType
+                commonBusinessLogic.AssociateIncidentToTeams(incidentRecord);
+
+                // Create a child case for each caseProgram if > 1
+                commonBusinessLogic.CreateChildCase(incidentRecord);
 
                 List<Guid> responseList = new List<Guid>();
 

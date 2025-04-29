@@ -17,6 +17,15 @@ namespace Plugins
             : base(typeof(SyncPluginOppoCloseCreateValidation))
         {
         }
+        /// <summary>
+        ///     This plugin fires on creating an OpportunityClose record only when the opportunity is won, otherwise it skips further processing. 
+        ///     It loads the related Opportunity, its program association, team, and the appropriate lead‐closure checklist master, tracing each lookup. 
+        ///     Finally, it validates required closure responses (yes/no or text) against expected criteria, 
+        ///     throwing an InvalidPluginExecutionException if any closure condition isn’t met.
+        /// </summary>
+        /// <param name="localPluginContext"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="InvalidPluginExecutionException"></exception>
         protected override void ExecuteDataversePlugin(ILocalPluginContext localPluginContext)
         {
             if (localPluginContext == null)
@@ -47,6 +56,7 @@ namespace Plugins
             }
             try
             {
+                #region Load Entities
                 Opportunity opportunityRecord = commonBusinessLogic
                     .GetRecordById<Opportunity>(opportunityCloseRecord.OpportunityId.Id) ??
                         throw new InvalidPluginExecutionException("Invalid plugin execution: Opportunity not found");
@@ -69,6 +79,7 @@ namespace Plugins
                         throw new InvalidPluginExecutionException($"No Lead Closure Checklist Master found for Opportunity Type {opportunityRecord.cm_OpportunityType} and Team {teamRecord.Name}");
 
                 tracingService.Trace($"leadClosureChecklistMasterRecord {leadClosureChecklistMasterRecord.Id}");
+                #endregion
 
                 // Validation to avoid Opp - producer closure if Qualification Status is In Progress or Not Qualified
                 if (opportunityRecord.cm_OpportunityType == cm_leadopptype.Producer &&
@@ -97,27 +108,34 @@ namespace Plugins
             }
         }
 
+        /// <summary>
+        ///     The ValidateClosureChecklist method first skips validation entirely if there are no checklist responses. 
+        ///     It then marks whether the opportunity is a “Producer” type, and for each response that’s required to close it checks two cases:
+        ///     
+        ///     Yes/No -> it enforces the question (always for non-producer, or for producer when statuses match) and errors if the answer isn’t as expected.
+        ///     Text   -> it errors if the answer is blank.
+        /// </summary>
+        /// <param name="opportunityRecord"></param>
+        /// <param name="leadClosureChecklistResponseRecords"></param>
+        /// <exception cref="InvalidPluginExecutionException"></exception>
         private void ValidateClosureChecklist(Opportunity opportunityRecord, List<cm_LeadClosureChecklistResponse> leadClosureChecklistResponseRecords)
         {
             if (!leadClosureChecklistResponseRecords.Any())
                 return;
 
-            bool isProducer = opportunityRecord.cm_OpportunityType == cm_leadopptype.Producer;
             
             foreach (var response in leadClosureChecklistResponseRecords)
             {
-                if (response.cm_RequiredToClose != true)
-                    continue;
-
+                if (response.cm_RequiredToClose != true) continue;
 
                 if (response.cm_AnswerType == cm_answertype.YesNo)
                 {
+                    bool isProducer = opportunityRecord.cm_OpportunityType == cm_leadopptype.Producer;
                     bool isQualifiedStatusRelevant = response.cm_ValidateClosureOnlyifOppQualificationStatus !=
                         cm_leadclosurechecklistresponse_cm_validateclosureonlyifoppqualificationstatus.NA;
 
-                    bool shouldValidate =
-                        !isProducer || // For non-producer opps, always validate
-                        !isQualifiedStatusRelevant || // For producer with NA status validation
+                    bool shouldValidate = !isProducer || // For non-producer opps, always validate
+                        !isQualifiedStatusRelevant || // For producer but not qualified
                         ((int?)response.cm_ValidateClosureOnlyifOppQualificationStatus == (int?)opportunityRecord.cm_QualificationStatus); // For producer with matching qualified status
 
                     if (shouldValidate && (int?)response.cm_ExpectedAnswerToClose != (int?)response.cm_AnswerYesNo)
