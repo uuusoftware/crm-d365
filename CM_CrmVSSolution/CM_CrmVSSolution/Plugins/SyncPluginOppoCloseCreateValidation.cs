@@ -9,13 +9,10 @@ using cm_ProgramAssociation = Plugins.Models.cm_ProgramAssociation;
 using Team = Plugins.Models.Team;
 using cm_leadopptype = Plugins.Models.cm_leadopptype;
 
-namespace Plugins
-{
-    public class SyncPluginOppoCloseCreateValidation : PluginBase
-    {
+namespace Plugins {
+    public class SyncPluginOppoCloseCreateValidation : PluginBase {
         public SyncPluginOppoCloseCreateValidation(string unsecureConfiguration, string secureConfiguration)
-            : base(typeof(SyncPluginOppoCloseCreateValidation))
-        {
+            : base(typeof(SyncPluginOppoCloseCreateValidation)) {
         }
         /// <summary>
         ///     This plugin fires on creating an OpportunityClose record only when the opportunity is won, otherwise it skips further processing. 
@@ -26,10 +23,8 @@ namespace Plugins
         /// <param name="localPluginContext"></param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="InvalidPluginExecutionException"></exception>
-        protected override void ExecuteDataversePlugin(ILocalPluginContext localPluginContext)
-        {
-            if (localPluginContext == null)
-            {
+        protected override void ExecuteDataversePlugin(ILocalPluginContext localPluginContext) {
+            if (localPluginContext == null) {
                 throw new ArgumentNullException(nameof(localPluginContext));
             }
 
@@ -38,8 +33,7 @@ namespace Plugins
             var tracingService = localPluginContext.TracingService;
             IOrganizationService service = serviceFactory.CreateOrganizationService(context.UserId);
 
-            if (context.PrimaryEntityName != OpportunityClose.EntityLogicalName || context.MessageName != "Create")
-            {
+            if (context.PrimaryEntityName != OpportunityClose.EntityLogicalName || context.MessageName != "Create") {
                 throw new InvalidPluginExecutionException("Invalid plugin execution: Entity must be Opportunity and message must be Create");
             }
 
@@ -49,13 +43,11 @@ namespace Plugins
                 .GetRecordById<OpportunityClose>(context.PrimaryEntityId) ??
                 throw new InvalidPluginExecutionException("Invalid plugin execution: OpportunityClose not found");
 
-            if (opportunityCloseRecord.OpportunityStateCode != OpportunityClose_opportunity_statecode.Won)
-            {
+            if (opportunityCloseRecord.OpportunityStateCode != OpportunityClose_opportunity_statecode.Won) {
                 context.SharedVariables["mustSkip"] = true;
                 return;
             }
-            try
-            {
+            try {
                 #region Load Entities
                 Opportunity opportunityRecord = commonBusinessLogic
                     .GetRecordById<Opportunity>(opportunityCloseRecord.OpportunityId.Id) ??
@@ -94,16 +86,12 @@ namespace Plugins
 
                 ValidateClosureChecklist(opportunityRecord, leadClosureChecklistResponseRecords);
 
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 string detailedError = $"Unexpected error while processing {context.PrimaryEntityName} record with ID " +
                     $"{context.PrimaryEntityId}: {ex.Message}\nStack Trace: {ex.StackTrace}";
                 tracingService.Trace($"Error: {detailedError}");
                 throw new InvalidPluginExecutionException(ex.Message);
-            }
-            finally
-            {
+            } finally {
                 tracingService.Trace($"SyncPluginOppoCloseCreateValidation Process End");
             }
         }
@@ -118,18 +106,15 @@ namespace Plugins
         /// <param name="opportunityRecord"></param>
         /// <param name="leadClosureChecklistResponseRecords"></param>
         /// <exception cref="InvalidPluginExecutionException"></exception>
-        private void ValidateClosureChecklist(Opportunity opportunityRecord, List<cm_LeadClosureChecklistResponse> leadClosureChecklistResponseRecords)
-        {
+        private void ValidateClosureChecklist(Opportunity opportunityRecord, List<cm_LeadClosureChecklistResponse> leadClosureChecklistResponseRecords) {
             if (!leadClosureChecklistResponseRecords.Any())
                 return;
 
-            
-            foreach (var response in leadClosureChecklistResponseRecords)
-            {
+
+            foreach (var response in leadClosureChecklistResponseRecords) {
                 if (response.cm_RequiredToClose != true) continue;
 
-                if (response.cm_AnswerType == cm_answertype.YesNo)
-                {
+                if (response.cm_AnswerType == cm_answertype.YesNo) {
                     bool isProducer = opportunityRecord.cm_OpportunityType == cm_leadopptype.Producer;
                     bool isQualifiedStatusRelevant = response.cm_ValidateClosureOnlyifOppQualificationStatus !=
                         cm_leadclosurechecklistresponse_cm_validateclosureonlyifoppqualificationstatus.NA;
@@ -138,16 +123,14 @@ namespace Plugins
                         !isQualifiedStatusRelevant || // For producer but not qualified
                         ((int?)response.cm_ValidateClosureOnlyifOppQualificationStatus == (int?)opportunityRecord.cm_QualificationStatus); // For producer with matching qualified status
 
-                    if (shouldValidate && (int?)response.cm_ExpectedAnswerToClose != (int?)response.cm_AnswerYesNo)
-                    {
+                    if (shouldValidate && (int?)response.cm_ExpectedAnswerToClose != (int?)response.cm_AnswerYesNo) {
                         throw new InvalidPluginExecutionException(
                             "Failed to meet the closure criteria. You may resolve the closure questions before converting the Opportunity as ‘Won’."
                         );
                     }
                 }
 
-                if (response.cm_AnswerType == cm_answertype.TextBox && string.IsNullOrWhiteSpace(response.cm_AnswerText))
-                {
+                if (response.cm_AnswerType == cm_answertype.TextBox && string.IsNullOrWhiteSpace(response.cm_AnswerText)) {
                     throw new InvalidPluginExecutionException(
                         "Failed to meet the closure criteria. You may resolve the closure questions before converting the Opportunity as ‘Won’."
                     );

@@ -14,81 +14,76 @@ namespace Plugins {
             _service = service ?? throw new ArgumentNullException(nameof(service));
             _tracingService = tracingService ?? throw new ArgumentNullException(nameof(tracingService));
         }
-        public T GetRecordById<T>(Guid id) where T : Entity
-        {
-            try
-            {
-                using (var svcContext = new OrgContext(_service))
-                {
+        public T GetRecordById<T>(Guid id) where T : Entity {
+            try {
+                using (var svcContext = new OrgContext(_service)) {
                     switch (typeof(T).Name) // Using Name since switch does not support Type directly
                     {
                         case "Account":
-                            return svcContext.AccountSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.AccountSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
                         case "Contact":
-                            return svcContext.ContactSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.ContactSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
                         case "cm_Province":
-                            return svcContext.cm_ProvinceSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.cm_ProvinceSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
                         case "cm_ProgramAssociation":
-                            return svcContext.cm_ProgramAssociationSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.cm_ProgramAssociationSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
                         case "cm_QuestionCatalog":
-                            return svcContext.cm_QuestionCatalogSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.cm_QuestionCatalogSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
                         case "cm_QuestionResponse":
-                            return svcContext.cm_QuestionResponseSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.cm_QuestionResponseSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
                         case "SalesOrder":
-                            return svcContext.SalesOrderSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.SalesOrderSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
                         case "Connection":
-                            return svcContext.ConnectionSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.ConnectionSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
                         case "Lead":
-                            return svcContext.LeadSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.LeadSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
                         case "Opportunity":
-                            return svcContext.OpportunitySet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.OpportunitySet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
                         case "Team":
-                            return svcContext.TeamSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.TeamSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
                         case "Incident":
-                            return svcContext.IncidentSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.IncidentSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
                         case "cm_CaseCategory":
-                            return svcContext.cm_CaseCategorySet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.cm_CaseCategorySet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
                         case "cm_CaseChecklistResponse":
-                            return svcContext.cm_CaseChecklistResponseSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.cm_CaseChecklistResponseSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
                         case "cm_CaseChecklistCatalog":
-                            return svcContext.cm_CaseChecklistCatalogSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.cm_CaseChecklistCatalogSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
                         case "cm_CaseSubCategory":
-                            return svcContext.cm_CaseSubCategorySet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.cm_CaseSubCategorySet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
                         case "OpportunityClose":
-                            return svcContext.OpportunityCloseSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.OpportunityCloseSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
                         case "cm_LeadClosureChecklistCatalog":
-                            return svcContext.cm_LeadClosureChecklistCatalogSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.cm_LeadClosureChecklistCatalogSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
                         case "cm_LeadClosureChecklistResponse":
-                            return svcContext.cm_LeadClosureChecklistResponseSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.cm_LeadClosureChecklistResponseSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
                         case "cm_LeadClosureChecklistMaster":
-                            return svcContext.cm_LeadClosureChecklistMasterSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.cm_LeadClosureChecklistMasterSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
                         default:
-                            throw new ArgumentException($"Unsupported entity type: {typeof(T).Name}");
+                        throw new ArgumentException($"Unsupported entity type: {typeof(T).Name}");
                     }
                 }
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 throw new InvalidPluginExecutionException(ex.Message, ex);
             }
         }
@@ -283,7 +278,7 @@ namespace Plugins {
                 && record.cm_QuestionFor == type).ToList();
             }
         }
-        
+
         internal List<cm_CaseChecklistCatalog> GetCaseChecklistCatalogCaseCat(Guid caseCatId) {
             try {
                 using (var svcContext = new OrgContext(_service)) {
@@ -335,10 +330,8 @@ namespace Plugins {
             _tracingService.Trace("Question responses created: " + string.Join(", ", responseGuids));
         }
 
-        internal cm_LeadClosureChecklistMaster GetLeadClosureCheckLMasterByTeam(Guid teamId, cm_leadopptype? type)
-        {
-            using (var svcContext = new OrgContext(_service))
-            {
+        internal cm_LeadClosureChecklistMaster GetLeadClosureCheckLMasterByTeam(Guid teamId, cm_leadopptype? type) {
+            using (var svcContext = new OrgContext(_service)) {
                 return svcContext.cm_LeadClosureChecklistMasterSet.Where(
                 record => record.cm_Program.Id == teamId
                 && record.statuscode == cm_leadclosurechecklistmaster_statuscode.Active
@@ -346,38 +339,28 @@ namespace Plugins {
             }
         }
 
-        internal List<cm_LeadClosureChecklistCatalog> GetLeadClosureChecklistCatalogCat(Guid checklistMasterId)
-        {
-            try
-            {
-                using (var svcContext = new OrgContext(_service))
-                {
+        internal List<cm_LeadClosureChecklistCatalog> GetLeadClosureChecklistCatalogCat(Guid checklistMasterId) {
+            try {
+                using (var svcContext = new OrgContext(_service)) {
                     return svcContext.cm_LeadClosureChecklistCatalogSet.Where(
                         record => record.cm_IsConditional == false
                             && record.cm_Active == true
                             && record.cm_LeadClosureChecklistMaster.Id == checklistMasterId
                             && record.statuscode == cm_leadclosurechecklistcatalog_statuscode.Active).ToList();
                 }
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 _tracingService.Trace($"GetCaseChecklistCatalogByIncident Error: {ex.Message}");
                 throw new InvalidPluginExecutionException(ex.Message, ex);
             }
         }
 
-        internal List<cm_LeadClosureChecklistResponse> GetLeadClosureChecklistResponseByMaster(Guid checklistMasterId, Guid opportunityId)
-        {
-            try
-            {
-                using (var svcContext = new OrgContext(_service))
-                {
+        internal List<cm_LeadClosureChecklistResponse> GetLeadClosureChecklistResponseByMaster(Guid checklistMasterId, Guid opportunityId) {
+            try {
+                using (var svcContext = new OrgContext(_service)) {
                     return svcContext.cm_LeadClosureChecklistResponseSet.Where(
                         record => record.cm_Opportunity.Id == opportunityId).ToList();
                 }
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 _tracingService.Trace($"GetCaseChecklistCatalogByIncident Error: {ex.Message}");
                 throw new InvalidPluginExecutionException(ex.Message, ex);
             }
@@ -438,77 +421,58 @@ namespace Plugins {
             }
         }
 
-        internal List<cm_CaseChecklistResponse> GetResponsesByIncident(Incident incidentRecord)
-        {
-            try
-            {
-                using (var svcContext = new OrgContext(_service))
-                {
+        internal List<cm_CaseChecklistResponse> GetResponsesByIncident(Incident incidentRecord) {
+            try {
+                using (var svcContext = new OrgContext(_service)) {
                     return svcContext.cm_CaseChecklistResponseSet.Where(
                         record => record.cm_Case != null
                             && record.cm_Case.Id == incidentRecord.Id).ToList();
                 }
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 _tracingService.Trace($"GetCaseChecklistCatalogByIncident Error: {ex.Message}");
                 throw new InvalidPluginExecutionException(ex.Message, ex);
             }
         }
-        
-        internal List<Team> GetTeamsByCaseProgramLeadType(cm_caseprogram caseProgram, cm_leadopptype incidentCustomerRole)
-        {
-            try
-            {
-                using (var svcContext = new OrgContext(_service))
-                {
+
+        internal List<Team> GetTeamsByCaseProgramLeadType(cm_caseprogram caseProgram, cm_leadopptype incidentCustomerRole) {
+            try {
+                using (var svcContext = new OrgContext(_service)) {
                     return svcContext.TeamSet.Where(
                         record => record.cm_CaseProgram == caseProgram && record.cm_LeadType.Value == incidentCustomerRole
                         ).ToList();
                 }
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 _tracingService.Trace($"GetTeamsByCaseProgramLeadType Error: {ex.Message}");
                 throw;
             }
         }
 
 
-        internal bool AssociateIncidentToTeams(Incident incidentRecord)
-        {
-            try
-            {
+        internal bool AssociateIncidentToTeams(Incident incidentRecord) {
+            try {
                 Account incidentCustomer = GetRecordById<Account>(incidentRecord.CustomerId.Id);
 
                 List<Team> teamList = new List<Team>();
 
-                if (!incidentCustomer.cm_Role.Any())
-                {
+                if (!incidentCustomer.cm_Role.Any()) {
                     var error = "No roles found in customer record";
                     _tracingService.Trace($"AssociateIncidentToTeams Error: {error}");
                     throw new Exception(error);
                 }
 
-                foreach (var caseProgram in incidentRecord.cm_CaseProgram)
-                {
+                foreach (var caseProgram in incidentRecord.cm_CaseProgram) {
                     teamList.AddRange(GetTeamsByCaseProgramLeadType(caseProgram, incidentCustomer.cm_Role.FirstOrDefault()));
                 }
 
-                if (teamList.Any())
-                {
+                if (teamList.Any()) {
                     _service.Associate(Incident.EntityLogicalName,
                         incidentRecord.Id,
                         new Relationship(cm_Incident_Team.Fields.cm_Incident_Team_Team),
                         CreateEntityReferenceCollection(teamList));
-                }
-                else
-                {
+                } else {
                     _tracingService.Trace("No Teams were found");
                 }
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 _tracingService.Trace($"AssociateIncidentToTeams Error: {ex.Message}");
                 throw;
             }
@@ -516,35 +480,28 @@ namespace Plugins {
             return true;
         }
 
-        private EntityReferenceCollection CreateEntityReferenceCollection(IEnumerable<Entity> recordList)
-        {
+        private EntityReferenceCollection CreateEntityReferenceCollection(IEnumerable<Entity> recordList) {
             var referenceCollection = new EntityReferenceCollection();
 
-            foreach (var record in recordList)
-            {
+            foreach (var record in recordList) {
                 referenceCollection.Add(new EntityReference(record.LogicalName, record.Id));
             }
 
             return referenceCollection;
         }
 
-        internal void CreateChildCase(Incident incidentRecord)
-        {
+        internal List<Guid> CreateChildCase(Incident incidentRecord) {
             List<Guid> createdCases = new List<Guid>();
-            if (incidentRecord.cm_CaseProgram.Count() > 1)
-            {
-                try
-                {
-                    foreach (var caseProgram in incidentRecord.cm_CaseProgram)
-                    {
+            if (incidentRecord.cm_CaseProgram.Count() > 1) {
+                try {
+                    foreach (var caseProgram in incidentRecord.cm_CaseProgram) {
                         Account incidentCustomer = GetRecordById<Account>(incidentRecord.CustomerId.Id) ??
                             throw new InvalidPluginExecutionException("incidentCustomer cannot be null");
-                        Team team = GetTeamsByCaseProgramLeadType(caseProgram, incidentCustomer.cm_Role.FirstOrDefault()).FirstOrDefault() ?? 
+                        Team team = GetTeamsByCaseProgramLeadType(caseProgram, incidentCustomer.cm_Role.FirstOrDefault()).FirstOrDefault() ??
                             throw new InvalidPluginExecutionException($"Case Program \"{caseProgram}\" and Lead Type \"{incidentCustomer.cm_Role.FirstOrDefault()}\" do not return a matching Team record.");
 
                         _tracingService.Trace($"Processing child case from accountid: {incidentCustomer.Id} and teamid: {team.Id}");
-                        var caseRecord = new Incident()
-                        {
+                        var caseRecord = new Incident() {
                             cm_CasePriority = incidentRecord.cm_CasePriority,
                             cm_CaseProgram = new List<cm_caseprogram> { caseProgram },
                             cm_CauseCategory = incidentRecord.cm_CauseCategory,
@@ -560,30 +517,25 @@ namespace Plugins {
                             OwnerId = incidentRecord.OwnerId,
                         };
 
-                        if (incidentCustomer.cm_Role.Contains(cm_leadopptype.ServiceProvider))
-                        {
+                        if (incidentCustomer.cm_Role.Contains(cm_leadopptype.ServiceProvider)) {
                             caseRecord.cm_EffectiveDate = incidentRecord.cm_EffectiveDate;
                             caseRecord.cm_To = incidentRecord.cm_To;
                             caseRecord.cm_From = incidentRecord.cm_From;
                         }
                         createdCases.Add(_service.Create(caseRecord));
                     }
-                }
-                catch (Exception ex)
-                {
+                } catch (Exception ex) {
                     _tracingService.Trace($"CreateChildCase Error: {ex.Message}");
                     throw;
                 }
-            }
-            else
-            {
+            } else {
                 _tracingService.Trace("One of fewer case programs found. No child cases were created");
             }
-            if (createdCases.Count() > 0)
-            {
+            if (createdCases.Count() > 0) {
                 _tracingService.Trace($"Cases created: {string.Join(",", createdCases)}");
             }
 
+            return createdCases;
         }
     }
 }

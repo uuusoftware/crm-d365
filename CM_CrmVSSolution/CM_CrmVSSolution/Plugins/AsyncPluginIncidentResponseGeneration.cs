@@ -78,7 +78,6 @@ namespace Plugins {
                 }
                 throw new InvalidPluginExecutionException("Aggregate exception occurred.", aggregateException);
             } catch (Exception ex) {
-                // Check if the exception is an AggregateException and unwrap it
                 if (ex is AggregateException aggregateException && aggregateException.InnerExceptions.Count > 0) {
                     ex = aggregateException.InnerExceptions[0];
                 }

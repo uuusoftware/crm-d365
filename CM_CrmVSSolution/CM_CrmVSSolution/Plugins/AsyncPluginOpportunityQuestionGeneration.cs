@@ -9,6 +9,14 @@ namespace Plugins {
         public AsyncPluginOpportunityQuestionGeneration(string unsecureConfiguration, string secureConfiguration)
             : base(typeof(AsyncPluginOpportunityQuestionGeneration)) {
         }
+        /// <summary>
+        ///     This async Dataverse plugin runs when a new Opportunity is created, loads its related Program Association and Team, 
+        ///     then retrieves any question catalog entries for that team and opportunity type. 
+        ///     If questions exist, it generates corresponding question-response records. 
+        /// </summary>
+        /// <param name="localPluginContext"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="InvalidPluginExecutionException"></exception>
         protected override void ExecuteDataversePlugin(ILocalPluginContext localPluginContext) {
             if (localPluginContext == null) {
                 throw new ArgumentNullException(nameof(localPluginContext));
@@ -26,7 +34,7 @@ namespace Plugins {
             CommonBusinessLogic commonBusinessLogic = new CommonBusinessLogic(service, tracingService);
 
             try {
-
+                #region Load Records
                 Opportunity opportunityRecord = commonBusinessLogic
                     .GetRecordById<Opportunity>(context.PrimaryEntityId);
                 tracingService.Trace($"opportunityRecord {opportunityRecord.Id}");
@@ -41,6 +49,7 @@ namespace Plugins {
 
                 List<cm_QuestionCatalog> questionsList = commonBusinessLogic.GetQuestionsListByTeam(teamRecord.Id, opportunityRecord.cm_OpportunityType);
                 tracingService.Trace($"questionsList {string.Join(" ,", questionsList.Select(q => q.Id))}");
+                #endregion
 
                 if (questionsList.Any()) {
                     commonBusinessLogic.CreateQuestionResponses(questionsList, opportunityRecord);
@@ -53,7 +62,6 @@ namespace Plugins {
                 }
                 throw new InvalidPluginExecutionException("Aggregate exception occurred.", aggregateException);
             } catch (Exception ex) {
-                // Check if the exception is an AggregateException and unwrap it
                 if (ex is AggregateException aggregateException && aggregateException.InnerExceptions.Count > 0) {
                     ex = aggregateException.InnerExceptions[0];
                 }
