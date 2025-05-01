@@ -515,6 +515,10 @@ namespace Plugins {
                             ParentCaseId = new EntityReference(Incident.EntityLogicalName, incidentRecord.Id),
                             cm_ComplianceFlagSetonAccount = incidentRecord.cm_ComplianceFlagSetonAccount,
                             OwnerId = incidentRecord.OwnerId,
+                            cm_ReportedBy = incidentRecord.cm_ReportedBy,
+                            cm_ReportedOn = incidentRecord.cm_ReportedOn,
+                            cm_Channel = incidentRecord.cm_Channel,
+                            cm_OtherChannel = incidentRecord.cm_OtherChannel
                         };
 
                         if (incidentCustomer.cm_Role.Contains(cm_leadopptype.ServiceProvider)) {

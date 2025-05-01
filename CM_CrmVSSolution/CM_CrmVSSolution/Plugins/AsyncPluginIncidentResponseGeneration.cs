@@ -44,7 +44,7 @@ namespace Plugins {
                 commonBusinessLogic.AssociateIncidentToTeams(incidentRecord);
 
                 // Create a child case for each caseProgram if > 1
-                commonBusinessLogic.CreateChildCase(incidentRecord);
+                var _ = commonBusinessLogic.CreateChildCase(incidentRecord);
 
                 List<Guid> responseList = new List<Guid>();
 
