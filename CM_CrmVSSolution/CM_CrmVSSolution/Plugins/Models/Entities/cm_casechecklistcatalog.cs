@@ -107,6 +107,7 @@ namespace Plugins.Models
 			public const string VersionNumber = "versionnumber";
 			public const string Referencedcm_casechecklistcatalog_ParentItem_cm_casechecklistcatalog = "Referencedcm_casechecklistcatalog_ParentItem_cm_casechecklistcatalog";
 			public const string cm_casechecklistresponse_ItemLink_cm_casechecklistcatalog = "cm_casechecklistresponse_ItemLink_cm_casechecklistcatalog";
+			public const string cm_casechecklistresponse_ParentCase_cm_casechecklistcatalog = "cm_casechecklistresponse_ParentCase_cm_casechecklistcatalog";
 			public const string cm_casechecklistcatalog_CaseCategory_cm_casecategory = "cm_casechecklistcatalog_CaseCategory_cm_casecategory";
 			public const string cm_casechecklistcatalog_CaseSubCategory_cm_casesubcategory = "cm_casechecklistcatalog_CaseSubCategory_cm_casesubcategory";
 			public const string Referencingcm_casechecklistcatalog_ParentItem_cm_casechecklistcatalog = "cm_casechecklistcatalog_ParentItem_cm_casechecklistcatalog";
@@ -975,6 +976,24 @@ namespace Plugins.Models
 				this.OnPropertyChanging("cm_casechecklistresponse_ItemLink_cm_casechecklistcatalog");
 				this.SetRelatedEntities<Plugins.Models.cm_CaseChecklistResponse>("cm_casechecklistresponse_ItemLink_cm_casechecklistcatalog", null, value);
 				this.OnPropertyChanged("cm_casechecklistresponse_ItemLink_cm_casechecklistcatalog");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N cm_casechecklistresponse_ParentCase_cm_casechecklistcatalog
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_casechecklistresponse_ParentCase_cm_casechecklistcatalog")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.cm_CaseChecklistResponse> cm_casechecklistresponse_ParentCase_cm_casechecklistcatalog
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.cm_CaseChecklistResponse>("cm_casechecklistresponse_ParentCase_cm_casechecklistcatalog", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_casechecklistresponse_ParentCase_cm_casechecklistcatalog");
+				this.SetRelatedEntities<Plugins.Models.cm_CaseChecklistResponse>("cm_casechecklistresponse_ParentCase_cm_casechecklistcatalog", null, value);
+				this.OnPropertyChanged("cm_casechecklistresponse_ParentCase_cm_casechecklistcatalog");
 			}
 		}
 		

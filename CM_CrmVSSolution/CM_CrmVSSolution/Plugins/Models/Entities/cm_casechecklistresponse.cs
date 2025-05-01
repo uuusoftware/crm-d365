@@ -82,6 +82,8 @@ namespace Plugins.Models
 			public const string cm_ItemLinkName = "cm_itemlinkname";
 			public const string cm_ItemText = "cm_itemtext";
 			public const string cm_Name = "cm_name";
+			public const string cm_ParentCase = "cm_parentcase";
+			public const string cm_ParentCaseName = "cm_parentcasename";
 			public const string cm_ResponseDate = "cm_responsedate";
 			public const string CreatedBy = "createdby";
 			public const string CreatedByName = "createdbyname";
@@ -115,6 +117,7 @@ namespace Plugins.Models
 			public const string VersionNumber = "versionnumber";
 			public const string cm_casechecklistresponse_Case_incident = "cm_casechecklistresponse_Case_incident";
 			public const string cm_casechecklistresponse_ItemLink_cm_casechecklistcatalog = "cm_casechecklistresponse_ItemLink_cm_casechecklistcatalog";
+			public const string cm_casechecklistresponse_ParentCase_cm_casechecklistcatalog = "cm_casechecklistresponse_ParentCase_cm_casechecklistcatalog";
 			public const string team_cm_casechecklistresponse = "team_cm_casechecklistresponse";
 		}
 		
@@ -357,6 +360,37 @@ namespace Plugins.Models
 				this.OnPropertyChanging("cm_Name");
 				this.SetAttributeValue("cm_name", value);
 				this.OnPropertyChanged("cm_Name");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_parentcase")]
+		public Microsoft.Xrm.Sdk.EntityReference cm_ParentCase
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cm_parentcase");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_ParentCase");
+				this.SetAttributeValue("cm_parentcase", value);
+				this.OnPropertyChanged("cm_ParentCase");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_parentcasename")]
+		public string cm_ParentCaseName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_parentcase"))
+				{
+					return this.FormattedValues["cm_parentcase"];
+				}
+				else
+				{
+					return default(string);
+				}
 			}
 		}
 		
@@ -870,6 +904,25 @@ namespace Plugins.Models
 				this.OnPropertyChanging("cm_casechecklistresponse_ItemLink_cm_casechecklistcatalog");
 				this.SetRelatedEntity<Plugins.Models.cm_CaseChecklistCatalog>("cm_casechecklistresponse_ItemLink_cm_casechecklistcatalog", null, value);
 				this.OnPropertyChanged("cm_casechecklistresponse_ItemLink_cm_casechecklistcatalog");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 cm_casechecklistresponse_ParentCase_cm_casechecklistcatalog
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_parentcase")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_casechecklistresponse_ParentCase_cm_casechecklistcatalog")]
+		public Plugins.Models.cm_CaseChecklistCatalog cm_casechecklistresponse_ParentCase_cm_casechecklistcatalog
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.cm_CaseChecklistCatalog>("cm_casechecklistresponse_ParentCase_cm_casechecklistcatalog", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_casechecklistresponse_ParentCase_cm_casechecklistcatalog");
+				this.SetRelatedEntity<Plugins.Models.cm_CaseChecklistCatalog>("cm_casechecklistresponse_ParentCase_cm_casechecklistcatalog", null, value);
+				this.OnPropertyChanged("cm_casechecklistresponse_ParentCase_cm_casechecklistcatalog");
 			}
 		}
 		

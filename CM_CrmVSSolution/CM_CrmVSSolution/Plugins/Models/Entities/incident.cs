@@ -49,6 +49,24 @@ namespace Plugins.Models
 		Low = 121540003,
 	}
 	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
+	public enum cm_incident_cm_channel
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Phone = 121540000,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Chat = 121540001,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		SocialMedia = 121540002,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Other = 121540003,
+	}
+	
 	/// <summary>
 	/// Response level for the case. The response level corresponds to the level of service specified in the contract.
 	/// </summary>
@@ -244,9 +262,6 @@ namespace Plugins.Models
 		InProgressExternal = 3,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		InformationProvided = 1000,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Cancelled = 6,
 	}
 	
@@ -280,12 +295,15 @@ namespace Plugins.Models
 			public const string CaseTypeCodeName = "casetypecodename";
 			public const string CheckEmail = "checkemail";
 			public const string CheckEmailName = "checkemailname";
+			public const string cm_AccountNumberText = "cm_accountnumbertext";
 			public const string cm_CasePriority = "cm_casepriority";
 			public const string cm_casepriorityName = "cm_casepriorityname";
 			public const string cm_CaseProgram = "cm_caseprogram";
 			public const string cm_caseprogramName = "cm_caseprogramname";
 			public const string cm_CauseCategory = "cm_causecategory";
 			public const string cm_CauseCategoryName = "cm_causecategoryname";
+			public const string cm_Channel = "cm_channel";
+			public const string cm_channelName = "cm_channelname";
 			public const string cm_ComplianceFlagSetonAccount = "cm_complianceflagsetonaccount";
 			public const string cm_complianceflagsetonaccountName = "cm_complianceflagsetonaccountname";
 			public const string cm_Contract = "cm_contract";
@@ -296,9 +314,14 @@ namespace Plugins.Models
 			public const string cm_generatechecklistName = "cm_generatechecklistname";
 			public const string cm_IncidentCategory = "cm_incidentcategory";
 			public const string cm_IncidentCategoryName = "cm_incidentcategoryname";
+			public const string cm_OtherChannel = "cm_otherchannel";
 			public const string cm_Program = "cm_program";
 			public const string cm_ProgramName = "cm_programname";
 			public const string cm_ProgramYomiName = "cm_programyominame";
+			public const string cm_ReportedBy = "cm_reportedby";
+			public const string cm_ReportedByName = "cm_reportedbyname";
+			public const string cm_ReportedByYomiName = "cm_reportedbyyominame";
+			public const string cm_ReportedOn = "cm_reportedon";
 			public const string cm_ServiceandSupportTeam = "cm_serviceandsupportteam";
 			public const string cm_ServiceandSupportTeamName = "cm_serviceandsupportteamname";
 			public const string cm_ServiceandSupportTeamYomiName = "cm_serviceandsupportteamyominame";
@@ -769,6 +792,24 @@ namespace Plugins.Models
 			}
 		}
 		
+		/// <summary>
+		/// Account Number field to assist in searching the cases with the account number.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_accountnumbertext")]
+		public string cm_AccountNumberText
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("cm_accountnumbertext");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_AccountNumberText");
+				this.SetAttributeValue("cm_accountnumbertext", value);
+				this.OnPropertyChanged("cm_AccountNumberText");
+			}
+		}
+		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_casepriority")]
 		public virtual cm_incident_cm_casepriority? cm_CasePriority
 		{
@@ -854,6 +895,37 @@ namespace Plugins.Models
 				if (this.FormattedValues.Contains("cm_causecategory"))
 				{
 					return this.FormattedValues["cm_causecategory"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_channel")]
+		public virtual cm_incident_cm_channel? cm_Channel
+		{
+			get
+			{
+				return ((cm_incident_cm_channel?)(EntityOptionSetEnum.GetEnum(this, "cm_channel")));
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_Channel");
+				this.SetAttributeValue("cm_channel", value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null);
+				this.OnPropertyChanged("cm_Channel");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_channelname")]
+		public string cm_channelName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_channel"))
+				{
+					return this.FormattedValues["cm_channel"];
 				}
 				else
 				{
@@ -1016,6 +1088,21 @@ namespace Plugins.Models
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_otherchannel")]
+		public string cm_OtherChannel
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("cm_otherchannel");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_OtherChannel");
+				this.SetAttributeValue("cm_otherchannel", value);
+				this.OnPropertyChanged("cm_OtherChannel");
+			}
+		}
+		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_program")]
 		public Microsoft.Xrm.Sdk.EntityReference cm_Program
 		{
@@ -1060,6 +1147,68 @@ namespace Plugins.Models
 				{
 					return default(string);
 				}
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_reportedby")]
+		public Microsoft.Xrm.Sdk.EntityReference cm_ReportedBy
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cm_reportedby");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_ReportedBy");
+				this.SetAttributeValue("cm_reportedby", value);
+				this.OnPropertyChanged("cm_ReportedBy");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_reportedbyname")]
+		public string cm_ReportedByName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_reportedby"))
+				{
+					return this.FormattedValues["cm_reportedby"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_reportedbyyominame")]
+		public string cm_ReportedByYomiName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_reportedby"))
+				{
+					return this.FormattedValues["cm_reportedby"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_reportedon")]
+		public System.Nullable<System.DateTime> cm_ReportedOn
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("cm_reportedon");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_ReportedOn");
+				this.SetAttributeValue("cm_reportedon", value);
+				this.OnPropertyChanged("cm_ReportedOn");
 			}
 		}
 		
