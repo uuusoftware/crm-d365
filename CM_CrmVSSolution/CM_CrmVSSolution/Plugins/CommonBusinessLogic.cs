@@ -435,10 +435,14 @@ namespace Plugins {
         }
 
         internal List<Team> GetTeamsByCaseProgramLeadType(cm_caseprogram caseProgram, cm_leadopptype incidentCustomerRole) {
+            _tracingService.Trace("Searching for team with caseProgram: {caseProgram} and cm_leadopptype (Account.cm_Role): {incidentCustomerRole}", caseProgram, incidentCustomerRole);
             try {
                 using (var svcContext = new OrgContext(_service)) {
                     return svcContext.TeamSet.Where(
-                        record => record.cm_CaseProgram == caseProgram && record.cm_LeadType.Value == incidentCustomerRole
+                        team => (team.cm_CaseProgram == caseProgram
+                            && team.cm_LeadType.Value == incidentCustomerRole)
+                        || (team.cm_CaseProgram == cm_caseprogram.CircularMaterialsGeneral
+                            && caseProgram == cm_caseprogram.CircularMaterialsGeneral)
                         ).ToList();
                 }
             } catch (Exception ex) {
