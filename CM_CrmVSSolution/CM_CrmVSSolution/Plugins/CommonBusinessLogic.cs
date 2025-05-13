@@ -465,6 +465,8 @@ namespace Plugins {
                 }
 
                 foreach (var caseProgram in incidentRecord.cm_CaseProgram) {
+                    // incidentCustomer is expected to have only one role.
+                    _tracingService.Trace("Associating Incident{incidentRecord} to caseProgram: {caseProgram}", incidentRecord, caseProgram);
                     teamList.AddRange(GetTeamsByCaseProgramLeadType(caseProgram, incidentCustomer.cm_Role.FirstOrDefault()));
                 }
 
@@ -474,7 +476,7 @@ namespace Plugins {
                         new Relationship(cm_Incident_Team.Fields.cm_Incident_Team_Team),
                         CreateEntityReferenceCollection(teamList));
                 } else {
-                    _tracingService.Trace("No Teams were found");
+                    throw new InvalidPluginExecutionException("No Teams were found");
                 }
             } catch (Exception ex) {
                 _tracingService.Trace($"AssociateIncidentToTeams Error: {ex.Message}");
@@ -537,7 +539,7 @@ namespace Plugins {
                     throw;
                 }
             } else {
-                _tracingService.Trace("One of fewer case programs found. No child cases were created");
+                _tracingService.Trace("Only one case programs found. No child cases were created");
             }
             if (createdCases.Count() > 0) {
                 _tracingService.Trace($"Cases created: {string.Join(",", createdCases)}");
