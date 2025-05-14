@@ -478,7 +478,7 @@ namespace Plugins {
                         new Relationship(cm_Incident_Team.Fields.cm_Incident_Team_Team),
                         CreateEntityReferenceCollection(teamList));
                 } else {
-                    throw new InvalidPluginExecutionException("No Teams were found");
+                    throw new InvalidPluginExecutionException("No Teams were found. Please check if the 'Customer role' and 'Case program' match to a Team");
                 }
             } catch (Exception ex) {
                 _tracingService.Trace($"AssociateIncidentToTeams Error: {ex.Message}");
