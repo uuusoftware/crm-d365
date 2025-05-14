@@ -438,12 +438,14 @@ namespace Plugins {
             _tracingService.Trace($"Searching for team with caseProgram: {caseProgram} and cm_leadopptype (Account.cm_Role): {incidentCustomerRole}");
             try {
                 using (var svcContext = new OrgContext(_service)) {
+
+                    if (caseProgram == cm_caseprogram.CircularMaterialsGeneral) {
                     return svcContext.TeamSet.Where(
-                        team => (team.cm_CaseProgram == caseProgram
-                            && team.cm_LeadType.Value == incidentCustomerRole)
-                        || (team.cm_CaseProgram == cm_caseprogram.CircularMaterialsGeneral
-                            && caseProgram == cm_caseprogram.CircularMaterialsGeneral)
-                        ).ToList();
+                            team => team.cm_CaseProgram.Value == cm_caseprogram.CircularMaterialsGeneral).ToList();
+                    }
+
+                    return svcContext.TeamSet.Where(
+                        team => team.cm_CaseProgram == caseProgram && team.cm_LeadType == incidentCustomerRole).ToList();
                 }
             } catch (Exception ex) {
                 _tracingService.Trace($"GetTeamsByCaseProgramLeadType Error: {ex.Message}");
