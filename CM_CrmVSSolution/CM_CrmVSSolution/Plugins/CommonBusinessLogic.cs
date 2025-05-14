@@ -435,7 +435,7 @@ namespace Plugins {
         }
 
         internal List<Team> GetTeamsByCaseProgramLeadType(cm_caseprogram caseProgram, cm_leadopptype incidentCustomerRole) {
-            _tracingService.Trace("Searching for team with caseProgram: {caseProgram} and cm_leadopptype (Account.cm_Role): {incidentCustomerRole}", caseProgram, incidentCustomerRole);
+            _tracingService.Trace($"Searching for team with caseProgram: {caseProgram} and cm_leadopptype (Account.cm_Role): {incidentCustomerRole}");
             try {
                 using (var svcContext = new OrgContext(_service)) {
                     return svcContext.TeamSet.Where(
@@ -466,7 +466,7 @@ namespace Plugins {
 
                 foreach (var caseProgram in incidentRecord.cm_CaseProgram) {
                     // incidentCustomer is expected to have only one role.
-                    _tracingService.Trace("Associating Incident{incidentRecord} to caseProgram: {caseProgram}", incidentRecord, caseProgram);
+                    _tracingService.Trace($"Associating Incident{incidentRecord} to caseProgram: {caseProgram}");
                     teamList.AddRange(GetTeamsByCaseProgramLeadType(caseProgram, incidentCustomer.cm_Role.FirstOrDefault()));
                 }
 
