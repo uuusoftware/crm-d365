@@ -440,7 +440,7 @@ namespace Plugins {
                 using (var svcContext = new OrgContext(_service)) {
 
                     if (caseProgram == cm_caseprogram.CircularMaterialsGeneral) {
-                    return svcContext.TeamSet.Where(
+                        return svcContext.TeamSet.Where(
                             team => team.cm_CaseProgram.Value == cm_caseprogram.CircularMaterialsGeneral).ToList();
                     }
 
