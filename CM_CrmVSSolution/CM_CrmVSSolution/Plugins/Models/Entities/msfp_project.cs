@@ -14,11 +14,26 @@ namespace Plugins.Models
 	
 	
 	/// <summary>
-	/// Status of the Case Sub Category
+	/// Status of the project.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
-	public enum cm_casesubcategory_statecode
+	public enum msfp_project_msfp_status
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Active = 647390000,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		InActive = 647390001,
+	}
+	
+	/// <summary>
+	/// Status of the Customer Voice project
+	/// </summary>
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
+	public enum msfp_project_statecode
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -29,11 +44,11 @@ namespace Plugins.Models
 	}
 	
 	/// <summary>
-	/// Reason for the status of the Case Sub Category
+	/// Reason for the status of the Customer Voice project
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
-	public enum cm_casesubcategory_statuscode
+	public enum msfp_project_statuscode
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -43,23 +58,20 @@ namespace Plugins.Models
 		Inactive = 2,
 	}
 	
+	/// <summary>
+	/// Set of surveys to collect feedback.
+	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("cm_casesubcategory")]
+	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("msfp_project")]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
-	public partial class cm_CaseSubCategory : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	public partial class msfp_project : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
 		/// <summary>
-		/// Available fields, a the time of codegen, for the cm_casesubcategory entity
+		/// Available fields, a the time of codegen, for the msfp_project entity
 		/// </summary>
 		public partial class Fields
 		{
-			public const string cm_CaseCategory = "cm_casecategory";
-			public const string cm_CaseCategoryName = "cm_casecategoryname";
-			public const string cm_CaseSubCategoryId = "cm_casesubcategoryid";
-			public const string Id = "cm_casesubcategoryid";
-			public const string cm_CategoryID = "cm_categoryid";
-			public const string cm_Name = "cm_name";
 			public const string CreatedBy = "createdby";
 			public const string CreatedByName = "createdbyname";
 			public const string CreatedByYomiName = "createdbyyominame";
@@ -75,6 +87,19 @@ namespace Plugins.Models
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
 			public const string ModifiedOnBehalfByName = "modifiedonbehalfbyname";
 			public const string ModifiedOnBehalfByYomiName = "modifiedonbehalfbyyominame";
+			public const string msfp_customerinsightsconfiguration = "msfp_customerinsightsconfiguration";
+			public const string msfp_dataclassification = "msfp_dataclassification";
+			public const string msfp_description = "msfp_description";
+			public const string msfp_environmentid = "msfp_environmentid";
+			public const string msfp_environmentregion = "msfp_environmentregion";
+			public const string msfp_name = "msfp_name";
+			public const string msfp_permanentID = "msfp_permanentid";
+			public const string msfp_projectId = "msfp_projectid";
+			public const string Id = "msfp_projectid";
+			public const string msfp_status = "msfp_status";
+			public const string msfp_statusName = "msfp_statusname";
+			public const string msfp_templateid = "msfp_templateid";
+			public const string msfp_templateversion = "msfp_templateversion";
 			public const string OverriddenCreatedOn = "overriddencreatedon";
 			public const string OwnerId = "ownerid";
 			public const string OwnerIdName = "owneridname";
@@ -90,26 +115,23 @@ namespace Plugins.Models
 			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
-			public const string cm_casechecklistcatalog_CaseSubCategory_cm_casesubcategory = "cm_casechecklistcatalog_CaseSubCategory_cm_casesubcategory";
-			public const string cm_checklistmaster_CaseSubCategory_cm_casesubcategory = "cm_checklistmaster_CaseSubCategory_cm_casesubcategory";
-			public const string cm_incident_CauseCategory_cm_casesubcategory = "cm_incident_CauseCategory_cm_casesubcategory";
-			public const string cm_casesubcategory_CaseCategory_cm_casecategory = "cm_casesubcategory_CaseCategory_cm_casecategory";
-			public const string team_cm_casesubcategory = "team_cm_casesubcategory";
+			public const string msfp_msfp_project_msfp_survey_project = "msfp_msfp_project_msfp_survey_project";
+			public const string team_msfp_project = "team_msfp_project";
 		}
 		
 		/// <summary>
 		/// Default Constructor.
 		/// </summary>
-		public cm_CaseSubCategory() : 
+		public msfp_project() : 
 				base(EntityLogicalName)
 		{
 		}
 		
-		public const string EntityLogicalName = "cm_casesubcategory";
+		public const string EntityLogicalName = "msfp_project";
 		
-		public const string EntityLogicalCollectionName = "cm_casesubcategories";
+		public const string EntityLogicalCollectionName = "msfp_projects";
 		
-		public const string EntitySetName = "cm_casesubcategories";
+		public const string EntitySetName = "msfp_projects";
 		
 		public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
 		
@@ -131,108 +153,8 @@ namespace Plugins.Models
 			}
 		}
 		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_casecategory")]
-		public Microsoft.Xrm.Sdk.EntityReference cm_CaseCategory
-		{
-			get
-			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cm_casecategory");
-			}
-			set
-			{
-				this.OnPropertyChanging("cm_CaseCategory");
-				this.SetAttributeValue("cm_casecategory", value);
-				this.OnPropertyChanged("cm_CaseCategory");
-			}
-		}
-		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_casecategoryname")]
-		public string cm_CaseCategoryName
-		{
-			get
-			{
-				if (this.FormattedValues.Contains("cm_casecategory"))
-				{
-					return this.FormattedValues["cm_casecategory"];
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-		
 		/// <summary>
-		/// Unique identifier for entity instances
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_casesubcategoryid")]
-		public System.Nullable<System.Guid> cm_CaseSubCategoryId
-		{
-			get
-			{
-				return this.GetAttributeValue<System.Nullable<System.Guid>>("cm_casesubcategoryid");
-			}
-			set
-			{
-				this.OnPropertyChanging("cm_CaseSubCategoryId");
-				this.SetAttributeValue("cm_casesubcategoryid", value);
-				if (value.HasValue)
-				{
-					base.Id = value.Value;
-				}
-				else
-				{
-					base.Id = System.Guid.Empty;
-				}
-				this.OnPropertyChanged("cm_CaseSubCategoryId");
-			}
-		}
-		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_casesubcategoryid")]
-		public override System.Guid Id
-		{
-			get
-			{
-				return base.Id;
-			}
-			set
-			{
-				this.cm_CaseSubCategoryId = value;
-			}
-		}
-		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_categoryid")]
-		public string cm_CategoryID
-		{
-			get
-			{
-				return this.GetAttributeValue<string>("cm_categoryid");
-			}
-			set
-			{
-				this.OnPropertyChanging("cm_CategoryID");
-				this.SetAttributeValue("cm_categoryid", value);
-				this.OnPropertyChanged("cm_CategoryID");
-			}
-		}
-		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_name")]
-		public string cm_Name
-		{
-			get
-			{
-				return this.GetAttributeValue<string>("cm_name");
-			}
-			set
-			{
-				this.OnPropertyChanging("cm_Name");
-				this.SetAttributeValue("cm_name", value);
-				this.OnPropertyChanged("cm_Name");
-			}
-		}
-		
-		/// <summary>
-		/// Unique identifier of the user who created the record.
+		/// User who created the project.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
 		public Microsoft.Xrm.Sdk.EntityReference CreatedBy
@@ -276,7 +198,7 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
-		/// Date and time when the record was created.
+		/// Date and time when the project was created.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdon")]
 		public System.Nullable<System.DateTime> CreatedOn
@@ -350,7 +272,7 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
-		/// Unique identifier of the user who modified the record.
+		/// User who modified the project.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
 		public Microsoft.Xrm.Sdk.EntityReference ModifiedBy
@@ -394,7 +316,7 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
-		/// Date and time when the record was modified.
+		/// Date and time when the project was modified.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedon")]
 		public System.Nullable<System.DateTime> ModifiedOn
@@ -446,6 +368,241 @@ namespace Plugins.Models
 				{
 					return default(string);
 				}
+			}
+		}
+		
+		/// <summary>
+		/// Stores Customer Insights configuration in JSON format.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msfp_customerinsightsconfiguration")]
+		public string msfp_customerinsightsconfiguration
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("msfp_customerinsightsconfiguration");
+			}
+			set
+			{
+				this.OnPropertyChanging("msfp_customerinsightsconfiguration");
+				this.SetAttributeValue("msfp_customerinsightsconfiguration", value);
+				this.OnPropertyChanged("msfp_customerinsightsconfiguration");
+			}
+		}
+		
+		/// <summary>
+		/// Classification allows organization to protect data based on our policies and standards.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msfp_dataclassification")]
+		public string msfp_dataclassification
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("msfp_dataclassification");
+			}
+			set
+			{
+				this.OnPropertyChanging("msfp_dataclassification");
+				this.SetAttributeValue("msfp_dataclassification", value);
+				this.OnPropertyChanged("msfp_dataclassification");
+			}
+		}
+		
+		/// <summary>
+		/// Description of the project.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msfp_description")]
+		public string msfp_description
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("msfp_description");
+			}
+			set
+			{
+				this.OnPropertyChanging("msfp_description");
+				this.SetAttributeValue("msfp_description", value);
+				this.OnPropertyChanged("msfp_description");
+			}
+		}
+		
+		/// <summary>
+		/// Environment ID where project is stored.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msfp_environmentid")]
+		public string msfp_environmentid
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("msfp_environmentid");
+			}
+			set
+			{
+				this.OnPropertyChanging("msfp_environmentid");
+				this.SetAttributeValue("msfp_environmentid", value);
+				this.OnPropertyChanged("msfp_environmentid");
+			}
+		}
+		
+		/// <summary>
+		/// Environment region where project is stored.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msfp_environmentregion")]
+		public string msfp_environmentregion
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("msfp_environmentregion");
+			}
+			set
+			{
+				this.OnPropertyChanging("msfp_environmentregion");
+				this.SetAttributeValue("msfp_environmentregion", value);
+				this.OnPropertyChanged("msfp_environmentregion");
+			}
+		}
+		
+		/// <summary>
+		/// Name of the project.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msfp_name")]
+		public string msfp_name
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("msfp_name");
+			}
+			set
+			{
+				this.OnPropertyChanging("msfp_name");
+				this.SetAttributeValue("msfp_name", value);
+				this.OnPropertyChanged("msfp_name");
+			}
+		}
+		
+		/// <summary>
+		/// Permanent ID is auto-generated for a new project. For a copied project, the ID is carried over from the original project.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msfp_permanentid")]
+		public string msfp_permanentID
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("msfp_permanentid");
+			}
+			set
+			{
+				this.OnPropertyChanging("msfp_permanentID");
+				this.SetAttributeValue("msfp_permanentid", value);
+				this.OnPropertyChanged("msfp_permanentID");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for entity instances
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msfp_projectid")]
+		public System.Nullable<System.Guid> msfp_projectId
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("msfp_projectid");
+			}
+			set
+			{
+				this.OnPropertyChanging("msfp_projectId");
+				this.SetAttributeValue("msfp_projectid", value);
+				if (value.HasValue)
+				{
+					base.Id = value.Value;
+				}
+				else
+				{
+					base.Id = System.Guid.Empty;
+				}
+				this.OnPropertyChanged("msfp_projectId");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msfp_projectid")]
+		public override System.Guid Id
+		{
+			get
+			{
+				return base.Id;
+			}
+			set
+			{
+				this.msfp_projectId = value;
+			}
+		}
+		
+		/// <summary>
+		/// Status of the project.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msfp_status")]
+		public virtual msfp_project_msfp_status? msfp_status
+		{
+			get
+			{
+				return ((msfp_project_msfp_status?)(EntityOptionSetEnum.GetEnum(this, "msfp_status")));
+			}
+			set
+			{
+				this.OnPropertyChanging("msfp_status");
+				this.SetAttributeValue("msfp_status", value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null);
+				this.OnPropertyChanged("msfp_status");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msfp_statusname")]
+		public string msfp_statusName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("msfp_status"))
+				{
+					return this.FormattedValues["msfp_status"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		/// <summary>
+		/// Project template ID.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msfp_templateid")]
+		public string msfp_templateid
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("msfp_templateid");
+			}
+			set
+			{
+				this.OnPropertyChanging("msfp_templateid");
+				this.SetAttributeValue("msfp_templateid", value);
+				this.OnPropertyChanged("msfp_templateid");
+			}
+		}
+		
+		/// <summary>
+		/// Version number of the project template.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msfp_templateversion")]
+		public string msfp_templateversion
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("msfp_templateversion");
+			}
+			set
+			{
+				this.OnPropertyChanging("msfp_templateversion");
+				this.SetAttributeValue("msfp_templateversion", value);
+				this.OnPropertyChanged("msfp_templateversion");
 			}
 		}
 		
@@ -576,14 +733,14 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
-		/// Status of the Case Sub Category
+		/// Status of the Customer Voice project
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statecode")]
-		public virtual cm_casesubcategory_statecode? statecode
+		public virtual msfp_project_statecode? statecode
 		{
 			get
 			{
-				return ((cm_casesubcategory_statecode?)(EntityOptionSetEnum.GetEnum(this, "statecode")));
+				return ((msfp_project_statecode?)(EntityOptionSetEnum.GetEnum(this, "statecode")));
 			}
 			set
 			{
@@ -610,14 +767,14 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
-		/// Reason for the status of the Case Sub Category
+		/// Reason for the status of the Customer Voice project
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual cm_casesubcategory_statuscode? statuscode
+		public virtual msfp_project_statuscode? statuscode
 		{
 			get
 			{
-				return ((cm_casesubcategory_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((msfp_project_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			set
 			{
@@ -692,88 +849,33 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
-		/// 1:N cm_casechecklistcatalog_CaseSubCategory_cm_casesubcategory
+		/// 1:N msfp_msfp_project_msfp_survey_project
 		/// </summary>
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_casechecklistcatalog_CaseSubCategory_cm_casesubcategory")]
-		public System.Collections.Generic.IEnumerable<Plugins.Models.cm_CaseChecklistCatalog> cm_casechecklistcatalog_CaseSubCategory_cm_casesubcategory
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msfp_msfp_project_msfp_survey_project")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.msfp_survey> msfp_msfp_project_msfp_survey_project
 		{
 			get
 			{
-				return this.GetRelatedEntities<Plugins.Models.cm_CaseChecklistCatalog>("cm_casechecklistcatalog_CaseSubCategory_cm_casesubcategory", null);
+				return this.GetRelatedEntities<Plugins.Models.msfp_survey>("msfp_msfp_project_msfp_survey_project", null);
 			}
 			set
 			{
-				this.OnPropertyChanging("cm_casechecklistcatalog_CaseSubCategory_cm_casesubcategory");
-				this.SetRelatedEntities<Plugins.Models.cm_CaseChecklistCatalog>("cm_casechecklistcatalog_CaseSubCategory_cm_casesubcategory", null, value);
-				this.OnPropertyChanged("cm_casechecklistcatalog_CaseSubCategory_cm_casesubcategory");
+				this.OnPropertyChanging("msfp_msfp_project_msfp_survey_project");
+				this.SetRelatedEntities<Plugins.Models.msfp_survey>("msfp_msfp_project_msfp_survey_project", null, value);
+				this.OnPropertyChanged("msfp_msfp_project_msfp_survey_project");
 			}
 		}
 		
 		/// <summary>
-		/// 1:N cm_checklistmaster_CaseSubCategory_cm_casesubcategory
-		/// </summary>
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_checklistmaster_CaseSubCategory_cm_casesubcategory")]
-		public System.Collections.Generic.IEnumerable<Plugins.Models.cm_ChecklistMaster> cm_checklistmaster_CaseSubCategory_cm_casesubcategory
-		{
-			get
-			{
-				return this.GetRelatedEntities<Plugins.Models.cm_ChecklistMaster>("cm_checklistmaster_CaseSubCategory_cm_casesubcategory", null);
-			}
-			set
-			{
-				this.OnPropertyChanging("cm_checklistmaster_CaseSubCategory_cm_casesubcategory");
-				this.SetRelatedEntities<Plugins.Models.cm_ChecklistMaster>("cm_checklistmaster_CaseSubCategory_cm_casesubcategory", null, value);
-				this.OnPropertyChanged("cm_checklistmaster_CaseSubCategory_cm_casesubcategory");
-			}
-		}
-		
-		/// <summary>
-		/// 1:N cm_incident_CauseCategory_cm_casesubcategory
-		/// </summary>
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_incident_CauseCategory_cm_casesubcategory")]
-		public System.Collections.Generic.IEnumerable<Plugins.Models.Incident> cm_incident_CauseCategory_cm_casesubcategory
-		{
-			get
-			{
-				return this.GetRelatedEntities<Plugins.Models.Incident>("cm_incident_CauseCategory_cm_casesubcategory", null);
-			}
-			set
-			{
-				this.OnPropertyChanging("cm_incident_CauseCategory_cm_casesubcategory");
-				this.SetRelatedEntities<Plugins.Models.Incident>("cm_incident_CauseCategory_cm_casesubcategory", null, value);
-				this.OnPropertyChanged("cm_incident_CauseCategory_cm_casesubcategory");
-			}
-		}
-		
-		/// <summary>
-		/// N:1 cm_casesubcategory_CaseCategory_cm_casecategory
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_casecategory")]
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_casesubcategory_CaseCategory_cm_casecategory")]
-		public Plugins.Models.cm_CaseCategory cm_casesubcategory_CaseCategory_cm_casecategory
-		{
-			get
-			{
-				return this.GetRelatedEntity<Plugins.Models.cm_CaseCategory>("cm_casesubcategory_CaseCategory_cm_casecategory", null);
-			}
-			set
-			{
-				this.OnPropertyChanging("cm_casesubcategory_CaseCategory_cm_casecategory");
-				this.SetRelatedEntity<Plugins.Models.cm_CaseCategory>("cm_casesubcategory_CaseCategory_cm_casecategory", null, value);
-				this.OnPropertyChanged("cm_casesubcategory_CaseCategory_cm_casecategory");
-			}
-		}
-		
-		/// <summary>
-		/// N:1 team_cm_casesubcategory
+		/// N:1 team_msfp_project
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_cm_casesubcategory")]
-		public Plugins.Models.Team team_cm_casesubcategory
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_msfp_project")]
+		public Plugins.Models.Team team_msfp_project
 		{
 			get
 			{
-				return this.GetRelatedEntity<Plugins.Models.Team>("team_cm_casesubcategory", null);
+				return this.GetRelatedEntity<Plugins.Models.Team>("team_msfp_project", null);
 			}
 		}
 	}

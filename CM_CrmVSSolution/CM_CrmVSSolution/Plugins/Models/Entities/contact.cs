@@ -810,6 +810,7 @@ namespace Plugins.Models
 			public const string contact_connections2 = "contact_connections2";
 			public const string Referencedcontact_customer_contacts = "Referencedcontact_customer_contacts";
 			public const string Referencedcontact_master_contact = "Referencedcontact_master_contact";
+			public const string contact_msfp_surveyinvites = "contact_msfp_surveyinvites";
 			public const string Referencedcontact_parent_contact = "Referencedcontact_parent_contact";
 			public const string incident_customer_contacts = "incident_customer_contacts";
 			public const string lead_customer_contacts = "lead_customer_contacts";
@@ -6612,6 +6613,24 @@ namespace Plugins.Models
 				this.OnPropertyChanging("Referencedcontact_master_contact");
 				this.SetRelatedEntities<Plugins.Models.Contact>("contact_master_contact", Microsoft.Xrm.Sdk.EntityRole.Referenced, value);
 				this.OnPropertyChanged("Referencedcontact_master_contact");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N contact_msfp_surveyinvites
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("contact_msfp_surveyinvites")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.msfp_surveyinvite> contact_msfp_surveyinvites
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.msfp_surveyinvite>("contact_msfp_surveyinvites", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("contact_msfp_surveyinvites");
+				this.SetRelatedEntities<Plugins.Models.msfp_surveyinvite>("contact_msfp_surveyinvites", null, value);
+				this.OnPropertyChanged("contact_msfp_surveyinvites");
 			}
 		}
 		

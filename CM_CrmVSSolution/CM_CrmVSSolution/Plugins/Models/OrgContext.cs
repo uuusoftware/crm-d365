@@ -86,6 +86,17 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// Gets a binding to the set of all <see cref="Plugins.Models.cm_ChecklistMaster"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<Plugins.Models.cm_ChecklistMaster> cm_ChecklistMasterSet
+		{
+			get
+			{
+				return this.CreateQuery<Plugins.Models.cm_ChecklistMaster>();
+			}
+		}
+		
+		/// <summary>
 		/// Gets a binding to the set of all <see cref="Plugins.Models.cm_Incident_Team"/> entities.
 		/// </summary>
 		public System.Linq.IQueryable<Plugins.Models.cm_Incident_Team> cm_Incident_TeamSet
@@ -214,6 +225,50 @@ namespace Plugins.Models
 			get
 			{
 				return this.CreateQuery<Plugins.Models.Lead>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="Plugins.Models.msfp_customervoiceprocessor"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<Plugins.Models.msfp_customervoiceprocessor> msfp_customervoiceprocessorSet
+		{
+			get
+			{
+				return this.CreateQuery<Plugins.Models.msfp_customervoiceprocessor>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="Plugins.Models.msfp_project"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<Plugins.Models.msfp_project> msfp_projectSet
+		{
+			get
+			{
+				return this.CreateQuery<Plugins.Models.msfp_project>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="Plugins.Models.msfp_survey"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<Plugins.Models.msfp_survey> msfp_surveySet
+		{
+			get
+			{
+				return this.CreateQuery<Plugins.Models.msfp_survey>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="Plugins.Models.msfp_surveyinvite"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<Plugins.Models.msfp_surveyinvite> msfp_surveyinviteSet
+		{
+			get
+			{
+				return this.CreateQuery<Plugins.Models.msfp_surveyinvite>();
 			}
 		}
 		

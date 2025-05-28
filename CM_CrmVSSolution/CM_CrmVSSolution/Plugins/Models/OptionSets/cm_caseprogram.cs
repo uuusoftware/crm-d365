@@ -53,6 +53,9 @@ namespace Plugins.Models
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		YTPPP = 121540010,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		StewardshipOntario = 121540012,
 	}
 }
 #pragma warning restore CS1591

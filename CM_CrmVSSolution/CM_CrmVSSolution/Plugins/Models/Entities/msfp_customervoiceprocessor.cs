@@ -14,11 +14,11 @@ namespace Plugins.Models
 	
 	
 	/// <summary>
-	/// Status of the Case Sub Category
+	/// Status of the Customer Voice Send survey history
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
-	public enum cm_casesubcategory_statecode
+	public enum msfp_customervoiceprocessor_statecode
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -29,37 +29,37 @@ namespace Plugins.Models
 	}
 	
 	/// <summary>
-	/// Reason for the status of the Case Sub Category
+	/// Reason for the status of the Customer Voice Send survey history
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
-	public enum cm_casesubcategory_statuscode
+	public enum msfp_customervoiceprocessor_statuscode
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Active = 1,
+		Sending = 1,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Inactive = 2,
+		Sent = 2,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Failed = 3,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Inactive = 4,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("cm_casesubcategory")]
+	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("msfp_customervoiceprocessor")]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
-	public partial class cm_CaseSubCategory : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	public partial class msfp_customervoiceprocessor : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
 		/// <summary>
-		/// Available fields, a the time of codegen, for the cm_casesubcategory entity
+		/// Available fields, a the time of codegen, for the msfp_customervoiceprocessor entity
 		/// </summary>
 		public partial class Fields
 		{
-			public const string cm_CaseCategory = "cm_casecategory";
-			public const string cm_CaseCategoryName = "cm_casecategoryname";
-			public const string cm_CaseSubCategoryId = "cm_casesubcategoryid";
-			public const string Id = "cm_casesubcategoryid";
-			public const string cm_CategoryID = "cm_categoryid";
-			public const string cm_Name = "cm_name";
 			public const string CreatedBy = "createdby";
 			public const string CreatedByName = "createdbyname";
 			public const string CreatedByYomiName = "createdbyyominame";
@@ -75,6 +75,19 @@ namespace Plugins.Models
 			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
 			public const string ModifiedOnBehalfByName = "modifiedonbehalfbyname";
 			public const string ModifiedOnBehalfByYomiName = "modifiedonbehalfbyyominame";
+			public const string msfp_customervoiceprocessorId = "msfp_customervoiceprocessorid";
+			public const string Id = "msfp_customervoiceprocessorid";
+			public const string msfp_EmailTemplateID = "msfp_emailtemplateid";
+			public const string msfp_firstname = "msfp_firstname";
+			public const string msfp_lastname = "msfp_lastname";
+			public const string msfp_locale = "msfp_locale";
+			public const string msfp_name = "msfp_name";
+			public const string msfp_projectid = "msfp_projectid";
+			public const string msfp_recipient = "msfp_recipient";
+			public const string msfp_regarding = "msfp_regarding";
+			public const string msfp_SurveyId = "msfp_surveyid";
+			public const string msfp_surveyvariablesjson = "msfp_surveyvariablesjson";
+			public const string msfp_To = "msfp_to";
 			public const string OverriddenCreatedOn = "overriddencreatedon";
 			public const string OwnerId = "ownerid";
 			public const string OwnerIdName = "owneridname";
@@ -90,26 +103,22 @@ namespace Plugins.Models
 			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
-			public const string cm_casechecklistcatalog_CaseSubCategory_cm_casesubcategory = "cm_casechecklistcatalog_CaseSubCategory_cm_casesubcategory";
-			public const string cm_checklistmaster_CaseSubCategory_cm_casesubcategory = "cm_checklistmaster_CaseSubCategory_cm_casesubcategory";
-			public const string cm_incident_CauseCategory_cm_casesubcategory = "cm_incident_CauseCategory_cm_casesubcategory";
-			public const string cm_casesubcategory_CaseCategory_cm_casecategory = "cm_casesubcategory_CaseCategory_cm_casecategory";
-			public const string team_cm_casesubcategory = "team_cm_casesubcategory";
+			public const string team_msfp_customervoiceprocessor = "team_msfp_customervoiceprocessor";
 		}
 		
 		/// <summary>
 		/// Default Constructor.
 		/// </summary>
-		public cm_CaseSubCategory() : 
+		public msfp_customervoiceprocessor() : 
 				base(EntityLogicalName)
 		{
 		}
 		
-		public const string EntityLogicalName = "cm_casesubcategory";
+		public const string EntityLogicalName = "msfp_customervoiceprocessor";
 		
-		public const string EntityLogicalCollectionName = "cm_casesubcategories";
+		public const string EntityLogicalCollectionName = "msfp_customervoiceprocessors";
 		
-		public const string EntitySetName = "cm_casesubcategories";
+		public const string EntitySetName = "msfp_customervoiceprocessors";
 		
 		public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
 		
@@ -128,106 +137,6 @@ namespace Plugins.Models
 			if ((this.PropertyChanging != null))
 			{
 				this.PropertyChanging(this, new System.ComponentModel.PropertyChangingEventArgs(propertyName));
-			}
-		}
-		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_casecategory")]
-		public Microsoft.Xrm.Sdk.EntityReference cm_CaseCategory
-		{
-			get
-			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cm_casecategory");
-			}
-			set
-			{
-				this.OnPropertyChanging("cm_CaseCategory");
-				this.SetAttributeValue("cm_casecategory", value);
-				this.OnPropertyChanged("cm_CaseCategory");
-			}
-		}
-		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_casecategoryname")]
-		public string cm_CaseCategoryName
-		{
-			get
-			{
-				if (this.FormattedValues.Contains("cm_casecategory"))
-				{
-					return this.FormattedValues["cm_casecategory"];
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-		
-		/// <summary>
-		/// Unique identifier for entity instances
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_casesubcategoryid")]
-		public System.Nullable<System.Guid> cm_CaseSubCategoryId
-		{
-			get
-			{
-				return this.GetAttributeValue<System.Nullable<System.Guid>>("cm_casesubcategoryid");
-			}
-			set
-			{
-				this.OnPropertyChanging("cm_CaseSubCategoryId");
-				this.SetAttributeValue("cm_casesubcategoryid", value);
-				if (value.HasValue)
-				{
-					base.Id = value.Value;
-				}
-				else
-				{
-					base.Id = System.Guid.Empty;
-				}
-				this.OnPropertyChanged("cm_CaseSubCategoryId");
-			}
-		}
-		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_casesubcategoryid")]
-		public override System.Guid Id
-		{
-			get
-			{
-				return base.Id;
-			}
-			set
-			{
-				this.cm_CaseSubCategoryId = value;
-			}
-		}
-		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_categoryid")]
-		public string cm_CategoryID
-		{
-			get
-			{
-				return this.GetAttributeValue<string>("cm_categoryid");
-			}
-			set
-			{
-				this.OnPropertyChanging("cm_CategoryID");
-				this.SetAttributeValue("cm_categoryid", value);
-				this.OnPropertyChanged("cm_CategoryID");
-			}
-		}
-		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_name")]
-		public string cm_Name
-		{
-			get
-			{
-				return this.GetAttributeValue<string>("cm_name");
-			}
-			set
-			{
-				this.OnPropertyChanging("cm_Name");
-				this.SetAttributeValue("cm_name", value);
-				this.OnPropertyChanged("cm_Name");
 			}
 		}
 		
@@ -450,6 +359,213 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// Unique identifier for entity instances
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msfp_customervoiceprocessorid")]
+		public System.Nullable<System.Guid> msfp_customervoiceprocessorId
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("msfp_customervoiceprocessorid");
+			}
+			set
+			{
+				this.OnPropertyChanging("msfp_customervoiceprocessorId");
+				this.SetAttributeValue("msfp_customervoiceprocessorid", value);
+				if (value.HasValue)
+				{
+					base.Id = value.Value;
+				}
+				else
+				{
+					base.Id = System.Guid.Empty;
+				}
+				this.OnPropertyChanged("msfp_customervoiceprocessorId");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msfp_customervoiceprocessorid")]
+		public override System.Guid Id
+		{
+			get
+			{
+				return base.Id;
+			}
+			set
+			{
+				this.msfp_customervoiceprocessorId = value;
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msfp_emailtemplateid")]
+		public string msfp_EmailTemplateID
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("msfp_emailtemplateid");
+			}
+			set
+			{
+				this.OnPropertyChanging("msfp_EmailTemplateID");
+				this.SetAttributeValue("msfp_emailtemplateid", value);
+				this.OnPropertyChanged("msfp_EmailTemplateID");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msfp_firstname")]
+		public string msfp_firstname
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("msfp_firstname");
+			}
+			set
+			{
+				this.OnPropertyChanging("msfp_firstname");
+				this.SetAttributeValue("msfp_firstname", value);
+				this.OnPropertyChanged("msfp_firstname");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msfp_lastname")]
+		public string msfp_lastname
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("msfp_lastname");
+			}
+			set
+			{
+				this.OnPropertyChanging("msfp_lastname");
+				this.SetAttributeValue("msfp_lastname", value);
+				this.OnPropertyChanged("msfp_lastname");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msfp_locale")]
+		public string msfp_locale
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("msfp_locale");
+			}
+			set
+			{
+				this.OnPropertyChanging("msfp_locale");
+				this.SetAttributeValue("msfp_locale", value);
+				this.OnPropertyChanged("msfp_locale");
+			}
+		}
+		
+		/// <summary>
+		/// The name of the custom entity.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msfp_name")]
+		public string msfp_name
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("msfp_name");
+			}
+			set
+			{
+				this.OnPropertyChanging("msfp_name");
+				this.SetAttributeValue("msfp_name", value);
+				this.OnPropertyChanged("msfp_name");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msfp_projectid")]
+		public string msfp_projectid
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("msfp_projectid");
+			}
+			set
+			{
+				this.OnPropertyChanging("msfp_projectid");
+				this.SetAttributeValue("msfp_projectid", value);
+				this.OnPropertyChanged("msfp_projectid");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msfp_recipient")]
+		public string msfp_recipient
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("msfp_recipient");
+			}
+			set
+			{
+				this.OnPropertyChanging("msfp_recipient");
+				this.SetAttributeValue("msfp_recipient", value);
+				this.OnPropertyChanged("msfp_recipient");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msfp_regarding")]
+		public string msfp_regarding
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("msfp_regarding");
+			}
+			set
+			{
+				this.OnPropertyChanging("msfp_regarding");
+				this.SetAttributeValue("msfp_regarding", value);
+				this.OnPropertyChanged("msfp_regarding");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msfp_surveyid")]
+		public string msfp_SurveyId
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("msfp_surveyid");
+			}
+			set
+			{
+				this.OnPropertyChanging("msfp_SurveyId");
+				this.SetAttributeValue("msfp_surveyid", value);
+				this.OnPropertyChanged("msfp_SurveyId");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msfp_surveyvariablesjson")]
+		public string msfp_surveyvariablesjson
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("msfp_surveyvariablesjson");
+			}
+			set
+			{
+				this.OnPropertyChanging("msfp_surveyvariablesjson");
+				this.SetAttributeValue("msfp_surveyvariablesjson", value);
+				this.OnPropertyChanged("msfp_surveyvariablesjson");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msfp_to")]
+		public string msfp_To
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("msfp_to");
+			}
+			set
+			{
+				this.OnPropertyChanging("msfp_To");
+				this.SetAttributeValue("msfp_to", value);
+				this.OnPropertyChanged("msfp_To");
+			}
+		}
+		
+		/// <summary>
 		/// Date and time that the record was migrated.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("overriddencreatedon")]
@@ -576,14 +692,14 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
-		/// Status of the Case Sub Category
+		/// Status of the Customer Voice Send survey history
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statecode")]
-		public virtual cm_casesubcategory_statecode? statecode
+		public virtual msfp_customervoiceprocessor_statecode? statecode
 		{
 			get
 			{
-				return ((cm_casesubcategory_statecode?)(EntityOptionSetEnum.GetEnum(this, "statecode")));
+				return ((msfp_customervoiceprocessor_statecode?)(EntityOptionSetEnum.GetEnum(this, "statecode")));
 			}
 			set
 			{
@@ -610,14 +726,14 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
-		/// Reason for the status of the Case Sub Category
+		/// Reason for the status of the Customer Voice Send survey history
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual cm_casesubcategory_statuscode? statuscode
+		public virtual msfp_customervoiceprocessor_statuscode? statuscode
 		{
 			get
 			{
-				return ((cm_casesubcategory_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((msfp_customervoiceprocessor_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			set
 			{
@@ -692,88 +808,15 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
-		/// 1:N cm_casechecklistcatalog_CaseSubCategory_cm_casesubcategory
-		/// </summary>
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_casechecklistcatalog_CaseSubCategory_cm_casesubcategory")]
-		public System.Collections.Generic.IEnumerable<Plugins.Models.cm_CaseChecklistCatalog> cm_casechecklistcatalog_CaseSubCategory_cm_casesubcategory
-		{
-			get
-			{
-				return this.GetRelatedEntities<Plugins.Models.cm_CaseChecklistCatalog>("cm_casechecklistcatalog_CaseSubCategory_cm_casesubcategory", null);
-			}
-			set
-			{
-				this.OnPropertyChanging("cm_casechecklistcatalog_CaseSubCategory_cm_casesubcategory");
-				this.SetRelatedEntities<Plugins.Models.cm_CaseChecklistCatalog>("cm_casechecklistcatalog_CaseSubCategory_cm_casesubcategory", null, value);
-				this.OnPropertyChanged("cm_casechecklistcatalog_CaseSubCategory_cm_casesubcategory");
-			}
-		}
-		
-		/// <summary>
-		/// 1:N cm_checklistmaster_CaseSubCategory_cm_casesubcategory
-		/// </summary>
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_checklistmaster_CaseSubCategory_cm_casesubcategory")]
-		public System.Collections.Generic.IEnumerable<Plugins.Models.cm_ChecklistMaster> cm_checklistmaster_CaseSubCategory_cm_casesubcategory
-		{
-			get
-			{
-				return this.GetRelatedEntities<Plugins.Models.cm_ChecklistMaster>("cm_checklistmaster_CaseSubCategory_cm_casesubcategory", null);
-			}
-			set
-			{
-				this.OnPropertyChanging("cm_checklistmaster_CaseSubCategory_cm_casesubcategory");
-				this.SetRelatedEntities<Plugins.Models.cm_ChecklistMaster>("cm_checklistmaster_CaseSubCategory_cm_casesubcategory", null, value);
-				this.OnPropertyChanged("cm_checklistmaster_CaseSubCategory_cm_casesubcategory");
-			}
-		}
-		
-		/// <summary>
-		/// 1:N cm_incident_CauseCategory_cm_casesubcategory
-		/// </summary>
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_incident_CauseCategory_cm_casesubcategory")]
-		public System.Collections.Generic.IEnumerable<Plugins.Models.Incident> cm_incident_CauseCategory_cm_casesubcategory
-		{
-			get
-			{
-				return this.GetRelatedEntities<Plugins.Models.Incident>("cm_incident_CauseCategory_cm_casesubcategory", null);
-			}
-			set
-			{
-				this.OnPropertyChanging("cm_incident_CauseCategory_cm_casesubcategory");
-				this.SetRelatedEntities<Plugins.Models.Incident>("cm_incident_CauseCategory_cm_casesubcategory", null, value);
-				this.OnPropertyChanged("cm_incident_CauseCategory_cm_casesubcategory");
-			}
-		}
-		
-		/// <summary>
-		/// N:1 cm_casesubcategory_CaseCategory_cm_casecategory
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_casecategory")]
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_casesubcategory_CaseCategory_cm_casecategory")]
-		public Plugins.Models.cm_CaseCategory cm_casesubcategory_CaseCategory_cm_casecategory
-		{
-			get
-			{
-				return this.GetRelatedEntity<Plugins.Models.cm_CaseCategory>("cm_casesubcategory_CaseCategory_cm_casecategory", null);
-			}
-			set
-			{
-				this.OnPropertyChanging("cm_casesubcategory_CaseCategory_cm_casecategory");
-				this.SetRelatedEntity<Plugins.Models.cm_CaseCategory>("cm_casesubcategory_CaseCategory_cm_casecategory", null, value);
-				this.OnPropertyChanged("cm_casesubcategory_CaseCategory_cm_casecategory");
-			}
-		}
-		
-		/// <summary>
-		/// N:1 team_cm_casesubcategory
+		/// N:1 team_msfp_customervoiceprocessor
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_cm_casesubcategory")]
-		public Plugins.Models.Team team_cm_casesubcategory
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_msfp_customervoiceprocessor")]
+		public Plugins.Models.Team team_msfp_customervoiceprocessor
 		{
 			get
 			{
-				return this.GetRelatedEntity<Plugins.Models.Team>("team_cm_casesubcategory", null);
+				return this.GetRelatedEntity<Plugins.Models.Team>("team_msfp_customervoiceprocessor", null);
 			}
 		}
 	}

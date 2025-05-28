@@ -600,6 +600,9 @@ namespace Plugins.Models
 			public const string Aging90_Base = "aging90_base";
 			public const string BusinessTypeCode = "businesstypecode";
 			public const string BusinessTypeCodeName = "businesstypecodename";
+			public const string cm_AccountManager = "cm_accountmanager";
+			public const string cm_AccountManagerName = "cm_accountmanagername";
+			public const string cm_AccountManagerYomiName = "cm_accountmanageryominame";
 			public const string cm_ComplianceFlag = "cm_complianceflag";
 			public const string cm_complianceflagName = "cm_complianceflagname";
 			public const string cm_FacebookPage = "cm_facebookpage";
@@ -609,6 +612,7 @@ namespace Plugins.Models
 			public const string cm_othertypeName = "cm_othertypename";
 			public const string cm_Role = "cm_role";
 			public const string cm_roleName = "cm_rolename";
+			public const string cm_SAPID = "cm_sapid";
 			public const string cm_ServiceProviderType = "cm_serviceprovidertype";
 			public const string cm_serviceprovidertypeName = "cm_serviceprovidertypename";
 			public const string cm_SubIndustry = "cm_subindustry";
@@ -784,6 +788,7 @@ namespace Plugins.Models
 			public const string account_connections1 = "account_connections1";
 			public const string account_connections2 = "account_connections2";
 			public const string Referencedaccount_master_account = "Referencedaccount_master_account";
+			public const string account_msfp_surveyinvites = "account_msfp_surveyinvites";
 			public const string account_OpportunityCloses = "account_OpportunityCloses";
 			public const string Referencedaccount_parent_account = "Referencedaccount_parent_account";
 			public const string cm_Account_Account_cm_ProgramAssociation = "cm_Account_Account_cm_ProgramAssociation";
@@ -2114,6 +2119,56 @@ namespace Plugins.Models
 			}
 		}
 		
+		/// <summary>
+		/// CM Account Manager/Key Account Specialist
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_accountmanager")]
+		public Microsoft.Xrm.Sdk.EntityReference cm_AccountManager
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cm_accountmanager");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_AccountManager");
+				this.SetAttributeValue("cm_accountmanager", value);
+				this.OnPropertyChanged("cm_AccountManager");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_accountmanagername")]
+		public string cm_AccountManagerName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_accountmanager"))
+				{
+					return this.FormattedValues["cm_accountmanager"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_accountmanageryominame")]
+		public string cm_AccountManagerYomiName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_accountmanager"))
+				{
+					return this.FormattedValues["cm_accountmanager"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_complianceflag")]
 		public virtual cm_account_cm_complianceflag? cm_ComplianceFlag
 		{
@@ -2259,6 +2314,24 @@ namespace Plugins.Models
 				{
 					return default(string);
 				}
+			}
+		}
+		
+		/// <summary>
+		/// ID value from SAP
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_sapid")]
+		public string cm_SAPID
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("cm_sapid");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_SAPID");
+				this.SetAttributeValue("cm_sapid", value);
+				this.OnPropertyChanged("cm_SAPID");
 			}
 		}
 		
@@ -5078,6 +5151,24 @@ namespace Plugins.Models
 				this.OnPropertyChanging("Referencedaccount_master_account");
 				this.SetRelatedEntities<Plugins.Models.Account>("account_master_account", Microsoft.Xrm.Sdk.EntityRole.Referenced, value);
 				this.OnPropertyChanged("Referencedaccount_master_account");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N account_msfp_surveyinvites
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("account_msfp_surveyinvites")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.msfp_surveyinvite> account_msfp_surveyinvites
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.msfp_surveyinvite>("account_msfp_surveyinvites", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("account_msfp_surveyinvites");
+				this.SetRelatedEntities<Plugins.Models.msfp_surveyinvite>("account_msfp_surveyinvites", null, value);
+				this.OnPropertyChanged("account_msfp_surveyinvites");
 			}
 		}
 		

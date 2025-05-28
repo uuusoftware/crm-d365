@@ -110,6 +110,7 @@ namespace Plugins.Models
 			public const string cm_casechecklistresponse_ParentCase_cm_casechecklistcatalog = "cm_casechecklistresponse_ParentCase_cm_casechecklistcatalog";
 			public const string cm_casechecklistcatalog_CaseCategory_cm_casecategory = "cm_casechecklistcatalog_CaseCategory_cm_casecategory";
 			public const string cm_casechecklistcatalog_CaseSubCategory_cm_casesubcategory = "cm_casechecklistcatalog_CaseSubCategory_cm_casesubcategory";
+			public const string cm_casechecklistcatalog_ChecklistMaster_cm_checklistmaster = "cm_casechecklistcatalog_ChecklistMaster_cm_checklistmaster";
 			public const string Referencingcm_casechecklistcatalog_ParentItem_cm_casechecklistcatalog = "cm_casechecklistcatalog_ParentItem_cm_casechecklistcatalog";
 			public const string team_cm_casechecklistcatalog = "team_cm_casechecklistcatalog";
 		}
@@ -1032,6 +1033,25 @@ namespace Plugins.Models
 				this.OnPropertyChanging("cm_casechecklistcatalog_CaseSubCategory_cm_casesubcategory");
 				this.SetRelatedEntity<Plugins.Models.cm_CaseSubCategory>("cm_casechecklistcatalog_CaseSubCategory_cm_casesubcategory", null, value);
 				this.OnPropertyChanged("cm_casechecklistcatalog_CaseSubCategory_cm_casesubcategory");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 cm_casechecklistcatalog_ChecklistMaster_cm_checklistmaster
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_checklistmaster")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_casechecklistcatalog_ChecklistMaster_cm_checklistmaster")]
+		public Plugins.Models.cm_ChecklistMaster cm_casechecklistcatalog_ChecklistMaster_cm_checklistmaster
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.cm_ChecklistMaster>("cm_casechecklistcatalog_ChecklistMaster_cm_checklistmaster", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_casechecklistcatalog_ChecklistMaster_cm_checklistmaster");
+				this.SetRelatedEntity<Plugins.Models.cm_ChecklistMaster>("cm_casechecklistcatalog_ChecklistMaster_cm_checklistmaster", null, value);
+				this.OnPropertyChanged("cm_casechecklistcatalog_ChecklistMaster_cm_checklistmaster");
 			}
 		}
 		

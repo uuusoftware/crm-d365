@@ -90,6 +90,7 @@ namespace Plugins.Models
 			public const string VersionNumber = "versionnumber";
 			public const string cm_casechecklistcatalog_CaseCategory_cm_casecategory = "cm_casechecklistcatalog_CaseCategory_cm_casecategory";
 			public const string cm_casesubcategory_CaseCategory_cm_casecategory = "cm_casesubcategory_CaseCategory_cm_casecategory";
+			public const string cm_checklistmaster_CaseCategory_cm_casecategory = "cm_checklistmaster_CaseCategory_cm_casecategory";
 			public const string cm_incident_IncidentCategory_cm_casecategory = "cm_incident_IncidentCategory_cm_casecategory";
 			public const string team_cm_casecategory = "team_cm_casecategory";
 		}
@@ -690,6 +691,24 @@ namespace Plugins.Models
 				this.OnPropertyChanging("cm_casesubcategory_CaseCategory_cm_casecategory");
 				this.SetRelatedEntities<Plugins.Models.cm_CaseSubCategory>("cm_casesubcategory_CaseCategory_cm_casecategory", null, value);
 				this.OnPropertyChanged("cm_casesubcategory_CaseCategory_cm_casecategory");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N cm_checklistmaster_CaseCategory_cm_casecategory
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_checklistmaster_CaseCategory_cm_casecategory")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.cm_ChecklistMaster> cm_checklistmaster_CaseCategory_cm_casecategory
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.cm_ChecklistMaster>("cm_checklistmaster_CaseCategory_cm_casecategory", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_checklistmaster_CaseCategory_cm_casecategory");
+				this.SetRelatedEntities<Plugins.Models.cm_ChecklistMaster>("cm_checklistmaster_CaseCategory_cm_casecategory", null, value);
+				this.OnPropertyChanged("cm_checklistmaster_CaseCategory_cm_casecategory");
 			}
 		}
 		

@@ -132,6 +132,7 @@ namespace Plugins.Models
 			public const string TraversedPath = "traversedpath";
 			public const string VersionNumber = "versionnumber";
 			public const string YomiName = "yominame";
+			public const string cm_checklistmaster_Program_team = "cm_checklistmaster_Program_team";
 			public const string cm_incident_Program_team = "cm_incident_Program_team";
 			public const string cm_incident_ServiceandSupportTeam_team = "cm_incident_ServiceandSupportTeam_team";
 			public const string cm_leadclosurechecklistmaster_Program_team = "cm_leadclosurechecklistmaster_Program_team";
@@ -140,11 +141,13 @@ namespace Plugins.Models
 			public const string cm_questioncatalog_Program_team = "cm_questioncatalog_Program_team";
 			public const string cm_questionresponse_Program_team = "cm_questionresponse_Program_team";
 			public const string lead_owning_team = "lead_owning_team";
+			public const string msfp_surveyinvite_team_owningteam = "msfp_surveyinvite_team_owningteam";
 			public const string team_accounts = "team_accounts";
 			public const string team_cm_casecategory = "team_cm_casecategory";
 			public const string team_cm_casechecklistcatalog = "team_cm_casechecklistcatalog";
 			public const string team_cm_casechecklistresponse = "team_cm_casechecklistresponse";
 			public const string team_cm_casesubcategory = "team_cm_casesubcategory";
+			public const string team_cm_checklistmaster = "team_cm_checklistmaster";
 			public const string team_cm_leadclosurechecklistcatalog = "team_cm_leadclosurechecklistcatalog";
 			public const string team_cm_leadclosurechecklistmaster = "team_cm_leadclosurechecklistmaster";
 			public const string team_cm_leadclosurechecklistresponse = "team_cm_leadclosurechecklistresponse";
@@ -156,6 +159,9 @@ namespace Plugins.Models
 			public const string team_connections2 = "team_connections2";
 			public const string team_contacts = "team_contacts";
 			public const string team_incidents = "team_incidents";
+			public const string team_msfp_customervoiceprocessor = "team_msfp_customervoiceprocessor";
+			public const string team_msfp_project = "team_msfp_project";
+			public const string team_msfp_survey = "team_msfp_survey";
 			public const string team_opportunities = "team_opportunities";
 			public const string team_opportunityclose = "team_opportunityclose";
 			public const string team_orders = "team_orders";
@@ -1188,6 +1194,24 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// 1:N cm_checklistmaster_Program_team
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_checklistmaster_Program_team")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.cm_ChecklistMaster> cm_checklistmaster_Program_team
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.cm_ChecklistMaster>("cm_checklistmaster_Program_team", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_checklistmaster_Program_team");
+				this.SetRelatedEntities<Plugins.Models.cm_ChecklistMaster>("cm_checklistmaster_Program_team", null, value);
+				this.OnPropertyChanged("cm_checklistmaster_Program_team");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N cm_incident_Program_team
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_incident_Program_team")]
@@ -1332,6 +1356,24 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// 1:N msfp_surveyinvite_team_owningteam
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msfp_surveyinvite_team_owningteam")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.msfp_surveyinvite> msfp_surveyinvite_team_owningteam
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.msfp_surveyinvite>("msfp_surveyinvite_team_owningteam", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("msfp_surveyinvite_team_owningteam");
+				this.SetRelatedEntities<Plugins.Models.msfp_surveyinvite>("msfp_surveyinvite_team_owningteam", null, value);
+				this.OnPropertyChanged("msfp_surveyinvite_team_owningteam");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N team_accounts
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_accounts")]
@@ -1418,6 +1460,24 @@ namespace Plugins.Models
 				this.OnPropertyChanging("team_cm_casesubcategory");
 				this.SetRelatedEntities<Plugins.Models.cm_CaseSubCategory>("team_cm_casesubcategory", null, value);
 				this.OnPropertyChanged("team_cm_casesubcategory");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N team_cm_checklistmaster
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_cm_checklistmaster")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.cm_ChecklistMaster> team_cm_checklistmaster
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.cm_ChecklistMaster>("team_cm_checklistmaster", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("team_cm_checklistmaster");
+				this.SetRelatedEntities<Plugins.Models.cm_ChecklistMaster>("team_cm_checklistmaster", null, value);
+				this.OnPropertyChanged("team_cm_checklistmaster");
 			}
 		}
 		
@@ -1616,6 +1676,60 @@ namespace Plugins.Models
 				this.OnPropertyChanging("team_incidents");
 				this.SetRelatedEntities<Plugins.Models.Incident>("team_incidents", null, value);
 				this.OnPropertyChanged("team_incidents");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N team_msfp_customervoiceprocessor
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_msfp_customervoiceprocessor")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.msfp_customervoiceprocessor> team_msfp_customervoiceprocessor
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.msfp_customervoiceprocessor>("team_msfp_customervoiceprocessor", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("team_msfp_customervoiceprocessor");
+				this.SetRelatedEntities<Plugins.Models.msfp_customervoiceprocessor>("team_msfp_customervoiceprocessor", null, value);
+				this.OnPropertyChanged("team_msfp_customervoiceprocessor");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N team_msfp_project
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_msfp_project")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.msfp_project> team_msfp_project
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.msfp_project>("team_msfp_project", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("team_msfp_project");
+				this.SetRelatedEntities<Plugins.Models.msfp_project>("team_msfp_project", null, value);
+				this.OnPropertyChanged("team_msfp_project");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N team_msfp_survey
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_msfp_survey")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.msfp_survey> team_msfp_survey
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.msfp_survey>("team_msfp_survey", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("team_msfp_survey");
+				this.SetRelatedEntities<Plugins.Models.msfp_survey>("team_msfp_survey", null, value);
+				this.OnPropertyChanged("team_msfp_survey");
 			}
 		}
 		

@@ -14,11 +14,11 @@ namespace Plugins.Models
 	
 	
 	/// <summary>
-	/// Status of the Case Sub Category
+	/// Status of the Checklist Master
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
-	public enum cm_casesubcategory_statecode
+	public enum cm_checklistmaster_statecode
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -29,11 +29,11 @@ namespace Plugins.Models
 	}
 	
 	/// <summary>
-	/// Reason for the status of the Case Sub Category
+	/// Reason for the status of the Checklist Master
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
-	public enum cm_casesubcategory_statuscode
+	public enum cm_checklistmaster_statuscode
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -44,22 +44,32 @@ namespace Plugins.Models
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("cm_casesubcategory")]
+	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("cm_checklistmaster")]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
-	public partial class cm_CaseSubCategory : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	public partial class cm_ChecklistMaster : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
 		/// <summary>
-		/// Available fields, a the time of codegen, for the cm_casesubcategory entity
+		/// Available fields, a the time of codegen, for the cm_checklistmaster entity
 		/// </summary>
 		public partial class Fields
 		{
 			public const string cm_CaseCategory = "cm_casecategory";
 			public const string cm_CaseCategoryName = "cm_casecategoryname";
-			public const string cm_CaseSubCategoryId = "cm_casesubcategoryid";
-			public const string Id = "cm_casesubcategoryid";
-			public const string cm_CategoryID = "cm_categoryid";
+			public const string cm_CaseSubCategory = "cm_casesubcategory";
+			public const string cm_CaseSubCategoryName = "cm_casesubcategoryname";
+			public const string cm_ChecklistMasterId = "cm_checklistmasterid";
+			public const string Id = "cm_checklistmasterid";
+			public const string cm_ChecklistValidationRequired = "cm_checklistvalidationrequired";
+			public const string cm_checklistvalidationrequiredName = "cm_checklistvalidationrequiredname";
 			public const string cm_Name = "cm_name";
+			public const string cm_PopulateSurveyInvite = "cm_populatesurveyinvite";
+			public const string cm_populatesurveyinviteName = "cm_populatesurveyinvitename";
+			public const string cm_Program = "cm_program";
+			public const string cm_ProgramName = "cm_programname";
+			public const string cm_ProgramYomiName = "cm_programyominame";
+			public const string cm_Survey = "cm_survey";
+			public const string cm_SurveyName = "cm_surveyname";
 			public const string CreatedBy = "createdby";
 			public const string CreatedByName = "createdbyname";
 			public const string CreatedByYomiName = "createdbyyominame";
@@ -90,26 +100,27 @@ namespace Plugins.Models
 			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
-			public const string cm_casechecklistcatalog_CaseSubCategory_cm_casesubcategory = "cm_casechecklistcatalog_CaseSubCategory_cm_casesubcategory";
+			public const string cm_casechecklistcatalog_ChecklistMaster_cm_checklistmaster = "cm_casechecklistcatalog_ChecklistMaster_cm_checklistmaster";
+			public const string cm_checklistmaster_CaseCategory_cm_casecategory = "cm_checklistmaster_CaseCategory_cm_casecategory";
 			public const string cm_checklistmaster_CaseSubCategory_cm_casesubcategory = "cm_checklistmaster_CaseSubCategory_cm_casesubcategory";
-			public const string cm_incident_CauseCategory_cm_casesubcategory = "cm_incident_CauseCategory_cm_casesubcategory";
-			public const string cm_casesubcategory_CaseCategory_cm_casecategory = "cm_casesubcategory_CaseCategory_cm_casecategory";
-			public const string team_cm_casesubcategory = "team_cm_casesubcategory";
+			public const string cm_checklistmaster_Program_team = "cm_checklistmaster_Program_team";
+			public const string cm_checklistmaster_Survey_msfp_survey = "cm_checklistmaster_Survey_msfp_survey";
+			public const string team_cm_checklistmaster = "team_cm_checklistmaster";
 		}
 		
 		/// <summary>
 		/// Default Constructor.
 		/// </summary>
-		public cm_CaseSubCategory() : 
+		public cm_ChecklistMaster() : 
 				base(EntityLogicalName)
 		{
 		}
 		
-		public const string EntityLogicalName = "cm_casesubcategory";
+		public const string EntityLogicalName = "cm_checklistmaster";
 		
-		public const string EntityLogicalCollectionName = "cm_casesubcategories";
+		public const string EntityLogicalCollectionName = "cm_checklistmasters";
 		
-		public const string EntitySetName = "cm_casesubcategories";
+		public const string EntitySetName = "cm_checklistmasters";
 		
 		public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
 		
@@ -162,20 +173,51 @@ namespace Plugins.Models
 			}
 		}
 		
-		/// <summary>
-		/// Unique identifier for entity instances
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_casesubcategoryid")]
-		public System.Nullable<System.Guid> cm_CaseSubCategoryId
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_casesubcategory")]
+		public Microsoft.Xrm.Sdk.EntityReference cm_CaseSubCategory
 		{
 			get
 			{
-				return this.GetAttributeValue<System.Nullable<System.Guid>>("cm_casesubcategoryid");
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cm_casesubcategory");
 			}
 			set
 			{
-				this.OnPropertyChanging("cm_CaseSubCategoryId");
-				this.SetAttributeValue("cm_casesubcategoryid", value);
+				this.OnPropertyChanging("cm_CaseSubCategory");
+				this.SetAttributeValue("cm_casesubcategory", value);
+				this.OnPropertyChanged("cm_CaseSubCategory");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_casesubcategoryname")]
+		public string cm_CaseSubCategoryName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_casesubcategory"))
+				{
+					return this.FormattedValues["cm_casesubcategory"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for entity instances
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_checklistmasterid")]
+		public System.Nullable<System.Guid> cm_ChecklistMasterId
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("cm_checklistmasterid");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_ChecklistMasterId");
+				this.SetAttributeValue("cm_checklistmasterid", value);
 				if (value.HasValue)
 				{
 					base.Id = value.Value;
@@ -184,11 +226,11 @@ namespace Plugins.Models
 				{
 					base.Id = System.Guid.Empty;
 				}
-				this.OnPropertyChanged("cm_CaseSubCategoryId");
+				this.OnPropertyChanged("cm_ChecklistMasterId");
 			}
 		}
 		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_casesubcategoryid")]
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_checklistmasterid")]
 		public override System.Guid Id
 		{
 			get
@@ -197,22 +239,38 @@ namespace Plugins.Models
 			}
 			set
 			{
-				this.cm_CaseSubCategoryId = value;
+				this.cm_ChecklistMasterId = value;
 			}
 		}
 		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_categoryid")]
-		public string cm_CategoryID
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_checklistvalidationrequired")]
+		public System.Nullable<bool> cm_ChecklistValidationRequired
 		{
 			get
 			{
-				return this.GetAttributeValue<string>("cm_categoryid");
+				return this.GetAttributeValue<System.Nullable<bool>>("cm_checklistvalidationrequired");
 			}
 			set
 			{
-				this.OnPropertyChanging("cm_CategoryID");
-				this.SetAttributeValue("cm_categoryid", value);
-				this.OnPropertyChanged("cm_CategoryID");
+				this.OnPropertyChanging("cm_ChecklistValidationRequired");
+				this.SetAttributeValue("cm_checklistvalidationrequired", value);
+				this.OnPropertyChanged("cm_ChecklistValidationRequired");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_checklistvalidationrequiredname")]
+		public string cm_checklistvalidationrequiredName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_checklistvalidationrequired"))
+				{
+					return this.FormattedValues["cm_checklistvalidationrequired"];
+				}
+				else
+				{
+					return default(string);
+				}
 			}
 		}
 		
@@ -228,6 +286,115 @@ namespace Plugins.Models
 				this.OnPropertyChanging("cm_Name");
 				this.SetAttributeValue("cm_name", value);
 				this.OnPropertyChanged("cm_Name");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_populatesurveyinvite")]
+		public System.Nullable<bool> cm_PopulateSurveyInvite
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("cm_populatesurveyinvite");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_PopulateSurveyInvite");
+				this.SetAttributeValue("cm_populatesurveyinvite", value);
+				this.OnPropertyChanged("cm_PopulateSurveyInvite");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_populatesurveyinvitename")]
+		public string cm_populatesurveyinviteName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_populatesurveyinvite"))
+				{
+					return this.FormattedValues["cm_populatesurveyinvite"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_program")]
+		public Microsoft.Xrm.Sdk.EntityReference cm_Program
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cm_program");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_Program");
+				this.SetAttributeValue("cm_program", value);
+				this.OnPropertyChanged("cm_Program");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_programname")]
+		public string cm_ProgramName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_program"))
+				{
+					return this.FormattedValues["cm_program"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_programyominame")]
+		public string cm_ProgramYomiName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_program"))
+				{
+					return this.FormattedValues["cm_program"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_survey")]
+		public Microsoft.Xrm.Sdk.EntityReference cm_Survey
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cm_survey");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_Survey");
+				this.SetAttributeValue("cm_survey", value);
+				this.OnPropertyChanged("cm_Survey");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_surveyname")]
+		public string cm_SurveyName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_survey"))
+				{
+					return this.FormattedValues["cm_survey"];
+				}
+				else
+				{
+					return default(string);
+				}
 			}
 		}
 		
@@ -576,14 +743,14 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
-		/// Status of the Case Sub Category
+		/// Status of the Checklist Master
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statecode")]
-		public virtual cm_casesubcategory_statecode? statecode
+		public virtual cm_checklistmaster_statecode? statecode
 		{
 			get
 			{
-				return ((cm_casesubcategory_statecode?)(EntityOptionSetEnum.GetEnum(this, "statecode")));
+				return ((cm_checklistmaster_statecode?)(EntityOptionSetEnum.GetEnum(this, "statecode")));
 			}
 			set
 			{
@@ -610,14 +777,14 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
-		/// Reason for the status of the Case Sub Category
+		/// Reason for the status of the Checklist Master
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual cm_casesubcategory_statuscode? statuscode
+		public virtual cm_checklistmaster_statuscode? statuscode
 		{
 			get
 			{
-				return ((cm_casesubcategory_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((cm_checklistmaster_statuscode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			set
 			{
@@ -692,88 +859,109 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
-		/// 1:N cm_casechecklistcatalog_CaseSubCategory_cm_casesubcategory
+		/// 1:N cm_casechecklistcatalog_ChecklistMaster_cm_checklistmaster
 		/// </summary>
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_casechecklistcatalog_CaseSubCategory_cm_casesubcategory")]
-		public System.Collections.Generic.IEnumerable<Plugins.Models.cm_CaseChecklistCatalog> cm_casechecklistcatalog_CaseSubCategory_cm_casesubcategory
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_casechecklistcatalog_ChecklistMaster_cm_checklistmaster")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.cm_CaseChecklistCatalog> cm_casechecklistcatalog_ChecklistMaster_cm_checklistmaster
 		{
 			get
 			{
-				return this.GetRelatedEntities<Plugins.Models.cm_CaseChecklistCatalog>("cm_casechecklistcatalog_CaseSubCategory_cm_casesubcategory", null);
+				return this.GetRelatedEntities<Plugins.Models.cm_CaseChecklistCatalog>("cm_casechecklistcatalog_ChecklistMaster_cm_checklistmaster", null);
 			}
 			set
 			{
-				this.OnPropertyChanging("cm_casechecklistcatalog_CaseSubCategory_cm_casesubcategory");
-				this.SetRelatedEntities<Plugins.Models.cm_CaseChecklistCatalog>("cm_casechecklistcatalog_CaseSubCategory_cm_casesubcategory", null, value);
-				this.OnPropertyChanged("cm_casechecklistcatalog_CaseSubCategory_cm_casesubcategory");
+				this.OnPropertyChanging("cm_casechecklistcatalog_ChecklistMaster_cm_checklistmaster");
+				this.SetRelatedEntities<Plugins.Models.cm_CaseChecklistCatalog>("cm_casechecklistcatalog_ChecklistMaster_cm_checklistmaster", null, value);
+				this.OnPropertyChanged("cm_casechecklistcatalog_ChecklistMaster_cm_checklistmaster");
 			}
 		}
 		
 		/// <summary>
-		/// 1:N cm_checklistmaster_CaseSubCategory_cm_casesubcategory
+		/// N:1 cm_checklistmaster_CaseCategory_cm_casecategory
 		/// </summary>
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_checklistmaster_CaseSubCategory_cm_casesubcategory")]
-		public System.Collections.Generic.IEnumerable<Plugins.Models.cm_ChecklistMaster> cm_checklistmaster_CaseSubCategory_cm_casesubcategory
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_casecategory")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_checklistmaster_CaseCategory_cm_casecategory")]
+		public Plugins.Models.cm_CaseCategory cm_checklistmaster_CaseCategory_cm_casecategory
 		{
 			get
 			{
-				return this.GetRelatedEntities<Plugins.Models.cm_ChecklistMaster>("cm_checklistmaster_CaseSubCategory_cm_casesubcategory", null);
+				return this.GetRelatedEntity<Plugins.Models.cm_CaseCategory>("cm_checklistmaster_CaseCategory_cm_casecategory", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_checklistmaster_CaseCategory_cm_casecategory");
+				this.SetRelatedEntity<Plugins.Models.cm_CaseCategory>("cm_checklistmaster_CaseCategory_cm_casecategory", null, value);
+				this.OnPropertyChanged("cm_checklistmaster_CaseCategory_cm_casecategory");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 cm_checklistmaster_CaseSubCategory_cm_casesubcategory
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_casesubcategory")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_checklistmaster_CaseSubCategory_cm_casesubcategory")]
+		public Plugins.Models.cm_CaseSubCategory cm_checklistmaster_CaseSubCategory_cm_casesubcategory
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.cm_CaseSubCategory>("cm_checklistmaster_CaseSubCategory_cm_casesubcategory", null);
 			}
 			set
 			{
 				this.OnPropertyChanging("cm_checklistmaster_CaseSubCategory_cm_casesubcategory");
-				this.SetRelatedEntities<Plugins.Models.cm_ChecklistMaster>("cm_checklistmaster_CaseSubCategory_cm_casesubcategory", null, value);
+				this.SetRelatedEntity<Plugins.Models.cm_CaseSubCategory>("cm_checklistmaster_CaseSubCategory_cm_casesubcategory", null, value);
 				this.OnPropertyChanged("cm_checklistmaster_CaseSubCategory_cm_casesubcategory");
 			}
 		}
 		
 		/// <summary>
-		/// 1:N cm_incident_CauseCategory_cm_casesubcategory
+		/// N:1 cm_checklistmaster_Program_team
 		/// </summary>
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_incident_CauseCategory_cm_casesubcategory")]
-		public System.Collections.Generic.IEnumerable<Plugins.Models.Incident> cm_incident_CauseCategory_cm_casesubcategory
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_program")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_checklistmaster_Program_team")]
+		public Plugins.Models.Team cm_checklistmaster_Program_team
 		{
 			get
 			{
-				return this.GetRelatedEntities<Plugins.Models.Incident>("cm_incident_CauseCategory_cm_casesubcategory", null);
+				return this.GetRelatedEntity<Plugins.Models.Team>("cm_checklistmaster_Program_team", null);
 			}
 			set
 			{
-				this.OnPropertyChanging("cm_incident_CauseCategory_cm_casesubcategory");
-				this.SetRelatedEntities<Plugins.Models.Incident>("cm_incident_CauseCategory_cm_casesubcategory", null, value);
-				this.OnPropertyChanged("cm_incident_CauseCategory_cm_casesubcategory");
+				this.OnPropertyChanging("cm_checklistmaster_Program_team");
+				this.SetRelatedEntity<Plugins.Models.Team>("cm_checklistmaster_Program_team", null, value);
+				this.OnPropertyChanged("cm_checklistmaster_Program_team");
 			}
 		}
 		
 		/// <summary>
-		/// N:1 cm_casesubcategory_CaseCategory_cm_casecategory
+		/// N:1 cm_checklistmaster_Survey_msfp_survey
 		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_casecategory")]
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_casesubcategory_CaseCategory_cm_casecategory")]
-		public Plugins.Models.cm_CaseCategory cm_casesubcategory_CaseCategory_cm_casecategory
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_survey")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_checklistmaster_Survey_msfp_survey")]
+		public Plugins.Models.msfp_survey cm_checklistmaster_Survey_msfp_survey
 		{
 			get
 			{
-				return this.GetRelatedEntity<Plugins.Models.cm_CaseCategory>("cm_casesubcategory_CaseCategory_cm_casecategory", null);
+				return this.GetRelatedEntity<Plugins.Models.msfp_survey>("cm_checklistmaster_Survey_msfp_survey", null);
 			}
 			set
 			{
-				this.OnPropertyChanging("cm_casesubcategory_CaseCategory_cm_casecategory");
-				this.SetRelatedEntity<Plugins.Models.cm_CaseCategory>("cm_casesubcategory_CaseCategory_cm_casecategory", null, value);
-				this.OnPropertyChanged("cm_casesubcategory_CaseCategory_cm_casecategory");
+				this.OnPropertyChanging("cm_checklistmaster_Survey_msfp_survey");
+				this.SetRelatedEntity<Plugins.Models.msfp_survey>("cm_checklistmaster_Survey_msfp_survey", null, value);
+				this.OnPropertyChanged("cm_checklistmaster_Survey_msfp_survey");
 			}
 		}
 		
 		/// <summary>
-		/// N:1 team_cm_casesubcategory
+		/// N:1 team_cm_checklistmaster
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_cm_casesubcategory")]
-		public Plugins.Models.Team team_cm_casesubcategory
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_cm_checklistmaster")]
+		public Plugins.Models.Team team_cm_checklistmaster
 		{
 			get
 			{
-				return this.GetRelatedEntity<Plugins.Models.Team>("team_cm_casesubcategory", null);
+				return this.GetRelatedEntity<Plugins.Models.Team>("team_cm_checklistmaster", null);
 			}
 		}
 	}

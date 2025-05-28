@@ -325,6 +325,7 @@ namespace Plugins.Models
 			public const string cm_ServiceandSupportTeam = "cm_serviceandsupportteam";
 			public const string cm_ServiceandSupportTeamName = "cm_serviceandsupportteamname";
 			public const string cm_ServiceandSupportTeamYomiName = "cm_serviceandsupportteamyominame";
+			public const string cm_SetReportedOn = "cm_setreportedon";
 			public const string cm_To = "cm_to";
 			public const string ContactId = "contactid";
 			public const string ContactIdName = "contactidname";
@@ -474,10 +475,12 @@ namespace Plugins.Models
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
 			public const string cm_casechecklistresponse_Case_incident = "cm_casechecklistresponse_Case_incident";
+			public const string cm_msfp_surveyinvite_ParentCase_incident = "cm_msfp_surveyinvite_ParentCase_incident";
 			public const string incident_connections1 = "incident_connections1";
 			public const string incident_connections2 = "incident_connections2";
 			public const string Referencedincident_existingcase = "Referencedincident_existingcase";
 			public const string Referencedincident_master_incident = "Referencedincident_master_incident";
+			public const string incident_msfp_surveyinvites = "incident_msfp_surveyinvites";
 			public const string incident_OpportunityCloses = "incident_OpportunityCloses";
 			public const string Referencedincident_parent_incident = "Referencedincident_parent_incident";
 			public const string OriginatingCase_Lead = "OriginatingCase_Lead";
@@ -1256,6 +1259,15 @@ namespace Plugins.Models
 				{
 					return default(string);
 				}
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_setreportedon")]
+		public System.Nullable<System.DateTime> cm_SetReportedOn
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("cm_setreportedon");
 			}
 		}
 		
@@ -3680,6 +3692,24 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// 1:N cm_msfp_surveyinvite_ParentCase_incident
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_msfp_surveyinvite_ParentCase_incident")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.msfp_surveyinvite> cm_msfp_surveyinvite_ParentCase_incident
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.msfp_surveyinvite>("cm_msfp_surveyinvite_ParentCase_incident", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_msfp_surveyinvite_ParentCase_incident");
+				this.SetRelatedEntities<Plugins.Models.msfp_surveyinvite>("cm_msfp_surveyinvite_ParentCase_incident", null, value);
+				this.OnPropertyChanged("cm_msfp_surveyinvite_ParentCase_incident");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N incident_connections1
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("incident_connections1")]
@@ -3748,6 +3778,24 @@ namespace Plugins.Models
 				this.OnPropertyChanging("Referencedincident_master_incident");
 				this.SetRelatedEntities<Plugins.Models.Incident>("incident_master_incident", Microsoft.Xrm.Sdk.EntityRole.Referenced, value);
 				this.OnPropertyChanged("Referencedincident_master_incident");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N incident_msfp_surveyinvites
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("incident_msfp_surveyinvites")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.msfp_surveyinvite> incident_msfp_surveyinvites
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.msfp_surveyinvite>("incident_msfp_surveyinvites", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("incident_msfp_surveyinvites");
+				this.SetRelatedEntities<Plugins.Models.msfp_surveyinvite>("incident_msfp_surveyinvites", null, value);
+				this.OnPropertyChanged("incident_msfp_surveyinvites");
 			}
 		}
 		

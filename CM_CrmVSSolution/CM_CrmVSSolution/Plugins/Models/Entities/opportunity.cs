@@ -407,6 +407,7 @@ namespace Plugins.Models
 			public const string lead_qualifying_opportunity = "lead_qualifying_opportunity";
 			public const string opportunity_connections1 = "opportunity_connections1";
 			public const string opportunity_connections2 = "opportunity_connections2";
+			public const string opportunity_msfp_surveyinvites = "opportunity_msfp_surveyinvites";
 			public const string Opportunity_OpportunityClose = "Opportunity_OpportunityClose";
 			public const string opportunity_OpportunityCloses = "opportunity_OpportunityCloses";
 			public const string opportunity_sales_orders = "opportunity_sales_orders";
@@ -3911,6 +3912,24 @@ namespace Plugins.Models
 				this.OnPropertyChanging("opportunity_connections2");
 				this.SetRelatedEntities<Plugins.Models.Connection>("opportunity_connections2", null, value);
 				this.OnPropertyChanged("opportunity_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N opportunity_msfp_surveyinvites
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("opportunity_msfp_surveyinvites")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.msfp_surveyinvite> opportunity_msfp_surveyinvites
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.msfp_surveyinvite>("opportunity_msfp_surveyinvites", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("opportunity_msfp_surveyinvites");
+				this.SetRelatedEntities<Plugins.Models.msfp_surveyinvite>("opportunity_msfp_surveyinvites", null, value);
+				this.OnPropertyChanged("opportunity_msfp_surveyinvites");
 			}
 		}
 		

@@ -311,6 +311,7 @@ namespace Plugins.Models
 			public const string WillCallName = "willcallname";
 			public const string salesorder_connections1 = "salesorder_connections1";
 			public const string salesorder_connections2 = "salesorder_connections2";
+			public const string salesorder_msfp_surveyinvites = "salesorder_msfp_surveyinvites";
 			public const string contactorders_association = "contactorders_association";
 			public const string opportunity_sales_orders = "opportunity_sales_orders";
 			public const string order_customer_accounts = "order_customer_accounts";
@@ -2626,6 +2627,24 @@ namespace Plugins.Models
 				this.OnPropertyChanging("salesorder_connections2");
 				this.SetRelatedEntities<Plugins.Models.Connection>("salesorder_connections2", null, value);
 				this.OnPropertyChanged("salesorder_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N salesorder_msfp_surveyinvites
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("salesorder_msfp_surveyinvites")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.msfp_surveyinvite> salesorder_msfp_surveyinvites
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.msfp_surveyinvite>("salesorder_msfp_surveyinvites", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("salesorder_msfp_surveyinvites");
+				this.SetRelatedEntities<Plugins.Models.msfp_surveyinvite>("salesorder_msfp_surveyinvites", null, value);
+				this.OnPropertyChanged("salesorder_msfp_surveyinvites");
 			}
 		}
 		
