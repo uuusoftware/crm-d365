@@ -79,8 +79,23 @@ namespace Plugins {
                         case "cm_LeadClosureChecklistMaster":
                         return svcContext.cm_LeadClosureChecklistMasterSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
+                        case "cm_incident_team":
+                        return svcContext.cm_Incident_TeamSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+
+                        case "cm_checklistmaster":
+                        return svcContext.cm_ChecklistMasterSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+
+                        case "msfp_survey":
+                        return svcContext.msfp_surveySet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+
+                        case "msfp_project":
+                        return svcContext.msfp_projectSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+
+                        case "msfp_customervoiceprocessor":
+                        return svcContext.msfp_customervoiceprocessorSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+
                         default:
-                        throw new ArgumentException($"Unsupported entity type: {typeof(T).Name}");
+                        throw new ArgumentException($"GetRecordById: Unsupported entity type: {typeof(T).Name}.\nPlease add all entities from the modelbuilder.");
                     }
                 }
             } catch (Exception ex) {
