@@ -38,24 +38,38 @@ namespace Plugins {
             tracingService.Trace($"incidentRecord: {incidentRecord}");
             tracingService.Trace($"incidentRecord.StateCode : {incidentRecord.StateCode}");
 
-            if (incidentRecord.StateCode != incident_statecode.Resolved) {
+            // Description is being used as a flag to signify the incident has being processed and should not trigger the plugin again
+            if (incidentRecord.StateCode != incident_statecode.Resolved || incidentRecord.Description != null) {
                 context.SharedVariables["mustSkip"] = true;
                 return;
             }
             try {
-                List<cm_CaseChecklistResponse> responses = commonBusinessLogic.GetResponsesByIncident(incidentRecord);
-                //tracingService.Trace($"incidentRecord: {responses.Join(',', responses.Select(res =>  res.statuscodeName ))}");
+                var incidentList = new List<Incident>();
 
-                if (responses.Any()) {
-                    responses.ForEach(response => {
-                        if (response.statuscode != cm_casechecklistresponse_statuscode.Complete) {
-                            throw new InvalidPluginExecutionException("Please answer all questions before proceeding.");
-                        }
-                    });
+                if (incidentRecord.NumberOfChildIncidents != null && incidentRecord.NumberOfChildIncidents > 0) {
+                    incidentList.AddRange(commonBusinessLogic.GetChildrenIncidents(incidentRecord));
                 } else {
-                    throw new InvalidPluginExecutionException("No questions found. Please move to Research Stage and complete the checklist before resolving the case.");
+                    incidentList.Add(incidentRecord);
                 }
-                // do nothing
+
+                // Iterate through all incidents > get invites > filter invites > 
+                foreach (var incident in incidentList) {
+                    List<msfp_surveyinvite> inviteList = commonBusinessLogic.GetSurveyInviteByIncident(incident);
+
+                    IEnumerable<string> titleListWithOpenStatus = inviteList
+                        .Where(invite => invite.StateCode == msfp_surveyinvite_statecode.Open).ToList()
+                        .Select(invite => invite.RegardingObjectIdName);
+
+                    if (titleListWithOpenStatus.Any()) {
+                        string incidentTitles = string.Join(", ", titleListWithOpenStatus);
+                        throw new InvalidPluginExecutionException($"Please answer the Surveys in before closing the Case.\n Incidents with open surveys: {incidentTitles}");
+                    }
+                }
+
+                if (incidentList.Count > 1) {
+                    commonBusinessLogic.ResolveChildCases(incidentList);
+                }
+                // Do nothing, all validation steps passed
             } catch (Exception ex) {
                 string detailedError = $"Unexpected error while processing {context.PrimaryEntityName} record with ID " +
                     $"{context.PrimaryEntityId}: {ex.Message}\nStack Trace: {ex.StackTrace}";
