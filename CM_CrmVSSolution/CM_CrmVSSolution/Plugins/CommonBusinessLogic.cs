@@ -321,6 +321,36 @@ namespace Plugins {
                 throw new InvalidPluginExecutionException(ex.Message, ex);
             }
         }
+        internal cm_ChecklistMaster GetChecklistmaster(Guid caseSubId, Guid caseCatId, Guid program) {
+            try {
+                using (var svcContext = new OrgContext(_service)) {
+                    return svcContext.cm_ChecklistMasterSet.Where(
+                        record => record.cm_PopulateSurveyInvite == true
+                            && record.cm_CaseCategory != null
+                            && record.cm_CaseCategory.Id == caseCatId
+                            && record.cm_CaseSubCategory != null
+                            && record.cm_CaseSubCategory.Id == caseSubId
+                            && record.cm_Program != null
+                            && record.cm_Program.Id == program
+                            && record.statuscode == cm_checklistmaster_statuscode.Active).FirstOrDefault();
+                }
+            } catch (Exception ex) {
+                _tracingService.Trace($"GetCaseChecklistCatalogByIncident Error: {ex.Message}");
+                throw new InvalidPluginExecutionException(ex.Message, ex);
+            }
+        }
+
+        internal msfp_project GetDefaultMSFPProject() {
+            try {
+                using (var svcContext = new OrgContext(_service)) {
+                    return svcContext.msfp_projectSet.Where(
+                        record => record.statuscode == msfp_project_statuscode.Active).FirstOrDefault();
+                }
+            } catch (Exception ex) {
+                _tracingService.Trace($"GetCaseChecklistCatalogByIncident Error: {ex.Message}");
+                throw new InvalidPluginExecutionException(ex.Message, ex);
+            }
+        }
 
         internal void CreateQuestionResponses(List<cm_QuestionCatalog> questions, Opportunity opportunity) {
             List<Guid> responseGuids = new List<Guid>();
@@ -469,7 +499,9 @@ namespace Plugins {
         }
 
 
-        internal bool AssociateIncidentToTeams(Incident incidentRecord) {
+        internal Team AssociateIncidentToTeams(Incident incidentRecord) {
+            Team associatedTeam;
+
             try {
                 Account incidentCustomer = GetRecordById<Account>(incidentRecord.CustomerId.Id);
 
@@ -483,24 +515,40 @@ namespace Plugins {
 
                 foreach (var caseProgram in incidentRecord.cm_CaseProgram) {
                     // incidentCustomer is expected to have only one role.
-                    _tracingService.Trace($"Associating Incident{incidentRecord} to caseProgram: {caseProgram}");
+                    _tracingService.Trace($"Associating Incident {incidentRecord.Id} to caseProgram: {caseProgram}");
                     teamList.AddRange(GetTeamsByCaseProgramLeadType(caseProgram, incidentCustomer.cm_Role.FirstOrDefault()));
                 }
 
-                if (teamList.Any()) {
-                    _service.Associate(Incident.EntityLogicalName,
+                if (!teamList.Any()) {
+                    throw new InvalidPluginExecutionException("No Teams were found. Please check if the 'Customer role' and 'Case program' match to a Team");
+                }
+
+                // Disassociate the records before associating to make sure it doesn't cause a "Cannot insert duplicate key" error.
+                _tracingService.Trace($"incidentRecordincidentRecord.cm_ServiceandSupportTeam: {incidentRecord.cm_ServiceandSupportTeam}");
+
+                if (incidentRecord.cm_ServiceandSupportTeam != null) {
+                    _tracingService.Trace($"Disassociate");
+                    _service.Disassociate(Incident.EntityLogicalName,
                         incidentRecord.Id,
                         new Relationship(cm_Incident_Team.Fields.cm_Incident_Team_Team),
                         CreateEntityReferenceCollection(teamList));
-                } else {
-                    throw new InvalidPluginExecutionException("No Teams were found. Please check if the 'Customer role' and 'Case program' match to a Team");
-                }
+                };
+
+                _tracingService.Trace($"Associate");
+
+                _service.Associate(Incident.EntityLogicalName,
+                    incidentRecord.Id,
+                    new Relationship(cm_Incident_Team.Fields.cm_Incident_Team_Team),
+                    CreateEntityReferenceCollection(teamList));
+
+                _tracingService.Trace($"Complete");
+                associatedTeam = teamList.FirstOrDefault();
             } catch (Exception ex) {
                 _tracingService.Trace($"AssociateIncidentToTeams Error: {ex.Message}");
                 throw;
             }
 
-            return true;
+            return associatedTeam;
         }
 
         private EntityReferenceCollection CreateEntityReferenceCollection(IEnumerable<Entity> recordList) {
@@ -513,9 +561,10 @@ namespace Plugins {
             return referenceCollection;
         }
 
-        internal List<Guid> CreateChildCase(Incident incidentRecord) {
-            List<Guid> createdCases = new List<Guid>();
+        internal List<Incident> CreateChildCaseOrDefault(Incident incidentRecord) {
+            var caseList = new List<Incident>();
             if (incidentRecord.cm_CaseProgram.Count() > 1) {
+                _tracingService.Trace("Creating child cases");
                 try {
                     foreach (var caseProgram in incidentRecord.cm_CaseProgram) {
                         Account incidentCustomer = GetRecordById<Account>(incidentRecord.CustomerId.Id) ??
@@ -525,6 +574,7 @@ namespace Plugins {
 
                         _tracingService.Trace($"Processing child case from accountid: {incidentCustomer.Id} and teamid: {team.Id}");
                         var caseRecord = new Incident() {
+                            Id = Guid.NewGuid(),
                             cm_CasePriority = incidentRecord.cm_CasePriority,
                             cm_CaseProgram = new List<cm_caseprogram> { caseProgram },
                             cm_CauseCategory = incidentRecord.cm_CauseCategory,
@@ -549,20 +599,65 @@ namespace Plugins {
                             caseRecord.cm_To = incidentRecord.cm_To;
                             caseRecord.cm_From = incidentRecord.cm_From;
                         }
-                        createdCases.Add(_service.Create(caseRecord));
+                        _service.Create(caseRecord);
+                        caseList.Add(caseRecord);
+
+                        AssociateIncidentToTeams(caseRecord);
                     }
                 } catch (Exception ex) {
-                    _tracingService.Trace($"CreateChildCase Error: {ex.Message}");
+                    _tracingService.Trace($"CreateChildCaseOrDefault Error: {ex.Message}");
                     throw;
                 }
             } else {
-                _tracingService.Trace("Only one case programs found. No child cases were created");
-            }
-            if (createdCases.Count() > 0) {
-                _tracingService.Trace($"Cases created: {string.Join(",", createdCases)}");
+                _tracingService.Trace("Only one case program found. No child cases were created");
             }
 
-            return createdCases;
+            // populate Incident.cm_Program even if there's only one child 
+
+            if (caseList.Count() > 0) {
+                _tracingService.Trace(string.Join(", ", caseList.Select(c => $"Cases created: {c.Id}")));
+            } else {
+                caseList.Add(incidentRecord);
+            }
+
+            return caseList;
+        }
+
+        internal Guid CreateInvite(msfp_customervoiceprocessor invite) {
+            try {
+                return _service.Create(invite);
+            } catch (Exception ex) {
+                _tracingService.Trace($"CreateInvite Error: {ex.Message}");
+                throw;
+            }
+        }
+
+        internal List<Incident> GetChildrenIncidents(Incident parentIncident) {
+            using (var svcContext = new OrgContext(_service)) {
+                return svcContext.IncidentSet
+                .Where(incident => incident.ParentCaseId.Id == parentIncident.Id)
+                .ToList();
+            }
+        }
+
+        internal List<msfp_surveyinvite> GetSurveyInviteByIncident(Incident incident) {
+            using (var svcContext = new OrgContext(_service)) {
+                return svcContext.msfp_surveyinviteSet
+                .Where(invite => invite.RegardingObjectId.Id == incident.Id)
+                .ToList();
+            }
+        }
+
+        internal void ResolveChildCases(List<Incident> incidentList) {
+            foreach (var incident in incidentList) {
+                var incidentToUpdate = new Incident() {
+                    Id = incident.Id,
+                    StateCode = incident_statecode.Resolved,
+                    // Description is being used as a flag to avoid recursion
+                    Description = incident_statecode.Resolved.ToString(),
+                };
+                _service.Update(incidentToUpdate);
+            }
         }
     }
 }
