@@ -53,23 +53,36 @@ CM.Case = (function () {
                 await Helpers.showProgressPromise("Loading Responses...");
                 const caseId = formContext.data.entity.getId().replace(/[{}]/g, "").toLowerCase();
 
-                const caseRecord = await Xrm.WebApi.retrieveMultipleRecords(Constants.CaseEntityName, `?$select=_cm_causecategory_value,_cm_incidentcategory_value&$filter=incidentid eq ${caseId}`);
+                const caseRecord = await Xrm.WebApi.retrieveMultipleRecords(
+                    Constants.CaseEntityName, `?$select=_cm_causecategory_value,_cm_incidentcategory_value&$filter=incidentid eq ${caseId}`);
 
                 const subCatId = caseRecord.entities.at(0)._cm_causecategory_value;
                 const caseCatId = caseRecord.entities.at(0)._cm_incidentcategory_value;
 
+                if (!subCatId || !caseCatId){
+                    formContext.data.process.setActiveStage(identifyId);
+                    Helpers.openStringifiedErrorDialog("An error occurred ", 
+                        "Please add Case Category and Sub Category");
+                        return;
+                }
+            /*
+                  
+                // Check if there are cm_casechecklistcatalog records available for case or sub category
                 const isRespAvailable = await Helpers.areAnyRespCatAvailable(subCatId,caseCatId);
+                // If none are available it returns the bpf stage, and set cm_generatechecklist to false so it doesn't try again
                 if (!isRespAvailable){
                     formContext.data.process.setActiveStage(identifyId);
-
+                    
                     const caseRecord = { cm_generatechecklist: false };
                     _ = await Xrm.WebApi.updateRecord("incident", caseId, caseRecord);
-
-                    Helpers.openStringifiedErrorDialog("An error occurred ", "No checklist available for this category. Please choose another Incident Category or Cause Category");
+                    
+                    Helpers.openStringifiedErrorDialog("An error occurred ", 
+                    "No checklist available for this category. Please choose another Incident Category or Cause Category");
                     return;
                 } else {
                     Helpers.checkAndMoveToChecklistTab(formContext, caseId);
                 }
+            */
 
             } catch (err) {
                 Helpers.openStringifiedErrorDialog("An error occurred ", err);
