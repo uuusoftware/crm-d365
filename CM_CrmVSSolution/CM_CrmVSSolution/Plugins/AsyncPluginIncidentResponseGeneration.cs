@@ -28,49 +28,85 @@ namespace Plugins {
             CommonBusinessLogic commonBusinessLogic = new CommonBusinessLogic(service, tracingService);
 
             try {
+                tracingService.Trace("Plugin execution started for Incident update.");
+
                 if (context.PrimaryEntityName != Incident.EntityLogicalName || context.MessageName != "Update") {
+                    tracingService.Trace($"Invalid context: Expected entity {Incident.EntityLogicalName} and message 'Update'. " +
+                                         $"Got entity '{context.PrimaryEntityName}' and message '{context.MessageName}'.");
                     throw new InvalidPluginExecutionException("Invalid plugin execution: Entity must be Incident and message must be Update");
                 }
 
-                Incident incidentRecord = commonBusinessLogic
-                    .GetRecordById<Incident>(context.PrimaryEntityId) ??
+
+                tracingService.Trace($"Retrieving Incident record with ID: {context.PrimaryEntityId}");
+                Incident incidentRecord = commonBusinessLogic.GetRecordById<Incident>(context.PrimaryEntityId) ??
                     throw new InvalidPluginExecutionException("Invalid plugin execution: Incident/Case not found");
 
-                if (incidentRecord?.cm_GenerateChecklist.Value == null || incidentRecord.cm_GenerateChecklist.Value == false) {
+                if (incidentRecord?.cm_GenerateChecklist.Value == null || incidentRecord.cm_GenerateChecklist.Value == false) return;
+
+                tracingService.Trace("Associating Incident to teams based on caseProgram and leadType.");
+                Team associatedTeam = commonBusinessLogic.AssociateIncidentToTeams(incidentRecord);
+
+                if (incidentRecord.cm_CauseCategory?.Id == null ||
+                    incidentRecord.cm_IncidentCategory?.Id == null ||
+                    associatedTeam?.Id == null) {
+                    tracingService.Trace("Required fields are missing: " +
+                                         $"CauseCategory: {(incidentRecord.cm_CauseCategory?.Id.ToString() ?? "null")}, " +
+                                         $"IncidentCategory: {(incidentRecord.cm_IncidentCategory?.Id.ToString() ?? "null")}, " +
+                                         $"Program: {(associatedTeam.Id.ToString() ?? "null")}. Exiting plugin.");
                     return;
                 }
 
-                // associate teams maching caseProgram and leadType
-                commonBusinessLogic.AssociateIncidentToTeams(incidentRecord);
+                tracingService.Trace("Creating child case(s) if applicable.");
+                List<Incident> incidentList = commonBusinessLogic.CreateChildCaseOrDefault(incidentRecord);
+                if (incidentList == null || !incidentList.Any()) {
+                    tracingService.Trace("No child incidents returned from CreateChildCaseOrDefault. Exiting plugin.");
+                    return;
+                }
 
-                // Create a child case for each caseProgram if > 1
-                var _ = commonBusinessLogic.CreateChildCase(incidentRecord);
+                foreach (var incident in incidentList) {
+                    tracingService.Trace($"Processing incident with ID: {incident.Id}");
 
-                List<Guid> responseList = new List<Guid>();
+                    if (incident.cm_IncidentCategory != null && incident.cm_CauseCategory != null) {
+                        tracingService.Trace("Retrieving checklist master based on IncidentCategory, CauseCategory, and Program.");
+                        cm_ChecklistMaster checklistMasterRecord = commonBusinessLogic.GetChecklistmaster(
+                            incident.cm_CauseCategory.Id,
+                            incident.cm_IncidentCategory.Id,
+                            associatedTeam.Id);
 
-                if (incidentRecord.cm_CauseCategory != null) {
-                    List<cm_CaseChecklistCatalog> questionsList = commonBusinessLogic.GetCaseChecklistCatalogCaseSub(incidentRecord.cm_CauseCategory.Id);
-                    if (questionsList.Any()) {
-                        tracingService.Trace($"cm_CauseCategory Questions List {string.Join(" ,", questionsList.Select(q => q.Id))}");
-                        responseList.AddRange(commonBusinessLogic.CreateCasechecklistResponse(questionsList, incidentRecord));
-                    }
-                    if (responseList.Count > 0) {
-                        return;
+                        if (checklistMasterRecord == null || checklistMasterRecord.cm_Survey == null) {
+                            tracingService.Trace("ChecklistMaster or Survey is null. Skipping incident.");
+                            continue;
+                        }
+
+                        tracingService.Trace($"Retrieving survey with ID: {checklistMasterRecord.cm_Survey.Id}");
+                        msfp_survey surveyRecord = commonBusinessLogic.GetRecordById<msfp_survey>(checklistMasterRecord.cm_Survey.Id);
+
+                        tracingService.Trace($"Retrieving primary contact with ID: {incident.PrimaryContactId?.Id}");
+                        Contact contactRecord = commonBusinessLogic.GetRecordById<Contact>(incident.PrimaryContactId.Id);
+
+                        tracingService.Trace("Retrieving default MSFP project.");
+                        msfp_project project = commonBusinessLogic.GetDefaultMSFPProject();
+
+                        tracingService.Trace("Preparing Customer Voice invite.");
+                        msfp_customervoiceprocessor invite = new msfp_customervoiceprocessor() {
+                            msfp_To = contactRecord.EMailAddress1,
+                            msfp_projectid = project.Id.ToString(),
+                            msfp_SurveyId = surveyRecord.msfp_sourcesurveyidentifier,
+                            msfp_EmailTemplateID = "00",
+                            msfp_firstname = contactRecord.FirstName,
+                            msfp_lastname = contactRecord.LastName,
+                            msfp_surveyvariablesjson = "{\"locale\":\"en-US\"}",
+                            msfp_regarding = Incident.EntityLogicalName.ToString() + "," + incident.Id.ToString(),
+                        };
+
+                        tracingService.Trace("Customer Voice invite prepared successfully.");
+                        tracingService.Trace($"Invite created with Id: {commonBusinessLogic.CreateInvite(invite)}.");
+                    } else {
+                        tracingService.Trace("Incident missing IncidentCategory or CauseCategory. Skipping.");
                     }
                 }
 
-                if (incidentRecord.cm_IncidentCategory != null) {
-                    List<cm_CaseChecklistCatalog> questionsList = commonBusinessLogic.GetCaseChecklistCatalogCaseCat(incidentRecord.cm_IncidentCategory.Id);
-                    if (questionsList.Any()) {
-                        tracingService.Trace($"cm_IncidentCategory Questions List {string.Join(" ,", questionsList.Select(q => q.Id))}");
-                        responseList.AddRange(commonBusinessLogic.CreateCasechecklistResponse(questionsList, incidentRecord));
-                    }
-                    if (responseList.Count > 0) {
-                        return;
-                    }
-                }
-
-                throw new InvalidPluginExecutionException("Invalid plugin execution: No Case Category or Sub Category has been found");
+                tracingService.Trace("Plugin execution completed successfully.");
             } catch (AggregateException aggregateException) {
                 var exceptions = aggregateException.InnerExceptions;
                 foreach (var inner in aggregateException.InnerExceptions) {
