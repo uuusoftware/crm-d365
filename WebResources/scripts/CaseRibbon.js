@@ -41,8 +41,10 @@ CM.CaseRibbon = (function () {
             try {
                 await Helpers.showProgressPromise("Resolving Case...");
                 const incidentId = primaryControl.data.entity.getId().replace(/[{}]/g, "").toLowerCase();
-
                 await formContext.data.save();
+                if (!(await Helpers.confirmResolveCase()) || !(await Helpers.validateRequest(incidentId))) {
+                    return;
+                }
 
                 isSuccess = await Helpers.executeCloseIncidentRequest(incidentId);
 
@@ -50,14 +52,57 @@ CM.CaseRibbon = (function () {
                     primaryControl.data.refresh(true);
                 }, Constants.SetTimeoutInterval.SUCCESS);
             } catch (err) {
-                Helpers.openStringifiedErrorDialog("An error occurred ", err);
+                Helpers.openStringifiedAlertDialog("",err);
                 console.error({ "Error": `An error occurred: ${err}` });
-                if(err?.message?.raw) console.error(err?.message?.raw);
+                if (err?.message?.raw) console.error(err?.message?.raw);
                 throw err;
 
             } finally {
                 Xrm.Utility.closeProgressIndicator()
                 Helpers.notifyUser(formContext, isSuccess ? "Case resolved." : "Case not resolved");
+            }
+        },
+        validateRequest: async (caseId) => {
+            try {
+                let incidentList = new Array();
+                let surveyList = new Array();
+
+                const incidentRecord = await Xrm.WebApi
+                    .retrieveMultipleRecords("incident", `?$select=numberofchildincidents,statecode&$filter=incidentid eq ${caseId}`)
+
+                if (incidentRecord?.entities
+                    && incidentRecord.entities.at(0).numberofchildincidents !== null
+                    && incidentRecord.entities.at(0).numberofchildincidents > 0) {
+
+                    const childIncidentRecords = await Xrm.WebApi
+                        .retrieveMultipleRecords("incident", `?$select=statecode&$filter=_parentcaseid_value eq ${caseId}`);
+
+                    incidentList.push(...childIncidentRecords.entities);
+
+                } else {
+                    incidentList.push(incidentRecord?.entities.at(0));
+                }
+
+                for (const incident of incidentList) {
+                    const inviteRecords = await Xrm.WebApi.retrieveMultipleRecords(
+                        "msfp_surveyinvite",
+                        `?$select=statecode&$filter=_regardingobjectid_value eq ${incident.incidentid}`
+                    );
+                    surveyList.push(...inviteRecords.entities);
+                }
+
+                console.log(surveyList);
+                surveyList.forEach(survey => {
+                    if (survey.statecode === 0) {
+                        throw new Error("Please complete all Surveys before proceeding");
+                    }
+                })
+
+                return true;
+
+            } catch (err) {
+                console.error({ "Error": `${err}` });
+                throw err;
             }
         },
         executeCloseIncidentRequest: async (caseId) => {
@@ -69,12 +114,12 @@ CM.CaseRibbon = (function () {
                     timespent: 0,
                     description: ""
                 };
-        
+
                 const { id } = await Xrm.WebApi.online.createRecord("incidentresolution", incidentResolution);
-        
+
                 // Enrich the same object with the required activityid
                 incidentResolution.activityid = id;
-        
+
                 const closeIncidentRequest = {
                     IncidentResolution: incidentResolution,
                     Status: 5,
@@ -95,24 +140,34 @@ CM.CaseRibbon = (function () {
                             operationName: "CloseIncident"
                         };
                     }
-                };        
+                };
                 const response = await Xrm.WebApi.online.execute(closeIncidentRequest);
-        
+
                 if (!response.ok) {
                     throw new Error("Failed to close the incident.");
-                }        
+                }
                 return true;
-        
+
             } catch (error) {
-                throw {error: error}
+                throw { error: error }
             }
         },
         //Error Handler
         openStringifiedErrorDialog: (errorHeader = "Please contact your administrator.", error = "Unexpected Error") => {
-            Xrm.Navigation.openErrorDialog({
+            Xrm.Navigation.openAlertDialog({
                 message: `${errorHeader} \nError: ${JSON.stringify((error?.error?.message || error?.message || error))}`,
                 details: JSON.stringify(error, Object.getOwnPropertyNames(error))
             });
+        },
+        openStringifiedAlertDialog: (title = "Please contact your administrator.", text = "Unexpected Error") => {
+            const alertStrings = { 
+                confirmButtonLabel: "Ok", 
+                text: `${JSON.stringify((text?.error?.message || text?.message || text))}`, 
+                title: title 
+            };
+            const alertOptions = { height: 120, width: 260 };
+
+            Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
         },
         notifyUser: (formContext, message) => {
             const formNotificationKey = `${formContext.data.entity.getEntityName()}${Math.random().toString()}`
@@ -131,7 +186,25 @@ CM.CaseRibbon = (function () {
                 setTimeout(resolve, 100);
             });
         },
+        confirmResolveCase: async () => {
+            const confirmStrings = {
+                text: "Are you sure you want to resolve this case or incident? This action cannot be undone.",
+                title: "Confirm Resolution"
+            };
 
+            const confirmOptions = {
+                height: 200,
+                width: 450
+            };
+
+            try {
+                const result = await Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions);
+                return result.confirmed;
+            } catch (error) {
+                console.error("Error displaying confirmation dialog:", error.message);
+                throw { error: error }
+            }
+        }
     };
     return {
         resolve: Helpers.resolve,
