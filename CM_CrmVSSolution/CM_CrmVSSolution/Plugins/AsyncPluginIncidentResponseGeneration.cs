@@ -41,6 +41,8 @@ namespace Plugins {
                 Incident incidentRecord = commonBusinessLogic.GetRecordById<Incident>(context.PrimaryEntityId) ??
                     throw new InvalidPluginExecutionException("Invalid plugin execution: Incident/Case not found");
 
+                if (incidentRecord?.ParentCaseId != null) return;
+
                 if (incidentRecord?.cm_GenerateChecklist.Value == null || incidentRecord.cm_GenerateChecklist.Value == false) return;
 
                 tracingService.Trace("Associating Incident to teams based on caseProgram and leadType.");
