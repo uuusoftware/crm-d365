@@ -133,6 +133,7 @@ namespace Plugins.Models
 			public const string VersionNumber = "versionnumber";
 			public const string YomiName = "yominame";
 			public const string cm_checklistmaster_Program_team = "cm_checklistmaster_Program_team";
+			public const string cm_connection_Program_team = "cm_connection_Program_team";
 			public const string cm_incident_Program_team = "cm_incident_Program_team";
 			public const string cm_incident_ServiceandSupportTeam_team = "cm_incident_ServiceandSupportTeam_team";
 			public const string cm_leadclosurechecklistmaster_Program_team = "cm_leadclosurechecklistmaster_Program_team";
@@ -168,6 +169,7 @@ namespace Plugins.Models
 			public const string cm_Incident_Team_Team = "cm_Incident_Team_Team";
 			public const string cm_Team_cm_Province_cm_Province = "cm_Team_cm_Province_cm_Province";
 			public const string opportunity_Teams = "opportunity_Teams";
+			public const string processstage_teams = "processstage_teams";
 		}
 		
 		/// <summary>
@@ -1212,6 +1214,24 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// 1:N cm_connection_Program_team
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_connection_Program_team")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.Connection> cm_connection_Program_team
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.Connection>("cm_connection_Program_team", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_connection_Program_team");
+				this.SetRelatedEntities<Plugins.Models.Connection>("cm_connection_Program_team", null, value);
+				this.OnPropertyChanged("cm_connection_Program_team");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N cm_incident_Program_team
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_incident_Program_team")]
@@ -1840,6 +1860,25 @@ namespace Plugins.Models
 				this.OnPropertyChanging("opportunity_Teams");
 				this.SetRelatedEntity<Plugins.Models.Opportunity>("opportunity_Teams", null, value);
 				this.OnPropertyChanged("opportunity_Teams");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 processstage_teams
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("stageid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("processstage_teams")]
+		public Plugins.Models.ProcessStage processstage_teams
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.ProcessStage>("processstage_teams", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("processstage_teams");
+				this.SetRelatedEntity<Plugins.Models.ProcessStage>("processstage_teams", null, value);
+				this.OnPropertyChanged("processstage_teams");
 			}
 		}
 	}

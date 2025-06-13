@@ -97,6 +97,17 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// Gets a binding to the set of all <see cref="Plugins.Models.cm_cmcaseresolution"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<Plugins.Models.cm_cmcaseresolution> cm_cmcaseresolutionSet
+		{
+			get
+			{
+				return this.CreateQuery<Plugins.Models.cm_cmcaseresolution>();
+			}
+		}
+		
+		/// <summary>
 		/// Gets a binding to the set of all <see cref="Plugins.Models.cm_Incident_Team"/> entities.
 		/// </summary>
 		public System.Linq.IQueryable<Plugins.Models.cm_Incident_Team> cm_Incident_TeamSet
@@ -291,6 +302,17 @@ namespace Plugins.Models
 			get
 			{
 				return this.CreateQuery<Plugins.Models.OpportunityClose>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="Plugins.Models.ProcessStage"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<Plugins.Models.ProcessStage> ProcessStageSet
+		{
+			get
+			{
+				return this.CreateQuery<Plugins.Models.ProcessStage>();
 			}
 		}
 		

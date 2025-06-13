@@ -316,6 +316,7 @@ namespace Plugins.Models
 			public const string opportunity_sales_orders = "opportunity_sales_orders";
 			public const string order_customer_accounts = "order_customer_accounts";
 			public const string order_customer_contacts = "order_customer_contacts";
+			public const string processstage_salesorders = "processstage_salesorders";
 			public const string team_orders = "team_orders";
 		}
 		
@@ -2720,6 +2721,25 @@ namespace Plugins.Models
 				this.OnPropertyChanging("order_customer_contacts");
 				this.SetRelatedEntity<Plugins.Models.Contact>("order_customer_contacts", null, value);
 				this.OnPropertyChanged("order_customer_contacts");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 processstage_salesorders
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("stageid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("processstage_salesorders")]
+		public Plugins.Models.ProcessStage processstage_salesorders
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.ProcessStage>("processstage_salesorders", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("processstage_salesorders");
+				this.SetRelatedEntity<Plugins.Models.ProcessStage>("processstage_salesorders", null, value);
+				this.OnPropertyChanged("processstage_salesorders");
 			}
 		}
 		

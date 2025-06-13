@@ -418,6 +418,7 @@ namespace Plugins.Models
 			public const string opportunity_originating_lead = "opportunity_originating_lead";
 			public const string opportunity_parent_account = "opportunity_parent_account";
 			public const string opportunity_parent_contact = "opportunity_parent_contact";
+			public const string processstage_opportunity = "processstage_opportunity";
 			public const string team_opportunities = "team_opportunities";
 		}
 		
@@ -4116,6 +4117,25 @@ namespace Plugins.Models
 				this.OnPropertyChanging("opportunity_parent_contact");
 				this.SetRelatedEntity<Plugins.Models.Contact>("opportunity_parent_contact", null, value);
 				this.OnPropertyChanged("opportunity_parent_contact");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 processstage_opportunity
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("stageid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("processstage_opportunity")]
+		public Plugins.Models.ProcessStage processstage_opportunity
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.ProcessStage>("processstage_opportunity", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("processstage_opportunity");
+				this.SetRelatedEntity<Plugins.Models.ProcessStage>("processstage_opportunity", null, value);
+				this.OnPropertyChanged("processstage_opportunity");
 			}
 		}
 		

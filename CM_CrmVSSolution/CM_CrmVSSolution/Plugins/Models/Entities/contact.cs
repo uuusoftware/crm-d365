@@ -826,6 +826,7 @@ namespace Plugins.Models
 			public const string contact_originating_lead = "contact_originating_lead";
 			public const string Referencingcontact_parent_contact = "contact_parent_contact";
 			public const string msa_contact_managingpartner = "msa_contact_managingpartner";
+			public const string processstage_contact = "processstage_contact";
 			public const string team_contacts = "team_contacts";
 		}
 		
@@ -6901,6 +6902,25 @@ namespace Plugins.Models
 				this.OnPropertyChanging("msa_contact_managingpartner");
 				this.SetRelatedEntity<Plugins.Models.Account>("msa_contact_managingpartner", null, value);
 				this.OnPropertyChanged("msa_contact_managingpartner");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 processstage_contact
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("stageid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("processstage_contact")]
+		public Plugins.Models.ProcessStage processstage_contact
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.ProcessStage>("processstage_contact", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("processstage_contact");
+				this.SetRelatedEntity<Plugins.Models.ProcessStage>("processstage_contact", null, value);
+				this.OnPropertyChanged("processstage_contact");
 			}
 		}
 		

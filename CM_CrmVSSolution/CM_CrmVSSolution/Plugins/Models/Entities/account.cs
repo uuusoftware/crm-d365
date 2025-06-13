@@ -809,6 +809,7 @@ namespace Plugins.Models
 			public const string Referencingaccount_parent_account = "account_parent_account";
 			public const string account_primary_contact = "account_primary_contact";
 			public const string Referencingmsa_account_managingpartner = "msa_account_managingpartner";
+			public const string processstage_account = "processstage_account";
 			public const string team_accounts = "team_accounts";
 		}
 		
@@ -5528,6 +5529,25 @@ namespace Plugins.Models
 				this.OnPropertyChanging("Referencingmsa_account_managingpartner");
 				this.SetRelatedEntity<Plugins.Models.Account>("msa_account_managingpartner", Microsoft.Xrm.Sdk.EntityRole.Referencing, value);
 				this.OnPropertyChanged("Referencingmsa_account_managingpartner");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 processstage_account
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("stageid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("processstage_account")]
+		public Plugins.Models.ProcessStage processstage_account
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.ProcessStage>("processstage_account", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("processstage_account");
+				this.SetRelatedEntity<Plugins.Models.ProcessStage>("processstage_account", null, value);
+				this.OnPropertyChanged("processstage_account");
 			}
 		}
 		

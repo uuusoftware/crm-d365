@@ -603,6 +603,7 @@ namespace Plugins.Models
 			public const string lead_parent_contact = "lead_parent_contact";
 			public const string lead_qualifying_opportunity = "lead_qualifying_opportunity";
 			public const string OriginatingCase_Lead = "OriginatingCase_Lead";
+			public const string processstage_lead = "processstage_lead";
 		}
 		
 		/// <summary>
@@ -4981,6 +4982,25 @@ namespace Plugins.Models
 				this.OnPropertyChanging("OriginatingCase_Lead");
 				this.SetRelatedEntity<Plugins.Models.Incident>("OriginatingCase_Lead", null, value);
 				this.OnPropertyChanged("OriginatingCase_Lead");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 processstage_lead
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("stageid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("processstage_lead")]
+		public Plugins.Models.ProcessStage processstage_lead
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.ProcessStage>("processstage_lead", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("processstage_lead");
+				this.SetRelatedEntity<Plugins.Models.ProcessStage>("processstage_lead", null, value);
+				this.OnPropertyChanged("processstage_lead");
 			}
 		}
 	}

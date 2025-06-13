@@ -1,5 +1,5 @@
 pac modelbuilder build ^
-  --entitynamesfilter account;contact;salesorder;lead;opportunity;connection;team;cm_programassociation;cm_province;cm_questioncatalog;cm_questionresponse;cm_casechecklistcatalog;incident;cm_casechecklistresponse;cm_casecategory;cm_casesubcategory;cm_leadclosurechecklistmaster;cm_leadclosurechecklistcatalog;cm_leadclosurechecklistresponse;opportunityclose;cm_incident_team;cm_checklistmaster;msfp_surveyinvite;msfp_survey;msfp_project;msfp_customervoiceprocessor;  ^
+  --entitynamesfilter account;contact;salesorder;lead;opportunity;connection;team;cm_programassociation;cm_province;cm_questioncatalog;cm_questionresponse;cm_casechecklistcatalog;incident;cm_casechecklistresponse;cm_casecategory;cm_casesubcategory;cm_leadclosurechecklistmaster;cm_leadclosurechecklistcatalog;cm_leadclosurechecklistresponse;opportunityclose;cm_incident_team;cm_checklistmaster;msfp_surveyinvite;msfp_survey;msfp_project;msfp_customervoiceprocessor;cm_cmcaseresolution;processstage;  ^
   --generatesdkmessages ^
   --messagenamesfilter execute* ^
   --emitfieldsclasses ^

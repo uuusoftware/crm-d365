@@ -474,6 +474,7 @@ namespace Plugins.Models
 			public const string TraversedPath = "traversedpath";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
+			public const string bpf_incident_cm_cmcaseresolution = "bpf_incident_cm_cmcaseresolution";
 			public const string cm_casechecklistresponse_Case_incident = "cm_casechecklistresponse_Case_incident";
 			public const string cm_msfp_surveyinvite_ParentCase_incident = "cm_msfp_surveyinvite_ParentCase_incident";
 			public const string incident_connections1 = "incident_connections1";
@@ -496,6 +497,7 @@ namespace Plugins.Models
 			public const string Referencingincident_existingcase = "incident_existingcase";
 			public const string Referencingincident_master_incident = "incident_master_incident";
 			public const string Referencingincident_parent_incident = "incident_parent_incident";
+			public const string processstage_incident = "processstage_incident";
 			public const string team_incidents = "team_incidents";
 		}
 		
@@ -3674,6 +3676,24 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// 1:N bpf_incident_cm_cmcaseresolution
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("bpf_incident_cm_cmcaseresolution")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.cm_cmcaseresolution> bpf_incident_cm_cmcaseresolution
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.cm_cmcaseresolution>("bpf_incident_cm_cmcaseresolution", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("bpf_incident_cm_cmcaseresolution");
+				this.SetRelatedEntities<Plugins.Models.cm_cmcaseresolution>("bpf_incident_cm_cmcaseresolution", null, value);
+				this.OnPropertyChanged("bpf_incident_cm_cmcaseresolution");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N cm_casechecklistresponse_Case_incident
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_casechecklistresponse_Case_incident")]
@@ -4077,6 +4097,25 @@ namespace Plugins.Models
 				this.OnPropertyChanging("Referencingincident_parent_incident");
 				this.SetRelatedEntity<Plugins.Models.Incident>("incident_parent_incident", Microsoft.Xrm.Sdk.EntityRole.Referencing, value);
 				this.OnPropertyChanged("Referencingincident_parent_incident");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 processstage_incident
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("stageid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("processstage_incident")]
+		public Plugins.Models.ProcessStage processstage_incident
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.ProcessStage>("processstage_incident", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("processstage_incident");
+				this.SetRelatedEntity<Plugins.Models.ProcessStage>("processstage_incident", null, value);
+				this.OnPropertyChanged("processstage_incident");
 			}
 		}
 		
