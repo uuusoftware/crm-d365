@@ -101,6 +101,10 @@ namespace Plugins {
                             msfp_regarding = Incident.EntityLogicalName.ToString() + "," + incident.Id.ToString(),
                         };
 
+                        Guid inviteId = commonBusinessLogic.CreateInvite(invite);
+
+                        commonBusinessLogic.MoveIncidentBpfStage(incident);
+
                         tracingService.Trace("Customer Voice invite prepared successfully.");
                         tracingService.Trace($"Invite created with Id: {commonBusinessLogic.CreateInvite(invite)}.");
                     } else {
