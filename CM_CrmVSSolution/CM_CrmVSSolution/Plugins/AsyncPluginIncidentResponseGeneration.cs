@@ -106,7 +106,7 @@ namespace Plugins {
                         commonBusinessLogic.MoveIncidentBpfStage(incident);
 
                         tracingService.Trace("Customer Voice invite prepared successfully.");
-                        tracingService.Trace($"Invite created with Id: {commonBusinessLogic.CreateInvite(invite)}.");
+                        tracingService.Trace($"Invite created with Id: {inviteId}.");
                     } else {
                         tracingService.Trace("Incident missing IncidentCategory or CauseCategory. Skipping.");
                     }
