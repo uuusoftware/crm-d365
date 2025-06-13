@@ -94,6 +94,12 @@ namespace Plugins {
                         case "msfp_customervoiceprocessor":
                         return svcContext.msfp_customervoiceprocessorSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
+                        case "cm_cmcaseresolution":
+                        return svcContext.cm_cmcaseresolutionSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        
+                        case "ProcessStage":
+                        return svcContext.ProcessStageSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+
                         default:
                         throw new ArgumentException($"GetRecordById: Unsupported entity type: {typeof(T).Name}.\nPlease add all entities from the modelbuilder.");
                     }
