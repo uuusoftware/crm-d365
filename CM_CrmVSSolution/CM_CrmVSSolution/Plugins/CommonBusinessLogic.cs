@@ -93,7 +93,7 @@ namespace Plugins {
 
                         case "msfp_customervoiceprocessor":
                         return svcContext.msfp_customervoiceprocessorSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
-
+                        
                         case "cm_cmcaseresolution":
                         return svcContext.cm_cmcaseresolutionSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
                         
@@ -663,6 +663,69 @@ namespace Plugins {
                     Description = incident_statecode.Resolved.ToString(),
                 };
                 _service.Update(incidentToUpdate);
+            }
+        }
+
+        internal cm_cmcaseresolution GetBPFRecordByIncident(Incident incident) {
+            using (var svcContext = new OrgContext(_service)) {
+                return svcContext.cm_cmcaseresolutionSet
+                .Where(bpfRecord => bpfRecord.bpf_incidentid.Id == incident.Id)
+                .FirstOrDefault();
+            }
+        }
+
+        /// <summary>
+        /// Moves the Business Process Flow (BPF) stage of the given incident from "Identify" to "Research",
+        /// if the current active stage is "Identify".
+        /// </summary>
+        /// <param name="incident">The incident entity for which the BPF stage transition should be evaluated.</param>
+        /// <exception cref="InvalidPluginExecutionException">
+        /// Thrown when no BPF record is found for the incident, indicating an invalid plugin execution context.
+        /// </exception>
+        internal void MoveIncidentBpfStage(Incident incident) {
+            cm_cmcaseresolution bpfRecord = GetBPFRecordByIncident(incident) ??
+                throw new InvalidPluginExecutionException("Invalid plugin execution: cm_cmcaseresolution record (BPF) can't be null");
+
+            List<(string StageName, Guid ProcessStageId)> processes = GetProcessStagesById(bpfRecord.ProcessId.Id);
+            _tracingService.Trace("Retrieved {0} process stages for Process ID: {1}", processes.Count, bpfRecord.ProcessId.Id);
+
+            Guid identifyStageId = processes.FirstOrDefault(p => p.StageName == "Identify").ProcessStageId;
+            Guid researchStageId = processes.FirstOrDefault(p => p.StageName == "Research").ProcessStageId;
+            Guid resolveStageId = processes.FirstOrDefault(p => p.StageName == "Resolve").ProcessStageId;
+
+            _tracingService.Trace("Stage IDs resolved: Identify={0}, Research={1}, Resolve={2}", identifyStageId, researchStageId, resolveStageId);
+            _tracingService.Trace("Current ActiveStageId of BPF: {0}", bpfRecord.ActiveStageId?.Id);
+
+            if (bpfRecord.ActiveStageId.Id == identifyStageId) {
+                _tracingService.Trace("Active stage is 'Identify'. Moving to 'Research' stage.");
+
+                cm_cmcaseresolution bpfRecordToUpdate = new cm_cmcaseresolution() {
+                    Id = bpfRecord.Id,
+                    ActiveStageId = new EntityReference(ProcessStage.EntityLogicalName, researchStageId),
+                };
+                _service.Update(bpfRecordToUpdate);
+                _tracingService.Trace("Updated BPF record {0} to stage 'Research' (ID: {1})", bpfRecord.Id, researchStageId);
+            }
+        }
+        /// <summary>
+        /// Retrieves a list of process stages associated with the specified business process flow (BPF) process ID.
+        /// </summary>
+        /// <param name="processId">The unique identifier (GUID) of the BPF process.</param>
+        /// <returns>
+        /// A list of tuples, where each tuple contains:
+        /// - The stage name (string)
+        /// - The process stage ID (Guid; returns Guid.Empty if null)
+        /// </returns>
+        internal List<(string, Guid)> GetProcessStagesById(Guid processId) {
+            using (var svcContext = new OrgContext(_service)) {
+                return svcContext.ProcessStageSet
+                    .Where(stage => stage.ProcessId.Id == processId)
+                    .ToList()
+                    .Select(stage => (
+                        stage.StageName,
+                        stage.ProcessStageId ?? Guid.Empty
+                    ))
+                    .ToList();
             }
         }
     }
