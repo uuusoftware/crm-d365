@@ -58,8 +58,9 @@ namespace Plugins {
                 if (leadClosureChecklistCatalogList.Any()) {
                     commonBusinessLogic.CreateLeadClosureResponses(leadClosureChecklistCatalogList, opportunityRecord, teamRecord.Id);
                 } else {
-                    throw new InvalidPluginExecutionException("No question were found in the catalog matching the criteria.");
+                    throw new InvalidPluginExecutionException("No records in Lead Closure Checklist were found in the Catalog matching the current Checklist Master.");
                 }
+
             } catch (AggregateException aggregateException) {
                 var exceptions = aggregateException.InnerExceptions;
                 foreach (var inner in aggregateException.InnerExceptions) {

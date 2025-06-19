@@ -53,6 +53,8 @@ namespace Plugins {
 
                 if (questionsList.Any()) {
                     commonBusinessLogic.CreateQuestionResponses(questionsList, opportunityRecord);
+                } else {
+                    throw new InvalidPluginExecutionException("No Qualification questions were found in the Catalog matching team and opportunity type.");
                 }
 
             } catch (AggregateException aggregateException) {
