@@ -505,9 +505,7 @@ namespace Plugins {
         }
 
 
-        internal Team AssociateIncidentToTeams(Incident incidentRecord) {
-            Team associatedTeam;
-
+        internal List<Team> AssociateIncidentToTeams(Incident incidentRecord) {
             try {
                 Account incidentCustomer = GetRecordById<Account>(incidentRecord.CustomerId.Id);
 
@@ -548,13 +546,13 @@ namespace Plugins {
                     CreateEntityReferenceCollection(teamList));
 
                 _tracingService.Trace($"Complete");
-                associatedTeam = teamList.FirstOrDefault();
+                
+                return teamList;
             } catch (Exception ex) {
                 _tracingService.Trace($"AssociateIncidentToTeams Error: {ex.Message}");
                 throw;
             }
 
-            return associatedTeam;
         }
 
         private EntityReferenceCollection CreateEntityReferenceCollection(IEnumerable<Entity> recordList) {
@@ -726,6 +724,13 @@ namespace Plugins {
                         stage.ProcessStageId ?? Guid.Empty
                     ))
                     .ToList();
+            }
+        }
+        internal cm_Incident_Team GetAssociatedTeam(Incident incident) {
+            using (var svcContext = new OrgContext(_service)) {
+                return svcContext.cm_Incident_TeamSet
+                    .Where(incidentTeamRel => incidentTeamRel.incidentid == incident.Id)
+                    .FirstOrDefault();
             }
         }
     }

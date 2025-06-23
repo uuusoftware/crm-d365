@@ -36,7 +36,6 @@ namespace Plugins {
                     throw new InvalidPluginExecutionException("Invalid plugin execution: Entity must be Incident and message must be Update");
                 }
 
-
                 tracingService.Trace($"Retrieving Incident record with ID: {context.PrimaryEntityId}");
                 Incident incidentRecord = commonBusinessLogic.GetRecordById<Incident>(context.PrimaryEntityId) ??
                     throw new InvalidPluginExecutionException("Invalid plugin execution: Incident/Case not found");
@@ -46,15 +45,15 @@ namespace Plugins {
                 if (incidentRecord?.cm_GenerateChecklist.Value == null || incidentRecord.cm_GenerateChecklist.Value == false) return;
 
                 tracingService.Trace("Associating Incident to teams based on caseProgram and leadType.");
-                Team associatedTeam = commonBusinessLogic.AssociateIncidentToTeams(incidentRecord);
+                List<Team> teamsAssociated = commonBusinessLogic.AssociateIncidentToTeams(incidentRecord);
 
                 if (incidentRecord.cm_CauseCategory?.Id == null ||
                     incidentRecord.cm_IncidentCategory?.Id == null ||
-                    associatedTeam?.Id == null) {
+                    teamsAssociated == null) {
                     tracingService.Trace("Required fields are missing: " +
                                          $"CauseCategory: {(incidentRecord.cm_CauseCategory?.Id.ToString() ?? "null")}, " +
                                          $"IncidentCategory: {(incidentRecord.cm_IncidentCategory?.Id.ToString() ?? "null")}, " +
-                                         $"Program: {(associatedTeam.Id.ToString() ?? "null")}. Exiting plugin.");
+                                         $"Programs: {(teamsAssociated != null ? string.Join(", ", teamsAssociated.Select(a => a.Id.ToString())) : "null")}. Exiting plugin.");
                     return;
                 }
 
@@ -70,10 +69,15 @@ namespace Plugins {
 
                     if (incident.cm_IncidentCategory != null && incident.cm_CauseCategory != null) {
                         tracingService.Trace("Retrieving checklist master based on IncidentCategory, CauseCategory, and Program.");
+
+                        commonBusinessLogic.MoveIncidentBpfStage(incident);
+
+                        cm_Incident_Team associatedTeam = commonBusinessLogic.GetAssociatedTeam(incident);
+
                         cm_ChecklistMaster checklistMasterRecord = commonBusinessLogic.GetChecklistmaster(
                             incident.cm_CauseCategory.Id,
                             incident.cm_IncidentCategory.Id,
-                            associatedTeam.Id);
+                            associatedTeam.teamid.Value);
 
                         if (checklistMasterRecord == null || checklistMasterRecord.cm_Survey == null) {
                             tracingService.Trace("ChecklistMaster or Survey is null. Skipping incident.");
@@ -102,8 +106,6 @@ namespace Plugins {
                         };
 
                         Guid inviteId = commonBusinessLogic.CreateInvite(invite);
-
-                        commonBusinessLogic.MoveIncidentBpfStage(incident);
 
                         tracingService.Trace("Customer Voice invite prepared successfully.");
                         tracingService.Trace($"Invite created with Id: {inviteId}.");
