@@ -134,7 +134,8 @@ namespace Plugins {
                 throw new InvalidPluginExecutionException("Invalid Plugin Execution: Lead and Contact are required");
             }
 
-            Account accountRecord = new Account {
+            try {
+                Account accountRecord = new Account {
                 Id = Guid.NewGuid(),
                 PrimaryContactId = new EntityReference(Contact.EntityLogicalName, contactId),
                 OriginatingLeadId = new EntityReference(Lead.EntityLogicalName, leadRecord.Id),
@@ -152,10 +153,8 @@ namespace Plugins {
                 Address1_Line2 = leadRecord.Address1_Line2,
                 Address1_Line3 = leadRecord.Address1_Line3,
                 Address1_City = leadRecord.Address1_City,
-                Address1_Country = leadRecord.Address1_Country,
                 Address1_County = leadRecord.Address1_County,
                 Address1_Name = leadRecord.Address1_Name,
-                Address1_StateOrProvince = leadRecord.Address1_StateOrProvince,
                 Address1_Fax = leadRecord.Address1_Fax,
                 Address1_Telephone1 = leadRecord.Address1_Telephone1,
                 Address1_Telephone2 = leadRecord.Address1_Telephone2,
@@ -177,8 +176,18 @@ namespace Plugins {
                 DoNotSendMM = leadRecord.DoNotSendMM,
                 SIC = leadRecord.SIC,
                 YomiName = leadRecord.YomiCompanyName
-            };
-            try {
+                };
+
+                if (leadRecord.cm_Country != null) {
+                    accountRecord.cm_Country = leadRecord.cm_Country;
+                    accountRecord.Address1_Country = leadRecord.cm_Country.ToString();
+                }
+
+                if (leadRecord.cm_StateProvince != null) {
+                    accountRecord.cm_StateProvince = leadRecord.cm_StateProvince;
+                    accountRecord.Address1_StateOrProvince = leadRecord.cm_StateProvince.ToString();
+                }
+            
                 return _service.Create(accountRecord);
             } catch {
                 throw;
@@ -565,13 +574,20 @@ namespace Plugins {
             return referenceCollection;
         }
 
-        internal List<Incident> CreateChildCaseOrDefault(Incident incidentRecord) {
+        /// <summary>
+        ///     Method takes the parent case/incident and uses cm_CaseProgram to create child cases.
+        ///     If there's one of fewer cm_CaseProgram only the parent case will be returned in the list.
+        /// </summary>
+        /// <param name="parentIncidentRecord"></param>
+        /// <returns>List of Cases/Incidents</returns>
+        internal List<Incident> CreateChildCaseOrDefault(Incident parentIncidentRecord) {
             var caseList = new List<Incident>();
-            if (incidentRecord.cm_CaseProgram.Count() > 1) {
+            if (parentIncidentRecord.cm_CaseProgram.Count() > 1) {
                 _tracingService.Trace("Creating child cases");
                 try {
-                    foreach (var caseProgram in incidentRecord.cm_CaseProgram) {
-                        Account incidentCustomer = GetRecordById<Account>(incidentRecord.CustomerId.Id) ??
+                    // Creates a child case for each Case Program in the parent
+                    foreach (var caseProgram in parentIncidentRecord.cm_CaseProgram) {
+                        Account incidentCustomer = GetRecordById<Account>(parentIncidentRecord.CustomerId.Id) ??
                             throw new InvalidPluginExecutionException("incidentCustomer cannot be null");
                         Team team = GetTeamsByCaseProgramLeadType(caseProgram, incidentCustomer.cm_Role.FirstOrDefault()).FirstOrDefault() ??
                             throw new InvalidPluginExecutionException($"Case Program \"{caseProgram}\" and Lead Type \"{incidentCustomer.cm_Role.FirstOrDefault()}\" do not return a matching Team record.");
@@ -579,30 +595,33 @@ namespace Plugins {
                         _tracingService.Trace($"Processing child case from accountid: {incidentCustomer.Id} and teamid: {team.Id}");
                         var caseRecord = new Incident() {
                             Id = Guid.NewGuid(),
-                            cm_CasePriority = incidentRecord.cm_CasePriority,
+                            cm_CasePriority = parentIncidentRecord.cm_CasePriority,
                             cm_CaseProgram = new List<cm_caseprogram> { caseProgram },
-                            cm_CauseCategory = incidentRecord.cm_CauseCategory,
-                            cm_Contract = incidentRecord.cm_Contract,
-                            cm_IncidentCategory = incidentRecord.cm_IncidentCategory,
+                            cm_CauseCategory = parentIncidentRecord.cm_CauseCategory,
+                            cm_Contract = parentIncidentRecord.cm_Contract,
+                            cm_IncidentCategory = parentIncidentRecord.cm_IncidentCategory,
                             cm_Program = new EntityReference(Team.EntityLogicalName, team.Id),
-                            CustomerId = incidentRecord.CustomerId,
-                            Description = incidentRecord.Description,
-                            Title = incidentRecord.Title + " " + caseProgram,
-                            PrimaryContactId = incidentRecord.PrimaryContactId,
-                            ParentCaseId = new EntityReference(Incident.EntityLogicalName, incidentRecord.Id),
-                            cm_ComplianceFlagSetonAccount = incidentRecord.cm_ComplianceFlagSetonAccount,
-                            OwnerId = incidentRecord.OwnerId,
-                            cm_ReportedBy = incidentRecord.cm_ReportedBy,
-                            cm_ReportedOn = incidentRecord.cm_ReportedOn,
-                            cm_Channel = incidentRecord.cm_Channel,
-                            cm_OtherChannel = incidentRecord.cm_OtherChannel
+                            CustomerId = parentIncidentRecord.CustomerId,
+                            Description = parentIncidentRecord.Description,
+                            Title = parentIncidentRecord.Title + " " + caseProgram,
+                            PrimaryContactId = parentIncidentRecord.PrimaryContactId,
+                            ParentCaseId = new EntityReference(Incident.EntityLogicalName, parentIncidentRecord.Id),
+                            cm_ComplianceFlagSetonAccount = parentIncidentRecord.cm_ComplianceFlagSetonAccount,
+                            OwnerId = parentIncidentRecord.OwnerId,
+                            cm_ReportedBy = parentIncidentRecord.cm_ReportedBy,
+                            cm_ReportedOn = parentIncidentRecord.cm_ReportedOn,
+                            cm_Channel = parentIncidentRecord.cm_Channel,
+                            cm_OtherChannel = parentIncidentRecord.cm_OtherChannel,
+                            cm_ReportedById = parentIncidentRecord.cm_ReportedById,
+                            CaseTypeCode = parentIncidentRecord.CaseTypeCode,
                         };
 
                         if (incidentCustomer.cm_Role.Contains(cm_leadopptype.ServiceProvider)) {
-                            caseRecord.cm_EffectiveDate = incidentRecord.cm_EffectiveDate;
-                            caseRecord.cm_To = incidentRecord.cm_To;
-                            caseRecord.cm_From = incidentRecord.cm_From;
+                            caseRecord.cm_EffectiveDate = parentIncidentRecord.cm_EffectiveDate;
+                            caseRecord.cm_To = parentIncidentRecord.cm_To;
+                            caseRecord.cm_From = parentIncidentRecord.cm_From;
                         }
+
                         _service.Create(caseRecord);
                         caseList.Add(caseRecord);
 
@@ -621,7 +640,7 @@ namespace Plugins {
             if (caseList.Count() > 0) {
                 _tracingService.Trace(string.Join(", ", caseList.Select(c => $"Cases created: {c.Id}")));
             } else {
-                caseList.Add(incidentRecord);
+                caseList.Add(parentIncidentRecord);
             }
 
             return caseList;
