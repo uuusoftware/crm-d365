@@ -493,10 +493,13 @@ namespace Plugins.Models
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Inactive = 2,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Active = 1,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Inactive = 2,
+		MarkedforDeletion = 121540001,
 	}
 	
 	/// <summary>
@@ -605,9 +608,13 @@ namespace Plugins.Models
 			public const string cm_AccountManagerYomiName = "cm_accountmanageryominame";
 			public const string cm_ComplianceFlag = "cm_complianceflag";
 			public const string cm_complianceflagName = "cm_complianceflagname";
+			public const string cm_Country = "cm_country";
+			public const string cm_CountryName = "cm_countryname";
 			public const string cm_FacebookPage = "cm_facebookpage";
 			public const string cm_Industry = "cm_industry";
 			public const string cm_IndustryName = "cm_industryname";
+			public const string cm_ManualReviewCompleted = "cm_manualreviewcompleted";
+			public const string cm_manualreviewcompletedName = "cm_manualreviewcompletedname";
 			public const string cm_OtherType = "cm_othertype";
 			public const string cm_othertypeName = "cm_othertypename";
 			public const string cm_Role = "cm_role";
@@ -615,6 +622,10 @@ namespace Plugins.Models
 			public const string cm_SAPID = "cm_sapid";
 			public const string cm_ServiceProviderType = "cm_serviceprovidertype";
 			public const string cm_serviceprovidertypeName = "cm_serviceprovidertypename";
+			public const string cm_SourceIdentifier = "cm_sourceidentifier";
+			public const string cm_sourceidentifierName = "cm_sourceidentifiername";
+			public const string cm_StateProvince = "cm_stateprovince";
+			public const string cm_StateProvinceName = "cm_stateprovincename";
 			public const string cm_SubIndustry = "cm_subindustry";
 			public const string cm_SubIndustryName = "cm_subindustryname";
 			public const string cm_TwitterPage = "cm_twitterpage";
@@ -792,6 +803,7 @@ namespace Plugins.Models
 			public const string account_OpportunityCloses = "account_OpportunityCloses";
 			public const string Referencedaccount_parent_account = "Referencedaccount_parent_account";
 			public const string cm_Account_Account_cm_ProgramAssociation = "cm_Account_Account_cm_ProgramAssociation";
+			public const string cm_incident_account_cm_ReportedById = "cm_incident_account_cm_ReportedById";
 			public const string cm_leadclosurechecklistresponse_Account_account = "cm_leadclosurechecklistresponse_Account_account";
 			public const string cm_questionresponse_Account_account = "cm_questionresponse_Account_account";
 			public const string contact_customer_accounts = "contact_customer_accounts";
@@ -2201,6 +2213,37 @@ namespace Plugins.Models
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_country")]
+		public Microsoft.Xrm.Sdk.EntityReference cm_Country
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cm_country");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_Country");
+				this.SetAttributeValue("cm_country", value);
+				this.OnPropertyChanged("cm_Country");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_countryname")]
+		public string cm_CountryName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_country"))
+				{
+					return this.FormattedValues["cm_country"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
 		/// <summary>
 		/// Facebook Page URL
 		/// </summary>
@@ -2242,6 +2285,40 @@ namespace Plugins.Models
 				if (this.FormattedValues.Contains("cm_industry"))
 				{
 					return this.FormattedValues["cm_industry"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		/// <summary>
+		/// Yes/No Field if the manual review of the account is completed to ensure accounts merge done manually.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_manualreviewcompleted")]
+		public System.Nullable<bool> cm_ManualReviewCompleted
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("cm_manualreviewcompleted");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_ManualReviewCompleted");
+				this.SetAttributeValue("cm_manualreviewcompleted", value);
+				this.OnPropertyChanged("cm_ManualReviewCompleted");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_manualreviewcompletedname")]
+		public string cm_manualreviewcompletedName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_manualreviewcompleted"))
+				{
+					return this.FormattedValues["cm_manualreviewcompleted"];
 				}
 				else
 				{
@@ -2359,6 +2436,71 @@ namespace Plugins.Models
 				if (this.FormattedValues.Contains("cm_serviceprovidertype"))
 				{
 					return this.FormattedValues["cm_serviceprovidertype"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		/// <summary>
+		/// Identify CRM or ERP Account sync record
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_sourceidentifier")]
+		public virtual cm_sourceidentifiertype? cm_SourceIdentifier
+		{
+			get
+			{
+				return ((cm_sourceidentifiertype?)(EntityOptionSetEnum.GetEnum(this, "cm_sourceidentifier")));
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_SourceIdentifier");
+				this.SetAttributeValue("cm_sourceidentifier", value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null);
+				this.OnPropertyChanged("cm_SourceIdentifier");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_sourceidentifiername")]
+		public string cm_sourceidentifierName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_sourceidentifier"))
+				{
+					return this.FormattedValues["cm_sourceidentifier"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_stateprovince")]
+		public Microsoft.Xrm.Sdk.EntityReference cm_StateProvince
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cm_stateprovince");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_StateProvince");
+				this.SetAttributeValue("cm_stateprovince", value);
+				this.OnPropertyChanged("cm_StateProvince");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_stateprovincename")]
+		public string cm_StateProvinceName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_stateprovince"))
+				{
+					return this.FormattedValues["cm_stateprovince"];
 				}
 				else
 				{
@@ -5224,6 +5366,24 @@ namespace Plugins.Models
 				this.OnPropertyChanging("cm_Account_Account_cm_ProgramAssociation");
 				this.SetRelatedEntities<Plugins.Models.cm_ProgramAssociation>("cm_Account_Account_cm_ProgramAssociation", null, value);
 				this.OnPropertyChanged("cm_Account_Account_cm_ProgramAssociation");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N cm_incident_account_cm_ReportedById
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_incident_account_cm_ReportedById")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.Incident> cm_incident_account_cm_ReportedById
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.Incident>("cm_incident_account_cm_ReportedById", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_incident_account_cm_ReportedById");
+				this.SetRelatedEntities<Plugins.Models.Incident>("cm_incident_account_cm_ReportedById", null, value);
+				this.OnPropertyChanged("cm_incident_account_cm_ReportedById");
 			}
 		}
 		

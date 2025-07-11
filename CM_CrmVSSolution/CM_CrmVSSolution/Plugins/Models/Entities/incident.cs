@@ -22,13 +22,19 @@ namespace Plugins.Models
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Question = 1,
+		Compliment = 1,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Problem = 2,
+		Dispute = 2,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Request = 3,
+		Complaint = 3,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		GeneralInquiry = 4,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ServiceSupportRequest = 5,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
@@ -319,6 +325,9 @@ namespace Plugins.Models
 			public const string cm_ProgramName = "cm_programname";
 			public const string cm_ProgramYomiName = "cm_programyominame";
 			public const string cm_ReportedBy = "cm_reportedby";
+			public const string cm_ReportedById = "cm_reportedbyid";
+			public const string cm_ReportedByIdName = "cm_reportedbyidname";
+			public const string cm_ReportedByIdYomiName = "cm_reportedbyidyominame";
 			public const string cm_ReportedByName = "cm_reportedbyname";
 			public const string cm_ReportedByYomiName = "cm_reportedbyyominame";
 			public const string cm_ReportedOn = "cm_reportedon";
@@ -486,7 +495,9 @@ namespace Plugins.Models
 			public const string Referencedincident_parent_incident = "Referencedincident_parent_incident";
 			public const string OriginatingCase_Lead = "OriginatingCase_Lead";
 			public const string cm_Incident_Team_Team = "cm_Incident_Team_Team";
+			public const string cm_incident_account_cm_ReportedById = "cm_incident_account_cm_ReportedById";
 			public const string cm_incident_CauseCategory_cm_casesubcategory = "cm_incident_CauseCategory_cm_casesubcategory";
+			public const string cm_incident_contact_cm_ReportedById = "cm_incident_contact_cm_ReportedById";
 			public const string cm_incident_IncidentCategory_cm_casecategory = "cm_incident_IncidentCategory_cm_casecategory";
 			public const string cm_incident_Program_team = "cm_incident_Program_team";
 			public const string cm_incident_ServiceandSupportTeam_team = "cm_incident_ServiceandSupportTeam_team";
@@ -1167,6 +1178,53 @@ namespace Plugins.Models
 				this.OnPropertyChanging("cm_ReportedBy");
 				this.SetAttributeValue("cm_reportedby", value);
 				this.OnPropertyChanged("cm_ReportedBy");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_reportedbyid")]
+		public Microsoft.Xrm.Sdk.EntityReference cm_ReportedById
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cm_reportedbyid");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_ReportedById");
+				this.SetAttributeValue("cm_reportedbyid", value);
+				this.OnPropertyChanged("cm_ReportedById");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_reportedbyidname")]
+		public string cm_ReportedByIdName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_reportedbyid"))
+				{
+					return this.FormattedValues["cm_reportedbyid"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_reportedbyidyominame")]
+		public string cm_ReportedByIdYomiName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_reportedbyid"))
+				{
+					return this.FormattedValues["cm_reportedbyid"];
+				}
+				else
+				{
+					return default(string);
+				}
 			}
 		}
 		
@@ -3892,6 +3950,25 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// N:1 cm_incident_account_cm_ReportedById
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_reportedbyid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_incident_account_cm_ReportedById")]
+		public Plugins.Models.Account cm_incident_account_cm_ReportedById
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.Account>("cm_incident_account_cm_ReportedById", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_incident_account_cm_ReportedById");
+				this.SetRelatedEntity<Plugins.Models.Account>("cm_incident_account_cm_ReportedById", null, value);
+				this.OnPropertyChanged("cm_incident_account_cm_ReportedById");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 cm_incident_CauseCategory_cm_casesubcategory
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_causecategory")]
@@ -3907,6 +3984,25 @@ namespace Plugins.Models
 				this.OnPropertyChanging("cm_incident_CauseCategory_cm_casesubcategory");
 				this.SetRelatedEntity<Plugins.Models.cm_CaseSubCategory>("cm_incident_CauseCategory_cm_casesubcategory", null, value);
 				this.OnPropertyChanged("cm_incident_CauseCategory_cm_casesubcategory");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 cm_incident_contact_cm_ReportedById
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_reportedbyid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_incident_contact_cm_ReportedById")]
+		public Plugins.Models.Contact cm_incident_contact_cm_ReportedById
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.Contact>("cm_incident_contact_cm_ReportedById", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_incident_contact_cm_ReportedById");
+				this.SetRelatedEntity<Plugins.Models.Contact>("cm_incident_contact_cm_ReportedById", null, value);
+				this.OnPropertyChanged("cm_incident_contact_cm_ReportedById");
 			}
 		}
 		

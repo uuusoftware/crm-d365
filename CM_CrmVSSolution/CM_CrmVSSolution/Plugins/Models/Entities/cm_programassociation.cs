@@ -50,6 +50,9 @@ namespace Plugins.Models
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		NotQualified = 121540004,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		MarkedforDeletion = 121540005,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
@@ -77,6 +80,8 @@ namespace Plugins.Models
 			public const string cm_ProgramYomiName = "cm_programyominame";
 			public const string cm_Province = "cm_province";
 			public const string cm_ProvinceName = "cm_provincename";
+			public const string cm_SourceIdentifier = "cm_sourceidentifier";
+			public const string cm_sourceidentifierName = "cm_sourceidentifiername";
 			public const string CreatedBy = "createdby";
 			public const string CreatedByName = "createdbyname";
 			public const string CreatedByYomiName = "createdbyyominame";
@@ -367,6 +372,37 @@ namespace Plugins.Models
 				if (this.FormattedValues.Contains("cm_province"))
 				{
 					return this.FormattedValues["cm_province"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_sourceidentifier")]
+		public virtual cm_sourceidentifiertype? cm_SourceIdentifier
+		{
+			get
+			{
+				return ((cm_sourceidentifiertype?)(EntityOptionSetEnum.GetEnum(this, "cm_sourceidentifier")));
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_SourceIdentifier");
+				this.SetAttributeValue("cm_sourceidentifier", value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null);
+				this.OnPropertyChanged("cm_SourceIdentifier");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_sourceidentifiername")]
+		public string cm_sourceidentifierName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_sourceidentifier"))
+				{
+					return this.FormattedValues["cm_sourceidentifier"];
 				}
 				else
 				{

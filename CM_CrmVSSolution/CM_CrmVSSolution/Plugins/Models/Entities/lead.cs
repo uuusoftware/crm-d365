@@ -401,6 +401,8 @@ namespace Plugins.Models
 			public const string BusinessCardAttributes = "businesscardattributes";
 			public const string CampaignId = "campaignid";
 			public const string CampaignIdName = "campaignidname";
+			public const string cm_Country = "cm_country";
+			public const string cm_CountryName = "cm_countryname";
 			public const string cm_Industry = "cm_industry";
 			public const string cm_IndustryName = "cm_industryname";
 			public const string cm_LeadID = "cm_leadid";
@@ -410,6 +412,8 @@ namespace Plugins.Models
 			public const string cm_othertypeName = "cm_othertypename";
 			public const string cm_ServiceType = "cm_servicetype";
 			public const string cm_servicetypeName = "cm_servicetypename";
+			public const string cm_StateProvince = "cm_stateprovince";
+			public const string cm_StateProvinceName = "cm_stateprovincename";
 			public const string cm_SubIndustry = "cm_subindustry";
 			public const string cm_SubIndustryName = "cm_subindustryname";
 			public const string CompanyName = "companyname";
@@ -1662,6 +1666,37 @@ namespace Plugins.Models
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_country")]
+		public Microsoft.Xrm.Sdk.EntityReference cm_Country
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cm_country");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_Country");
+				this.SetAttributeValue("cm_country", value);
+				this.OnPropertyChanged("cm_Country");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_countryname")]
+		public string cm_CountryName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_country"))
+				{
+					return this.FormattedValues["cm_country"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_industry")]
 		public Microsoft.Xrm.Sdk.EntityReference cm_Industry
 		{
@@ -1793,6 +1828,37 @@ namespace Plugins.Models
 				if (this.FormattedValues.Contains("cm_servicetype"))
 				{
 					return this.FormattedValues["cm_servicetype"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_stateprovince")]
+		public Microsoft.Xrm.Sdk.EntityReference cm_StateProvince
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cm_stateprovince");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_StateProvince");
+				this.SetAttributeValue("cm_stateprovince", value);
+				this.OnPropertyChanged("cm_StateProvince");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_stateprovincename")]
+		public string cm_StateProvinceName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_stateprovince"))
+				{
+					return this.FormattedValues["cm_stateprovince"];
 				}
 				else
 				{
