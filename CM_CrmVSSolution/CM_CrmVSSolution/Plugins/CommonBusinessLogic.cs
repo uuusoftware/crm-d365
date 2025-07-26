@@ -3,6 +3,7 @@ using Microsoft.Xrm.Sdk;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Crm.Sdk.Messages;
 
 namespace Plugins {
 
@@ -284,7 +285,7 @@ namespace Plugins {
             }
         }
 
-        public void SetParentCustomer(Guid contactId, Guid accountId) {
+        public void SetParentCustomerToAccount(Guid contactId, Guid accountId) {
             Contact contact = new Contact() {
                 Id = contactId,
                 ParentCustomerId = new EntityReference(Account.EntityLogicalName, accountId)
@@ -749,6 +750,99 @@ namespace Plugins {
             using (var svcContext = new OrgContext(_service)) {
                 return svcContext.cm_Incident_TeamSet
                     .Where(incidentTeamRel => incidentTeamRel.incidentid == incident.Id)
+                    .FirstOrDefault();
+            }
+        }
+
+        internal (Guid, Guid) HandleLeadContactAndAccount(Lead leadRecord) {
+            Guid contactId, accountId;
+
+            // Each Lead must have an account/customer and a contact records associated to it.
+            // cm_ExistingContact and cm_ExistingCustomer should tell if they should be created or used existing records
+
+            if (leadRecord.cm_ExistingContact == true) {
+                contactId = leadRecord.ParentContactId.Id;
+            } else if (leadRecord.cm_ExistingContact == false) {
+                contactId = CreateContactForLead(leadRecord);
+            } else {
+                throw new InvalidPluginExecutionException("leadRecord.cm_ExistingContact can't be null");
+            }
+
+            if (leadRecord.cm_ExistingCustomer == true) {
+                accountId = leadRecord.ParentAccountId.Id;
+            } else if (leadRecord.cm_ExistingCustomer == false) {
+                accountId = CreateAccountForLead(leadRecord, contactId);
+            } else {
+                throw new InvalidPluginExecutionException("leadRecord.cm_ExistingCustomer can't be null");
+            }
+
+            SetParentCustomerToAccount(contactId, accountId);
+
+            return (contactId, accountId);
+        }
+
+        /// <summary>
+        ///     Merges a subordinate record into a target record (e.g., contact or account).
+        ///     The target fields won't be replaced by any of the subordinate field values, unless specified in the updateFields.
+        ///     Once the merge is complete, the subordinate field "masterid" will be updated with a lookup to the targetEntity, and status set to inactive.
+        /// </summary>
+        /// <param name="targetEntity">The target (master) entity into which the subordinate will be merged.</param>
+        /// <param name="subordinateEntity">The duplicate entity that will be deactivated and merged into the target.</param>
+        /// <param name="updateFields">
+        /// Optional. A dictionary of fields to update on the target entity during the merge.
+        /// Only specified fields will overwrite values on the target.
+        /// </param>
+        /// <exception cref="ArgumentNullException">Thrown if either entity is null.</exception>
+        /// <exception cref="InvalidOperationException">Thrown if the entities are not of the same logical type.</exception>
+        /// <example>
+        /// Example: Merge two contact records and update the job title:
+        /// <code>
+        /// var target = new Entity("contact") { Id = targetId };
+        /// var subordinate = new Entity("contact") { Id = subordinateId };
+        /// var updates = new Dictionary&lt;string, object&gt; {
+        ///     { "jobtitle", "Merged Contact" }
+        /// };
+        /// Merge(target, subordinate, updates);
+        /// </code>
+        /// </example>
+        /// <example>
+        /// Example: Merge two accounts without updating any fields:
+        /// <code>
+        /// var target = new Entity("account") { Id = targetAccountId };
+        /// var subordinate = new Entity("account") { Id = subordinateAccountId };
+        /// Merge(target, subordinate);
+        /// </code>
+        /// </example>
+        internal void Merge(Entity targetEntity, Entity subordinateEntity, Dictionary<string, object> updateFields = null) {
+            if (targetEntity == null) throw new ArgumentNullException(nameof(targetEntity));
+            if (subordinateEntity == null) throw new ArgumentNullException(nameof(subordinateEntity));
+            if (targetEntity.LogicalName != subordinateEntity.LogicalName)
+                throw new InvalidOperationException("Entities must have the same logical name to be merged.");
+
+            string entityLogicalName = targetEntity.LogicalName;
+
+            Entity updateContent = null;
+            if (updateFields != null && updateFields.Count > 0) {
+                updateContent = new Entity(entityLogicalName);
+                foreach (var field in updateFields) {
+                    updateContent[field.Key] = field.Value;
+                }
+            }
+
+            var mergeRequest = new MergeRequest {
+                Target = new EntityReference(entityLogicalName, targetEntity.Id),
+                SubordinateId = subordinateEntity.Id,
+                PerformParentingChecks = false,
+                UpdateContent = updateContent
+            };
+
+            _service.Execute(mergeRequest);
+        }
+
+        internal Account GetAccountByAccountNumber(string accountNumber) {
+            using (var svcContext = new OrgContext(_service)) {
+                return svcContext.AccountSet
+                    .Where(account => account.AccountNumber == accountNumber)
                     .FirstOrDefault();
             }
         }

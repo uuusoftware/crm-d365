@@ -3,13 +3,17 @@ using Microsoft.Xrm.Sdk;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Common.Models;
 using Opportunity = Plugins.Models.Opportunity;
 using cm_ProgramAssociation = Plugins.Models.cm_ProgramAssociation;
 using Team = Plugins.Models.Team;
 using cm_leadopptype = Plugins.Models.cm_leadopptype;
 
 namespace Plugins {
+    /// <summary>
+    /// his class, SyncPluginOppoCloseCreateValidation, is a Dynamics 365 plugin that executes when an Opportunity is closed as Won. 
+    /// The action of closing an Opportunity creates a corresponding opportunityclose entity record. 
+    /// This plugin is triggered by the creation of that opportunityclose record, allowing validation or additional logic to run at the time of closure.
+    /// </summary>
     public class SyncPluginOppoCloseCreateValidation : PluginBase {
         public SyncPluginOppoCloseCreateValidation(string unsecureConfiguration, string secureConfiguration)
             : base(typeof(SyncPluginOppoCloseCreateValidation)) {
@@ -71,6 +75,12 @@ namespace Plugins {
                         throw new InvalidPluginExecutionException($"No Lead Closure Checklist Master found for Opportunity Type {opportunityRecord.cm_OpportunityType} and Team {teamRecord.Name}");
 
                 tracingService.Trace($"leadClosureChecklistMasterRecord {leadClosureChecklistMasterRecord.Id}");
+
+                Account accountRecord = commonBusinessLogic
+                     .GetRecordById<Account>(opportunityRecord.ParentAccountId.Id) ??
+                         throw new InvalidPluginExecutionException($"Invalid plugin execution: Account not found");
+
+                tracingService.Trace($"accountRecord/ParentAccountId {accountRecord.Id}");
                 #endregion
 
                 // Validation to avoid Opp - producer closure if Qualification Status is In Progress or Not Qualified
@@ -85,6 +95,15 @@ namespace Plugins {
                     .GetLeadClosureChecklistResponseByMaster(leadClosureChecklistMasterRecord.Id, opportunityRecord.Id);
 
                 ValidateClosureChecklist(opportunityRecord, leadClosureChecklistResponseRecords);
+
+                // checks account number field with same SAP ID from opportunity close
+
+                // SAPID is added to the record when the Opportunity is being "closed as won". If it matches the account number from another account 
+                // it means that the account has been imported from the ERP after the Lead was Qualified. The ERP imported account is the SSOT (single source of truth)
+                Account importedAccount = commonBusinessLogic.GetAccountByAccountNumber(opportunityRecord.cm_SAPID);
+
+                // confirm with Rojan all any fields that must be set
+                commonBusinessLogic.Merge(importedAccount, accountRecord);
 
             } catch (Exception ex) {
                 string detailedError = $"Unexpected error while processing {context.PrimaryEntityName} record with ID " +

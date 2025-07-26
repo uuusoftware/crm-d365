@@ -15,6 +15,8 @@ namespace Plugins {
         ///     then creates a Contact, Account, and Opportunities per association, linking them together.
         ///     
         ///     It mimics the OOB lead to opportunity behavior but instead of one, it creates multiple opportunities
+        ///     
+        ///     Plugins.SyncPluginLeadStatusChange: Update of lead Attribute Filter: statecode
         /// </summary>
         /// <param name="localPluginContext"></param>
         /// <exception cref="ArgumentNullException"></exception>
@@ -50,8 +52,8 @@ namespace Plugins {
                     throw new InvalidPluginExecutionException("No Program Association found for this Lead");
                 }
 
-                Guid contactId = commonBusinessLogic.CreateContactForLead(leadRecord);
-                Guid accountId = commonBusinessLogic.CreateAccountForLead(leadRecord, contactId);
+                (Guid contactId, Guid accountId ) = commonBusinessLogic.HandleLeadContactAndAccount(leadRecord);
+
                 List<Guid> programAssociationGuids = new List<Guid>();
 
                 // Creates an opportunity for each lead using the same account and contact
@@ -60,7 +62,6 @@ namespace Plugins {
                     commonBusinessLogic.UpdateProgramAsscAccount(association, accountId);
                 });
 
-                commonBusinessLogic.SetParentCustomer(contactId, accountId);
                 tracingService.Trace($"Records created:\n Account: {accountId}\n Contact: {contactId} ");
                 tracingService.Trace($"Program Associations: {string.Join(", ", programAssociationGuids)}");
 

@@ -49,7 +49,7 @@ namespace Plugins {
 
                 cm_LeadClosureChecklistMaster leadClosureChecklistMasterRecord = commonBusinessLogic
                     .GetLeadClosureCheckLMasterByTeam(teamRecord.Id, opportunityRecord.cm_OpportunityType) ??
-                        throw new InvalidPluginExecutionException("No Lead Closure Checklist Master found for this Opportunity type and Team");
+                        throw new InvalidPluginExecutionException("No Lead Closure Checklist Master found for this Opportunity type and Team (The \"Opportunity's\" \"Associated Program's\" \"program\")");
 
                 List<cm_LeadClosureChecklistCatalog> leadClosureChecklistCatalogList = commonBusinessLogic
                     .GetLeadClosureChecklistCatalogCat(leadClosureChecklistMasterRecord.Id);
