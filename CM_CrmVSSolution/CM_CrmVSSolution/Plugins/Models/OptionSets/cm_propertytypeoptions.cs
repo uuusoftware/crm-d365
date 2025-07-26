@@ -13,25 +13,40 @@ namespace Plugins.Models
 {
 	
 	
-	/// <summary>
-	/// Need type
-	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
-	public enum need
+	public enum cm_propertytypeoptions
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Musthave = 0,
+		CurbsideResidence = 121540000,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Shouldhave = 1,
+		MultiFamilyDwelling = 121540001,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Goodtohave = 2,
+		DepotLocation = 121540002,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Noneed = 3,
+		SchoolSite = 121540003,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ParkSite = 121540004,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		CampgroundSite = 121540005,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		LongTermCareLocation = 121540006,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		RetirementHome = 121540007,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		NonEligibleSource = 121540008,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Other = 121540009,
 	}
 }
 #pragma warning restore CS1591

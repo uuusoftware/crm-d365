@@ -6,7 +6,7 @@ CM.Lead = (function () {
     "use strict";
 
     // This global variable must be set in any entry point to this file. E.g. OnSave, OnLoad, OnChange
-    let formContext = null; // Global within CM.Lead scope
+    let _formContext = null; // Global within CM.Lead scope
 
     const Constants = Object.freeze({
         entityName: "lead",
@@ -16,16 +16,16 @@ CM.Lead = (function () {
 
     const Helpers = {
         onLoad: async (executionContext) => {
-            formContext = executionContext.getFormContext(); // initialize once
+            _formContext = executionContext.getFormContext(); // initialize once
 
             Helpers.setDefaultCountryOnLoad();
             Helpers.toggleServiceTypeFieldOnLoad();
             Helpers.handleContactAndCompanyFieldsOnload();
 
-            formContext.getAttribute("cm_existingcontact")?.addOnChange((ctx) =>
+            _formContext.getAttribute("cm_existingcontact")?.addOnChange((ctx) =>
                 Helpers.onExistingContactChange(ctx)
             );
-            formContext.getAttribute("cm_existingcustomer")?.addOnChange((ctx) =>
+            _formContext.getAttribute("cm_existingcustomer")?.addOnChange((ctx) =>
                 Helpers.onExistingCompanyChange(ctx)
             );
         },
@@ -34,6 +34,9 @@ CM.Lead = (function () {
             const contactFormAttribute = ["fullname_compositionLinkControl_firstname", "fullname_compositionLinkControl_lastname", "jobtitle", "telephone1", "mobilephone", "emailaddress1"];
             const companyFormAttribute = ["companyname", "websiteurl", "address1_line1", "address1_line2", 
                 "address1_line3", "address1_city", "cm_country", "cm_stateprovince", "address1_postalcode"];
+
+            const isExistingCustomer = _formContext.getAttribute("cm_existingcustomer").getValue();
+            const isExistingContact = _formContext.getAttribute("cm_existingcontact").getValue();
 
             Helpers.toggleFieldsVisibility(false, ...contactFormAttribute, ...companyFormAttribute);
             Helpers.toggleFieldsRequirementLevel(Constants.notRequired, ...contactFormAttribute, ...companyFormAttribute);

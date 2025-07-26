@@ -17,9 +17,15 @@ namespace Plugins.Models
 	/// Record type for the source record.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
 	public enum connection_record1objecttypecode
 	{
+		
+		/// <summary>
+		/// Alerts that notify schedule board users of booking issues or information.
+		/// </summary>
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		BookingAlert = 11067,
 		
 		/// <summary>
 		/// Specify Customer Asset.
@@ -27,11 +33,8 @@ namespace Plugins.Models
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		CustomerAsset = 10409,
 		
-		/// <summary>
-		/// Business that represents a customer or potential customer. The company that is billed in business transactions.
-		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Account = 1,
+		Shortcut = 10356,
 		
 		/// <summary>
 		/// Task performed, or to be performed, by a user. An activity is any action for which an entry can be made on a calendar.
@@ -40,31 +43,10 @@ namespace Plugins.Models
 		Activity = 4200,
 		
 		/// <summary>
-		/// Alerts that notify schedule board users of booking issues or information.
+		/// Business that represents a customer or potential customer. The company that is billed in business transactions.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		BookingAlert = 11067,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Sequence = 10868,
-		
-		/// <summary>
-		/// Entity that defines pricing levels.
-		/// </summary>
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		PriceList = 1022,
-		
-		/// <summary>
-		/// Potential revenue-generating event, or sale to an account, which needs to be tracked through a sales process to completion.
-		/// </summary>
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Opportunity = 3,
-		
-		/// <summary>
-		/// Service request case associated with a contract.
-		/// </summary>
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Case = 112,
+		Account = 1,
 		
 		/// <summary>
 		/// Person with whom a business unit has a relationship, such as customer, supplier, and colleague.
@@ -73,16 +55,19 @@ namespace Plugins.Models
 		Contact = 2,
 		
 		/// <summary>
-		/// Specify custom rules to be validated by the system before saving a booking record.
+		/// Entity that defines pricing levels.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		BookingRule = 11070,
+		PriceList = 1022,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		SequenceTarget = 10870,
+		Sequence = 10868,
 		
+		/// <summary>
+		/// Service request case associated with a contract.
+		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Insight = 10892,
+		Case = 112,
 		
 		/// <summary>
 		/// Tracks the interactions between the agents and customer
@@ -91,10 +76,28 @@ namespace Plugins.Models
 		Ongoingconversation_Deprecated = 10723,
 		
 		/// <summary>
-		/// Web Portal
+		/// Specify custom rules to be validated by the system before saving a booking record.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Website = 10368,
+		BookingRule = 11070,
+		
+		/// <summary>
+		/// Session for interacting with a customer
+		/// </summary>
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Session = 10752,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Insight = 10892,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		SequenceTarget = 10870,
+		
+		/// <summary>
+		/// Defines the amount and type of support a customer should receive.
+		/// </summary>
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Entitlement = 9700,
 		
 		/// <summary>
 		/// Represents a connected device that can be registered with an IoT provider.
@@ -102,8 +105,11 @@ namespace Plugins.Models
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		IoTDevice = 10432,
 		
+		/// <summary>
+		/// Web Portal
+		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Shortcut = 10356,
+		Website = 10368,
 		
 		/// <summary>
 		/// Information about products and their pricing information.
@@ -112,10 +118,10 @@ namespace Plugins.Models
 		Product = 1024,
 		
 		/// <summary>
-		/// Defines the amount and type of support a customer should receive.
+		/// Potential revenue-generating event, or sale to an account, which needs to be tracked through a sales process to completion.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Entitlement = 9700,
+		Opportunity = 3,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		SuggestionPrincipalObjectAccess = 10901,
@@ -220,22 +226,13 @@ namespace Plugins.Models
 		IoTDeviceCommand = 10434,
 		
 		/// <summary>
-		/// Session for interacting with a customer
-		/// </summary>
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Session = 10752,
-		
-		/// <summary>
 		/// The status of a booking alert.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		BookingAlertStatus = 11068,
 		
-		/// <summary>
-		/// Organizational knowledge for internal and external use.
-		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		KnowledgeArticle = 9953,
+		CMLanguage = 11394,
 		
 		/// <summary>
 		/// Activity that is delivered using email protocols.
@@ -250,10 +247,16 @@ namespace Plugins.Models
 		Order = 1088,
 		
 		/// <summary>
-		/// Activity offered by the organization to satisfy its customer's needs. Each service activity includes date, time, duration, and required resources.
+		/// Organizational knowledge for internal and external use.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		ServiceActivity = 4214,
+		KnowledgeArticle = 9953,
+		
+		/// <summary>
+		/// Information that is generated when a dialog is run. Every time that you run a dialog, a dialog session is created.
+		/// </summary>
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ProcessSession = 4710,
 		
 		/// <summary>
 		/// Tracks registration activities on an IoT device.
@@ -262,22 +265,16 @@ namespace Plugins.Models
 		IoTDeviceRegistrationHistory = 10438,
 		
 		/// <summary>
-		/// Resource that can be scheduled.
+		/// Activity offered by the organization to satisfy its customer's needs. Each service activity includes date, time, duration, and required resources.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		FacilityEquipment = 4000,
+		ServiceActivity = 4214,
 		
 		/// <summary>
 		/// Defines the rules for automatically associating channel access profiles to external party records.For internal use only
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ChannelAccessProfileRule = 9400,
-		
-		/// <summary>
-		/// Information that is generated when a dialog is run. Every time that you run a dialog, a dialog session is created.
-		/// </summary>
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		ProcessSession = 4710,
 		
 		/// <summary>
 		/// Group or collection of people, equipment, and/or facilities that can be scheduled.
@@ -329,6 +326,12 @@ namespace Plugins.Models
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		SocialActivity = 4216,
+		
+		/// <summary>
+		/// Resource that can be scheduled.
+		/// </summary>
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		FacilityEquipment = 4000,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		PublishingStateTransitionRule = 10354,
@@ -434,24 +437,9 @@ namespace Plugins.Models
 	/// Record type of the target record.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
 	public enum connection_record2objecttypecode
 	{
-		
-		/// <summary>
-		/// Activity that is delivered using email protocols.
-		/// </summary>
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Email = 4202,
-		
-		/// <summary>
-		/// Resource group or team whose members can be scheduled for a service.
-		/// </summary>
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		SchedulingGroup = 4005,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		CustomerVoicealert = 10637,
 		
 		/// <summary>
 		/// Activity that tracks the delivery of a letter. The activity can contain the electronic copy of the letter.
@@ -460,22 +448,25 @@ namespace Plugins.Models
 		Letter = 4207,
 		
 		/// <summary>
-		/// Defines the amount and type of support for a channel.
+		/// Activity that is delivered using email protocols.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		EntitlementChannel = 9701,
+		Email = 4202,
 		
 		/// <summary>
-		/// Activity to track a telephone call.
+		/// Order that has been billed.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		PhoneCall = 4210,
+		Invoice = 1090,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Shortcut = 10356,
+		CustomerVoicealert = 10637,
 		
+		/// <summary>
+		/// Resource group or team whose members can be scheduled for a service.
+		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		SuggestionPrincipalObjectAccess = 10901,
+		SchedulingGroup = 4005,
 		
 		/// <summary>
 		/// Send invitations to existing contacts or email addresses and assign them to web roles upon redemption.
@@ -484,22 +475,19 @@ namespace Plugins.Models
 		Invitation = 10334,
 		
 		/// <summary>
-		/// Alerts that notify schedule board users of booking issues or information.
+		/// Activity to track a telephone call.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		BookingAlert = 11067,
+		PhoneCall = 4210,
 		
 		/// <summary>
-		/// Target objective for a user or a team for a specified time period.
+		/// Defines the amount and type of support for a channel.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Goal = 9600,
+		EntitlementChannel = 9701,
 		
-		/// <summary>
-		/// Defines the rules for automatically associating channel access profiles to external party records.For internal use only
-		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		ChannelAccessProfileRule = 9400,
+		SuggestionPrincipalObjectAccess = 10901,
 		
 		/// <summary>
 		/// Person with whom a business unit has a relationship, such as customer, supplier, and colleague.
@@ -508,10 +496,31 @@ namespace Plugins.Models
 		Contact = 2,
 		
 		/// <summary>
-		/// Allows to specify for which territory a resource could provide services for
+		/// Alerts that notify schedule board users of booking issues or information.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		ResourceTerritory = 11079,
+		BookingAlert = 11067,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		CMLanguage = 11394,
+		
+		/// <summary>
+		/// Defines the rules for automatically associating channel access profiles to external party records.For internal use only
+		/// </summary>
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ChannelAccessProfileRule = 9400,
+		
+		/// <summary>
+		/// Target objective for a user or a team for a specified time period.
+		/// </summary>
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Goal = 9600,
+		
+		/// <summary>
+		/// Person with access to the Microsoft CRM system and who owns objects in the Microsoft CRM database.
+		/// </summary>
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		User = 8,
 		
 		/// <summary>
 		/// Business that represents a customer or potential customer. The company that is billed in business transactions.
@@ -520,10 +529,10 @@ namespace Plugins.Models
 		Account = 1,
 		
 		/// <summary>
-		/// Order that has been billed.
+		/// Allows to specify for which territory a resource could provide services for
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Invoice = 1090,
+		ResourceTerritory = 11079,
 		
 		/// <summary>
 		/// Commitment representing a time interval with start/end times and duration.
@@ -531,11 +540,8 @@ namespace Plugins.Models
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Appointment = 4201,
 		
-		/// <summary>
-		/// Person with access to the Microsoft CRM system and who owns objects in the Microsoft CRM database.
-		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		User = 8,
+		Shortcut = 10356,
 		
 		/// <summary>
 		/// Entity that defines pricing levels.
@@ -646,12 +652,6 @@ namespace Plugins.Models
 		ServiceActivity = 4214,
 		
 		/// <summary>
-		/// Represents a connected device that can be registered with an IoT provider.
-		/// </summary>
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		IoTDevice = 10432,
-		
-		/// <summary>
 		/// The Master appointment of a recurring appointment series.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -750,8 +750,11 @@ namespace Plugins.Models
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		IoTDeviceCommand = 10434,
 		
+		/// <summary>
+		/// Task performed, or to be performed, by a user. An activity is any action for which an entry can be made on a calendar.
+		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		AssignmentMap = 10885,
+		Activity = 4200,
 		
 		/// <summary>
 		/// Container for campaign activities and responses, sales literature, products, and lists to create, plan, execute, and track the results of a specific marketing campaign through its life.
@@ -760,25 +763,22 @@ namespace Plugins.Models
 		Campaign = 4400,
 		
 		/// <summary>
-		/// Collection of system users that routinely collaborate. Teams can be used to simplify record sharing and provide team members with common access to organization data when team members belong to different Business Units.
-		/// </summary>
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Team = 9,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		SequenceTarget = 10870,
-		
-		/// <summary>
 		/// Potential revenue-generating event, or sale to an account, which needs to be tracked through a sales process to completion.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Opportunity = 3,
 		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		SequenceTarget = 10870,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		AssignmentMap = 10885,
+		
 		/// <summary>
-		/// Business competing for the sale represented by a lead or opportunity.
+		/// Stores user-specific settings for the schedule board.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Competitor = 123,
+		SystemUserSchedulerSetting = 11082,
 		
 		/// <summary>
 		/// Position of a user in the hierarchy
@@ -787,19 +787,19 @@ namespace Plugins.Models
 		Position = 50,
 		
 		/// <summary>
-		/// Stores user-specific settings for the schedule board.
+		/// Represents a connected device that can be registered with an IoT provider.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		SystemUserSchedulerSetting = 11082,
+		IoTDevice = 10432,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Insight = 10892,
 		
 		/// <summary>
-		/// Session for interacting with a customer
+		/// Business competing for the sale represented by a lead or opportunity.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Session = 10752,
+		Competitor = 123,
 		
 		/// <summary>
 		/// Resource that can be scheduled.
@@ -808,10 +808,10 @@ namespace Plugins.Models
 		FacilityEquipment = 4000,
 		
 		/// <summary>
-		/// Task performed, or to be performed, by a user. An activity is any action for which an entry can be made on a calendar.
+		/// Group or collection of people, equipment, and/or facilities that can be scheduled.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Activity = 4200,
+		ResourceGroup = 4007,
 		
 		/// <summary>
 		/// Formal offer for products and/or services, proposed at specific prices and related payment terms, which is sent to a prospective customer.
@@ -820,16 +820,16 @@ namespace Plugins.Models
 		Quote = 1084,
 		
 		/// <summary>
-		/// Group or collection of people, equipment, and/or facilities that can be scheduled.
+		/// Session for interacting with a customer
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		ResourceGroup = 4007,
+		Session = 10752,
 		
 		/// <summary>
-		/// Territory represents sales regions.
+		/// Prospect or potential sales opportunity. Leads are converted into accounts, contacts, or opportunities when they are qualified. Otherwise, they are deleted or archived.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Territory = 2013,
+		Lead = 4,
 		
 		/// <summary>
 		/// Specify custom rules to be validated by the system before saving a booking record.
@@ -838,20 +838,26 @@ namespace Plugins.Models
 		BookingRule = 11070,
 		
 		/// <summary>
-		/// Prospect or potential sales opportunity. Leads are converted into accounts, contacts, or opportunities when they are qualified. Otherwise, they are deleted or archived.
+		/// Collection of system users that routinely collaborate. Teams can be used to simplify record sharing and provide team members with common access to organization data when team members belong to different Business Units.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Lead = 4,
+		Team = 9,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Sequence = 10868,
+		
+		/// <summary>
+		/// Territory represents sales regions.
+		/// </summary>
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Territory = 2013,
 	}
 	
 	/// <summary>
 	/// Status of the connection.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
 	public enum connection_statecode
 	{
 		
@@ -866,7 +872,7 @@ namespace Plugins.Models
 	/// Reason for the status of the connection.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
 	public enum connection_statuscode
 	{
 		
@@ -885,7 +891,7 @@ namespace Plugins.Models
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("connection")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
 	public partial class Connection : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		

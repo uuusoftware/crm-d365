@@ -17,7 +17,7 @@ namespace Plugins.Models
 	/// The sales process stage that this entity is in.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
 	public enum lead_salesstage
 	{
 		

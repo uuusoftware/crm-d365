@@ -14,7 +14,7 @@ namespace Plugins.Models
 	
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
 	public enum cm_leadopptype
 	{
 		
@@ -23,6 +23,36 @@ namespace Plugins.Models
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ServiceProvider = 121540001,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Broker = 121540004,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		CMCustomer = 121540005,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		CMVendor = 121540006,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Community = 121540007,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		EndMarket = 121540008,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Facility = 121540009,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Government = 121540010,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		IndustryAssociation = 121540011,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Media = 121540012,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Regulator = 121540013,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Resident = 121540002,

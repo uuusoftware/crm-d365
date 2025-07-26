@@ -17,7 +17,7 @@ namespace Plugins.Models
 	/// Post message type private or direct.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
 	public enum socialactivity_postmessagetype
 	{
 		

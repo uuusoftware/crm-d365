@@ -17,7 +17,7 @@ namespace Plugins.Models
 	/// Identifies where the social profile originated from, such as Twitter, or FaceBook.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
 	public enum socialprofile_community
 	{
 		

@@ -17,7 +17,7 @@ namespace Plugins.Models
 	/// Type of address for address 1, such as billing, shipping, or primary address.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
 	public enum lead_address1_addresstypecode
 	{
 		
@@ -29,7 +29,7 @@ namespace Plugins.Models
 	/// Method of shipment for address 1.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
 	public enum lead_address1_shippingmethodcode
 	{
 		
@@ -41,7 +41,7 @@ namespace Plugins.Models
 	/// Type of address for address 2, such as billing, shipping, or primary address.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
 	public enum lead_address2_addresstypecode
 	{
 		
@@ -53,7 +53,7 @@ namespace Plugins.Models
 	/// Method of shipment for address 2.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
 	public enum lead_address2_shippingmethodcode
 	{
 		
@@ -65,7 +65,7 @@ namespace Plugins.Models
 	/// Type of industry with which the company or organization of the lead is associated.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
 	public enum lead_industrycode
 	{
 		
@@ -173,7 +173,7 @@ namespace Plugins.Models
 	/// Quality of the lead, such as hot, warm, or cold.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
 	public enum lead_leadqualitycode
 	{
 		
@@ -191,7 +191,7 @@ namespace Plugins.Models
 	/// Source of the lead.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
 	public enum lead_leadsourcecode
 	{
 		
@@ -221,7 +221,7 @@ namespace Plugins.Models
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
 	public enum msdyn_lead_msdyn_salesassignmentresult
 	{
 		
@@ -236,7 +236,7 @@ namespace Plugins.Models
 	/// Preferred contact method for the lead.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
 	public enum lead_preferredcontactmethodcode
 	{
 		
@@ -260,7 +260,7 @@ namespace Plugins.Models
 	/// Priority of the lead.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
 	public enum lead_prioritycode
 	{
 		
@@ -272,7 +272,7 @@ namespace Plugins.Models
 	/// Current stage of the sales process for the lead.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
 	public enum lead_salesstagecode
 	{
 		
@@ -284,7 +284,7 @@ namespace Plugins.Models
 	/// Status of the lead.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
 	public enum lead_statecode
 	{
 		
@@ -302,7 +302,7 @@ namespace Plugins.Models
 	/// Reason for the status of the lead.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
 	public enum lead_statuscode
 	{
 		
@@ -333,7 +333,7 @@ namespace Plugins.Models
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("lead")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
 	public partial class Lead : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -403,6 +403,10 @@ namespace Plugins.Models
 			public const string CampaignIdName = "campaignidname";
 			public const string cm_Country = "cm_country";
 			public const string cm_CountryName = "cm_countryname";
+			public const string cm_ExistingContact = "cm_existingcontact";
+			public const string cm_existingcontactName = "cm_existingcontactname";
+			public const string cm_ExistingCustomer = "cm_existingcustomer";
+			public const string cm_existingcustomerName = "cm_existingcustomername";
 			public const string cm_Industry = "cm_industry";
 			public const string cm_IndustryName = "cm_industryname";
 			public const string cm_LeadID = "cm_leadid";
@@ -1689,6 +1693,68 @@ namespace Plugins.Models
 				if (this.FormattedValues.Contains("cm_country"))
 				{
 					return this.FormattedValues["cm_country"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_existingcontact")]
+		public System.Nullable<bool> cm_ExistingContact
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("cm_existingcontact");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_ExistingContact");
+				this.SetAttributeValue("cm_existingcontact", value);
+				this.OnPropertyChanged("cm_ExistingContact");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_existingcontactname")]
+		public string cm_existingcontactName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_existingcontact"))
+				{
+					return this.FormattedValues["cm_existingcontact"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_existingcustomer")]
+		public System.Nullable<bool> cm_ExistingCustomer
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("cm_existingcustomer");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_ExistingCustomer");
+				this.SetAttributeValue("cm_existingcustomer", value);
+				this.OnPropertyChanged("cm_ExistingCustomer");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_existingcustomername")]
+		public string cm_existingcustomerName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_existingcustomer"))
+				{
+					return this.FormattedValues["cm_existingcustomer"];
 				}
 				else
 				{

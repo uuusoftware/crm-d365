@@ -18,7 +18,7 @@ namespace Plugins.Models
 	/// <summary>
 	/// Represents a source of entities bound to a Dataverse service. It tracks and manages changes made to the retrieved entities.
 	/// </summary>
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
 	public partial class OrgContext : Microsoft.Xrm.Sdk.Client.OrganizationServiceContext
 	{
 		

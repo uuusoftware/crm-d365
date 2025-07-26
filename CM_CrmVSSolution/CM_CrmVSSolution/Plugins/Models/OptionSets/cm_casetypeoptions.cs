@@ -13,25 +13,22 @@ namespace Plugins.Models
 {
 	
 	
-	/// <summary>
-	/// Need type
-	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
-	public enum need
+	public enum cm_casetypeoptions
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Musthave = 0,
+		Producer = 121540000,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Shouldhave = 1,
+		ServiceProvider = 121540001,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Goodtohave = 2,
+		ResidentRelations = 121540002,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Noneed = 3,
+		StakeholderRelations = 121540003,
 	}
 }
 #pragma warning restore CS1591

@@ -15,28 +15,9 @@ namespace Plugins.Models
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/Contracts")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("ExecuteBackgroundOperation")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
 	public partial class ExecuteBackgroundOperationRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
-		
-		public Microsoft.Xrm.Sdk.OrganizationRequest Request
-		{
-			get
-			{
-				if (this.Parameters.Contains("Request"))
-				{
-					return ((Microsoft.Xrm.Sdk.OrganizationRequest)(this.Parameters["Request"]));
-				}
-				else
-				{
-					return default(Microsoft.Xrm.Sdk.OrganizationRequest);
-				}
-			}
-			set
-			{
-				this.Parameters["Request"] = value;
-			}
-		}
 		
 		public string CallbackUri
 		{
@@ -57,6 +38,25 @@ namespace Plugins.Models
 			}
 		}
 		
+		public Microsoft.Xrm.Sdk.OrganizationRequest Request
+		{
+			get
+			{
+				if (this.Parameters.Contains("Request"))
+				{
+					return ((Microsoft.Xrm.Sdk.OrganizationRequest)(this.Parameters["Request"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.OrganizationRequest);
+				}
+			}
+			set
+			{
+				this.Parameters["Request"] = value;
+			}
+		}
+		
 		public ExecuteBackgroundOperationRequest()
 		{
 			this.RequestName = "ExecuteBackgroundOperation";
@@ -66,7 +66,7 @@ namespace Plugins.Models
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/Contracts")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("ExecuteBackgroundOperation")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.11")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
 	public partial class ExecuteBackgroundOperationResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -87,6 +87,10 @@ namespace Plugins.Models
 					return default(System.Guid);
 				}
 			}
+			set
+			{
+				this.Results["BackgroundOperationId"] = value;
+			}
 		}
 		
 		public string Location
@@ -101,6 +105,10 @@ namespace Plugins.Models
 				{
 					return default(string);
 				}
+			}
+			set
+			{
+				this.Results["Location"] = value;
 			}
 		}
 	}
