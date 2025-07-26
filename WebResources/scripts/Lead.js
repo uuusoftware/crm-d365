@@ -11,7 +11,7 @@ CM.Lead = (function () {
     const Constants = Object.freeze({
         entityName: "lead",
         required: "required",
-        notRequired: "none",        
+        notRequired: "none",
     });
 
     const Helpers = {
@@ -19,7 +19,7 @@ CM.Lead = (function () {
             _formContext = executionContext.getFormContext(); // initialize once
 
             Helpers.setDefaultCountryOnLoad();
-            Helpers.toggleServiceTypeFieldOnLoad();
+            Helpers.toggleServiceTypeFieldOnLoad(executionContext);
             Helpers.handleContactAndCompanyFieldsOnload();
 
             _formContext.getAttribute("cm_existingcontact")?.addOnChange((ctx) =>
@@ -28,43 +28,51 @@ CM.Lead = (function () {
             _formContext.getAttribute("cm_existingcustomer")?.addOnChange((ctx) =>
                 Helpers.onExistingCompanyChange(ctx)
             );
+            _formContext.getAttribute("cm_leadtype")?.addOnChange((ctx) =>
+                Helpers.toggleServiceTypeFieldOnLoad(ctx)
+            );
         },
 
         handleContactAndCompanyFieldsOnload: () => {
-            const contactFormAttribute = ["fullname_compositionLinkControl_firstname", "fullname_compositionLinkControl_lastname", "jobtitle", "telephone1", "mobilephone", "emailaddress1"];
-            const companyFormAttribute = ["companyname", "websiteurl", "address1_line1", "address1_line2", 
-                "address1_line3", "address1_city", "cm_country", "cm_stateprovince", "address1_postalcode"];
-
             const isExistingCustomer = _formContext.getAttribute("cm_existingcustomer").getValue();
             const isExistingContact = _formContext.getAttribute("cm_existingcontact").getValue();
 
-            Helpers.toggleFieldsVisibility(false, ...contactFormAttribute, ...companyFormAttribute);
-            Helpers.toggleFieldsRequirementLevel(Constants.notRequired, ...contactFormAttribute, ...companyFormAttribute);
-
-            Helpers.toggleFieldsRequirementLevel(Constants.required, "parentcontactid");
-            Helpers.toggleFieldsVisibility(true, "parentcontactid");
-
-            Helpers.toggleFieldsRequirementLevel(Constants.required, "parentaccountid");
-            Helpers.toggleFieldsVisibility(true, "parentaccountid");
-
+            Helpers.handleIsExistingCustomer(isExistingCustomer);
+            Helpers.handleIsExistingContact(isExistingContact);
         },
 
         onExistingContactChange: (executionContext) => {
-            formContext = executionContext.getFormContext();
+            _formContext = _formContext || executionContext.getFormContext();
+            const isExistingContact = executionContext.getEventSource().getValue();
+            Helpers.handleIsExistingContact(isExistingContact);
+        },
 
-            const attribute = executionContext.getEventSource();
-            const isExistingContact = attribute.getValue();
+        onExistingCompanyChange: (executionContext) => {
+            _formContext = _formContext || executionContext.getFormContext();
+            const isExistingCompany = executionContext.getEventSource().getValue();
+            Helpers.handleIsExistingCustomer(isExistingCompany);
+        },
+
+        handleIsExistingContact: (isExistingContact) => {
+            const newContactFields = [
+                "fullname_compositionLinkControl_firstname",
+                "fullname_compositionLinkControl_lastname",
+                "jobtitle", "telephone1", "mobilephone", "emailaddress1"
+            ];
+            const newContactRequiredFields = [
+                "fullname_compositionLinkControl_firstname",
+                "fullname_compositionLinkControl_lastname"
+            ];
 
             if (isExistingContact === true) {
                 Helpers.toggleFieldsVisibility(true, "parentcontactid");
                 Helpers.toggleFieldsRequirementLevel(Constants.required, "parentcontactid");
 
-                Helpers.toggleFieldsVisibility(false, "fullname_compositionLinkControl_firstname", "fullname_compositionLinkControl_lastname", "jobtitle", "telephone1", "mobilephone", "emailaddress1");
-                Helpers.toggleFieldsRequirementLevel(Constants.notRequired, "fullname_compositionLinkControl_firstname", "fullname_compositionLinkControl_lastname",);
-
+                Helpers.toggleFieldsVisibility(false, ...newContactFields);
+                Helpers.toggleFieldsRequirementLevel(Constants.notRequired, ...newContactRequiredFields);
             } else if (isExistingContact === false) {
-                Helpers.toggleFieldsVisibility(true, "fullname_compositionLinkControl_firstname", "fullname_compositionLinkControl_lastname", "jobtitle", "telephone1", "mobilephone", "emailaddress1");
-                Helpers.toggleFieldsRequirementLevel(Constants.required, "fullname_compositionLinkControl_firstname", "fullname_compositionLinkControl_lastname",);
+                Helpers.toggleFieldsVisibility(true, ...newContactFields);
+                Helpers.toggleFieldsRequirementLevel(Constants.required, ...newContactRequiredFields);
 
                 Helpers.toggleFieldsVisibility(false, "parentcontactid");
                 Helpers.toggleFieldsRequirementLevel(Constants.notRequired, "parentcontactid");
@@ -73,82 +81,79 @@ CM.Lead = (function () {
             }
         },
 
-        onExistingCompanyChange: (executionContext) => {
-            formContext = executionContext.getFormContext();
+        handleIsExistingCustomer: (isExistingCustomer) => {
+            const newCompanyFields = [
+                "companyname", "websiteurl", "address1_line1", "address1_line2",
+                "address1_line3", "address1_city", "cm_country", "cm_stateprovince", "address1_postalcode"
+            ];
+            const newCompanyRequiredFields = ["companyname"];
 
-            const attribute = executionContext.getEventSource();
-            const isExistingCompany = attribute.getValue();
-
-            if (isExistingCompany === true) {
+            if (isExistingCustomer === true) {
                 Helpers.toggleFieldsVisibility(true, "parentaccountid");
                 Helpers.toggleFieldsRequirementLevel(Constants.required, "parentaccountid");
 
-                Helpers.toggleFieldsVisibility(false, "companyname", "websiteurl", "address1_line1", "address1_line2", 
-                    "address1_line3", "address1_city", "cm_country", "cm_stateprovince", "address1_postalcode");
-                Helpers.toggleFieldsRequirementLevel(Constants.notRequired, "companyname");
-
-            } else if (isExistingCompany === false) {
-                Helpers.toggleFieldsVisibility(true, "companyname", "websiteurl", "address1_line1", "address1_line2", 
-                    "address1_line3", "address1_city", "cm_country", "cm_stateprovince", "address1_postalcode");
-                Helpers.toggleFieldsRequirementLevel(Constants.required, "companyname");
+                Helpers.toggleFieldsVisibility(false, ...newCompanyFields);
+                Helpers.toggleFieldsRequirementLevel(Constants.notRequired, ...newCompanyRequiredFields);
+            } else if (isExistingCustomer === false) {
+                Helpers.toggleFieldsVisibility(true, ...newCompanyFields);
+                Helpers.toggleFieldsRequirementLevel(Constants.required, ...newCompanyRequiredFields);
 
                 Helpers.toggleFieldsVisibility(false, "parentaccountid");
                 Helpers.toggleFieldsRequirementLevel(Constants.notRequired, "parentaccountid");
             } else {
-                throw new Error("Invalid value for isExistingCompany");
+                throw new Error("Invalid value for isExistingCustomer");
             }
         },
 
         toggleFieldsVisibility: (setVisibleTo, ...attributes) => {
             attributes.forEach(attr => {
-                const control = formContext.getControl(attr);
-                if (control) {
-                    control.setVisible(setVisibleTo);
-                }
+                const control = _formContext.getControl(attr);
+                control && control.setVisible(setVisibleTo);
             });
         },
 
         toggleFieldsRequirementLevel: (requiredLevel, ...attributes) => {
             attributes.forEach(attr => {
-                const attribute = formContext.getAttribute(attr);
-                if (attribute) {
-                    attribute.setRequiredLevel(requiredLevel); // "none", "required", or "recommended"
+                const attribute = _formContext.getAttribute(attr);
+                attribute && attribute.setRequiredLevel(requiredLevel); // "none", "required", or "recommended"
                 }
-            });
+            );
         },
 
-        toggleServiceTypeFieldOnLoad: () => {
-            const leadType = formContext.getAttribute("cm_leadtype").getValue();
+        toggleServiceTypeFieldOnLoad: (executionContext) => {
+            _formContext = _formContext || executionContext.getFormContext();
+
+            const leadType = _formContext.getAttribute("cm_leadtype").getValue();
 
             if (leadType === 121540001) {
-                formContext.getControl("cm_servicetype").setVisible(true);
-                formContext.getAttribute("cm_servicetype").setRequiredLevel("required");
+                _formContext.getControl("cm_servicetype").setVisible(true);
+                _formContext.getAttribute("cm_servicetype").setRequiredLevel("required");
 
-                formContext.getControl("cm_othertype").setVisible(false);
-                formContext.getAttribute("cm_othertype").setRequiredLevel("none");
-                formContext.getAttribute("cm_othertype").setValue(null);
+                _formContext.getControl("cm_othertype").setVisible(false);
+                _formContext.getAttribute("cm_othertype").setRequiredLevel("none");
+                _formContext.getAttribute("cm_othertype").setValue(null);
             }
             else if (leadType === 121540003) {
-                formContext.getControl("cm_othertype").setVisible(true);
-                formContext.getAttribute("cm_othertype").setRequiredLevel("required");
+                _formContext.getControl("cm_othertype").setVisible(true);
+                _formContext.getAttribute("cm_othertype").setRequiredLevel("required");
 
-                formContext.getControl("cm_servicetype").setVisible(false);
-                formContext.getAttribute("cm_servicetype").setRequiredLevel("none");
-                formContext.getAttribute("cm_servicetype").setValue(null);
+                _formContext.getControl("cm_servicetype").setVisible(false);
+                _formContext.getAttribute("cm_servicetype").setRequiredLevel("none");
+                _formContext.getAttribute("cm_servicetype").setValue(null);
             }
             else {
-                formContext.getControl("cm_servicetype").setVisible(false);
-                formContext.getAttribute("cm_servicetype").setRequiredLevel("none");
-                formContext.getAttribute("cm_servicetype").setValue(null);
+                _formContext.getControl("cm_servicetype").setVisible(false);
+                _formContext.getAttribute("cm_servicetype").setRequiredLevel("none");
+                _formContext.getAttribute("cm_servicetype").setValue(null);
 
-                formContext.getControl("cm_othertype").setVisible(false);
-                formContext.getAttribute("cm_othertype").setRequiredLevel("none");
-                formContext.getAttribute("cm_othertype").setValue(null);
+                _formContext.getControl("cm_othertype").setVisible(false);
+                _formContext.getAttribute("cm_othertype").setRequiredLevel("none");
+                _formContext.getAttribute("cm_othertype").setValue(null);
             }
         },
 
         setDefaultCountryOnLoad: () => {
-            const countryField = formContext.getAttribute("cm_country");
+            const countryField = _formContext.getAttribute("cm_country");
 
             if (!countryField.getValue()) {
                 const fetchXml = `
