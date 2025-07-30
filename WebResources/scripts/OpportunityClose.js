@@ -19,59 +19,51 @@ CM.OpportunityClose = (function () {
          */
         onLoad: async (executionContext) => {
             _formContext = executionContext.getFormContext();
+            _formContext.getAttribute("cm_sapid")?.addOnChange(async (ctx) =>
+                await Helpers.checkForMergeAccountOnChange(ctx)
+            );
             Helpers.setFieldsVisibility(executionContext);
         },
         /**
          * @description Use CM.OpportunityClose.onSave to call it from the form on load event
          * @param executionContext 
          */
-        onSave: (executionContext) => {
+        onSave: async (executionContext) => {
             _formContext = executionContext.getFormContext();
-            return Helpers.notifyUserOfMergeRequest(executionContext); // Return the promise!
         },
 
-        notifyUserOfMergeRequest: (executionContext) => {
-            const formContext = executionContext.getFormContext();
-            const eventArgs = executionContext.getEventArgs();
+        checkForMergeAccountOnChange: async (executionContext) => {
+            _formContext = executionContext.getFormContext();
 
-            // 1) Cancel the save synchronously
-            eventArgs.preventDefault();
+            const sapId = executionContext.getEventSource().getValue();
+            if (!sapId) return;
 
-            // 2) Do your async work
-            const sapId = formContext.getAttribute("cm_sapid").getValue();
-            Xrm.WebApi.retrieveMultipleRecords("account",`?$select=accountnumber,name,accountid&$filter=accountnumber eq '${sapId}'`)
-                .then((records) => {
-                    const accountRecord = records.entities[0];
-                    // If no match, just re-save
-                    if (!accountRecord) {
-                        return formContext.data.save();
-                    }
+            const records = await Xrm.WebApi.retrieveMultipleRecords("account",`?$select=accountnumber,name,accountid&$filter=accountnumber eq '${sapId}'`);
 
-                    // 3) Show confirmation dialog
-                    const confirmOptions = {
-                        title: "Merge Alert",
-                        subtitle: `This will merge with account "${accountRecord.name}".`,
-                        text: "This action cannot be undone. Continue?",
-                        confirmButtonLabel: "Yes",
-                        cancelButtonLabel: "No",
-                    };
+            const accountRecord = records.entities.at(0);
 
-                    return Xrm.Navigation.openConfirmDialog(confirmOptions).then((res) => {
-                        if (res.confirmed) {
-                            // User said “Yes” → re‑trigger the save
-                            formContext.data.save();
-                        }
-                        // else do nothing (save stays canceled)
-                    });
-                })
-                .catch((err) => {
-                    console.error("Error during merge check:", err.message);
-                    // Optionally surface error to user...
-                    // Save remains canceled because we already called preventDefault()
-                });
+            accountRecord && await Helpers.showConfirmDialog(accountRecord);
+        },
+        showConfirmDialog: async (accountRecord) => {
+            const confirmOptions = {
+                title: "Merge Alert",
+                subtitle: `The current Opportunity account will merge with account "${accountRecord.name}".`,
+                text: "This action cannot be undone. Do you wish to continue?",
+                confirmButtonLabel: "Yes",
+                cancelButtonLabel: "No",
+            };
 
-            // 4) Return nothing (or a resolved promise) so platform knows we're async,
-            //    but actual save will only happen via formContext.data.save()
+            try {
+                const result = await Xrm.Navigation.openConfirmDialog(confirmOptions);
+                if (result.confirmed) {
+                    console.log("User confirmed the action.");
+                } else {
+                    _formContext.getAttribute("cm_sapid").setValue(null);
+                    console.log("User cancelled the action.");
+                }
+            } catch (error) {
+                Helpers.openStringifiedErrorDialog("Error showing confirmation dialog:", error.message);
+            }
         },
 
         openStringifiedErrorDialog: (errorHeader = "Please contact your administrator.", error = "Unexpected Error") => {
