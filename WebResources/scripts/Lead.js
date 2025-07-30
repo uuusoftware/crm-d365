@@ -15,6 +15,10 @@ CM.Lead = (function () {
     });
 
     const Helpers = {
+        /**
+         * @description Use CM.Lead.onLoad to call it from the form on load event
+         * @param executionContext 
+         */
         onLoad: async (executionContext) => {
             _formContext = executionContext.getFormContext(); // initialize once
 
