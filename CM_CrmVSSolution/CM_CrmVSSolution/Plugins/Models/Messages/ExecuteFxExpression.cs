@@ -146,7 +146,7 @@ namespace Plugins.Models
 			}
 			set
 			{
-				this.Parameters["out"] = value;
+				this.Results["out"] = value;
 			}
 		}
 	}
