@@ -47,7 +47,7 @@ CM.LeadRibbon = (function () {
                     primaryControl.data.refresh(true);
                 }, Constants.SetTimeoutInterval.SUCCESS);
             } catch (err) {
-                Helpers.openStringifiedErrorDialog("An error occurred ", err);
+                Helpers.openStringifiedErrorDialog(err);
                 console.error({ "Error": `An error occurred: ${err}` });
                 throw err;
 
@@ -56,10 +56,14 @@ CM.LeadRibbon = (function () {
                 Helpers.notifyUser(formContext, isUpdated ? "Lead qualified. Processing Opportunities" : "Lead not qualified");
             }
         },
-        //Error Handler
-        openStringifiedErrorDialog: (errorHeader = "Please contact your administrator.", error = "Unexpected Error") => {
+        /**
+         * Displays an error to the user based on the message and details attributes from the object param.
+         * Note: The message should not contain escaped characters (E.g. \n, &amp, \") as they will be shown lirerally in the UI.
+         * @param {*} error to be shown to the user
+         */
+        openStringifiedErrorDialog: (error = "Unexpected Error") => {
             Xrm.Navigation.openErrorDialog({
-                message: `${errorHeader} \nError: ${JSON.stringify((error?.error?.message || error?.message || error))}`,
+                message: `Attention: ${JSON.stringify((error?.error?.message || error?.message || error))}`,
                 details: JSON.stringify(error, Object.getOwnPropertyNames(error))
             });
         },
