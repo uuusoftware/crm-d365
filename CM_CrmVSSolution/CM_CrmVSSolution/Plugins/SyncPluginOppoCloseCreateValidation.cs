@@ -10,7 +10,7 @@ using cm_leadopptype = Plugins.Models.cm_leadopptype;
 
 namespace Plugins {
     /// <summary>
-    /// his class, SyncPluginOppoCloseCreateValidation, is a Dynamics 365 plugin that executes when an Opportunity is closed as Won. 
+    /// This class, SyncPluginOppoCloseCreateValidation, is a Dynamics 365 plugin that executes when an Opportunity is closed as Won. 
     /// The action of closing an Opportunity creates a corresponding opportunityclose entity record. 
     /// This plugin is triggered by the creation of that opportunityclose record, allowing validation or additional logic to run at the time of closure.
     /// </summary>
@@ -100,10 +100,23 @@ namespace Plugins {
 
                 // SAPID is added to the record when the Opportunity is being "closed as won". If it matches the account number from another account 
                 // it means that the account has been imported from the ERP after the Lead was Qualified. The ERP imported account is the SSOT (single source of truth)
-                Account importedAccount = commonBusinessLogic.GetAccountByAccountNumber(opportunityRecord.cm_SAPID);
+                if (opportunityCloseRecord.cm_SAPID == null) {
+                    tracingService.Trace($"Invalid plugin execution: opportunityCloseRecord.cm_SAPID can not be null");
+                    return;
+                }
 
-                // confirm with Rojan all any fields that must be set
+                Account importedAccount = commonBusinessLogic.GetAccountByAccountNumber(opportunityCloseRecord.cm_SAPID);
+
+                if(importedAccount == null) {
+                    // Update account Relationship Type Code according to the Role and skip account merge
+                    var typeCode = commonBusinessLogic.UpdateAccountRelationshipType(accountRecord);
+                    tracingService.Trace($"No import account found. Account {accountRecord.Name} CustomerTypeCode updated to {typeCode}");
+                    return;
+                }
+
+                tracingService.Trace($"Account with number \'{importedAccount.AccountNumber}\' and Id: {importedAccount.Id} found. Start merging with subordinateAccount with Id: {accountRecord.Id}");
                 commonBusinessLogic.Merge(importedAccount, accountRecord);
+                tracingService.Trace($"Account merge complete");
 
             } catch (Exception ex) {
                 string detailedError = $"Unexpected error while processing {context.PrimaryEntityName} record with ID " +

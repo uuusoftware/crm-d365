@@ -786,32 +786,31 @@ namespace Plugins {
         ///     The target fields won't be replaced by any of the subordinate field values, unless specified in the updateFields.
         ///     Once the merge is complete, the subordinate field "masterid" will be updated with a lookup to the targetEntity, and status set to inactive.
         /// </summary>
-        /// <param name="targetEntity">The target (master) entity into which the subordinate will be merged.</param>
-        /// <param name="subordinateEntity">The duplicate entity that will be deactivated and merged into the target.</param>
-        /// <param name="updateFields">
-        /// Optional. A dictionary of fields to update on the target entity during the merge.
+        /// <param name="targetEntity"> The target (master) entity into which the subordinate will be merged.</param>
+        /// <param name="subordinateEntity"> The duplicate entity that will be deactivated and merged into the target.</param>
+        /// <param name="updateFields" >Optional. A dictionary of fields to update on the target entity during the merge.
         /// Only specified fields will overwrite values on the target.
         /// </param>
         /// <exception cref="ArgumentNullException">Thrown if either entity is null.</exception>
         /// <exception cref="InvalidOperationException">Thrown if the entities are not of the same logical type.</exception>
         /// <example>
         /// Example: Merge two contact records and update the job title:
-        /// <code>
-        /// var target = new Entity("contact") { Id = targetId };
-        /// var subordinate = new Entity("contact") { Id = subordinateId };
-        /// var updates = new Dictionary&lt;string, object&gt; {
-        ///     { "jobtitle", "Merged Contact" }
-        /// };
-        /// Merge(target, subordinate, updates);
-        /// </code>
+        ///     <code>
+        ///         var target = new Entity("contact") { Id = targetId };
+        ///         var subordinate = new Entity("contact") { Id = subordinateId };
+        ///         var updates = new Dictionary&lt;string, object&gt; {
+        ///             { "jobtitle", "Merged Contact" }
+        ///         };
+        ///         Merge(target, subordinate, updates);
+        ///     </code>
         /// </example>
         /// <example>
         /// Example: Merge two accounts without updating any fields:
-        /// <code>
-        /// var target = new Entity("account") { Id = targetAccountId };
-        /// var subordinate = new Entity("account") { Id = subordinateAccountId };
-        /// Merge(target, subordinate);
-        /// </code>
+        ///     <code>
+        ///         var target = new Entity("account") { Id = targetAccountId };
+        ///         var subordinate = new Entity("account") { Id = subordinateAccountId };
+        ///         Merge(target, subordinate);
+        ///     </code>
         /// </example>
         internal void Merge(Entity targetEntity, Entity subordinateEntity, Dictionary<string, object> updateFields = null) {
             if (targetEntity == null) throw new ArgumentNullException(nameof(targetEntity));
@@ -844,6 +843,42 @@ namespace Plugins {
                 return svcContext.AccountSet
                     .Where(account => account.AccountNumber == accountNumber)
                     .FirstOrDefault();
+            }
+        }
+
+        internal account_customertypecode UpdateAccountRelationshipType(Account accountRecord) {
+            try {
+
+                cm_leadopptype accountRole = accountRecord.cm_Role?.FirstOrDefault()
+                    ?? throw new InvalidPluginExecutionException("Account Role cannot be null");
+
+                var roleToCustomerTypeMap = new Dictionary<cm_leadopptype, account_customertypecode>
+                {
+                    { cm_leadopptype.Producer, account_customertypecode.Customer },
+                    { cm_leadopptype.EndMarket, account_customertypecode.Customer },
+                    { cm_leadopptype.Broker, account_customertypecode.Customer },
+                    { cm_leadopptype.CMCustomer, account_customertypecode.Customer },
+                    { cm_leadopptype.CMVendor, account_customertypecode.Vendor },
+                    { cm_leadopptype.Facility, account_customertypecode.Vendor },
+                    { cm_leadopptype.Community, account_customertypecode.Vendor },
+                    { cm_leadopptype.ServiceProvider, account_customertypecode.Vendor }
+                };
+
+                if (!roleToCustomerTypeMap.TryGetValue(accountRole, out var customerTypeCode)) {
+                    throw new InvalidPluginExecutionException($"Unsupported Account Role: {accountRole}");
+                }
+
+                var account = new Account {
+                    Id = accountRecord.Id,
+                    CustomerTypeCode = customerTypeCode
+                };
+
+                _service.Update(account);
+
+                return customerTypeCode;
+            } catch (Exception ex) {
+                _tracingService.Trace($"UpdateAccountRelationshipType Error: {ex.Message}");
+                throw;
             }
         }
     }
