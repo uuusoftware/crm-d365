@@ -29,11 +29,17 @@ CM.Lead = (function () {
             _formContext.getAttribute("cm_existingcontact")?.addOnChange((ctx) =>
                 Helpers.onExistingContactChange(ctx)
             );
+            
             _formContext.getAttribute("cm_existingcustomer")?.addOnChange((ctx) =>
                 Helpers.onExistingCompanyChange(ctx)
             );
+
             _formContext.getAttribute("cm_leadtype")?.addOnChange((ctx) =>
                 Helpers.toggleServiceTypeFieldOnLoad(ctx)
+            );
+
+            _formContext.getAttribute("parentaccountid")?.addOnChange((ctx) =>
+                Helpers.removeContactWhenCustomerChanges(ctx)
             );
         },
 
@@ -59,13 +65,13 @@ CM.Lead = (function () {
 
         handleIsExistingContact: (isExistingContact) => {
             const newContactFields = [
-                "fullname_compositionLinkControl_firstname",
-                "fullname_compositionLinkControl_lastname",
+                "fullname_compositionLinkControl_firstname","firstname",
+                "fullname_compositionLinkControl_lastname","lastname",
                 "jobtitle", "telephone1", "mobilephone", "emailaddress1"
             ];
             const newContactRequiredFields = [
-                "fullname_compositionLinkControl_firstname",
-                "fullname_compositionLinkControl_lastname"
+                "fullname_compositionLinkControl_firstname","firstname",
+                "fullname_compositionLinkControl_lastname","lastname",
             ];
 
             if (isExistingContact === true) {
@@ -73,13 +79,17 @@ CM.Lead = (function () {
                 Helpers.toggleFieldsRequirementLevel(Constants.required, "parentcontactid");
 
                 Helpers.toggleFieldsVisibility(false, ...newContactFields);
-                Helpers.toggleFieldsRequirementLevel(Constants.notRequired, ...newContactRequiredFields);
+                Helpers.toggleFieldsRequirementLevel(Constants.notRequired, ...newContactFields);
+
+                Helpers.clearFieldsValues(...newContactFields);
             } else if (isExistingContact === false) {
                 Helpers.toggleFieldsVisibility(true, ...newContactFields);
                 Helpers.toggleFieldsRequirementLevel(Constants.required, ...newContactRequiredFields);
 
                 Helpers.toggleFieldsVisibility(false, "parentcontactid");
                 Helpers.toggleFieldsRequirementLevel(Constants.notRequired, "parentcontactid");
+
+                Helpers.clearFieldsValues("parentcontactid");
             } else {
                 throw new Error("Invalid value for isExistingContact");
             }
@@ -90,23 +100,47 @@ CM.Lead = (function () {
                 "companyname", "websiteurl", "address1_line1", "address1_line2",
                 "address1_line3", "address1_city", "cm_country", "cm_stateprovince", "address1_postalcode"
             ];
-            const newCompanyRequiredFields = ["companyname"];
+            const newCompanyRequiredFields = ["parentaccountid"]; //Customer
 
             if (isExistingCustomer === true) {
-                Helpers.toggleFieldsVisibility(true, "parentaccountid");
-                Helpers.toggleFieldsRequirementLevel(Constants.required, "parentaccountid");
-
-                Helpers.toggleFieldsVisibility(false, ...newCompanyFields);
-                Helpers.toggleFieldsRequirementLevel(Constants.notRequired, ...newCompanyRequiredFields);
-            } else if (isExistingCustomer === false) {
-                Helpers.toggleFieldsVisibility(true, ...newCompanyFields);
+                
+                Helpers.toggleFieldsVisibility(true, ...newCompanyRequiredFields);
                 Helpers.toggleFieldsRequirementLevel(Constants.required, ...newCompanyRequiredFields);
+                
+                Helpers.toggleFieldsVisibility(false, ...newCompanyFields);
+                Helpers.toggleFieldsRequirementLevel(Constants.notRequired, ...newCompanyFields);
 
-                Helpers.toggleFieldsVisibility(false, "parentaccountid");
-                Helpers.toggleFieldsRequirementLevel(Constants.notRequired, "parentaccountid");
+                Helpers.clearFieldsValues(...newCompanyFields);
+            } else if (isExistingCustomer === false) {
+                
+                Helpers.toggleFieldsVisibility(true, ...newCompanyFields);
+                Helpers.toggleFieldsRequirementLevel(Constants.required, "companyname");
+                
+                Helpers.toggleFieldsVisibility(false, ...newCompanyRequiredFields);
+                Helpers.toggleFieldsRequirementLevel(Constants.notRequired, ...newCompanyRequiredFields);
+                
+                Helpers.clearFieldsValues(...newCompanyRequiredFields);
             } else {
                 throw new Error("Invalid value for isExistingCustomer");
             }
+        },
+        removeContactWhenCustomerChanges: () => {
+            // Remove the values from contact lookup when the account/customer changes
+            Helpers.clearFieldsValues("parentcontactid");
+        },
+
+        clearFieldsValues: (...attributes) => {
+            attributes.forEach(attr => {
+                const attribute = _formContext.getAttribute(attr);
+                if (!attribute) return;
+
+                const type = attribute.getAttributeType();
+
+                // Only set to false for booleans, null for all other known types
+                const clearValue = type === "boolean" ? false : null;
+                attribute.setValue(clearValue);
+                attribute.setSubmitMode("always");
+            });
         },
 
         toggleFieldsVisibility: (setVisibleTo, ...attributes) => {
@@ -129,6 +163,8 @@ CM.Lead = (function () {
 
             const leadType = _formContext.getAttribute("cm_leadtype").getValue();
 
+            // 121540001 = Service Provider
+            // 121540003 = Other
             if (leadType === 121540001) {
                 _formContext.getControl("cm_servicetype").setVisible(true);
                 _formContext.getAttribute("cm_servicetype").setRequiredLevel("required");
