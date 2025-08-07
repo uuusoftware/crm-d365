@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Crm.Sdk.Messages;
+using System.Web.Security;
 
 namespace Plugins {
 
@@ -879,6 +880,27 @@ namespace Plugins {
             } catch (Exception ex) {
                 _tracingService.Trace($"UpdateAccountRelationshipType Error: {ex.Message}");
                 throw;
+            }
+        }
+
+        public bool? AddSAPIdFromOppClosureToAccount(Account account, OpportunityClose opportunityClose) {
+            using (var svcContext = new OrgContext(_service)) {
+                var existingAccount = svcContext.AccountSet
+                    .FirstOrDefault(acc => acc.cm_SAPID == opportunityClose.cm_SAPID && acc.AccountId != account.AccountId);
+
+                if (existingAccount != null) {
+                    throw new InvalidPluginExecutionException("SAP ID found in another Account. Please try a different SAP ID");
+                }
+
+                var accountUpdate = new Account() {
+                    Id = account.Id,
+                    cm_SAPID = opportunityClose.cm_SAPID
+                };
+
+                _tracingService.Trace($"Account with Id {account.Id} has been updated with SAPID {opportunityClose.cm_SAPID}");
+
+                _service.Update(accountUpdate);
+                return true;
             }
         }
     }

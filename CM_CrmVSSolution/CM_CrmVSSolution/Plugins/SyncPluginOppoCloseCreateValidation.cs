@@ -107,14 +107,17 @@ namespace Plugins {
 
                 Account importedAccount = commonBusinessLogic.GetAccountByAccountNumber(opportunityCloseRecord.cm_SAPID);
 
+                // No imported account means there's nothing to merge
                 if(importedAccount == null) {
                     // Update account Relationship Type Code according to the Role and skip account merge
                     var typeCode = commonBusinessLogic.UpdateAccountRelationshipType(accountRecord);
                     tracingService.Trace($"No import account found. Account {accountRecord.Name} CustomerTypeCode updated to {typeCode}");
+                    commonBusinessLogic.AddSAPIdFromOppClosureToAccount(accountRecord, opportunityCloseRecord);
                     return;
                 }
 
                 tracingService.Trace($"Account with number \'{importedAccount.AccountNumber}\' and Id: {importedAccount.Id} found. Start merging with subordinateAccount with Id: {accountRecord.Id}");
+                // check if imported account has data in the SAPID field and add to the merge request if not present
                 commonBusinessLogic.Merge(importedAccount, accountRecord);
                 tracingService.Trace($"Account merge complete");
 
@@ -157,14 +160,14 @@ namespace Plugins {
 
                     if (shouldValidate && (int?)response.cm_ExpectedAnswerToClose != (int?)response.cm_AnswerYesNo) {
                         throw new InvalidPluginExecutionException(
-                            "Failed to meet the closure criteria. You may resolve the closure questions before converting the Opportunity as ‘Won’."
+                            "Failed to meet the closure criteria. You must resolve the closure questions before converting the Opportunity as ‘Won’."
                         );
                     }
                 }
 
                 if (response.cm_AnswerType == cm_answertype.TextBox && string.IsNullOrWhiteSpace(response.cm_AnswerText)) {
                     throw new InvalidPluginExecutionException(
-                        "Failed to meet the closure criteria. You may resolve the closure questions before converting the Opportunity as ‘Won’."
+                        "Failed to meet the closure criteria. You must resolve the closure questions before converting the Opportunity as ‘Won’."
                     );
                 }
             }
