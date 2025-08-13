@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Crm.Sdk.Messages;
-using System.Web.Security;
 
 namespace Plugins {
 
@@ -672,6 +671,14 @@ namespace Plugins {
                 .ToList();
             }
         }
+        
+        internal Team GetTeamByName(string teamName) {
+            using (var svcContext = new OrgContext(_service)) {
+                return svcContext.TeamSet
+                .Where(team => team.Name == teamName)
+                .FirstOrDefault();
+            }
+        }
 
         internal void ResolveChildCases(List<Incident> incidentList) {
             foreach (var incident in incidentList) {
@@ -902,6 +909,101 @@ namespace Plugins {
                 _service.Update(accountUpdate);
                 return true;
             }
+        }
+
+        public void GrantAccessToTeam(EntityReference recordToShare, string teamName, AccessRights accessRights) {
+            if (recordToShare == null) throw new ArgumentNullException(nameof(recordToShare));
+            if (string.IsNullOrWhiteSpace(teamName)) throw new ArgumentException("Team name is required", nameof(teamName));
+
+            using (var svcContext = new OrgContext(_service)) {
+
+                var team = (from t in svcContext.CreateQuery("team")
+                            where (string)t["name"] == teamName
+                            select t).FirstOrDefault()
+                        ?? throw new InvalidOperationException($"Team '{teamName}' not found.");
+
+                var grantAccessRequest = new GrantAccessRequest {
+                    Target = recordToShare,
+                    PrincipalAccess = new PrincipalAccess {
+                        Principal = new EntityReference("team", team.Id),
+                        AccessMask = accessRights
+                    }
+                };
+
+                _service.Execute(grantAccessRequest);
+            }
+        }
+
+        /// <summary>
+        ///     Changes the owner of the given record based on the params.
+        ///     Params newOwnerId must be a team or systemuser id, and indicated with isUser param.
+        /// </summary>
+        /// <param name="entityLogicalName"></param>
+        /// <param name="recordId"></param>
+        /// <param name="newOwnerId"></param>
+        /// <param name="isUser"></param>
+        /// <exception cref="ArgumentException"></exception>
+        public void ChangeRecordOwner(string entityLogicalName, Guid recordId, Guid newOwnerId, bool isUser = false) {
+
+            if (string.IsNullOrWhiteSpace(entityLogicalName)) {
+                throw new ArgumentException("Entity logical name cannot be null or empty.", nameof(entityLogicalName));
+            }
+
+            if (recordId == Guid.Empty) {
+                throw new ArgumentException("Record ID cannot be empty.", nameof(recordId));
+            }
+
+            if (newOwnerId == Guid.Empty) {
+                throw new ArgumentException("New owner ID cannot be empty.", nameof(newOwnerId));
+            }
+
+            var recordType = isUser ? "systemuser" : "team";
+
+            // Create and execute the assign request
+            var assignRequest = new AssignRequest {
+                Assignee = new EntityReference(recordType, newOwnerId),
+                Target = new EntityReference(entityLogicalName, recordId)
+            };
+            try {
+                _service.Execute(assignRequest);
+                _tracingService.Trace($"The {entityLogicalName} record with Id {recordId}, has been successfully assigned to {recordType} with id {newOwnerId}");
+            } catch (Exception ex) {
+                _tracingService.Trace($"ChangeRecordOwner Error: {ex.Message}");
+                throw;
+            }
+        }
+
+        internal Team GetTeamByAccountRole(Account accountRecord) {
+
+            cm_leadopptype accountRole = accountRecord.cm_Role?.FirstOrDefault()
+                   ?? throw new InvalidPluginExecutionException("Account Role cannot be null");
+
+            var roleToTeamMap = new Dictionary<cm_leadopptype, string>
+            {
+                { cm_leadopptype.Producer, "Producer" },
+                { cm_leadopptype.EndMarket, "End Market" },
+                { cm_leadopptype.Broker, "Broker" },
+                { cm_leadopptype.CMCustomer, "Corporate Customer" },
+                { cm_leadopptype.CMVendor, "Corporate Vendor" },
+                { cm_leadopptype.Facility, "Facility" },
+                { cm_leadopptype.Community, "Community" },
+                { cm_leadopptype.ServiceProvider, "Service Provider" },
+                { cm_leadopptype.Regulator, "Stakeholder" },
+                { cm_leadopptype.Media, "Stakeholder" },
+                { cm_leadopptype.IndustryAssociation, "Stakeholder" },
+                { cm_leadopptype.Government, "Stakeholder" },
+                { cm_leadopptype.Resident, "Resident" },
+                { cm_leadopptype.Other, "Stakeholder" }
+             };
+
+            if (!roleToTeamMap.TryGetValue(accountRole, out var teamName)) {
+                throw new InvalidPluginExecutionException($"Unsupported Account Role: {accountRole}");
+            }
+
+            Team teamRecord = GetTeamByName(teamName)
+                ?? throw new InvalidPluginExecutionException("GetTeamGuidByRole: Team cannot be null");
+
+            return teamRecord;
         }
     }
 }
