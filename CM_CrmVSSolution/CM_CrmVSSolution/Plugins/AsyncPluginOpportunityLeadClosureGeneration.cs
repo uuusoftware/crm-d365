@@ -36,23 +36,29 @@ namespace Plugins {
             try {
                 #region Load Records
                 Opportunity opportunityRecord = commonBusinessLogic
-                    .GetRecordById<Opportunity>(context.PrimaryEntityId);
-                tracingService.Trace($"opportunityRecord {opportunityRecord.Id}");
+                    .GetRecordById<Opportunity>(context.PrimaryEntityId)
+                    ?? throw new InvalidPluginExecutionException("Opportunity not found");
 
                 cm_ProgramAssociation programAssociationRecord = commonBusinessLogic
-                    .GetRecordById<cm_ProgramAssociation>(opportunityRecord.cm_AssociatedProgram.Id);
-                tracingService.Trace($"programAssociationRecord {programAssociationRecord.Id}");
+                    .GetRecordById<cm_ProgramAssociation>(opportunityRecord.cm_AssociatedProgram.Id)
+                    ?? throw new InvalidPluginExecutionException("cm_ProgramAssociation not found");
 
                 Team teamRecord = commonBusinessLogic
-                    .GetRecordById<Team>(programAssociationRecord.cm_Program.Id);
-                tracingService.Trace($"teamRecord {teamRecord.Id}");
+                    .GetRecordById<Team>(programAssociationRecord.cm_Program.Id)
+                    ?? throw new InvalidPluginExecutionException("Team not found");
 
                 cm_LeadClosureChecklistMaster leadClosureChecklistMasterRecord = commonBusinessLogic
-                    .GetLeadClosureCheckLMasterByTeam(teamRecord.Id, opportunityRecord.cm_OpportunityType) ??
-                        throw new InvalidPluginExecutionException("No Lead Closure Checklist Master found. Please check if the Lead Type matches the selected Programs");
+                    .GetLeadClosureCheckLMasterByTeam(teamRecord.Id, opportunityRecord.cm_OpportunityType)
+                    ?? throw new InvalidPluginExecutionException("cm_LeadClosureChecklistMaster not found. Please check your Lead Type");
 
                 List<cm_LeadClosureChecklistCatalog> leadClosureChecklistCatalogList = commonBusinessLogic
-                    .GetLeadClosureChecklistCatalogCat(leadClosureChecklistMasterRecord.Id);
+                    .GetLeadClosureChecklistCatalogCat(leadClosureChecklistMasterRecord.Id)
+                    ?? throw new InvalidPluginExecutionException("cm_LeadClosureChecklistCatalog List not found");
+
+                tracingService.Trace($"teamRecord: {teamRecord}\n" +
+                                     $"programAssociationRecord: {programAssociationRecord.Id}\n" +
+                                     $"leadClosureChecklistMasterRecord: {leadClosureChecklistMasterRecord.Id} \n" +
+                                     $"leadClosureChecklistCatalogList count: {leadClosureChecklistCatalogList.Count} \n");
                 #endregion
 
                 if (leadClosureChecklistCatalogList.Any()) {
@@ -60,6 +66,9 @@ namespace Plugins {
                 } else {
                     throw new InvalidPluginExecutionException("No records in Lead Closure Checklist were found in the Catalog matching the current Checklist Master.");
                 }
+
+                // All Opportunity records should be shared with the same team as the Lead is shared with
+                commonBusinessLogic.ExecuteRecordShare(opportunityRecord, teamRecord.Id);
 
             } catch (AggregateException aggregateException) {
                 var exceptions = aggregateException.InnerExceptions;

@@ -39,6 +39,7 @@ namespace Plugins {
                 #region Load Records
                 var accountRecord = commonBusinessLogic.GetRecordById<Account>(context.PrimaryEntityId)
                     ?? throw new InvalidPluginExecutionException("accountRecord can not be null");
+                #endregion
 
                 if (accountRecord.cm_Role == null)
                     return;
@@ -46,7 +47,6 @@ namespace Plugins {
                 Team teamRecord = commonBusinessLogic.GetTeamByAccountRole(accountRecord);
 
                 commonBusinessLogic.ChangeRecordOwner(Account.EntityLogicalName, accountRecord.Id, teamRecord.Id);
-                #endregion
             } catch (Exception ex) {
                 string detailedError = $"Unexpected error while processing {context.PrimaryEntityName} record with ID " +
                     $"{context.PrimaryEntityId}: {ex.Message}\nStack Trace: {ex.StackTrace}";
