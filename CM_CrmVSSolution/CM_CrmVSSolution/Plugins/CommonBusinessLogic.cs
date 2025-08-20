@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Crm.Sdk.Messages;
+using System.Web.Script.Serialization;
+using Microsoft.Xrm.Sdk.Query;
 
 namespace Plugins {
 
@@ -94,10 +96,10 @@ namespace Plugins {
 
                         case "msfp_customervoiceprocessor":
                         return svcContext.msfp_customervoiceprocessorSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
-                        
+
                         case "cm_cmcaseresolution":
                         return svcContext.cm_cmcaseresolutionSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
-                        
+
                         case "ProcessStage":
                         return svcContext.ProcessStageSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
@@ -137,46 +139,46 @@ namespace Plugins {
 
             try {
                 Account accountRecord = new Account {
-                Id = Guid.NewGuid(),
-                PrimaryContactId = new EntityReference(Contact.EntityLogicalName, contactId),
-                OriginatingLeadId = new EntityReference(Lead.EntityLogicalName, leadRecord.Id),
-                CustomerTypeCode = account_customertypecode.Prospect,
-                cm_ServiceProviderType = leadRecord.cm_ServiceType,
-                cm_OtherType = leadRecord.cm_OtherType,
-                cm_Role = leadRecord.cm_LeadType.HasValue
+                    Id = Guid.NewGuid(),
+                    PrimaryContactId = new EntityReference(Contact.EntityLogicalName, contactId),
+                    OriginatingLeadId = new EntityReference(Lead.EntityLogicalName, leadRecord.Id),
+                    CustomerTypeCode = account_customertypecode.Prospect,
+                    cm_ServiceProviderType = leadRecord.cm_ServiceType,
+                    cm_OtherType = leadRecord.cm_OtherType,
+                    cm_Role = leadRecord.cm_LeadType.HasValue
                     ? new List<cm_leadopptype> { leadRecord.cm_LeadType.Value }
                     : new List<cm_leadopptype>(),
-                cm_Industry = leadRecord.cm_Industry,
-                cm_SubIndustry = leadRecord.cm_SubIndustry,
-                Name = leadRecord.CompanyName,
-                WebSiteURL = leadRecord.WebSiteUrl,
-                Address1_Line1 = leadRecord.Address1_Line1,
-                Address1_Line2 = leadRecord.Address1_Line2,
-                Address1_Line3 = leadRecord.Address1_Line3,
-                Address1_City = leadRecord.Address1_City,
-                Address1_County = leadRecord.Address1_County,
-                Address1_Name = leadRecord.Address1_Name,
-                Address1_Fax = leadRecord.Address1_Fax,
-                Address1_Telephone1 = leadRecord.Address1_Telephone1,
-                Address1_Telephone2 = leadRecord.Address1_Telephone2,
-                Address1_Telephone3 = leadRecord.Address1_Telephone3,
-                Fax = leadRecord.Fax,
-                EMailAddress1 = leadRecord.EMailAddress1,
-                Address1_PostalCode = leadRecord.Address1_PostalCode,
-                Description = leadRecord.Description,
-                FollowEmail = leadRecord.FollowEmail,
-                IndustryCode = leadRecord.IndustryCode.HasValue
+                    cm_Industry = leadRecord.cm_Industry,
+                    cm_SubIndustry = leadRecord.cm_SubIndustry,
+                    Name = leadRecord.CompanyName,
+                    WebSiteURL = leadRecord.WebSiteUrl,
+                    Address1_Line1 = leadRecord.Address1_Line1,
+                    Address1_Line2 = leadRecord.Address1_Line2,
+                    Address1_Line3 = leadRecord.Address1_Line3,
+                    Address1_City = leadRecord.Address1_City,
+                    Address1_County = leadRecord.Address1_County,
+                    Address1_Name = leadRecord.Address1_Name,
+                    Address1_Fax = leadRecord.Address1_Fax,
+                    Address1_Telephone1 = leadRecord.Address1_Telephone1,
+                    Address1_Telephone2 = leadRecord.Address1_Telephone2,
+                    Address1_Telephone3 = leadRecord.Address1_Telephone3,
+                    Fax = leadRecord.Fax,
+                    EMailAddress1 = leadRecord.EMailAddress1,
+                    Address1_PostalCode = leadRecord.Address1_PostalCode,
+                    Description = leadRecord.Description,
+                    FollowEmail = leadRecord.FollowEmail,
+                    IndustryCode = leadRecord.IndustryCode.HasValue
                     ? (account_industrycode)leadRecord.IndustryCode
                     : (account_industrycode?)null,
-                TransactionCurrencyId = leadRecord.TransactionCurrencyId,
-                DoNotBulkEMail = leadRecord.DoNotBulkEMail,
-                DoNotEMail = leadRecord.DoNotEMail,
-                DoNotFax = leadRecord.DoNotFax,
-                DoNotPhone = leadRecord.DoNotPhone,
-                DoNotPostalMail = leadRecord.DoNotPostalMail,
-                DoNotSendMM = leadRecord.DoNotSendMM,
-                SIC = leadRecord.SIC,
-                YomiName = leadRecord.YomiCompanyName
+                    TransactionCurrencyId = leadRecord.TransactionCurrencyId,
+                    DoNotBulkEMail = leadRecord.DoNotBulkEMail,
+                    DoNotEMail = leadRecord.DoNotEMail,
+                    DoNotFax = leadRecord.DoNotFax,
+                    DoNotPhone = leadRecord.DoNotPhone,
+                    DoNotPostalMail = leadRecord.DoNotPostalMail,
+                    DoNotSendMM = leadRecord.DoNotSendMM,
+                    SIC = leadRecord.SIC,
+                    YomiName = leadRecord.YomiCompanyName
                 };
 
                 if (leadRecord.cm_Country != null) {
@@ -188,7 +190,7 @@ namespace Plugins {
                     accountRecord.cm_StateProvince = leadRecord.cm_StateProvince;
                     accountRecord.Address1_StateOrProvince = leadRecord.cm_StateProvince.ToString();
                 }
-            
+
                 return _service.Create(accountRecord);
             } catch {
                 throw;
@@ -368,7 +370,7 @@ namespace Plugins {
             }
         }
 
-        internal void CreateQuestionResponses(List<cm_QuestionCatalog> questions, Opportunity opportunity) {
+        internal void CreateQuestionResponses(List<cm_QuestionCatalog> questions, Opportunity opportunity, Guid teamId) {
             List<Guid> responseGuids = new List<Guid>();
 
             questions.ForEach(question => {
@@ -378,7 +380,7 @@ namespace Plugins {
                     cm_QuestionText = question.cm_QuestionText,
                     cm_AnswerType = question.cm_AnswerType,
                     cm_Province = question.cm_Province,
-                    cm_Program = question.cm_Program,
+                    cm_Program = new EntityReference(Team.EntityLogicalName, teamId),
                     cm_Opportunity = new EntityReference(Opportunity.EntityLogicalName, opportunity.Id),
                     cm_Account = opportunity.CustomerId,
                     cm_Question = new EntityReference(cm_QuestionCatalog.EntityLogicalName, question.Id),
@@ -387,6 +389,8 @@ namespace Plugins {
                 };
                 Guid questionId = _service.Create(questionResponse);
                 responseGuids.Add(questionId);
+
+                ExecuteRecordShare(questionResponse, question.cm_Program.Id);
             });
             _tracingService.Trace("Question responses created: " + string.Join(", ", responseGuids));
         }
@@ -449,12 +453,12 @@ namespace Plugins {
                     cm_ValidateClosureOnlyifOppQualificationStatus =
                         (cm_leadclosurechecklistresponse_cm_validateclosureonlyifoppqualificationstatus?)
                             ((int?)question.cm_ValidateClosureOnlyifOppQualificationStatus)
-                    ,
-
-
                 };
                 Guid questionId = _service.Create(questionResponse);
                 responseGuids.Add(questionId);
+
+                // All records under opportunity must be shared with the same team
+                ExecuteRecordShare(questionResponse, teamId);
             });
             _tracingService.Trace("Lead Closure Question responses created: " + string.Join(", ", responseGuids));
         }
@@ -556,7 +560,7 @@ namespace Plugins {
                     CreateEntityReferenceCollection(teamList));
 
                 _tracingService.Trace($"Complete");
-                
+
                 return teamList;
             } catch (Exception ex) {
                 _tracingService.Trace($"AssociateIncidentToTeams Error: {ex.Message}");
@@ -671,12 +675,20 @@ namespace Plugins {
                 .ToList();
             }
         }
-        
+
         internal Team GetTeamByName(string teamName) {
             using (var svcContext = new OrgContext(_service)) {
                 return svcContext.TeamSet
                 .Where(team => team.Name == teamName)
                 .FirstOrDefault();
+            }
+        }
+
+        internal List<Opportunity> GetOpportunityByProgramAssoc(cm_ProgramAssociation programAssocRecord) {
+            using (var svcContext = new OrgContext(_service)) {
+                return svcContext.OpportunitySet
+                .Where(opportunity => opportunity.cm_AssociatedProgram.Id == programAssocRecord.Id)
+                .ToList();
             }
         }
 
@@ -856,10 +868,10 @@ namespace Plugins {
 
         internal account_customertypecode UpdateAccountRelationshipType(Account accountRecord) {
             try {
-
                 cm_leadopptype accountRole = accountRecord.cm_Role?.FirstOrDefault()
                     ?? throw new InvalidPluginExecutionException("Account Role cannot be null");
 
+                _tracingService.Trace($"UpdateAccountRelationshipType: accountRole {accountRole}");
                 var roleToCustomerTypeMap = new Dictionary<cm_leadopptype, account_customertypecode>
                 {
                     { cm_leadopptype.Producer, account_customertypecode.Customer },
@@ -875,6 +887,7 @@ namespace Plugins {
                 if (!roleToCustomerTypeMap.TryGetValue(accountRole, out var customerTypeCode)) {
                     throw new InvalidPluginExecutionException($"Unsupported Account Role: {accountRole}");
                 }
+                _tracingService.Trace($"UpdateAccountRelationshipType: customerTypeCode {customerTypeCode}");
 
                 var account = new Account {
                     Id = accountRecord.Id,
@@ -911,26 +924,44 @@ namespace Plugins {
             }
         }
 
-        public void GrantAccessToTeam(EntityReference recordToShare, string teamName, AccessRights accessRights) {
+        /// <summary>
+        ///     Grants access permissions (Read, Write, Append, and AppendTo) 
+        ///     on the specified <c>record</c> to a team identified by <c>teamId</c>. 
+        ///     The method uses an EntityReference to the target record and delegates 
+        ///     the actual sharing logic to GrantAccessToTeam.
+        /// </summary>
+        /// <param name="record"></param>
+        /// <param name="teamId"></param>
+        /// <param name="commonBusinessLogic"></param>
+        public void ExecuteRecordShare(Entity record, Guid teamId) {
+            AccessRights accessRights = AccessRights.ReadAccess | AccessRights.WriteAccess |
+                                        AccessRights.AppendAccess | AccessRights.AppendToAccess;
+            GrantAccessToTeam(new EntityReference(record.LogicalName, record.Id), teamId, accessRights);
+        }
+
+        /// <summary>
+        ///     Execute a GrantAccessRequest action on the <c>recordToShare</c> to the Team with id equals to <c>teamId</c> based on the <c>accessRights</c> object
+        /// </summary>
+        /// <param name="recordToShare"></param>
+        /// <param name="teamId"></param>
+        /// <param name="accessRights"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        public void GrantAccessToTeam(EntityReference recordToShare, Guid teamId, AccessRights accessRights) {
             if (recordToShare == null) throw new ArgumentNullException(nameof(recordToShare));
-            if (string.IsNullOrWhiteSpace(teamName)) throw new ArgumentException("Team name is required", nameof(teamName));
 
             using (var svcContext = new OrgContext(_service)) {
-
-                var team = (from t in svcContext.CreateQuery("team")
-                            where (string)t["name"] == teamName
-                            select t).FirstOrDefault()
-                        ?? throw new InvalidOperationException($"Team '{teamName}' not found.");
+                _tracingService.Trace($"Sharing {recordToShare.LogicalName} record Id {recordToShare.Id} with teamId: {teamId}");
 
                 var grantAccessRequest = new GrantAccessRequest {
                     Target = recordToShare,
                     PrincipalAccess = new PrincipalAccess {
-                        Principal = new EntityReference("team", team.Id),
+                        Principal = new EntityReference("team", teamId),
                         AccessMask = accessRights
                     }
                 };
 
                 _service.Execute(grantAccessRequest);
+                _tracingService.Trace($"Records successfully shared");
             }
         }
 
@@ -1004,6 +1035,73 @@ namespace Plugins {
                 ?? throw new InvalidPluginExecutionException("GetTeamGuidByRole: Team cannot be null");
 
             return teamRecord;
+        }
+
+        /// <summary>
+        ///     Shares the Primary Record (which triggered the plugin) with the team present in the cm_program field of the same.
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
+        internal bool ShareRecordWithOwnProgram(IPluginExecutionContext context) {
+            _tracingService.Trace($"Initiated ShareRecordWithOwnProgram for {context?.PrimaryEntityName} and id {context?.PrimaryEntityId}");
+
+            if (!context.InputParameters.Contains("Target") || !(context.InputParameters["Target"] is Entity))
+                return false;
+
+            if (context?.PrimaryEntityId == null || string.IsNullOrEmpty(context.PrimaryEntityName))
+                return false;
+
+            Entity record = _service.Retrieve(
+                context.PrimaryEntityName,
+                context.PrimaryEntityId,
+                new ColumnSet("cm_program")
+            );
+
+            var program = record.GetAttributeValue<EntityReference>("cm_program");
+            if (program == null)
+                return false;
+
+            _tracingService.Trace($"Record type {record.LogicalName} and id {record.Id} to be shared with Team id: {program.Id}");
+            ExecuteRecordShare(record, program.Id);
+
+            return true;
+        }
+
+        /// <summary>
+        ///     Returns a serialized string of the given InputParameters from the IPluginExecutionContext object
+        ///     Usage example: <c>string jsonParams = CommonBusinessLogic.SerializeParameterCollection(context.InputParameters);</c>
+        /// </summary>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
+        public static string SerializeParameterCollection(ParameterCollection parameters) {
+            var dict = new Dictionary<string, object>();
+
+            foreach (var kvp in parameters) {
+                if (kvp.Value is Entity entity) {
+                    dict[kvp.Key] = new {
+                        entity.LogicalName,
+                        entity.Id,
+                        Attributes = entity.Attributes.ToDictionary(a => a.Key, a => a.Value?.ToString())
+                    };
+                } else if (kvp.Value is EntityReference er) {
+                    dict[kvp.Key] = new {
+                        er.LogicalName,
+                        er.Id,
+                        er.Name
+                    };
+                } else if (kvp.Value is EntityCollection ec) {
+                    dict[kvp.Key] = ec.Entities.Select(e => new {
+                        e.LogicalName,
+                        e.Id,
+                        Attributes = e.Attributes.ToDictionary(a => a.Key, a => a.Value?.ToString())
+                    }).ToList();
+                } else {
+                    dict[kvp.Key] = kvp.Value?.ToString();
+                }
+            }
+
+            var serializer = new JavaScriptSerializer();
+            return serializer.Serialize(dict);
         }
     }
 }

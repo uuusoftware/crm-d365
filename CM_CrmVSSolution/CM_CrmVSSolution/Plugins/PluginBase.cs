@@ -302,4 +302,26 @@ namespace Plugins {
             _previousTraceTime = utcNow;
         }
     }
+    public enum messages {
+        Assign,
+        Associate,
+        Create,
+        Delete,
+        GrantAccess,
+        ModifyAccess,
+        Retrieve,
+        RetrieveMultiple,
+        RetrievePrincipalAccess,
+        RetrieveSharedPrincipalsAndAccess,
+        RevokeAccess,
+        SetState,
+        SetStateDynamicEntity,
+        Update
+    }
+    public enum stages {
+        PreValidation = 10,
+        PreOperation = 20,
+        MainOperation = 30,
+        PostOperation = 40
+    }
 }

@@ -52,7 +52,7 @@ namespace Plugins {
                 #endregion
 
                 if (questionsList.Any()) {
-                    commonBusinessLogic.CreateQuestionResponses(questionsList, opportunityRecord);
+                    commonBusinessLogic.CreateQuestionResponses(questionsList, opportunityRecord, teamRecord.Id);
                 } else {
                     throw new InvalidPluginExecutionException("No Qualification questions were found in the Catalog matching team and opportunity type.");
                 }
