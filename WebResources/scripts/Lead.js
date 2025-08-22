@@ -29,7 +29,7 @@ CM.Lead = (function () {
             _formContext.getAttribute("cm_existingcontact")?.addOnChange((ctx) =>
                 Helpers.onExistingContactChange(ctx)
             );
-            
+
             _formContext.getAttribute("cm_existingcustomer")?.addOnChange((ctx) =>
                 Helpers.onExistingCompanyChange(ctx)
             );
@@ -73,6 +73,10 @@ CM.Lead = (function () {
                 "fullname_compositionLinkControl_firstname","firstname",
                 "fullname_compositionLinkControl_lastname","lastname",
             ];
+
+            // on existing account change, also change existing contact to no
+            // if Existing Customer? == no Existing Contact? should be set to 'no' and 'read only'
+            // if Existing Customer? == yes, Lead Type should be set to the lead type from that account and read only 
 
             if (isExistingContact === true) {
                 Helpers.toggleFieldsVisibility(true, "parentcontactid");
