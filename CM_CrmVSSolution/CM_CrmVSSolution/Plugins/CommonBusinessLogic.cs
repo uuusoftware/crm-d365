@@ -518,24 +518,36 @@ namespace Plugins {
             }
         }
 
-
-        internal List<Team> AssociateIncidentToTeams(Incident incidentRecord) {
+         internal List<Team> GetTeamListByAccountAndIncident(Account account, Incident incident) {
+            _tracingService.Trace($"Searching for teams with Account: {account.Id} and Incident/Case: {incident.Id}");
             try {
-                Account incidentCustomer = GetRecordById<Account>(incidentRecord.CustomerId.Id);
-
-                List<Team> teamList = new List<Team>();
-
-                if (!incidentCustomer.cm_Role.Any()) {
+                if (!account.cm_Role.Any()) {
                     var error = "No roles found in customer record";
                     _tracingService.Trace($"AssociateIncidentToTeams Error: {error}");
                     throw new Exception(error);
                 }
 
-                foreach (var caseProgram in incidentRecord.cm_CaseProgram) {
-                    // incidentCustomer is expected to have only one role.
-                    _tracingService.Trace($"Associating Incident {incidentRecord.Id} to caseProgram: {caseProgram}");
-                    teamList.AddRange(GetTeamsByCaseProgramLeadType(caseProgram, incidentCustomer.cm_Role.FirstOrDefault()));
+                List<Team> teamList = new List<Team>();
+
+                foreach (var caseProgram in incident.cm_CaseProgram) {
+                    // account is expected to have only one role.
+                    _tracingService.Trace($"Associating Incident {incident.Id} to caseProgram: {caseProgram}");
+                    teamList.AddRange(GetTeamsByCaseProgramLeadType(caseProgram, account.cm_Role.FirstOrDefault()));
                 }
+
+                return teamList;
+            } catch (Exception ex) {
+                _tracingService.Trace($"GetTeamListByAccountAndIncident Error: {ex.Message}");
+                throw;
+            }
+        }
+
+
+        internal List<Team> AssociateIncidentToTeams(Incident incidentRecord) {
+            try {
+                Account incidentCustomer = GetRecordById<Account>(incidentRecord.CustomerId.Id);
+
+                List<Team> teamList = GetTeamListByAccountAndIncident(incidentCustomer, incidentRecord);
 
                 if (!teamList.Any()) {
                     throw new InvalidPluginExecutionException("No Teams were found. Please check if the 'Customer role' and 'Case program' match to a Team");
@@ -554,6 +566,7 @@ namespace Plugins {
 
                 _tracingService.Trace($"Associate");
 
+                // Associate method creates a Connection record, which composes a N:N (Many-to-Many) relationship 
                 _service.Associate(Incident.EntityLogicalName,
                     incidentRecord.Id,
                     new Relationship(cm_Incident_Team.Fields.cm_Incident_Team_Team),
