@@ -1,12 +1,8 @@
 ﻿using Plugins.Models;
 using Microsoft.Xrm.Sdk;
 using System;
-using System.Runtime.Remoting.Contexts;
-using Microsoft.Crm.Sdk.Messages;
 using System.Collections.Generic;
-using Microsoft.Xrm.Sdk.Messages;
 using System.Linq;
-using System.Drawing;
 
 namespace Plugins {
     public class ShareRecordsByProgramAssociation : PluginBase {
@@ -15,9 +11,12 @@ namespace Plugins {
         }
         /// <summary>
         ///     Steps:
+        ///         Sync Plugins.ShareRecordsByProgramAssociation: Create of incident customerid, primarycontactid
         ///         Sync Plugins.ShareRecordsByProgramAssociation: Update of cm_programassociation cm_program
         ///         Sync Plugins.ShareRecordsByProgramAssociation: Create of cm_programassociation cm_program
+        ///         Sync Plugins.ShareRecordsByProgramAssociation: Associate of any Entity
         ///     
+        ///     Share records to teams depending on the message and entity
         /// </summary>
         /// <param name="localPluginContext"></param>
         /// <exception cref="ArgumentNullException"></exception>
@@ -52,14 +51,36 @@ namespace Plugins {
             }
 
             try {
-                #region Lead
-                if (context.PrimaryEntityName == Lead.EntityLogicalName) {
-                    var leadRecord = commonBusinessLogic.GetRecordById<Lead>(context.PrimaryEntityId);
+                #region Incident/Case
+                if (context.PrimaryEntityName == Incident.EntityLogicalName) {
+                    #region Load Records
+                    var incidentRecord = commonBusinessLogic.GetRecordById<Incident>(context.PrimaryEntityId)
+                        ?? throw new InvalidPluginExecutionException("Incident not found");
+                    var accountRecord = commonBusinessLogic.GetRecordById<Account>(incidentRecord.CustomerId.Id)
+                        ?? throw new InvalidPluginExecutionException("Account not found");
+                    var contactRecord = commonBusinessLogic.GetRecordById<Contact>(incidentRecord.PrimaryContactId.Id)
+                        ?? throw new InvalidPluginExecutionException("Account not found");
+                    Team accountTeamRecord = commonBusinessLogic.GetTeamByAccountRole(accountRecord);
+                    #endregion
 
+                    commonBusinessLogic.ExecuteRecordShare(accountRecord, accountTeamRecord.Id);
+                    commonBusinessLogic.ExecuteRecordShare(incidentRecord, accountTeamRecord.Id);
+                    commonBusinessLogic.ExecuteRecordShare(contactRecord, accountTeamRecord.Id);
 
+                    List<Team> teamList = commonBusinessLogic.GetTeamListByAccountAndIncident(accountRecord, incidentRecord);
+                    foreach (var team in teamList) {
+                        commonBusinessLogic.ExecuteRecordShare(accountRecord, team.Id);
+                        commonBusinessLogic.ExecuteRecordShare(incidentRecord, team.Id);
+                        commonBusinessLogic.ExecuteRecordShare(contactRecord, team.Id);
+                    }
+
+                    if(incidentRecord.cm_SourceIdentifier == cm_sourceidentifiertype.ERP)
+                    {
+
+                    }
                 }
-
                 #endregion
+
                 #region cm_ProgramAssociation 
                 // Shares Account, Lead, and Opportunity records with the cm_ProgramAssociation team
                 if (context.PrimaryEntityName == cm_ProgramAssociation.EntityLogicalName) {
@@ -77,7 +98,6 @@ namespace Plugins {
                     }
 
                     if (programAssocRecord.cm_Lead != null) {
-                        // TODO: anything under lead that is activity must be shared too
                         // TEST: if new lead is created it should cascade to contact from account
                         var leadRecord = commonBusinessLogic.GetRecordById<Lead>(programAssocRecord.cm_Lead.Id);
                         commonBusinessLogic.ExecuteRecordShare(leadRecord, programAssocRecord.cm_Program.Id);
@@ -90,8 +110,12 @@ namespace Plugins {
                     }
                 }
                 #endregion
+
                 #region cm_Incident_Team
-                if (rel != null && rel.SchemaName == "cm_Incident_Team") {
+                if (rel != null && rel.SchemaName == cm_Incident_Team.Fields.cm_Incident_Team_Team) {
+                    // This relationship record is created when the Incident BPF moves from Identify to Research.
+                    // The chosen Incident CaseProgram is the Team in this relationship
+                    // This Connection record is being created by CommonBusinessLogic method AssociateIncidentToTeams
                     tracingService.Trace($"rel.SchemaName: {rel.SchemaName}");
 
                     if (!(context.InputParameters["Target"] is EntityReference primaryEntity)
@@ -101,7 +125,7 @@ namespace Plugins {
                     }
 
                     Guid teamId = (primaryEntity.LogicalName == Team.EntityLogicalName) ? primaryEntity.Id : relatedEntities.FirstOrDefault().Id;
-                    Guid incidentId = (primaryEntity.LogicalName == Incident.EntityLogicalName) ? relatedEntities.FirstOrDefault().Id : primaryEntity.Id;
+                    Guid incidentId = (primaryEntity.LogicalName == Incident.EntityLogicalName) ? primaryEntity.Id : relatedEntities.FirstOrDefault().Id;
 
                     commonBusinessLogic.ExecuteRecordShare(new Entity(Incident.EntityLogicalName, incidentId), teamId);
                 }
