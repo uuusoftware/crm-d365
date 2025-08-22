@@ -9,7 +9,8 @@ namespace Plugins {
     ///     Synchronous Plugins.ConnectionUpdateAccountManager: Create of connection
     ///     Synchronous Plugins.ConnectionUpdateAccountManager: Update of connection
     ///     
-    ///     Update account (record1) account manager (cm_accountmanager) with systemuser (record2)  
+    ///     For Account on Record 1: Update Account (record1) account manager (cm_accountmanager) with systemuser (record2)  
+    ///     For Opportunity on Record 1: Update Opportunity cm_Program with team from opportunities cm_ProgramAssociation 
     /// </summary>
     public class ConnectionUpdateAccountManager : PluginBase {
         public ConnectionUpdateAccountManager(string unsecureConfiguration, string secureConfiguration)

@@ -10,6 +10,9 @@ namespace Plugins {
             : base(typeof(SyncPluginIncidentValidationBeforeResolve)) {
         }
         /// <summary>
+        ///     Steps:
+        ///         Sync Plugins.SyncPluginIncidentValidationBeforeResolve: Update of incident statecode
+        ///         
         ///     This Dataverse plugin runs on updating an Incident to the Resolved state, otherwise it flags skipping further processing. 
         ///     It loads all checklist responses for the case and throws an error if any question is unanswered or if no questions exist. 
         /// </summary>

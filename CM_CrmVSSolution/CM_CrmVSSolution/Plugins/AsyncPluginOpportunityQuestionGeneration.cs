@@ -10,6 +10,9 @@ namespace Plugins {
             : base(typeof(AsyncPluginOpportunityQuestionGeneration)) {
         }
         /// <summary>
+        ///     Steps:
+        ///         Sync Plugins.AsyncPluginOpportunityQuestionGeneration: Create of opportunity All Attributes
+        /// 
         ///     This async Dataverse plugin runs when a new Opportunity is created, loads its related Program Association and Team, 
         ///     then retrieves any question catalog entries for that team and opportunity type. 
         ///     If questions exist, it generates corresponding question-response records. 
@@ -30,22 +33,21 @@ namespace Plugins {
             if (context.PrimaryEntityName != Opportunity.EntityLogicalName || context.MessageName != "Create") {
                 throw new InvalidPluginExecutionException("Invalid plugin execution: Entity must be Opportunity and message must be Create");
             }
-
+            
             CommonBusinessLogic commonBusinessLogic = new CommonBusinessLogic(service, tracingService);
 
             try {
                 #region Load Records
-                Opportunity opportunityRecord = commonBusinessLogic
-                    .GetRecordById<Opportunity>(context.PrimaryEntityId);
-                tracingService.Trace($"opportunityRecord {opportunityRecord.Id}");
+                var opportunityRecord = commonBusinessLogic.GetRecordById<Opportunity>(context.PrimaryEntityId)
+                    ?? throw new InvalidPluginExecutionException("Opportunity not found");
 
-                cm_ProgramAssociation programAssociationRecord = commonBusinessLogic
-                    .GetRecordById<cm_ProgramAssociation>(opportunityRecord.cm_AssociatedProgram.Id);
-                tracingService.Trace($"programAssociationRecord {programAssociationRecord.Id}");
+                var programAssociationRecord = commonBusinessLogic.GetRecordById<cm_ProgramAssociation>(opportunityRecord.cm_AssociatedProgram.Id)
+                    ?? throw new InvalidPluginExecutionException("cm_ProgramAssociation not found");
+                tracingService.Trace($"programAssociationRecord: {programAssociationRecord.Id}");
 
-                Team teamRecord = commonBusinessLogic
-                    .GetRecordById<Team>(programAssociationRecord.cm_Program.Id);
-                tracingService.Trace($"teamRecord {teamRecord.Id}");
+                var teamRecord = commonBusinessLogic.GetRecordById<Team>(programAssociationRecord.cm_Program.Id)
+                    ?? throw new InvalidPluginExecutionException("Team not found");
+                tracingService.Trace($"teamRecord: {teamRecord.Id}");
 
                 List<cm_QuestionCatalog> questionsList = commonBusinessLogic.GetQuestionsListByTeam(teamRecord.Id, opportunityRecord.cm_OpportunityType);
                 tracingService.Trace($"questionsList {string.Join(" ,", questionsList.Select(q => q.Id))}");

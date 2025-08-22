@@ -10,7 +10,7 @@ namespace Plugins {
             : base(typeof(AsyncPluginIncidentResponseGeneration)) {
         }
         /// <summary>
-        ///     Steps: Plugins.AsyncPluginIncidentResponseGeneration: Update of incident
+        ///     Steps: Sync Plugins.AsyncPluginIncidentResponseGeneration: Update of incident cm_generatechecklist
         /// </summary>
         /// <param name="localPluginContext"></param>
         /// <exception cref="ArgumentNullException"></exception>
@@ -115,12 +115,6 @@ namespace Plugins {
                 }
 
                 tracingService.Trace("Plugin execution completed successfully.");
-            } catch (AggregateException aggregateException) {
-                var exceptions = aggregateException.InnerExceptions;
-                foreach (var inner in aggregateException.InnerExceptions) {
-                    tracingService.Trace($"Inner exception: {inner.Message}");
-                }
-                throw new InvalidPluginExecutionException("Aggregate exception occurred.", aggregateException);
             } catch (Exception ex) {
                 if (ex is AggregateException aggregateException && aggregateException.InnerExceptions.Count > 0) {
                     ex = aggregateException.InnerExceptions[0];
