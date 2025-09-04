@@ -1,5 +1,6 @@
 ﻿using Plugins.Models;
 using Microsoft.Xrm.Sdk;
+using Plugins.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace Plugins {
         }
         /// <summary>
         ///     Steps:
+        ///         Sync Plugins.ShareRecordsByProgramAssociation: Create of opportunity contactid, customerid
         ///         Sync Plugins.ShareRecordsByProgramAssociation: Create of incident customerid, primarycontactid
         ///         Sync Plugins.ShareRecordsByProgramAssociation: Update of cm_programassociation cm_program
         ///         Sync Plugins.ShareRecordsByProgramAssociation: Create of cm_programassociation cm_program
@@ -131,6 +133,32 @@ namespace Plugins {
                 }
                 #endregion
 
+                #region Opportunity
+                if (context.PrimaryEntityName == Opportunity.EntityLogicalName) {
+                    tracingService.Trace($"Primary entity: {context.PrimaryEntityName}");
+                    #region Load Records
+                    Opportunity opportunityRecord = commonBusinessLogic
+                        .GetRecordById<Opportunity>(context.PrimaryEntityId)
+                        ?? throw new InvalidPluginExecutionException("Opportunity not found");
+
+                    cm_ProgramAssociation programAssociationRecord = commonBusinessLogic
+                        .GetRecordById<cm_ProgramAssociation>(opportunityRecord.cm_AssociatedProgram.Id)
+                        ?? throw new InvalidPluginExecutionException("cm_ProgramAssociation not found");
+
+                    Team teamRecord = commonBusinessLogic
+                        .GetRecordById<Team>(programAssociationRecord.cm_Program.Id)
+                        ?? throw new InvalidPluginExecutionException("Team not found");
+                    #endregion
+
+                    commonBusinessLogic.ExecuteRecordShare(opportunityRecord, teamRecord.Id);
+                    commonBusinessLogic.ExecuteRecordShare(
+                        new Entity(Account.EntityLogicalCollectionName,
+                        opportunityRecord.CustomerId.Id), teamRecord.Id);
+                    commonBusinessLogic.ExecuteRecordShare(
+                        new Entity(Contact.EntityLogicalCollectionName,
+                        opportunityRecord.ContactId.Id), teamRecord.Id);
+                }
+                #endregion
             } catch (Exception ex) {
                 context.InputParameters.TryGetValue("Target", out var target);
                 string detailedError = $"Unexpected error while processing {context.PrimaryEntityName ?? target?.ToString() ?? "Unknown"} record with ID " +
