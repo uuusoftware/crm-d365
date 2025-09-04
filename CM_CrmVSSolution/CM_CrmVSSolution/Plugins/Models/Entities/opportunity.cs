@@ -14,7 +14,7 @@ namespace Plugins.Models
 	
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum cm_opportunity_cm_qualificationstatus
 	{
 		
@@ -35,7 +35,7 @@ namespace Plugins.Models
 	/// Categories used for forecasting.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum msdyn_opportunity_msdyn_forecastcategory
 	{
 		
@@ -62,7 +62,7 @@ namespace Plugins.Models
 	/// Quality of the opportunity, such as hot.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum opportunity_opportunityratingcode
 	{
 		
@@ -80,7 +80,7 @@ namespace Plugins.Models
 	/// Priority of the opportunity.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum opportunity_prioritycode
 	{
 		
@@ -92,7 +92,7 @@ namespace Plugins.Models
 	/// Customizable code that represents the current stage of an opportunity in a manual sales process. Designed to support manual sales processes upgraded from earlier versions of Microsoft Dynamics 365.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum opportunity_salesstagecode
 	{
 		
@@ -104,7 +104,7 @@ namespace Plugins.Models
 	/// Status of the opportunity.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum opportunity_statecode
 	{
 		
@@ -122,7 +122,7 @@ namespace Plugins.Models
 	/// Reason for the status of the opportunity.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum opportunity_statuscode
 	{
 		
@@ -161,7 +161,7 @@ namespace Plugins.Models
 	/// Timeline
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum opportunity_timeline
 	{
 		
@@ -186,7 +186,7 @@ namespace Plugins.Models
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("opportunity")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public partial class Opportunity : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -413,9 +413,14 @@ namespace Plugins.Models
 			public const string opportunity_sales_orders = "opportunity_sales_orders";
 			public const string opportunity_Teams = "opportunity_Teams";
 			public const string cm_Opportunity_AssociatedProgram_cm_ProgramAssociation = "cm_Opportunity_AssociatedProgram_cm_ProgramAssociation";
+			public const string lk_opportunity_createdonbehalfby = "lk_opportunity_createdonbehalfby";
+			public const string lk_opportunity_modifiedonbehalfby = "lk_opportunity_modifiedonbehalfby";
+			public const string lk_opportunitybase_createdby = "lk_opportunitybase_createdby";
+			public const string lk_opportunitybase_modifiedby = "lk_opportunitybase_modifiedby";
 			public const string opportunity_customer_accounts = "opportunity_customer_accounts";
 			public const string opportunity_customer_contacts = "opportunity_customer_contacts";
 			public const string opportunity_originating_lead = "opportunity_originating_lead";
+			public const string opportunity_owning_user = "opportunity_owning_user";
 			public const string opportunity_parent_account = "opportunity_parent_account";
 			public const string opportunity_parent_contact = "opportunity_parent_contact";
 			public const string processstage_opportunity = "processstage_opportunity";
@@ -4026,6 +4031,58 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// N:1 lk_opportunity_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_opportunity_createdonbehalfby")]
+		public Plugins.Models.SystemUser lk_opportunity_createdonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_opportunity_createdonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_opportunity_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_opportunity_modifiedonbehalfby")]
+		public Plugins.Models.SystemUser lk_opportunity_modifiedonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_opportunity_modifiedonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_opportunitybase_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_opportunitybase_createdby")]
+		public Plugins.Models.SystemUser lk_opportunitybase_createdby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_opportunitybase_createdby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_opportunitybase_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_opportunitybase_modifiedby")]
+		public Plugins.Models.SystemUser lk_opportunitybase_modifiedby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_opportunitybase_modifiedby", null);
+			}
+		}
+		
+		/// <summary>
 		/// N:1 opportunity_customer_accounts
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("customerid")]
@@ -4079,6 +4136,19 @@ namespace Plugins.Models
 				this.OnPropertyChanging("opportunity_originating_lead");
 				this.SetRelatedEntity<Plugins.Models.Lead>("opportunity_originating_lead", null, value);
 				this.OnPropertyChanged("opportunity_originating_lead");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 opportunity_owning_user
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owninguser")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("opportunity_owning_user")]
+		public Plugins.Models.SystemUser opportunity_owning_user
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("opportunity_owning_user", null);
 			}
 		}
 		

@@ -17,7 +17,7 @@ namespace Plugins.Models
 	/// Record type for the source record.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum connection_record1objecttypecode
 	{
 		
@@ -70,10 +70,10 @@ namespace Plugins.Models
 		Case = 112,
 		
 		/// <summary>
-		/// Tracks the interactions between the agents and customer
+		/// Voicemail
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Ongoingconversation_Deprecated = 10723,
+		Voicemail = 11434,
 		
 		/// <summary>
 		/// Specify custom rules to be validated by the system before saving a booking record.
@@ -81,14 +81,14 @@ namespace Plugins.Models
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		BookingRule = 11070,
 		
-		/// <summary>
-		/// Session for interacting with a customer
-		/// </summary>
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Session = 10752,
-		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Insight = 10892,
+		
+		/// <summary>
+		/// Tracks the interactions between the agents and customer
+		/// </summary>
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Ongoingconversation_Deprecated = 10723,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		SequenceTarget = 10870,
@@ -224,6 +224,12 @@ namespace Plugins.Models
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		IoTDeviceCommand = 10434,
+		
+		/// <summary>
+		/// Session for interacting with a customer
+		/// </summary>
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Session = 10752,
 		
 		/// <summary>
 		/// The status of a booking alert.
@@ -437,7 +443,7 @@ namespace Plugins.Models
 	/// Record type of the target record.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum connection_record2objecttypecode
 	{
 		
@@ -652,13 +658,22 @@ namespace Plugins.Models
 		ServiceActivity = 4214,
 		
 		/// <summary>
+		/// Represents a connected device that can be registered with an IoT provider.
+		/// </summary>
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		IoTDevice = 10432,
+		
+		/// <summary>
+		/// Voicemail
+		/// </summary>
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Voicemail = 11434,
+		
+		/// <summary>
 		/// The Master appointment of a recurring appointment series.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		RecurringAppointment = 4251,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		IoTAlert = 10431,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		CopilotTranscript = 10947,
@@ -670,7 +685,13 @@ namespace Plugins.Models
 		IoTDeviceRegistrationHistory = 10438,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		PublishingStateTransitionRule = 10354,
+		IoTAlert = 10431,
+		
+		/// <summary>
+		/// Agreement to provide customer service during a specified amount of time or number of cases.
+		/// </summary>
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Contract_Unused = 1010,
 		
 		/// <summary>
 		/// Organizational knowledge for internal and external use.
@@ -678,23 +699,14 @@ namespace Plugins.Models
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		KnowledgeArticle = 9953,
 		
-		/// <summary>
-		/// Used to categorize IoT devices.
-		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		IoTDeviceCategory = 10433,
+		PublishingStateTransitionRule = 10354,
 		
 		/// <summary>
 		/// Defines criteria based on which Entities are routed to Users or Sales Team
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		AssignmentRule = 10882,
-		
-		/// <summary>
-		/// Agreement to provide customer service during a specified amount of time or number of cases.
-		/// </summary>
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Contract_Unused = 1010,
 		
 		/// <summary>
 		/// Contains predefined support terms for a channel to create entitlements for customers.
@@ -751,10 +763,13 @@ namespace Plugins.Models
 		IoTDeviceCommand = 10434,
 		
 		/// <summary>
-		/// Task performed, or to be performed, by a user. An activity is any action for which an entry can be made on a calendar.
+		/// Used to categorize IoT devices.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Activity = 4200,
+		IoTDeviceCategory = 10433,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		AssignmentMap = 10885,
 		
 		/// <summary>
 		/// Container for campaign activities and responses, sales literature, products, and lists to create, plan, execute, and track the results of a specific marketing campaign through its life.
@@ -763,37 +778,19 @@ namespace Plugins.Models
 		Campaign = 4400,
 		
 		/// <summary>
-		/// Potential revenue-generating event, or sale to an account, which needs to be tracked through a sales process to completion.
+		/// Collection of system users that routinely collaborate. Teams can be used to simplify record sharing and provide team members with common access to organization data when team members belong to different Business Units.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Opportunity = 3,
+		Team = 9,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		SequenceTarget = 10870,
 		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		AssignmentMap = 10885,
-		
 		/// <summary>
-		/// Stores user-specific settings for the schedule board.
+		/// Potential revenue-generating event, or sale to an account, which needs to be tracked through a sales process to completion.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		SystemUserSchedulerSetting = 11082,
-		
-		/// <summary>
-		/// Position of a user in the hierarchy
-		/// </summary>
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Position = 50,
-		
-		/// <summary>
-		/// Represents a connected device that can be registered with an IoT provider.
-		/// </summary>
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		IoTDevice = 10432,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Insight = 10892,
+		Opportunity = 3,
 		
 		/// <summary>
 		/// Business competing for the sale represented by a lead or opportunity.
@@ -802,22 +799,19 @@ namespace Plugins.Models
 		Competitor = 123,
 		
 		/// <summary>
-		/// Resource that can be scheduled.
+		/// Position of a user in the hierarchy
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		FacilityEquipment = 4000,
+		Position = 50,
 		
 		/// <summary>
-		/// Group or collection of people, equipment, and/or facilities that can be scheduled.
+		/// Stores user-specific settings for the schedule board.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		ResourceGroup = 4007,
+		SystemUserSchedulerSetting = 11082,
 		
-		/// <summary>
-		/// Formal offer for products and/or services, proposed at specific prices and related payment terms, which is sent to a prospective customer.
-		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Quote = 1084,
+		Insight = 10892,
 		
 		/// <summary>
 		/// Session for interacting with a customer
@@ -826,10 +820,34 @@ namespace Plugins.Models
 		Session = 10752,
 		
 		/// <summary>
-		/// Prospect or potential sales opportunity. Leads are converted into accounts, contacts, or opportunities when they are qualified. Otherwise, they are deleted or archived.
+		/// Resource that can be scheduled.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Lead = 4,
+		FacilityEquipment = 4000,
+		
+		/// <summary>
+		/// Task performed, or to be performed, by a user. An activity is any action for which an entry can be made on a calendar.
+		/// </summary>
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Activity = 4200,
+		
+		/// <summary>
+		/// Formal offer for products and/or services, proposed at specific prices and related payment terms, which is sent to a prospective customer.
+		/// </summary>
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Quote = 1084,
+		
+		/// <summary>
+		/// Group or collection of people, equipment, and/or facilities that can be scheduled.
+		/// </summary>
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ResourceGroup = 4007,
+		
+		/// <summary>
+		/// Territory represents sales regions.
+		/// </summary>
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Territory = 2013,
 		
 		/// <summary>
 		/// Specify custom rules to be validated by the system before saving a booking record.
@@ -838,26 +856,20 @@ namespace Plugins.Models
 		BookingRule = 11070,
 		
 		/// <summary>
-		/// Collection of system users that routinely collaborate. Teams can be used to simplify record sharing and provide team members with common access to organization data when team members belong to different Business Units.
+		/// Prospect or potential sales opportunity. Leads are converted into accounts, contacts, or opportunities when they are qualified. Otherwise, they are deleted or archived.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Team = 9,
+		Lead = 4,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Sequence = 10868,
-		
-		/// <summary>
-		/// Territory represents sales regions.
-		/// </summary>
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Territory = 2013,
 	}
 	
 	/// <summary>
 	/// Status of the connection.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum connection_statecode
 	{
 		
@@ -872,7 +884,7 @@ namespace Plugins.Models
 	/// Reason for the status of the connection.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum connection_statuscode
 	{
 		
@@ -891,7 +903,7 @@ namespace Plugins.Models
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("connection")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public partial class Connection : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -968,16 +980,22 @@ namespace Plugins.Models
 			public const string Referencingconnection_related_connection = "connection_related_connection";
 			public const string contact_connections1 = "contact_connections1";
 			public const string contact_connections2 = "contact_connections2";
+			public const string createdby_connection = "createdby_connection";
 			public const string incident_connections1 = "incident_connections1";
 			public const string incident_connections2 = "incident_connections2";
 			public const string lead_connections1 = "lead_connections1";
 			public const string lead_connections2 = "lead_connections2";
+			public const string lk_connectionbase_createdonbehalfby = "lk_connectionbase_createdonbehalfby";
+			public const string lk_connectionbase_modifiedonbehalfby = "lk_connectionbase_modifiedonbehalfby";
+			public const string modifiedby_connection = "modifiedby_connection";
 			public const string msfp_surveyinvite_connections1 = "msfp_surveyinvite_connections1";
 			public const string msfp_surveyinvite_connections2 = "msfp_surveyinvite_connections2";
 			public const string opportunity_connections1 = "opportunity_connections1";
 			public const string opportunity_connections2 = "opportunity_connections2";
 			public const string salesorder_connections1 = "salesorder_connections1";
 			public const string salesorder_connections2 = "salesorder_connections2";
+			public const string systemuser_connections1 = "systemuser_connections1";
+			public const string systemuser_connections2 = "systemuser_connections2";
 			public const string team_connections1 = "team_connections1";
 			public const string team_connections2 = "team_connections2";
 		}
@@ -2097,6 +2115,19 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// N:1 createdby_connection
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("createdby_connection")]
+		public Plugins.Models.SystemUser createdby_connection
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("createdby_connection", null);
+			}
+		}
+		
+		/// <summary>
 		/// N:1 incident_connections1
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
@@ -2169,6 +2200,45 @@ namespace Plugins.Models
 				this.OnPropertyChanging("lead_connections2");
 				this.SetRelatedEntity<Plugins.Models.Lead>("lead_connections2", null, value);
 				this.OnPropertyChanged("lead_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_connectionbase_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_connectionbase_createdonbehalfby")]
+		public Plugins.Models.SystemUser lk_connectionbase_createdonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_connectionbase_createdonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_connectionbase_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_connectionbase_modifiedonbehalfby")]
+		public Plugins.Models.SystemUser lk_connectionbase_modifiedonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_connectionbase_modifiedonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 modifiedby_connection
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("modifiedby_connection")]
+		public Plugins.Models.SystemUser modifiedby_connection
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("modifiedby_connection", null);
 			}
 		}
 		
@@ -2283,6 +2353,44 @@ namespace Plugins.Models
 				this.OnPropertyChanging("salesorder_connections2");
 				this.SetRelatedEntity<Plugins.Models.SalesOrder>("salesorder_connections2", null, value);
 				this.OnPropertyChanged("salesorder_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 systemuser_connections1
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record1id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("systemuser_connections1")]
+		public Plugins.Models.SystemUser systemuser_connections1
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("systemuser_connections1", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("systemuser_connections1");
+				this.SetRelatedEntity<Plugins.Models.SystemUser>("systemuser_connections1", null, value);
+				this.OnPropertyChanged("systemuser_connections1");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 systemuser_connections2
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("record2id")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("systemuser_connections2")]
+		public Plugins.Models.SystemUser systemuser_connections2
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("systemuser_connections2", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("systemuser_connections2");
+				this.SetRelatedEntity<Plugins.Models.SystemUser>("systemuser_connections2", null, value);
+				this.OnPropertyChanged("systemuser_connections2");
 			}
 		}
 		

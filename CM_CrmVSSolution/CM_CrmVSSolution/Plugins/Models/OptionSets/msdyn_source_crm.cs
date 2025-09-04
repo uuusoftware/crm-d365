@@ -14,21 +14,21 @@ namespace Plugins.Models
 	
 	
 	/// <summary>
-	/// The service process stage that this entity is in.
+	/// This internal field is for Contact Center CRM Connector to store the source CRM.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
-	public enum servicestage
+	public enum msdyn_source_crm
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Identify = 0,
+		Salesforce = 1,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Research = 1,
+		ServiceNow = 2,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Resolve = 2,
+		Zendesk = 3,
 	}
 }
 #pragma warning restore CS1591

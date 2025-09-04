@@ -17,7 +17,7 @@ namespace Plugins.Models
 	/// Status of the CM - Case Resolution
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum cm_cmcaseresolution_statecode
 	{
 		
@@ -32,7 +32,7 @@ namespace Plugins.Models
 	/// Reason for the status of the CM - Case Resolution
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum cm_cmcaseresolution_statuscode
 	{
 		
@@ -51,7 +51,7 @@ namespace Plugins.Models
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("cm_cmcaseresolution")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public partial class cm_cmcaseresolution : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -100,6 +100,10 @@ namespace Plugins.Models
 			public const string VersionNumber = "versionnumber";
 			public const string bpf_incident_cm_cmcaseresolution = "bpf_incident_cm_cmcaseresolution";
 			public const string lk_cm_cmcaseresolution_activestageid = "lk_cm_cmcaseresolution_activestageid";
+			public const string lk_cm_cmcaseresolution_createdby = "lk_cm_cmcaseresolution_createdby";
+			public const string lk_cm_cmcaseresolution_createdonbehalfby = "lk_cm_cmcaseresolution_createdonbehalfby";
+			public const string lk_cm_cmcaseresolution_modifiedby = "lk_cm_cmcaseresolution_modifiedby";
+			public const string lk_cm_cmcaseresolution_modifiedonbehalfby = "lk_cm_cmcaseresolution_modifiedonbehalfby";
 		}
 		
 		/// <summary>
@@ -773,6 +777,58 @@ namespace Plugins.Models
 				this.OnPropertyChanging("lk_cm_cmcaseresolution_activestageid");
 				this.SetRelatedEntity<Plugins.Models.ProcessStage>("lk_cm_cmcaseresolution_activestageid", null, value);
 				this.OnPropertyChanged("lk_cm_cmcaseresolution_activestageid");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_cm_cmcaseresolution_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_cm_cmcaseresolution_createdby")]
+		public Plugins.Models.SystemUser lk_cm_cmcaseresolution_createdby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_cm_cmcaseresolution_createdby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_cm_cmcaseresolution_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_cm_cmcaseresolution_createdonbehalfby")]
+		public Plugins.Models.SystemUser lk_cm_cmcaseresolution_createdonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_cm_cmcaseresolution_createdonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_cm_cmcaseresolution_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_cm_cmcaseresolution_modifiedby")]
+		public Plugins.Models.SystemUser lk_cm_cmcaseresolution_modifiedby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_cm_cmcaseresolution_modifiedby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_cm_cmcaseresolution_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_cm_cmcaseresolution_modifiedonbehalfby")]
+		public Plugins.Models.SystemUser lk_cm_cmcaseresolution_modifiedonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_cm_cmcaseresolution_modifiedonbehalfby", null);
 			}
 		}
 	}

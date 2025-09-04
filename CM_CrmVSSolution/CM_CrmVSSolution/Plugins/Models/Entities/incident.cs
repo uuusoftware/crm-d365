@@ -17,7 +17,7 @@ namespace Plugins.Models
 	/// Information that specifies the type of case.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum incident_casetypecode
 	{
 		
@@ -38,7 +38,7 @@ namespace Plugins.Models
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum cm_incident_cm_casepriority
 	{
 		
@@ -53,10 +53,13 @@ namespace Plugins.Models
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Low = 121540003,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Normal = 100000000,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum cm_incident_cm_channel
 	{
 		
@@ -74,7 +77,7 @@ namespace Plugins.Models
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum cm_incident_cm_managerescalation
 	{
 		
@@ -89,7 +92,7 @@ namespace Plugins.Models
 	/// Response level for the case. The response level corresponds to the level of service specified in the contract.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum incident_contractservicelevelcode
 	{
 		
@@ -107,7 +110,7 @@ namespace Plugins.Models
 	/// Customer's level of satisfaction with the resolution of the case.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum incident_customersatisfactioncode
 	{
 		
@@ -131,7 +134,7 @@ namespace Plugins.Models
 	/// First Response SLA Status
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum incident_firstresponseslastatus
 	{
 		
@@ -152,7 +155,7 @@ namespace Plugins.Models
 	/// Stage of the resolution process for the case.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum incident_incidentstagecode
 	{
 		
@@ -161,7 +164,7 @@ namespace Plugins.Models
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum msdyn_case_msdyn_casesentiment
 	{
 		
@@ -194,7 +197,7 @@ namespace Plugins.Models
 	/// Priority of the case.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum incident_prioritycode
 	{
 		
@@ -215,7 +218,7 @@ namespace Plugins.Models
 	/// ResolveBy SLA Status
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum incident_resolvebyslastatus
 	{
 		
@@ -236,7 +239,7 @@ namespace Plugins.Models
 	/// Severity of the case.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum incident_severitycode
 	{
 		
@@ -248,7 +251,7 @@ namespace Plugins.Models
 	/// Status of the case.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum incident_statecode
 	{
 		
@@ -266,7 +269,7 @@ namespace Plugins.Models
 	/// Reason for the status of the case.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum incident_statuscode
 	{
 		
@@ -291,7 +294,7 @@ namespace Plugins.Models
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("incident")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public partial class Incident : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -329,6 +332,8 @@ namespace Plugins.Models
 			public const string cm_channelName = "cm_channelname";
 			public const string cm_cmCaseType = "cm_cmcasetype";
 			public const string cm_cmcasetypeName = "cm_cmcasetypename";
+			public const string cm_cmLanguage = "cm_cmlanguage";
+			public const string cm_cmLanguageName = "cm_cmlanguagename";
 			public const string cm_CollectionDate = "cm_collectiondate";
 			public const string cm_CommunityName = "cm_communityname";
 			public const string cm_CommunityNameName = "cm_communitynamename";
@@ -344,12 +349,11 @@ namespace Plugins.Models
 			public const string cm_generatechecklistName = "cm_generatechecklistname";
 			public const string cm_IncidentCategory = "cm_incidentcategory";
 			public const string cm_IncidentCategoryName = "cm_incidentcategoryname";
-			public const string cm_Language = "cm_language";
-			public const string cm_LanguageName = "cm_languagename";
 			public const string cm_ManagerEscalation = "cm_managerescalation";
 			public const string cm_managerescalationName = "cm_managerescalationname";
 			public const string cm_Municipality = "cm_municipality";
 			public const string cm_MunicipalityName = "cm_municipalityname";
+			public const string cm_ObjectID = "cm_objectid";
 			public const string cm_OtherChannel = "cm_otherchannel";
 			public const string cm_Program = "cm_program";
 			public const string cm_ProgramName = "cm_programname";
@@ -538,7 +542,9 @@ namespace Plugins.Models
 			public const string cm_incident_contact_cm_ReportedById = "cm_incident_contact_cm_ReportedById";
 			public const string cm_incident_IncidentCategory_cm_casecategory = "cm_incident_IncidentCategory_cm_casecategory";
 			public const string cm_incident_Program_team = "cm_incident_Program_team";
+			public const string cm_incident_ReportedBy_systemuser = "cm_incident_ReportedBy_systemuser";
 			public const string cm_incident_ServiceandSupportTeam_team = "cm_incident_ServiceandSupportTeam_team";
+			public const string cm_incident_systemuser_cm_ReportedById = "cm_incident_systemuser_cm_ReportedById";
 			public const string contact_as_primary_contact = "contact_as_primary_contact";
 			public const string contact_as_responsible_contact = "contact_as_responsible_contact";
 			public const string incident_customer_accounts = "incident_customer_accounts";
@@ -546,7 +552,12 @@ namespace Plugins.Models
 			public const string Referencingincident_existingcase = "incident_existingcase";
 			public const string Referencingincident_master_incident = "incident_master_incident";
 			public const string Referencingincident_parent_incident = "incident_parent_incident";
+			public const string lk_incidentbase_createdby = "lk_incidentbase_createdby";
+			public const string lk_incidentbase_createdonbehalfby = "lk_incidentbase_createdonbehalfby";
+			public const string lk_incidentbase_modifiedby = "lk_incidentbase_modifiedby";
+			public const string lk_incidentbase_modifiedonbehalfby = "lk_incidentbase_modifiedonbehalfby";
 			public const string processstage_incident = "processstage_incident";
+			public const string system_user_incidents = "system_user_incidents";
 			public const string team_incidents = "team_incidents";
 		}
 		
@@ -1050,6 +1061,37 @@ namespace Plugins.Models
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_cmlanguage")]
+		public Microsoft.Xrm.Sdk.EntityReference cm_cmLanguage
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cm_cmlanguage");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_cmLanguage");
+				this.SetAttributeValue("cm_cmlanguage", value);
+				this.OnPropertyChanged("cm_cmLanguage");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_cmlanguagename")]
+		public string cm_cmLanguageName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_cmlanguage"))
+				{
+					return this.FormattedValues["cm_cmlanguage"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_collectiondate")]
 		public System.Nullable<System.DateTime> cm_CollectionDate
 		{
@@ -1281,37 +1323,6 @@ namespace Plugins.Models
 			}
 		}
 		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_language")]
-		public Microsoft.Xrm.Sdk.EntityReference cm_Language
-		{
-			get
-			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cm_language");
-			}
-			set
-			{
-				this.OnPropertyChanging("cm_Language");
-				this.SetAttributeValue("cm_language", value);
-				this.OnPropertyChanged("cm_Language");
-			}
-		}
-		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_languagename")]
-		public string cm_LanguageName
-		{
-			get
-			{
-				if (this.FormattedValues.Contains("cm_language"))
-				{
-					return this.FormattedValues["cm_language"];
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-		
 		/// <summary>
 		/// Manager escalation indicator
 		/// </summary>
@@ -1374,6 +1385,24 @@ namespace Plugins.Models
 				{
 					return default(string);
 				}
+			}
+		}
+		
+		/// <summary>
+		/// Object ID for DM purpose.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_objectid")]
+		public string cm_ObjectID
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("cm_objectid");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_ObjectID");
+				this.SetAttributeValue("cm_objectid", value);
+				this.OnPropertyChanged("cm_ObjectID");
 			}
 		}
 		
@@ -4448,6 +4477,25 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// N:1 cm_incident_ReportedBy_systemuser
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_reportedby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_incident_ReportedBy_systemuser")]
+		public Plugins.Models.SystemUser cm_incident_ReportedBy_systemuser
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("cm_incident_ReportedBy_systemuser", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_incident_ReportedBy_systemuser");
+				this.SetRelatedEntity<Plugins.Models.SystemUser>("cm_incident_ReportedBy_systemuser", null, value);
+				this.OnPropertyChanged("cm_incident_ReportedBy_systemuser");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 cm_incident_ServiceandSupportTeam_team
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_serviceandsupportteam")]
@@ -4463,6 +4511,25 @@ namespace Plugins.Models
 				this.OnPropertyChanging("cm_incident_ServiceandSupportTeam_team");
 				this.SetRelatedEntity<Plugins.Models.Team>("cm_incident_ServiceandSupportTeam_team", null, value);
 				this.OnPropertyChanged("cm_incident_ServiceandSupportTeam_team");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 cm_incident_systemuser_cm_ReportedById
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_reportedbyid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_incident_systemuser_cm_ReportedById")]
+		public Plugins.Models.SystemUser cm_incident_systemuser_cm_ReportedById
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("cm_incident_systemuser_cm_ReportedById", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_incident_systemuser_cm_ReportedById");
+				this.SetRelatedEntity<Plugins.Models.SystemUser>("cm_incident_systemuser_cm_ReportedById", null, value);
+				this.OnPropertyChanged("cm_incident_systemuser_cm_ReportedById");
 			}
 		}
 		
@@ -4600,6 +4667,58 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// N:1 lk_incidentbase_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_incidentbase_createdby")]
+		public Plugins.Models.SystemUser lk_incidentbase_createdby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_incidentbase_createdby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_incidentbase_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_incidentbase_createdonbehalfby")]
+		public Plugins.Models.SystemUser lk_incidentbase_createdonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_incidentbase_createdonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_incidentbase_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_incidentbase_modifiedby")]
+		public Plugins.Models.SystemUser lk_incidentbase_modifiedby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_incidentbase_modifiedby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_incidentbase_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_incidentbase_modifiedonbehalfby")]
+		public Plugins.Models.SystemUser lk_incidentbase_modifiedonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_incidentbase_modifiedonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
 		/// N:1 processstage_incident
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("stageid")]
@@ -4615,6 +4734,19 @@ namespace Plugins.Models
 				this.OnPropertyChanging("processstage_incident");
 				this.SetRelatedEntity<Plugins.Models.ProcessStage>("processstage_incident", null, value);
 				this.OnPropertyChanged("processstage_incident");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 system_user_incidents
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owninguser")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("system_user_incidents")]
+		public Plugins.Models.SystemUser system_user_incidents
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("system_user_incidents", null);
 			}
 		}
 		

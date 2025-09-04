@@ -17,7 +17,7 @@ namespace Plugins.Models
 	/// Type of instance of a recurring series.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum @__opportunityclose_instancetypecode
 	{
 		
@@ -41,7 +41,7 @@ namespace Plugins.Models
 	/// Status of the opportunity.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum OpportunityClose_opportunity_statecode
 	{
 		
@@ -59,7 +59,7 @@ namespace Plugins.Models
 	/// Reason for the status of the opportunity.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum OpportunityClose_opportunity_statuscode
 	{
 		
@@ -92,7 +92,7 @@ namespace Plugins.Models
 	/// Priority of the activity.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum @__opportunityclose_prioritycode
 	{
 		
@@ -110,7 +110,7 @@ namespace Plugins.Models
 	/// Status of the opportunity close activity.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum opportunityclose_statecode
 	{
 		
@@ -128,7 +128,7 @@ namespace Plugins.Models
 	/// Reason for the status of the opportunity close activity.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum opportunityclose_statuscode
 	{
 		
@@ -147,7 +147,7 @@ namespace Plugins.Models
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("opportunityclose")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public partial class OpportunityClose : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -288,9 +288,14 @@ namespace Plugins.Models
 			public const string account_OpportunityCloses = "account_OpportunityCloses";
 			public const string incident_OpportunityCloses = "incident_OpportunityCloses";
 			public const string lead_OpportunityCloses = "lead_OpportunityCloses";
+			public const string lk_opportunityclose_createdby = "lk_opportunityclose_createdby";
+			public const string lk_opportunityclose_createdonbehalfby = "lk_opportunityclose_createdonbehalfby";
+			public const string lk_opportunityclose_modifiedby = "lk_opportunityclose_modifiedby";
+			public const string lk_opportunityclose_modifiedonbehalfby = "lk_opportunityclose_modifiedonbehalfby";
 			public const string Opportunity_OpportunityClose = "Opportunity_OpportunityClose";
 			public const string opportunity_OpportunityCloses = "opportunity_OpportunityCloses";
 			public const string team_opportunityclose = "team_opportunityclose";
+			public const string user_opportunityclose = "user_opportunityclose";
 		}
 		
 		/// <summary>
@@ -2644,6 +2649,58 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// N:1 lk_opportunityclose_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_opportunityclose_createdby")]
+		public Plugins.Models.SystemUser lk_opportunityclose_createdby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_opportunityclose_createdby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_opportunityclose_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_opportunityclose_createdonbehalfby")]
+		public Plugins.Models.SystemUser lk_opportunityclose_createdonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_opportunityclose_createdonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_opportunityclose_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_opportunityclose_modifiedby")]
+		public Plugins.Models.SystemUser lk_opportunityclose_modifiedby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_opportunityclose_modifiedby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_opportunityclose_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_opportunityclose_modifiedonbehalfby")]
+		public Plugins.Models.SystemUser lk_opportunityclose_modifiedonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_opportunityclose_modifiedonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
 		/// N:1 Opportunity_OpportunityClose
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("opportunityid")]
@@ -2691,6 +2748,19 @@ namespace Plugins.Models
 			get
 			{
 				return this.GetRelatedEntity<Plugins.Models.Team>("team_opportunityclose", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 user_opportunityclose
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owninguser")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("user_opportunityclose")]
+		public Plugins.Models.SystemUser user_opportunityclose
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("user_opportunityclose", null);
 			}
 		}
 	}

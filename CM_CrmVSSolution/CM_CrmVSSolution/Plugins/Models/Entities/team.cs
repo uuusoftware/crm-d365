@@ -17,7 +17,7 @@ namespace Plugins.Models
 	/// Information about team membership type.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum team_membershiptype
 	{
 		
@@ -38,7 +38,7 @@ namespace Plugins.Models
 	/// Information about team type.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum team_type
 	{
 		
@@ -60,7 +60,7 @@ namespace Plugins.Models
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("team")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public partial class Team : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -167,7 +167,13 @@ namespace Plugins.Models
 			public const string team_opportunityclose = "team_opportunityclose";
 			public const string team_orders = "team_orders";
 			public const string cm_Incident_Team_Team = "cm_Incident_Team_Team";
+			public const string teammembership_association = "teammembership_association";
 			public const string cm_Team_cm_Province_cm_Province = "cm_Team_cm_Province_cm_Province";
+			public const string lk_team_createdonbehalfby = "lk_team_createdonbehalfby";
+			public const string lk_team_modifiedonbehalfby = "lk_team_modifiedonbehalfby";
+			public const string lk_teambase_administratorid = "lk_teambase_administratorid";
+			public const string lk_teambase_createdby = "lk_teambase_createdby";
+			public const string lk_teambase_modifiedby = "lk_teambase_modifiedby";
 			public const string opportunity_Teams = "opportunity_Teams";
 			public const string processstage_teams = "processstage_teams";
 		}
@@ -1826,6 +1832,24 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// N:N teammembership_association
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("teammembership_association")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.SystemUser> teammembership_association
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.SystemUser>("teammembership_association", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("teammembership_association");
+				this.SetRelatedEntities<Plugins.Models.SystemUser>("teammembership_association", null, value);
+				this.OnPropertyChanged("teammembership_association");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 cm_Team_cm_Province_cm_Province
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_province")]
@@ -1841,6 +1865,77 @@ namespace Plugins.Models
 				this.OnPropertyChanging("cm_Team_cm_Province_cm_Province");
 				this.SetRelatedEntity<Plugins.Models.cm_Province>("cm_Team_cm_Province_cm_Province", null, value);
 				this.OnPropertyChanged("cm_Team_cm_Province_cm_Province");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_team_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_team_createdonbehalfby")]
+		public Plugins.Models.SystemUser lk_team_createdonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_team_createdonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_team_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_team_modifiedonbehalfby")]
+		public Plugins.Models.SystemUser lk_team_modifiedonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_team_modifiedonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_teambase_administratorid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("administratorid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_teambase_administratorid")]
+		public Plugins.Models.SystemUser lk_teambase_administratorid
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_teambase_administratorid", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("lk_teambase_administratorid");
+				this.SetRelatedEntity<Plugins.Models.SystemUser>("lk_teambase_administratorid", null, value);
+				this.OnPropertyChanged("lk_teambase_administratorid");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_teambase_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_teambase_createdby")]
+		public Plugins.Models.SystemUser lk_teambase_createdby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_teambase_createdby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_teambase_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_teambase_modifiedby")]
+		public Plugins.Models.SystemUser lk_teambase_modifiedby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_teambase_modifiedby", null);
 			}
 		}
 		

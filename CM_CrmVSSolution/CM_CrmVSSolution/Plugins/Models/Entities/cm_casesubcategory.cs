@@ -17,7 +17,7 @@ namespace Plugins.Models
 	/// Status of the Case Sub Category
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum cm_casesubcategory_statecode
 	{
 		
@@ -32,7 +32,7 @@ namespace Plugins.Models
 	/// Reason for the status of the Case Sub Category
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum cm_casesubcategory_statuscode
 	{
 		
@@ -45,7 +45,7 @@ namespace Plugins.Models
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("cm_casesubcategory")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public partial class cm_CaseSubCategory : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -94,7 +94,12 @@ namespace Plugins.Models
 			public const string cm_checklistmaster_CaseSubCategory_cm_casesubcategory = "cm_checklistmaster_CaseSubCategory_cm_casesubcategory";
 			public const string cm_incident_CauseCategory_cm_casesubcategory = "cm_incident_CauseCategory_cm_casesubcategory";
 			public const string cm_casesubcategory_CaseCategory_cm_casecategory = "cm_casesubcategory_CaseCategory_cm_casecategory";
+			public const string lk_cm_casesubcategory_createdby = "lk_cm_casesubcategory_createdby";
+			public const string lk_cm_casesubcategory_createdonbehalfby = "lk_cm_casesubcategory_createdonbehalfby";
+			public const string lk_cm_casesubcategory_modifiedby = "lk_cm_casesubcategory_modifiedby";
+			public const string lk_cm_casesubcategory_modifiedonbehalfby = "lk_cm_casesubcategory_modifiedonbehalfby";
 			public const string team_cm_casesubcategory = "team_cm_casesubcategory";
+			public const string user_cm_casesubcategory = "user_cm_casesubcategory";
 		}
 		
 		/// <summary>
@@ -765,6 +770,58 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// N:1 lk_cm_casesubcategory_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_cm_casesubcategory_createdby")]
+		public Plugins.Models.SystemUser lk_cm_casesubcategory_createdby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_cm_casesubcategory_createdby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_cm_casesubcategory_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_cm_casesubcategory_createdonbehalfby")]
+		public Plugins.Models.SystemUser lk_cm_casesubcategory_createdonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_cm_casesubcategory_createdonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_cm_casesubcategory_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_cm_casesubcategory_modifiedby")]
+		public Plugins.Models.SystemUser lk_cm_casesubcategory_modifiedby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_cm_casesubcategory_modifiedby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_cm_casesubcategory_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_cm_casesubcategory_modifiedonbehalfby")]
+		public Plugins.Models.SystemUser lk_cm_casesubcategory_modifiedonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_cm_casesubcategory_modifiedonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
 		/// N:1 team_cm_casesubcategory
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
@@ -774,6 +831,19 @@ namespace Plugins.Models
 			get
 			{
 				return this.GetRelatedEntity<Plugins.Models.Team>("team_cm_casesubcategory", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 user_cm_casesubcategory
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owninguser")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("user_cm_casesubcategory")]
+		public Plugins.Models.SystemUser user_cm_casesubcategory
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("user_cm_casesubcategory", null);
 			}
 		}
 	}

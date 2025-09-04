@@ -14,7 +14,7 @@ namespace Plugins.Models
 	
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum cm_leadclosurechecklistcatalog_cm_answertype
 	{
 		
@@ -26,7 +26,7 @@ namespace Plugins.Models
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum cm_leadclosurechecklistcatalog_cm_requiredtoclose
 	{
 		
@@ -38,7 +38,7 @@ namespace Plugins.Models
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum cm_leadclosurechecklistcatalog_cm_validateclosureonlyifoppqualificationstatus
 	{
 		
@@ -53,7 +53,7 @@ namespace Plugins.Models
 	/// Status of the Lead Closure Checklist Catalog
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum cm_leadclosurechecklistcatalog_statecode
 	{
 		
@@ -68,7 +68,7 @@ namespace Plugins.Models
 	/// Reason for the status of the Lead Closure Checklist Catalog
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum cm_leadclosurechecklistcatalog_statuscode
 	{
 		
@@ -81,7 +81,7 @@ namespace Plugins.Models
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("cm_leadclosurechecklistcatalog")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public partial class cm_LeadClosureChecklistCatalog : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -152,7 +152,12 @@ namespace Plugins.Models
 			public const string cm_leadclosurechecklistcatalog_LeadClosureChecklistMaster_cm_leadclosurechecklistmaster = "cm_leadclosurechecklistcatalog_LeadClosureChecklistMaster_cm_leadclosurechecklist" +
 		"master";
 			public const string Referencingcm_leadclosurechecklistcatalog_ParentQuestion_cm_leadclosurechecklistcatalog = "cm_leadclosurechecklistcatalog_ParentQuestion_cm_leadclosurechecklistcatalog";
+			public const string lk_cm_leadclosurechecklistcatalog_createdby = "lk_cm_leadclosurechecklistcatalog_createdby";
+			public const string lk_cm_leadclosurechecklistcatalog_createdonbehalfby = "lk_cm_leadclosurechecklistcatalog_createdonbehalfby";
+			public const string lk_cm_leadclosurechecklistcatalog_modifiedby = "lk_cm_leadclosurechecklistcatalog_modifiedby";
+			public const string lk_cm_leadclosurechecklistcatalog_modifiedonbehalfby = "lk_cm_leadclosurechecklistcatalog_modifiedonbehalfby";
 			public const string team_cm_leadclosurechecklistcatalog = "team_cm_leadclosurechecklistcatalog";
+			public const string user_cm_leadclosurechecklistcatalog = "user_cm_leadclosurechecklistcatalog";
 		}
 		
 		/// <summary>
@@ -1150,6 +1155,58 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// N:1 lk_cm_leadclosurechecklistcatalog_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_cm_leadclosurechecklistcatalog_createdby")]
+		public Plugins.Models.SystemUser lk_cm_leadclosurechecklistcatalog_createdby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_cm_leadclosurechecklistcatalog_createdby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_cm_leadclosurechecklistcatalog_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_cm_leadclosurechecklistcatalog_createdonbehalfby")]
+		public Plugins.Models.SystemUser lk_cm_leadclosurechecklistcatalog_createdonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_cm_leadclosurechecklistcatalog_createdonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_cm_leadclosurechecklistcatalog_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_cm_leadclosurechecklistcatalog_modifiedby")]
+		public Plugins.Models.SystemUser lk_cm_leadclosurechecklistcatalog_modifiedby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_cm_leadclosurechecklistcatalog_modifiedby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_cm_leadclosurechecklistcatalog_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_cm_leadclosurechecklistcatalog_modifiedonbehalfby")]
+		public Plugins.Models.SystemUser lk_cm_leadclosurechecklistcatalog_modifiedonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_cm_leadclosurechecklistcatalog_modifiedonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
 		/// N:1 team_cm_leadclosurechecklistcatalog
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
@@ -1159,6 +1216,19 @@ namespace Plugins.Models
 			get
 			{
 				return this.GetRelatedEntity<Plugins.Models.Team>("team_cm_leadclosurechecklistcatalog", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 user_cm_leadclosurechecklistcatalog
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owninguser")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("user_cm_leadclosurechecklistcatalog")]
+		public Plugins.Models.SystemUser user_cm_leadclosurechecklistcatalog
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("user_cm_leadclosurechecklistcatalog", null);
 			}
 		}
 	}

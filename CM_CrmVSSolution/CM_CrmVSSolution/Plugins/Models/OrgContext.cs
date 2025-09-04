@@ -18,7 +18,7 @@ namespace Plugins.Models
 	/// <summary>
 	/// Represents a source of entities bound to a Dataverse service. It tracks and manages changes made to the retrieved entities.
 	/// </summary>
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public partial class OrgContext : Microsoft.Xrm.Sdk.Client.OrganizationServiceContext
 	{
 		
@@ -324,6 +324,17 @@ namespace Plugins.Models
 			get
 			{
 				return this.CreateQuery<Plugins.Models.SalesOrder>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="Plugins.Models.SystemUser"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<Plugins.Models.SystemUser> SystemUserSet
+		{
+			get
+			{
+				return this.CreateQuery<Plugins.Models.SystemUser>();
 			}
 		}
 		

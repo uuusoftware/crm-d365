@@ -17,7 +17,7 @@ namespace Plugins.Models
 	/// Status of the Customer Voice Send survey history
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum msfp_customervoiceprocessor_statecode
 	{
 		
@@ -32,7 +32,7 @@ namespace Plugins.Models
 	/// Reason for the status of the Customer Voice Send survey history
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum msfp_customervoiceprocessor_statuscode
 	{
 		
@@ -51,7 +51,7 @@ namespace Plugins.Models
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("msfp_customervoiceprocessor")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public partial class msfp_customervoiceprocessor : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -103,7 +103,12 @@ namespace Plugins.Models
 			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
+			public const string lk_msfp_customervoiceprocessor_createdby = "lk_msfp_customervoiceprocessor_createdby";
+			public const string lk_msfp_customervoiceprocessor_createdonbehalfby = "lk_msfp_customervoiceprocessor_createdonbehalfby";
+			public const string lk_msfp_customervoiceprocessor_modifiedby = "lk_msfp_customervoiceprocessor_modifiedby";
+			public const string lk_msfp_customervoiceprocessor_modifiedonbehalfby = "lk_msfp_customervoiceprocessor_modifiedonbehalfby";
 			public const string team_msfp_customervoiceprocessor = "team_msfp_customervoiceprocessor";
+			public const string user_msfp_customervoiceprocessor = "user_msfp_customervoiceprocessor";
 		}
 		
 		/// <summary>
@@ -808,6 +813,58 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// N:1 lk_msfp_customervoiceprocessor_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_msfp_customervoiceprocessor_createdby")]
+		public Plugins.Models.SystemUser lk_msfp_customervoiceprocessor_createdby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_msfp_customervoiceprocessor_createdby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_msfp_customervoiceprocessor_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_msfp_customervoiceprocessor_createdonbehalfby")]
+		public Plugins.Models.SystemUser lk_msfp_customervoiceprocessor_createdonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_msfp_customervoiceprocessor_createdonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_msfp_customervoiceprocessor_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_msfp_customervoiceprocessor_modifiedby")]
+		public Plugins.Models.SystemUser lk_msfp_customervoiceprocessor_modifiedby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_msfp_customervoiceprocessor_modifiedby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_msfp_customervoiceprocessor_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_msfp_customervoiceprocessor_modifiedonbehalfby")]
+		public Plugins.Models.SystemUser lk_msfp_customervoiceprocessor_modifiedonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_msfp_customervoiceprocessor_modifiedonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
 		/// N:1 team_msfp_customervoiceprocessor
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
@@ -817,6 +874,19 @@ namespace Plugins.Models
 			get
 			{
 				return this.GetRelatedEntity<Plugins.Models.Team>("team_msfp_customervoiceprocessor", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 user_msfp_customervoiceprocessor
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owninguser")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("user_msfp_customervoiceprocessor")]
+		public Plugins.Models.SystemUser user_msfp_customervoiceprocessor
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("user_msfp_customervoiceprocessor", null);
 			}
 		}
 	}

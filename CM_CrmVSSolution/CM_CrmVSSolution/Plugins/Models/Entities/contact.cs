@@ -17,7 +17,7 @@ namespace Plugins.Models
 	/// Account role of the contact.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum contact_accountrolecode
 	{
 		
@@ -35,7 +35,7 @@ namespace Plugins.Models
 	/// Type of address for address 1, such as billing, shipping, or primary address.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum contact_address1_addresstypecode
 	{
 		
@@ -56,7 +56,7 @@ namespace Plugins.Models
 	/// Freight terms for address 1.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum contact_address1_freighttermscode
 	{
 		
@@ -71,7 +71,7 @@ namespace Plugins.Models
 	/// Method of shipment for address 1.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum contact_address1_shippingmethodcode
 	{
 		
@@ -101,7 +101,7 @@ namespace Plugins.Models
 	/// Type of address for address 2, such as billing, shipping, or primary address.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum contact_address2_addresstypecode
 	{
 		
@@ -113,7 +113,7 @@ namespace Plugins.Models
 	/// Freight terms for address 2.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum contact_address2_freighttermscode
 	{
 		
@@ -125,7 +125,7 @@ namespace Plugins.Models
 	/// Method of shipment for address 2.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum contact_address2_shippingmethodcode
 	{
 		
@@ -137,7 +137,7 @@ namespace Plugins.Models
 	/// Type of address for address 3, such as billing, shipping, or primary address.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum contact_address3_addresstypecode
 	{
 		
@@ -149,7 +149,7 @@ namespace Plugins.Models
 	/// Freight terms for address 3.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum contact_address3_freighttermscode
 	{
 		
@@ -161,7 +161,7 @@ namespace Plugins.Models
 	/// Method of shipment for address 3.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum contact_address3_shippingmethodcode
 	{
 		
@@ -173,7 +173,7 @@ namespace Plugins.Models
 	/// Size of the contact's business.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum contact_customersizecode
 	{
 		
@@ -185,7 +185,7 @@ namespace Plugins.Models
 	/// Type of business associated with the contact.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum contact_customertypecode
 	{
 		
@@ -197,7 +197,7 @@ namespace Plugins.Models
 	/// Formal education level that the contact has attained.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum contact_educationcode
 	{
 		
@@ -209,7 +209,7 @@ namespace Plugins.Models
 	/// Marital status of the contact.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum contact_familystatuscode
 	{
 		
@@ -230,7 +230,7 @@ namespace Plugins.Models
 	/// Gender of the contact.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum contact_gendercode
 	{
 		
@@ -248,7 +248,7 @@ namespace Plugins.Models
 	/// Information about whether the contact has children.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum contact_haschildrencode
 	{
 		
@@ -260,7 +260,7 @@ namespace Plugins.Models
 	/// Source of the lead of the contact.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum contact_leadsourcecode
 	{
 		
@@ -272,7 +272,7 @@ namespace Plugins.Models
 	/// Indicate buying influence using label
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum contact_msdyn_decisioninfluencetag
 	{
 		
@@ -293,7 +293,7 @@ namespace Plugins.Models
 	/// For Internal Use only
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum contact_msdyn_orgchangestatus
 	{
 		
@@ -311,7 +311,7 @@ namespace Plugins.Models
 	/// Payment terms for the contact.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum contact_paymenttermscode
 	{
 		
@@ -332,7 +332,7 @@ namespace Plugins.Models
 	/// Day of the week that the contact prefers for scheduling service activities.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum contact_preferredappointmentdaycode
 	{
 		
@@ -362,7 +362,7 @@ namespace Plugins.Models
 	/// Time of day that the contact prefers for scheduling service activities.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum contact_preferredappointmenttimecode
 	{
 		
@@ -380,7 +380,7 @@ namespace Plugins.Models
 	/// Preferred contact method for the contact.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum contact_preferredcontactmethodcode
 	{
 		
@@ -404,7 +404,7 @@ namespace Plugins.Models
 	/// Method of shipping for the contact.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum contact_shippingmethodcode
 	{
 		
@@ -416,7 +416,7 @@ namespace Plugins.Models
 	/// Status of the contact.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum contact_statecode
 	{
 		
@@ -431,7 +431,7 @@ namespace Plugins.Models
 	/// Reason for the status of the contact.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum contact_statuscode
 	{
 		
@@ -449,7 +449,7 @@ namespace Plugins.Models
 	/// Unique identifier of the territory to which the contact is assigned.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum contact_territorycode
 	{
 		
@@ -462,7 +462,7 @@ namespace Plugins.Models
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("contact")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public partial class Contact : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -611,6 +611,7 @@ namespace Plugins.Models
 			public const string BusinessCardAttributes = "businesscardattributes";
 			public const string Callback = "callback";
 			public const string ChildrensNames = "childrensnames";
+			public const string cm_ContactID = "cm_contactid";
 			public const string cm_Country = "cm_country";
 			public const string cm_CountryName = "cm_countryname";
 			public const string cm_FacebookURL = "cm_facebookurl";
@@ -738,6 +739,10 @@ namespace Plugins.Models
 			public const string msdyn_PrimaryTimeZone = "msdyn_primarytimezone";
 			public const string msdyn_segmentid = "msdyn_segmentid";
 			public const string msdyn_segmentidName = "msdyn_segmentidname";
+			public const string msdyn_source_crm = "msdyn_source_crm";
+			public const string msdyn_source_crm_id = "msdyn_source_crm_id";
+			public const string msdyn_source_crm_url = "msdyn_source_crm_url";
+			public const string msdyn_source_crmName = "msdyn_source_crmname";
 			public const string mspp_userpreferredlcid = "mspp_userpreferredlcid";
 			public const string mspp_userpreferredlcidName = "mspp_userpreferredlcidname";
 			public const string NickName = "nickname";
@@ -837,9 +842,15 @@ namespace Plugins.Models
 			public const string Referencingcontact_customer_contacts = "contact_customer_contacts";
 			public const string Referencingcontact_master_contact = "contact_master_contact";
 			public const string contact_originating_lead = "contact_originating_lead";
+			public const string contact_owning_user = "contact_owning_user";
 			public const string Referencingcontact_parent_contact = "contact_parent_contact";
+			public const string lk_contact_createdonbehalfby = "lk_contact_createdonbehalfby";
+			public const string lk_contact_modifiedonbehalfby = "lk_contact_modifiedonbehalfby";
+			public const string lk_contactbase_createdby = "lk_contactbase_createdby";
+			public const string lk_contactbase_modifiedby = "lk_contactbase_modifiedby";
 			public const string msa_contact_managingpartner = "msa_contact_managingpartner";
 			public const string processstage_contact = "processstage_contact";
+			public const string system_user_contacts = "system_user_contacts";
 			public const string team_contacts = "team_contacts";
 		}
 		
@@ -3241,6 +3252,21 @@ namespace Plugins.Models
 			}
 		}
 		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_contactid")]
+		public string cm_ContactID
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("cm_contactid");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_ContactID");
+				this.SetAttributeValue("cm_contactid", value);
+				this.OnPropertyChanged("cm_ContactID");
+			}
+		}
+		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_country")]
 		public Microsoft.Xrm.Sdk.EntityReference cm_Country
 		{
@@ -5322,6 +5348,76 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// This internal field is for Contact Center CRM Connector to store the source CRM.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_source_crm")]
+		public virtual msdyn_source_crm? msdyn_source_crm
+		{
+			get
+			{
+				return ((msdyn_source_crm?)(EntityOptionSetEnum.GetEnum(this, "msdyn_source_crm")));
+			}
+			set
+			{
+				this.OnPropertyChanging("msdyn_source_crm");
+				this.SetAttributeValue("msdyn_source_crm", value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null);
+				this.OnPropertyChanged("msdyn_source_crm");
+			}
+		}
+		
+		/// <summary>
+		/// This internal field is for Contact Center CRM Connector to store the unique identifier of this record in the source CRM.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_source_crm_id")]
+		public string msdyn_source_crm_id
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("msdyn_source_crm_id");
+			}
+			set
+			{
+				this.OnPropertyChanging("msdyn_source_crm_id");
+				this.SetAttributeValue("msdyn_source_crm_id", value);
+				this.OnPropertyChanged("msdyn_source_crm_id");
+			}
+		}
+		
+		/// <summary>
+		/// This internal field is for Contact Center CRM Connector to store the source CRM URL for this record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_source_crm_url")]
+		public string msdyn_source_crm_url
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("msdyn_source_crm_url");
+			}
+			set
+			{
+				this.OnPropertyChanging("msdyn_source_crm_url");
+				this.SetAttributeValue("msdyn_source_crm_url", value);
+				this.OnPropertyChanged("msdyn_source_crm_url");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_source_crmname")]
+		public string msdyn_source_crmName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("msdyn_source_crm"))
+				{
+					return this.FormattedValues["msdyn_source_crm"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		/// <summary>
 		/// User’s preferred portal language
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("mspp_userpreferredlcid")]
@@ -6992,6 +7088,19 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// N:1 contact_owning_user
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owninguser")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("contact_owning_user")]
+		public Plugins.Models.SystemUser contact_owning_user
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("contact_owning_user", null);
+			}
+		}
+		
+		/// <summary>
 		/// N:1 contact_parent_contact
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("parent_contactid")]
@@ -7007,6 +7116,58 @@ namespace Plugins.Models
 				this.OnPropertyChanging("Referencingcontact_parent_contact");
 				this.SetRelatedEntity<Plugins.Models.Contact>("contact_parent_contact", Microsoft.Xrm.Sdk.EntityRole.Referencing, value);
 				this.OnPropertyChanged("Referencingcontact_parent_contact");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_contact_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_contact_createdonbehalfby")]
+		public Plugins.Models.SystemUser lk_contact_createdonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_contact_createdonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_contact_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_contact_modifiedonbehalfby")]
+		public Plugins.Models.SystemUser lk_contact_modifiedonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_contact_modifiedonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_contactbase_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_contactbase_createdby")]
+		public Plugins.Models.SystemUser lk_contactbase_createdby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_contactbase_createdby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_contactbase_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_contactbase_modifiedby")]
+		public Plugins.Models.SystemUser lk_contactbase_modifiedby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_contactbase_modifiedby", null);
 			}
 		}
 		
@@ -7045,6 +7206,25 @@ namespace Plugins.Models
 				this.OnPropertyChanging("processstage_contact");
 				this.SetRelatedEntity<Plugins.Models.ProcessStage>("processstage_contact", null, value);
 				this.OnPropertyChanged("processstage_contact");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 system_user_contacts
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("preferredsystemuserid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("system_user_contacts")]
+		public Plugins.Models.SystemUser system_user_contacts
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("system_user_contacts", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("system_user_contacts");
+				this.SetRelatedEntity<Plugins.Models.SystemUser>("system_user_contacts", null, value);
+				this.OnPropertyChanged("system_user_contacts");
 			}
 		}
 		

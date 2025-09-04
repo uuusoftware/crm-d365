@@ -17,7 +17,7 @@ namespace Plugins.Models
 	/// The operation kind
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum processstage_operationkind
 	{
 		
@@ -110,7 +110,7 @@ namespace Plugins.Models
 	/// The type of the operation
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum processstage_operationtype
 	{
 		
@@ -279,7 +279,7 @@ namespace Plugins.Models
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("processstage")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public partial class ProcessStage : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -321,6 +321,7 @@ namespace Plugins.Models
 			public const string processstage_opportunity = "processstage_opportunity";
 			public const string Referencedprocessstage_parentprocessstage = "Referencedprocessstage_parentprocessstage";
 			public const string processstage_salesorders = "processstage_salesorders";
+			public const string processstage_systemusers = "processstage_systemusers";
 			public const string processstage_teams = "processstage_teams";
 			public const string Referencingprocessstage_parentprocessstage = "processstage_parentprocessstage";
 		}
@@ -915,6 +916,24 @@ namespace Plugins.Models
 				this.OnPropertyChanging("processstage_salesorders");
 				this.SetRelatedEntities<Plugins.Models.SalesOrder>("processstage_salesorders", null, value);
 				this.OnPropertyChanged("processstage_salesorders");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N processstage_systemusers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("processstage_systemusers")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.SystemUser> processstage_systemusers
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.SystemUser>("processstage_systemusers", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("processstage_systemusers");
+				this.SetRelatedEntities<Plugins.Models.SystemUser>("processstage_systemusers", null, value);
+				this.OnPropertyChanged("processstage_systemusers");
 			}
 		}
 		

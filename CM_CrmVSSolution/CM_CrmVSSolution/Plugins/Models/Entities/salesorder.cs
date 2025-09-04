@@ -17,7 +17,7 @@ namespace Plugins.Models
 	/// Freight terms for the order.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum salesorder_freighttermscode
 	{
 		
@@ -32,7 +32,7 @@ namespace Plugins.Models
 	/// Payment terms for the order.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum salesorder_paymenttermscode
 	{
 		
@@ -53,7 +53,7 @@ namespace Plugins.Models
 	/// Priority of the order.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum salesorder_prioritycode
 	{
 		
@@ -65,7 +65,7 @@ namespace Plugins.Models
 	/// Method of shipment for the order.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum salesorder_shippingmethodcode
 	{
 		
@@ -95,7 +95,7 @@ namespace Plugins.Models
 	/// Freight terms for the shipping address.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum salesorder_shipto_freighttermscode
 	{
 		
@@ -107,7 +107,7 @@ namespace Plugins.Models
 	/// Status of the order.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum salesorder_statecode
 	{
 		
@@ -131,7 +131,7 @@ namespace Plugins.Models
 	/// Reason for the status of the order.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum salesorder_statuscode
 	{
 		
@@ -162,7 +162,7 @@ namespace Plugins.Models
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("salesorder")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public partial class SalesOrder : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -313,10 +313,15 @@ namespace Plugins.Models
 			public const string salesorder_connections2 = "salesorder_connections2";
 			public const string salesorder_msfp_surveyinvites = "salesorder_msfp_surveyinvites";
 			public const string contactorders_association = "contactorders_association";
+			public const string lk_salesorder_createdonbehalfby = "lk_salesorder_createdonbehalfby";
+			public const string lk_salesorder_modifiedonbehalfby = "lk_salesorder_modifiedonbehalfby";
+			public const string lk_salesorderbase_createdby = "lk_salesorderbase_createdby";
+			public const string lk_salesorderbase_modifiedby = "lk_salesorderbase_modifiedby";
 			public const string opportunity_sales_orders = "opportunity_sales_orders";
 			public const string order_customer_accounts = "order_customer_accounts";
 			public const string order_customer_contacts = "order_customer_contacts";
 			public const string processstage_salesorders = "processstage_salesorders";
+			public const string system_user_orders = "system_user_orders";
 			public const string team_orders = "team_orders";
 		}
 		
@@ -2668,6 +2673,58 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// N:1 lk_salesorder_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_salesorder_createdonbehalfby")]
+		public Plugins.Models.SystemUser lk_salesorder_createdonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_salesorder_createdonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_salesorder_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_salesorder_modifiedonbehalfby")]
+		public Plugins.Models.SystemUser lk_salesorder_modifiedonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_salesorder_modifiedonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_salesorderbase_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_salesorderbase_createdby")]
+		public Plugins.Models.SystemUser lk_salesorderbase_createdby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_salesorderbase_createdby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_salesorderbase_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_salesorderbase_modifiedby")]
+		public Plugins.Models.SystemUser lk_salesorderbase_modifiedby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_salesorderbase_modifiedby", null);
+			}
+		}
+		
+		/// <summary>
 		/// N:1 opportunity_sales_orders
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("opportunityid")]
@@ -2740,6 +2797,19 @@ namespace Plugins.Models
 				this.OnPropertyChanging("processstage_salesorders");
 				this.SetRelatedEntity<Plugins.Models.ProcessStage>("processstage_salesorders", null, value);
 				this.OnPropertyChanged("processstage_salesorders");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 system_user_orders
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owninguser")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("system_user_orders")]
+		public Plugins.Models.SystemUser system_user_orders
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("system_user_orders", null);
 			}
 		}
 		

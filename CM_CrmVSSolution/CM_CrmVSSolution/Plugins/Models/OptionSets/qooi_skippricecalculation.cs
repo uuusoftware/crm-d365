@@ -17,7 +17,7 @@ namespace Plugins.Models
 	/// Based on the options in SkipPriceCalculation , OOB price calculation for  qooi level will be skipped
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum qooi_skippricecalculation
 	{
 		

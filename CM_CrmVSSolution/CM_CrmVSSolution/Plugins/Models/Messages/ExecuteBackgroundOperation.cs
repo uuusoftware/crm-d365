@@ -15,7 +15,7 @@ namespace Plugins.Models
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/Contracts")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("ExecuteBackgroundOperation")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public partial class ExecuteBackgroundOperationRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -66,7 +66,7 @@ namespace Plugins.Models
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/Contracts")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("ExecuteBackgroundOperation")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public partial class ExecuteBackgroundOperationResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		

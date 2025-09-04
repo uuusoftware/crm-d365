@@ -17,7 +17,7 @@ namespace Plugins.Models
 	/// Status of the Case Checklist Catalog
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum cm_casechecklistcatalog_statecode
 	{
 		
@@ -32,7 +32,7 @@ namespace Plugins.Models
 	/// Reason for the status of the Case Checklist Catalog
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum cm_casechecklistcatalog_statuscode
 	{
 		
@@ -45,7 +45,7 @@ namespace Plugins.Models
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("cm_casechecklistcatalog")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public partial class cm_CaseChecklistCatalog : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -112,7 +112,12 @@ namespace Plugins.Models
 			public const string cm_casechecklistcatalog_CaseSubCategory_cm_casesubcategory = "cm_casechecklistcatalog_CaseSubCategory_cm_casesubcategory";
 			public const string cm_casechecklistcatalog_ChecklistMaster_cm_checklistmaster = "cm_casechecklistcatalog_ChecklistMaster_cm_checklistmaster";
 			public const string Referencingcm_casechecklistcatalog_ParentItem_cm_casechecklistcatalog = "cm_casechecklistcatalog_ParentItem_cm_casechecklistcatalog";
+			public const string lk_cm_casechecklistcatalog_createdby = "lk_cm_casechecklistcatalog_createdby";
+			public const string lk_cm_casechecklistcatalog_createdonbehalfby = "lk_cm_casechecklistcatalog_createdonbehalfby";
+			public const string lk_cm_casechecklistcatalog_modifiedby = "lk_cm_casechecklistcatalog_modifiedby";
+			public const string lk_cm_casechecklistcatalog_modifiedonbehalfby = "lk_cm_casechecklistcatalog_modifiedonbehalfby";
 			public const string team_cm_casechecklistcatalog = "team_cm_casechecklistcatalog";
+			public const string user_cm_casechecklistcatalog = "user_cm_casechecklistcatalog";
 		}
 		
 		/// <summary>
@@ -1075,6 +1080,58 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// N:1 lk_cm_casechecklistcatalog_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_cm_casechecklistcatalog_createdby")]
+		public Plugins.Models.SystemUser lk_cm_casechecklistcatalog_createdby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_cm_casechecklistcatalog_createdby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_cm_casechecklistcatalog_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_cm_casechecklistcatalog_createdonbehalfby")]
+		public Plugins.Models.SystemUser lk_cm_casechecklistcatalog_createdonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_cm_casechecklistcatalog_createdonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_cm_casechecklistcatalog_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_cm_casechecklistcatalog_modifiedby")]
+		public Plugins.Models.SystemUser lk_cm_casechecklistcatalog_modifiedby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_cm_casechecklistcatalog_modifiedby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_cm_casechecklistcatalog_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_cm_casechecklistcatalog_modifiedonbehalfby")]
+		public Plugins.Models.SystemUser lk_cm_casechecklistcatalog_modifiedonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_cm_casechecklistcatalog_modifiedonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
 		/// N:1 team_cm_casechecklistcatalog
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
@@ -1084,6 +1141,19 @@ namespace Plugins.Models
 			get
 			{
 				return this.GetRelatedEntity<Plugins.Models.Team>("team_cm_casechecklistcatalog", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 user_cm_casechecklistcatalog
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owninguser")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("user_cm_casechecklistcatalog")]
+		public Plugins.Models.SystemUser user_cm_casechecklistcatalog
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("user_cm_casechecklistcatalog", null);
 			}
 		}
 	}

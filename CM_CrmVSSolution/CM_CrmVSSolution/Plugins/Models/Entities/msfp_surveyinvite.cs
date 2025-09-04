@@ -17,7 +17,7 @@ namespace Plugins.Models
 	/// Type of instance of a recurring series.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum msfp_surveyinvite_instancetypecode
 	{
 		
@@ -41,7 +41,7 @@ namespace Plugins.Models
 	/// Survey invitation source channel
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum msfp_surveyinvite_msfp_channel
 	{
 		
@@ -56,7 +56,7 @@ namespace Plugins.Models
 	/// Invite bounce category option set
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum msfp_surveyinvite_msfp_invitebouncecategory
 	{
 		
@@ -116,7 +116,7 @@ namespace Plugins.Models
 	/// Invite failure reason option set
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum msfp_surveyinvite_msfp_invitefailurereason
 	{
 		
@@ -167,7 +167,7 @@ namespace Plugins.Models
 	/// Status of the survey invitation.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum msfp_surveyinvite_msfp_invitestatus
 	{
 		
@@ -218,7 +218,7 @@ namespace Plugins.Models
 	/// Priority of the activity.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum msfp_surveyinvite_prioritycode
 	{
 		
@@ -236,7 +236,7 @@ namespace Plugins.Models
 	/// Status of the activity.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum msfp_surveyinvite_statecode
 	{
 		
@@ -257,7 +257,7 @@ namespace Plugins.Models
 	/// Reason for the status of the activity.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum msfp_surveyinvite_statuscode
 	{
 		
@@ -279,7 +279,7 @@ namespace Plugins.Models
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("msfp_surveyinvite")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public partial class msfp_surveyinvite : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -358,6 +358,7 @@ namespace Plugins.Models
 			public const string msfp_inviteupdateddate = "msfp_inviteupdateddate";
 			public const string msfp_isincentiveEnabled = "msfp_isincentiveenabled";
 			public const string msfp_isincentiveenabledName = "msfp_isincentiveenabledname";
+			public const string msfp_longurl = "msfp_longurl";
 			public const string msfp_otherproperties = "msfp_otherproperties";
 			public const string msfp_respondent = "msfp_respondent";
 			public const string msfp_sourcesurveyidentifier = "msfp_sourcesurveyidentifier";
@@ -423,6 +424,11 @@ namespace Plugins.Models
 			public const string incident_msfp_surveyinvites = "incident_msfp_surveyinvites";
 			public const string lead_msfp_surveyinvites = "lead_msfp_surveyinvites";
 			public const string msfp_msfp_survey_msfp_surveyinvite_surveyid = "msfp_msfp_survey_msfp_surveyinvite_surveyid";
+			public const string msfp_surveyinvite_systemuser_createdby = "msfp_surveyinvite_systemuser_createdby";
+			public const string msfp_surveyinvite_systemuser_createdonbehalfby = "msfp_surveyinvite_systemuser_createdonbehalfby";
+			public const string msfp_surveyinvite_systemuser_modifiedby = "msfp_surveyinvite_systemuser_modifiedby";
+			public const string msfp_surveyinvite_systemuser_modifiedonbehalfby = "msfp_surveyinvite_systemuser_modifiedonbehalfby";
+			public const string msfp_surveyinvite_systemuser_owninguser = "msfp_surveyinvite_systemuser_owninguser";
 			public const string msfp_surveyinvite_team_owningteam = "msfp_surveyinvite_team_owningteam";
 			public const string opportunity_msfp_surveyinvites = "opportunity_msfp_surveyinvites";
 			public const string salesorder_msfp_surveyinvites = "salesorder_msfp_surveyinvites";
@@ -1446,7 +1452,7 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
-		/// Bounce category details for survey invite
+		/// Invite bounce category
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msfp_invitebouncecategory")]
 		public virtual msfp_surveyinvite_msfp_invitebouncecategory? msfp_invitebouncecategory
@@ -1480,7 +1486,7 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
-		/// Bounce category details for survey invite
+		/// Bounce  details for survey invite
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msfp_invitebouncedetails")]
 		public string msfp_invitebouncedetails
@@ -1665,6 +1671,24 @@ namespace Plugins.Models
 				{
 					return default(string);
 				}
+			}
+		}
+		
+		/// <summary>
+		/// Long URL for survey invitation.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msfp_longurl")]
+		public string msfp_longurl
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("msfp_longurl");
+			}
+			set
+			{
+				this.OnPropertyChanging("msfp_longurl");
+				this.SetAttributeValue("msfp_longurl", value);
+				this.OnPropertyChanged("msfp_longurl");
 			}
 		}
 		
@@ -2859,6 +2883,71 @@ namespace Plugins.Models
 				this.OnPropertyChanging("msfp_msfp_survey_msfp_surveyinvite_surveyid");
 				this.SetRelatedEntity<Plugins.Models.msfp_survey>("msfp_msfp_survey_msfp_surveyinvite_surveyid", null, value);
 				this.OnPropertyChanged("msfp_msfp_survey_msfp_surveyinvite_surveyid");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msfp_surveyinvite_systemuser_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msfp_surveyinvite_systemuser_createdby")]
+		public Plugins.Models.SystemUser msfp_surveyinvite_systemuser_createdby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("msfp_surveyinvite_systemuser_createdby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msfp_surveyinvite_systemuser_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msfp_surveyinvite_systemuser_createdonbehalfby")]
+		public Plugins.Models.SystemUser msfp_surveyinvite_systemuser_createdonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("msfp_surveyinvite_systemuser_createdonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msfp_surveyinvite_systemuser_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msfp_surveyinvite_systemuser_modifiedby")]
+		public Plugins.Models.SystemUser msfp_surveyinvite_systemuser_modifiedby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("msfp_surveyinvite_systemuser_modifiedby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msfp_surveyinvite_systemuser_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msfp_surveyinvite_systemuser_modifiedonbehalfby")]
+		public Plugins.Models.SystemUser msfp_surveyinvite_systemuser_modifiedonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("msfp_surveyinvite_systemuser_modifiedonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 msfp_surveyinvite_systemuser_owninguser
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owninguser")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msfp_surveyinvite_systemuser_owninguser")]
+		public Plugins.Models.SystemUser msfp_surveyinvite_systemuser_owninguser
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("msfp_surveyinvite_systemuser_owninguser", null);
 			}
 		}
 		

@@ -17,7 +17,7 @@ namespace Plugins.Models
 	/// Status of the project.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum msfp_project_msfp_status
 	{
 		
@@ -32,7 +32,7 @@ namespace Plugins.Models
 	/// Status of the Customer Voice project
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum msfp_project_statecode
 	{
 		
@@ -47,7 +47,7 @@ namespace Plugins.Models
 	/// Reason for the status of the Customer Voice project
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum msfp_project_statuscode
 	{
 		
@@ -63,7 +63,7 @@ namespace Plugins.Models
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("msfp_project")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public partial class msfp_project : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -92,6 +92,12 @@ namespace Plugins.Models
 			public const string msfp_description = "msfp_description";
 			public const string msfp_environmentid = "msfp_environmentid";
 			public const string msfp_environmentregion = "msfp_environmentregion";
+			public const string msfp_isgroupdeleted = "msfp_isgroupdeleted";
+			public const string msfp_isgroupdeletedName = "msfp_isgroupdeletedname";
+			public const string msfp_isgroupproject = "msfp_isgroupproject";
+			public const string msfp_isgroupprojectName = "msfp_isgroupprojectname";
+			public const string msfp_issharedproject = "msfp_issharedproject";
+			public const string msfp_issharedprojectName = "msfp_issharedprojectname";
 			public const string msfp_name = "msfp_name";
 			public const string msfp_permanentID = "msfp_permanentid";
 			public const string msfp_projectId = "msfp_projectid";
@@ -116,7 +122,12 @@ namespace Plugins.Models
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
 			public const string msfp_msfp_project_msfp_survey_project = "msfp_msfp_project_msfp_survey_project";
+			public const string lk_msfp_project_createdby = "lk_msfp_project_createdby";
+			public const string lk_msfp_project_createdonbehalfby = "lk_msfp_project_createdonbehalfby";
+			public const string lk_msfp_project_modifiedby = "lk_msfp_project_modifiedby";
+			public const string lk_msfp_project_modifiedonbehalfby = "lk_msfp_project_modifiedonbehalfby";
 			public const string team_msfp_project = "team_msfp_project";
+			public const string user_msfp_project = "user_msfp_project";
 		}
 		
 		/// <summary>
@@ -458,6 +469,108 @@ namespace Plugins.Models
 				this.OnPropertyChanging("msfp_environmentregion");
 				this.SetAttributeValue("msfp_environmentregion", value);
 				this.OnPropertyChanged("msfp_environmentregion");
+			}
+		}
+		
+		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msfp_isgroupdeleted")]
+		public System.Nullable<bool> msfp_isgroupdeleted
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("msfp_isgroupdeleted");
+			}
+			set
+			{
+				this.OnPropertyChanging("msfp_isgroupdeleted");
+				this.SetAttributeValue("msfp_isgroupdeleted", value);
+				this.OnPropertyChanged("msfp_isgroupdeleted");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msfp_isgroupdeletedname")]
+		public string msfp_isgroupdeletedName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("msfp_isgroupdeleted"))
+				{
+					return this.FormattedValues["msfp_isgroupdeleted"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msfp_isgroupproject")]
+		public System.Nullable<bool> msfp_isgroupproject
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("msfp_isgroupproject");
+			}
+			set
+			{
+				this.OnPropertyChanging("msfp_isgroupproject");
+				this.SetAttributeValue("msfp_isgroupproject", value);
+				this.OnPropertyChanged("msfp_isgroupproject");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msfp_isgroupprojectname")]
+		public string msfp_isgroupprojectName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("msfp_isgroupproject"))
+				{
+					return this.FormattedValues["msfp_isgroupproject"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msfp_issharedproject")]
+		public System.Nullable<bool> msfp_issharedproject
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("msfp_issharedproject");
+			}
+			set
+			{
+				this.OnPropertyChanging("msfp_issharedproject");
+				this.SetAttributeValue("msfp_issharedproject", value);
+				this.OnPropertyChanged("msfp_issharedproject");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msfp_issharedprojectname")]
+		public string msfp_issharedprojectName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("msfp_issharedproject"))
+				{
+					return this.FormattedValues["msfp_issharedproject"];
+				}
+				else
+				{
+					return default(string);
+				}
 			}
 		}
 		
@@ -867,6 +980,58 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// N:1 lk_msfp_project_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_msfp_project_createdby")]
+		public Plugins.Models.SystemUser lk_msfp_project_createdby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_msfp_project_createdby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_msfp_project_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_msfp_project_createdonbehalfby")]
+		public Plugins.Models.SystemUser lk_msfp_project_createdonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_msfp_project_createdonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_msfp_project_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_msfp_project_modifiedby")]
+		public Plugins.Models.SystemUser lk_msfp_project_modifiedby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_msfp_project_modifiedby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_msfp_project_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_msfp_project_modifiedonbehalfby")]
+		public Plugins.Models.SystemUser lk_msfp_project_modifiedonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_msfp_project_modifiedonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
 		/// N:1 team_msfp_project
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
@@ -876,6 +1041,19 @@ namespace Plugins.Models
 			get
 			{
 				return this.GetRelatedEntity<Plugins.Models.Team>("team_msfp_project", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 user_msfp_project
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owninguser")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("user_msfp_project")]
+		public Plugins.Models.SystemUser user_msfp_project
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("user_msfp_project", null);
 			}
 		}
 	}

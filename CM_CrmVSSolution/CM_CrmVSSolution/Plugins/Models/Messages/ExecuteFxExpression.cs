@@ -15,7 +15,7 @@ namespace Plugins.Models
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("ExecuteFxExpression")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public partial class ExecuteFxExpressionRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -123,7 +123,7 @@ namespace Plugins.Models
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("ExecuteFxExpression")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public partial class ExecuteFxExpressionResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		

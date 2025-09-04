@@ -17,7 +17,7 @@ namespace Plugins.Models
 	/// Status of the Lead Closure Checklist Master
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum cm_leadclosurechecklistmaster_statecode
 	{
 		
@@ -32,7 +32,7 @@ namespace Plugins.Models
 	/// Reason for the status of the Lead Closure Checklist Master
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum cm_leadclosurechecklistmaster_statuscode
 	{
 		
@@ -45,7 +45,7 @@ namespace Plugins.Models
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("cm_leadclosurechecklistmaster")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public partial class cm_LeadClosureChecklistMaster : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -99,7 +99,12 @@ namespace Plugins.Models
 			public const string cm_leadclosurechecklistresponse_LeadClosureChecklistMaster_cm_leadclosurechecklistmaster = "cm_leadclosurechecklistresponse_LeadClosureChecklistMaster_cm_leadclosurechecklis" +
 		"tmaster";
 			public const string cm_leadclosurechecklistmaster_Program_team = "cm_leadclosurechecklistmaster_Program_team";
+			public const string lk_cm_leadclosurechecklistmaster_createdby = "lk_cm_leadclosurechecklistmaster_createdby";
+			public const string lk_cm_leadclosurechecklistmaster_createdonbehalfby = "lk_cm_leadclosurechecklistmaster_createdonbehalfby";
+			public const string lk_cm_leadclosurechecklistmaster_modifiedby = "lk_cm_leadclosurechecklistmaster_modifiedby";
+			public const string lk_cm_leadclosurechecklistmaster_modifiedonbehalfby = "lk_cm_leadclosurechecklistmaster_modifiedonbehalfby";
 			public const string team_cm_leadclosurechecklistmaster = "team_cm_leadclosurechecklistmaster";
+			public const string user_cm_leadclosurechecklistmaster = "user_cm_leadclosurechecklistmaster";
 		}
 		
 		/// <summary>
@@ -831,6 +836,58 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// N:1 lk_cm_leadclosurechecklistmaster_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_cm_leadclosurechecklistmaster_createdby")]
+		public Plugins.Models.SystemUser lk_cm_leadclosurechecklistmaster_createdby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_cm_leadclosurechecklistmaster_createdby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_cm_leadclosurechecklistmaster_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_cm_leadclosurechecklistmaster_createdonbehalfby")]
+		public Plugins.Models.SystemUser lk_cm_leadclosurechecklistmaster_createdonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_cm_leadclosurechecklistmaster_createdonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_cm_leadclosurechecklistmaster_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_cm_leadclosurechecklistmaster_modifiedby")]
+		public Plugins.Models.SystemUser lk_cm_leadclosurechecklistmaster_modifiedby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_cm_leadclosurechecklistmaster_modifiedby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_cm_leadclosurechecklistmaster_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_cm_leadclosurechecklistmaster_modifiedonbehalfby")]
+		public Plugins.Models.SystemUser lk_cm_leadclosurechecklistmaster_modifiedonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_cm_leadclosurechecklistmaster_modifiedonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
 		/// N:1 team_cm_leadclosurechecklistmaster
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
@@ -840,6 +897,19 @@ namespace Plugins.Models
 			get
 			{
 				return this.GetRelatedEntity<Plugins.Models.Team>("team_cm_leadclosurechecklistmaster", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 user_cm_leadclosurechecklistmaster
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owninguser")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("user_cm_leadclosurechecklistmaster")]
+		public Plugins.Models.SystemUser user_cm_leadclosurechecklistmaster
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("user_cm_leadclosurechecklistmaster", null);
 			}
 		}
 	}

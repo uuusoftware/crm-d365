@@ -14,7 +14,7 @@ namespace Plugins.Models
 	
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum cm_casechecklistresponse_cm_answeryesno
 	{
 		
@@ -29,7 +29,7 @@ namespace Plugins.Models
 	/// Status of the Case Checklist Response
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum cm_casechecklistresponse_statecode
 	{
 		
@@ -44,7 +44,7 @@ namespace Plugins.Models
 	/// Reason for the status of the Case Checklist Response
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum cm_casechecklistresponse_statuscode
 	{
 		
@@ -60,7 +60,7 @@ namespace Plugins.Models
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("cm_casechecklistresponse")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public partial class cm_CaseChecklistResponse : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -118,7 +118,12 @@ namespace Plugins.Models
 			public const string cm_casechecklistresponse_Case_incident = "cm_casechecklistresponse_Case_incident";
 			public const string cm_casechecklistresponse_ItemLink_cm_casechecklistcatalog = "cm_casechecklistresponse_ItemLink_cm_casechecklistcatalog";
 			public const string cm_casechecklistresponse_ParentCase_cm_casechecklistcatalog = "cm_casechecklistresponse_ParentCase_cm_casechecklistcatalog";
+			public const string lk_cm_casechecklistresponse_createdby = "lk_cm_casechecklistresponse_createdby";
+			public const string lk_cm_casechecklistresponse_createdonbehalfby = "lk_cm_casechecklistresponse_createdonbehalfby";
+			public const string lk_cm_casechecklistresponse_modifiedby = "lk_cm_casechecklistresponse_modifiedby";
+			public const string lk_cm_casechecklistresponse_modifiedonbehalfby = "lk_cm_casechecklistresponse_modifiedonbehalfby";
 			public const string team_cm_casechecklistresponse = "team_cm_casechecklistresponse";
+			public const string user_cm_casechecklistresponse = "user_cm_casechecklistresponse";
 		}
 		
 		/// <summary>
@@ -927,6 +932,58 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// N:1 lk_cm_casechecklistresponse_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_cm_casechecklistresponse_createdby")]
+		public Plugins.Models.SystemUser lk_cm_casechecklistresponse_createdby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_cm_casechecklistresponse_createdby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_cm_casechecklistresponse_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_cm_casechecklistresponse_createdonbehalfby")]
+		public Plugins.Models.SystemUser lk_cm_casechecklistresponse_createdonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_cm_casechecklistresponse_createdonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_cm_casechecklistresponse_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_cm_casechecklistresponse_modifiedby")]
+		public Plugins.Models.SystemUser lk_cm_casechecklistresponse_modifiedby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_cm_casechecklistresponse_modifiedby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_cm_casechecklistresponse_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_cm_casechecklistresponse_modifiedonbehalfby")]
+		public Plugins.Models.SystemUser lk_cm_casechecklistresponse_modifiedonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_cm_casechecklistresponse_modifiedonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
 		/// N:1 team_cm_casechecklistresponse
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
@@ -936,6 +993,19 @@ namespace Plugins.Models
 			get
 			{
 				return this.GetRelatedEntity<Plugins.Models.Team>("team_cm_casechecklistresponse", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 user_cm_casechecklistresponse
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owninguser")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("user_cm_casechecklistresponse")]
+		public Plugins.Models.SystemUser user_cm_casechecklistresponse
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("user_cm_casechecklistresponse", null);
 			}
 		}
 	}

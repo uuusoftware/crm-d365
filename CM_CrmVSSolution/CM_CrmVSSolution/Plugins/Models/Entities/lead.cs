@@ -17,7 +17,7 @@ namespace Plugins.Models
 	/// Type of address for address 1, such as billing, shipping, or primary address.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum lead_address1_addresstypecode
 	{
 		
@@ -29,7 +29,7 @@ namespace Plugins.Models
 	/// Method of shipment for address 1.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum lead_address1_shippingmethodcode
 	{
 		
@@ -41,7 +41,7 @@ namespace Plugins.Models
 	/// Type of address for address 2, such as billing, shipping, or primary address.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum lead_address2_addresstypecode
 	{
 		
@@ -53,7 +53,7 @@ namespace Plugins.Models
 	/// Method of shipment for address 2.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum lead_address2_shippingmethodcode
 	{
 		
@@ -65,7 +65,7 @@ namespace Plugins.Models
 	/// Type of industry with which the company or organization of the lead is associated.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum lead_industrycode
 	{
 		
@@ -173,7 +173,7 @@ namespace Plugins.Models
 	/// Quality of the lead, such as hot, warm, or cold.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum lead_leadqualitycode
 	{
 		
@@ -191,7 +191,7 @@ namespace Plugins.Models
 	/// Source of the lead.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum lead_leadsourcecode
 	{
 		
@@ -221,7 +221,7 @@ namespace Plugins.Models
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum msdyn_lead_msdyn_salesassignmentresult
 	{
 		
@@ -236,7 +236,7 @@ namespace Plugins.Models
 	/// Preferred contact method for the lead.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum lead_preferredcontactmethodcode
 	{
 		
@@ -260,7 +260,7 @@ namespace Plugins.Models
 	/// Priority of the lead.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum lead_prioritycode
 	{
 		
@@ -272,7 +272,7 @@ namespace Plugins.Models
 	/// Current stage of the sales process for the lead.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum lead_salesstagecode
 	{
 		
@@ -284,7 +284,7 @@ namespace Plugins.Models
 	/// Status of the lead.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum lead_statecode
 	{
 		
@@ -302,7 +302,7 @@ namespace Plugins.Models
 	/// Reason for the status of the lead.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum lead_statuscode
 	{
 		
@@ -333,7 +333,7 @@ namespace Plugins.Models
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("lead")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public partial class Lead : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -607,9 +607,14 @@ namespace Plugins.Models
 			public const string lead_customer_contacts = "lead_customer_contacts";
 			public const string Referencinglead_master_lead = "lead_master_lead";
 			public const string lead_owning_team = "lead_owning_team";
+			public const string lead_owning_user = "lead_owning_user";
 			public const string lead_parent_account = "lead_parent_account";
 			public const string lead_parent_contact = "lead_parent_contact";
 			public const string lead_qualifying_opportunity = "lead_qualifying_opportunity";
+			public const string lk_lead_createdonbehalfby = "lk_lead_createdonbehalfby";
+			public const string lk_lead_modifiedonbehalfby = "lk_lead_modifiedonbehalfby";
+			public const string lk_leadbase_createdby = "lk_leadbase_createdby";
+			public const string lk_leadbase_modifiedby = "lk_leadbase_modifiedby";
 			public const string OriginatingCase_Lead = "OriginatingCase_Lead";
 			public const string processstage_lead = "processstage_lead";
 		}
@@ -5042,6 +5047,19 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// N:1 lead_owning_user
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owninguser")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lead_owning_user")]
+		public Plugins.Models.SystemUser lead_owning_user
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lead_owning_user", null);
+			}
+		}
+		
+		/// <summary>
 		/// N:1 lead_parent_account
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("parentaccountid")]
@@ -5095,6 +5113,58 @@ namespace Plugins.Models
 				this.OnPropertyChanging("lead_qualifying_opportunity");
 				this.SetRelatedEntity<Plugins.Models.Opportunity>("lead_qualifying_opportunity", null, value);
 				this.OnPropertyChanged("lead_qualifying_opportunity");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_lead_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_lead_createdonbehalfby")]
+		public Plugins.Models.SystemUser lk_lead_createdonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_lead_createdonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_lead_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_lead_modifiedonbehalfby")]
+		public Plugins.Models.SystemUser lk_lead_modifiedonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_lead_modifiedonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_leadbase_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_leadbase_createdby")]
+		public Plugins.Models.SystemUser lk_leadbase_createdby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_leadbase_createdby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_leadbase_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_leadbase_modifiedby")]
+		public Plugins.Models.SystemUser lk_leadbase_modifiedby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_leadbase_modifiedby", null);
 			}
 		}
 		

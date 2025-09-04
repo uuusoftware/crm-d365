@@ -17,7 +17,7 @@ namespace Plugins.Models
 	/// Status of the Question Catalog
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum cm_questioncatalog_statecode
 	{
 		
@@ -32,7 +32,7 @@ namespace Plugins.Models
 	/// Reason for the status of the Question Catalog
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum cm_questioncatalog_statuscode
 	{
 		
@@ -45,7 +45,7 @@ namespace Plugins.Models
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("cm_questioncatalog")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public partial class cm_QuestionCatalog : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -109,7 +109,12 @@ namespace Plugins.Models
 			public const string Referencingcm_questioncatalog_ParentQuestion_cm_questioncatalog = "cm_questioncatalog_ParentQuestion_cm_questioncatalog";
 			public const string cm_questioncatalog_Program_team = "cm_questioncatalog_Program_team";
 			public const string cm_questioncatalog_Province_cm_province = "cm_questioncatalog_Province_cm_province";
+			public const string lk_cm_questioncatalog_createdby = "lk_cm_questioncatalog_createdby";
+			public const string lk_cm_questioncatalog_createdonbehalfby = "lk_cm_questioncatalog_createdonbehalfby";
+			public const string lk_cm_questioncatalog_modifiedby = "lk_cm_questioncatalog_modifiedby";
+			public const string lk_cm_questioncatalog_modifiedonbehalfby = "lk_cm_questioncatalog_modifiedonbehalfby";
 			public const string team_cm_questioncatalog = "team_cm_questioncatalog";
+			public const string user_cm_questioncatalog = "user_cm_questioncatalog";
 		}
 		
 		/// <summary>
@@ -1026,6 +1031,58 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// N:1 lk_cm_questioncatalog_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_cm_questioncatalog_createdby")]
+		public Plugins.Models.SystemUser lk_cm_questioncatalog_createdby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_cm_questioncatalog_createdby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_cm_questioncatalog_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_cm_questioncatalog_createdonbehalfby")]
+		public Plugins.Models.SystemUser lk_cm_questioncatalog_createdonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_cm_questioncatalog_createdonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_cm_questioncatalog_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_cm_questioncatalog_modifiedby")]
+		public Plugins.Models.SystemUser lk_cm_questioncatalog_modifiedby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_cm_questioncatalog_modifiedby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_cm_questioncatalog_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_cm_questioncatalog_modifiedonbehalfby")]
+		public Plugins.Models.SystemUser lk_cm_questioncatalog_modifiedonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_cm_questioncatalog_modifiedonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
 		/// N:1 team_cm_questioncatalog
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
@@ -1035,6 +1092,19 @@ namespace Plugins.Models
 			get
 			{
 				return this.GetRelatedEntity<Plugins.Models.Team>("team_cm_questioncatalog", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 user_cm_questioncatalog
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owninguser")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("user_cm_questioncatalog")]
+		public Plugins.Models.SystemUser user_cm_questioncatalog
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("user_cm_questioncatalog", null);
 			}
 		}
 	}

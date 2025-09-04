@@ -17,7 +17,7 @@ namespace Plugins.Models
 	/// Status of the Checklist Master
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum cm_checklistmaster_statecode
 	{
 		
@@ -32,7 +32,7 @@ namespace Plugins.Models
 	/// Reason for the status of the Checklist Master
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum cm_checklistmaster_statuscode
 	{
 		
@@ -45,7 +45,7 @@ namespace Plugins.Models
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("cm_checklistmaster")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public partial class cm_ChecklistMaster : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -105,7 +105,12 @@ namespace Plugins.Models
 			public const string cm_checklistmaster_CaseSubCategory_cm_casesubcategory = "cm_checklistmaster_CaseSubCategory_cm_casesubcategory";
 			public const string cm_checklistmaster_Program_team = "cm_checklistmaster_Program_team";
 			public const string cm_checklistmaster_Survey_msfp_survey = "cm_checklistmaster_Survey_msfp_survey";
+			public const string lk_cm_checklistmaster_createdby = "lk_cm_checklistmaster_createdby";
+			public const string lk_cm_checklistmaster_createdonbehalfby = "lk_cm_checklistmaster_createdonbehalfby";
+			public const string lk_cm_checklistmaster_modifiedby = "lk_cm_checklistmaster_modifiedby";
+			public const string lk_cm_checklistmaster_modifiedonbehalfby = "lk_cm_checklistmaster_modifiedonbehalfby";
 			public const string team_cm_checklistmaster = "team_cm_checklistmaster";
+			public const string user_cm_checklistmaster = "user_cm_checklistmaster";
 		}
 		
 		/// <summary>
@@ -953,6 +958,58 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// N:1 lk_cm_checklistmaster_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_cm_checklistmaster_createdby")]
+		public Plugins.Models.SystemUser lk_cm_checklistmaster_createdby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_cm_checklistmaster_createdby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_cm_checklistmaster_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_cm_checklistmaster_createdonbehalfby")]
+		public Plugins.Models.SystemUser lk_cm_checklistmaster_createdonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_cm_checklistmaster_createdonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_cm_checklistmaster_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_cm_checklistmaster_modifiedby")]
+		public Plugins.Models.SystemUser lk_cm_checklistmaster_modifiedby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_cm_checklistmaster_modifiedby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_cm_checklistmaster_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_cm_checklistmaster_modifiedonbehalfby")]
+		public Plugins.Models.SystemUser lk_cm_checklistmaster_modifiedonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_cm_checklistmaster_modifiedonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
 		/// N:1 team_cm_checklistmaster
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
@@ -962,6 +1019,19 @@ namespace Plugins.Models
 			get
 			{
 				return this.GetRelatedEntity<Plugins.Models.Team>("team_cm_checklistmaster", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 user_cm_checklistmaster
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owninguser")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("user_cm_checklistmaster")]
+		public Plugins.Models.SystemUser user_cm_checklistmaster
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("user_cm_checklistmaster", null);
 			}
 		}
 	}

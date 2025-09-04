@@ -14,7 +14,7 @@ namespace Plugins.Models
 	
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum msdyn_msfp_survey_msdyn_mcsbotstatus
 	{
 		
@@ -29,10 +29,10 @@ namespace Plugins.Models
 	}
 	
 	/// <summary>
-	/// Status of the Customer Voice survey
+	/// Status of the Customer Voice survey.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum msfp_survey_statecode
 	{
 		
@@ -44,10 +44,10 @@ namespace Plugins.Models
 	}
 	
 	/// <summary>
-	/// Reason for the status of the Customer Voice survey
+	/// Reason for the status of the Customer Voice survey.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum msfp_survey_statuscode
 	{
 		
@@ -72,7 +72,7 @@ namespace Plugins.Models
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("msfp_survey")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public partial class msfp_survey : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -109,6 +109,7 @@ namespace Plugins.Models
 			public const string msfp_embedcode = "msfp_embedcode";
 			public const string msfp_enddate = "msfp_enddate";
 			public const string msfp_friendlyname = "msfp_friendlyname";
+			public const string msfp_latestsurveyidentifier = "msfp_latestsurveyidentifier";
 			public const string msfp_name = "msfp_name";
 			public const string msfp_otherproperties = "msfp_otherproperties";
 			public const string msfp_PermanentID = "msfp_permanentid";
@@ -125,6 +126,7 @@ namespace Plugins.Models
 			public const string msfp_surveyId = "msfp_surveyid";
 			public const string Id = "msfp_surveyid";
 			public const string msfp_surveysource = "msfp_surveysource";
+			public const string msfp_surveytableid = "msfp_surveytableid";
 			public const string msfp_surveyurl = "msfp_surveyurl";
 			public const string msfp_variables = "msfp_variables";
 			public const string OverriddenCreatedOn = "overriddencreatedon";
@@ -144,8 +146,14 @@ namespace Plugins.Models
 			public const string VersionNumber = "versionnumber";
 			public const string cm_checklistmaster_Survey_msfp_survey = "cm_checklistmaster_Survey_msfp_survey";
 			public const string msfp_msfp_survey_msfp_surveyinvite_surveyid = "msfp_msfp_survey_msfp_surveyinvite_surveyid";
+			public const string lk_msfp_survey_createdby = "lk_msfp_survey_createdby";
+			public const string lk_msfp_survey_createdonbehalfby = "lk_msfp_survey_createdonbehalfby";
+			public const string lk_msfp_survey_modifiedby = "lk_msfp_survey_modifiedby";
+			public const string lk_msfp_survey_modifiedonbehalfby = "lk_msfp_survey_modifiedonbehalfby";
 			public const string msfp_msfp_project_msfp_survey_project = "msfp_msfp_project_msfp_survey_project";
+			public const string msfp_systemuser_msfp_survey_publishedby = "msfp_systemuser_msfp_survey_publishedby";
 			public const string team_msfp_survey = "team_msfp_survey";
+			public const string user_msfp_survey = "user_msfp_survey";
 		}
 		
 		/// <summary>
@@ -621,6 +629,24 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// Latest identifier for the survey.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msfp_latestsurveyidentifier")]
+		public string msfp_latestsurveyidentifier
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("msfp_latestsurveyidentifier");
+			}
+			set
+			{
+				this.OnPropertyChanging("msfp_latestsurveyidentifier");
+				this.SetAttributeValue("msfp_latestsurveyidentifier", value);
+				this.OnPropertyChanged("msfp_latestsurveyidentifier");
+			}
+		}
+		
+		/// <summary>
 		/// The name of the custom entity.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msfp_name")]
@@ -902,6 +928,24 @@ namespace Plugins.Models
 				this.OnPropertyChanging("msfp_surveysource");
 				this.SetAttributeValue("msfp_surveysource", value);
 				this.OnPropertyChanged("msfp_surveysource");
+			}
+		}
+		
+		/// <summary>
+		/// Customer Voice Survey Table Id
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msfp_surveytableid")]
+		public string msfp_surveytableid
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("msfp_surveytableid");
+			}
+			set
+			{
+				this.OnPropertyChanging("msfp_surveytableid");
+				this.SetAttributeValue("msfp_surveytableid", value);
+				this.OnPropertyChanged("msfp_surveytableid");
 			}
 		}
 		
@@ -1220,6 +1264,58 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// N:1 lk_msfp_survey_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_msfp_survey_createdby")]
+		public Plugins.Models.SystemUser lk_msfp_survey_createdby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_msfp_survey_createdby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_msfp_survey_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_msfp_survey_createdonbehalfby")]
+		public Plugins.Models.SystemUser lk_msfp_survey_createdonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_msfp_survey_createdonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_msfp_survey_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_msfp_survey_modifiedby")]
+		public Plugins.Models.SystemUser lk_msfp_survey_modifiedby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_msfp_survey_modifiedby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_msfp_survey_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_msfp_survey_modifiedonbehalfby")]
+		public Plugins.Models.SystemUser lk_msfp_survey_modifiedonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_msfp_survey_modifiedonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
 		/// N:1 msfp_msfp_project_msfp_survey_project
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msfp_project")]
@@ -1239,6 +1335,25 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// N:1 msfp_systemuser_msfp_survey_publishedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msfp_publishedby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msfp_systemuser_msfp_survey_publishedby")]
+		public Plugins.Models.SystemUser msfp_systemuser_msfp_survey_publishedby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("msfp_systemuser_msfp_survey_publishedby", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("msfp_systemuser_msfp_survey_publishedby");
+				this.SetRelatedEntity<Plugins.Models.SystemUser>("msfp_systemuser_msfp_survey_publishedby", null, value);
+				this.OnPropertyChanged("msfp_systemuser_msfp_survey_publishedby");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 team_msfp_survey
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
@@ -1248,6 +1363,19 @@ namespace Plugins.Models
 			get
 			{
 				return this.GetRelatedEntity<Plugins.Models.Team>("team_msfp_survey", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 user_msfp_survey
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owninguser")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("user_msfp_survey")]
+		public Plugins.Models.SystemUser user_msfp_survey
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("user_msfp_survey", null);
 			}
 		}
 	}

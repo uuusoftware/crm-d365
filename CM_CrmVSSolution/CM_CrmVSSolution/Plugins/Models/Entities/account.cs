@@ -17,7 +17,7 @@ namespace Plugins.Models
 	/// Drop-down list for selecting the category of the account.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum account_accountcategorycode
 	{
 		
@@ -32,7 +32,7 @@ namespace Plugins.Models
 	/// Drop-down list for classifying an account.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum account_accountclassificationcode
 	{
 		
@@ -44,7 +44,7 @@ namespace Plugins.Models
 	/// Drop-down list for selecting account ratings.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum account_accountratingcode
 	{
 		
@@ -56,7 +56,7 @@ namespace Plugins.Models
 	/// Type of address for address 1, such as billing, shipping, or primary address.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum account_address1_addresstypecode
 	{
 		
@@ -77,7 +77,7 @@ namespace Plugins.Models
 	/// Freight terms for address 1.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum account_address1_freighttermscode
 	{
 		
@@ -92,7 +92,7 @@ namespace Plugins.Models
 	/// Method of shipment for address 1.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum account_address1_shippingmethodcode
 	{
 		
@@ -122,7 +122,7 @@ namespace Plugins.Models
 	/// Type of address for address 2, such as billing, shipping, or primary address.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum account_address2_addresstypecode
 	{
 		
@@ -134,7 +134,7 @@ namespace Plugins.Models
 	/// Freight terms for address 2.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum account_address2_freighttermscode
 	{
 		
@@ -146,7 +146,7 @@ namespace Plugins.Models
 	/// Method of shipment for address 2.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum account_address2_shippingmethodcode
 	{
 		
@@ -158,7 +158,7 @@ namespace Plugins.Models
 	/// Type of business associated with the account.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum account_businesstypecode
 	{
 		
@@ -167,7 +167,7 @@ namespace Plugins.Models
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum cm_account_cm_complianceflag
 	{
 		
@@ -182,7 +182,7 @@ namespace Plugins.Models
 	/// Size of the account.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum account_customersizecode
 	{
 		
@@ -194,7 +194,7 @@ namespace Plugins.Models
 	/// Type of the account.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum account_customertypecode
 	{
 		
@@ -239,7 +239,7 @@ namespace Plugins.Models
 	/// Type of industry with which the account is associated.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum account_industrycode
 	{
 		
@@ -347,7 +347,7 @@ namespace Plugins.Models
 	/// Type of company ownership, such as public or private.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum account_ownershipcode
 	{
 		
@@ -368,7 +368,7 @@ namespace Plugins.Models
 	/// Payment terms for the account.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum account_paymenttermscode
 	{
 		
@@ -389,7 +389,7 @@ namespace Plugins.Models
 	/// Day of the week that the account prefers for scheduling service activities.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum account_preferredappointmentdaycode
 	{
 		
@@ -419,7 +419,7 @@ namespace Plugins.Models
 	/// Time of day that the account prefers for scheduling service activities.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum account_preferredappointmenttimecode
 	{
 		
@@ -437,7 +437,7 @@ namespace Plugins.Models
 	/// Preferred contact method for the account.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum account_preferredcontactmethodcode
 	{
 		
@@ -461,7 +461,7 @@ namespace Plugins.Models
 	/// Method of shipment for the account.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum account_shippingmethodcode
 	{
 		
@@ -473,7 +473,7 @@ namespace Plugins.Models
 	/// Status of the account.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum account_statecode
 	{
 		
@@ -488,7 +488,7 @@ namespace Plugins.Models
 	/// Reason for the status of the account.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum account_statuscode
 	{
 		
@@ -506,7 +506,7 @@ namespace Plugins.Models
 	/// Territory to which the account belongs.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public enum account_territorycode
 	{
 		
@@ -519,7 +519,7 @@ namespace Plugins.Models
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("account")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.15")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
 	public partial class Account : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -615,6 +615,7 @@ namespace Plugins.Models
 			public const string cm_IndustryName = "cm_industryname";
 			public const string cm_ManualReviewCompleted = "cm_manualreviewcompleted";
 			public const string cm_manualreviewcompletedName = "cm_manualreviewcompletedname";
+			public const string cm_ObjectID = "cm_objectid";
 			public const string cm_OtherType = "cm_othertype";
 			public const string cm_othertypeName = "cm_othertypename";
 			public const string cm_Role = "cm_role";
@@ -713,6 +714,10 @@ namespace Plugins.Models
 			public const string msdyn_salesaccelerationinsightidName = "msdyn_salesaccelerationinsightidname";
 			public const string msdyn_segmentid = "msdyn_segmentid";
 			public const string msdyn_segmentidName = "msdyn_segmentidname";
+			public const string msdyn_source_crm = "msdyn_source_crm";
+			public const string msdyn_source_crm_id = "msdyn_source_crm_id";
+			public const string msdyn_source_crm_url = "msdyn_source_crm_url";
+			public const string msdyn_source_crmName = "msdyn_source_crmname";
 			public const string Name = "name";
 			public const string NumberOfEmployees = "numberofemployees";
 			public const string OnHoldTime = "onholdtime";
@@ -820,9 +825,16 @@ namespace Plugins.Models
 			public const string account_originating_lead = "account_originating_lead";
 			public const string Referencingaccount_parent_account = "account_parent_account";
 			public const string account_primary_contact = "account_primary_contact";
+			public const string cm_account_AccountManager_systemuser = "cm_account_AccountManager_systemuser";
+			public const string lk_accountbase_createdby = "lk_accountbase_createdby";
+			public const string lk_accountbase_createdonbehalfby = "lk_accountbase_createdonbehalfby";
+			public const string lk_accountbase_modifiedby = "lk_accountbase_modifiedby";
+			public const string lk_accountbase_modifiedonbehalfby = "lk_accountbase_modifiedonbehalfby";
 			public const string Referencingmsa_account_managingpartner = "msa_account_managingpartner";
 			public const string processstage_account = "processstage_account";
+			public const string system_user_accounts = "system_user_accounts";
 			public const string team_accounts = "team_accounts";
+			public const string user_accounts = "user_accounts";
 		}
 		
 		/// <summary>
@@ -2324,6 +2336,24 @@ namespace Plugins.Models
 				{
 					return default(string);
 				}
+			}
+		}
+		
+		/// <summary>
+		/// Object ID for DM purpose.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_objectid")]
+		public string cm_ObjectID
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("cm_objectid");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_ObjectID");
+				this.SetAttributeValue("cm_objectid", value);
+				this.OnPropertyChanged("cm_ObjectID");
 			}
 		}
 		
@@ -3885,6 +3915,76 @@ namespace Plugins.Models
 				if (this.FormattedValues.Contains("msdyn_segmentid"))
 				{
 					return this.FormattedValues["msdyn_segmentid"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		/// <summary>
+		/// This internal field is for Contact Center CRM Connector to store the source CRM.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_source_crm")]
+		public virtual msdyn_source_crm? msdyn_source_crm
+		{
+			get
+			{
+				return ((msdyn_source_crm?)(EntityOptionSetEnum.GetEnum(this, "msdyn_source_crm")));
+			}
+			set
+			{
+				this.OnPropertyChanging("msdyn_source_crm");
+				this.SetAttributeValue("msdyn_source_crm", value.HasValue ? new Microsoft.Xrm.Sdk.OptionSetValue((int)value) : null);
+				this.OnPropertyChanged("msdyn_source_crm");
+			}
+		}
+		
+		/// <summary>
+		/// This internal field is for Contact Center CRM Connector to store the unique identifier of this record in the source CRM.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_source_crm_id")]
+		public string msdyn_source_crm_id
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("msdyn_source_crm_id");
+			}
+			set
+			{
+				this.OnPropertyChanging("msdyn_source_crm_id");
+				this.SetAttributeValue("msdyn_source_crm_id", value);
+				this.OnPropertyChanged("msdyn_source_crm_id");
+			}
+		}
+		
+		/// <summary>
+		/// This internal field is for Contact Center CRM Connector to store the source CRM URL for this record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_source_crm_url")]
+		public string msdyn_source_crm_url
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("msdyn_source_crm_url");
+			}
+			set
+			{
+				this.OnPropertyChanging("msdyn_source_crm_url");
+				this.SetAttributeValue("msdyn_source_crm_url", value);
+				this.OnPropertyChanged("msdyn_source_crm_url");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_source_crmname")]
+		public string msdyn_source_crmName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("msdyn_source_crm"))
+				{
+					return this.FormattedValues["msdyn_source_crm"];
 				}
 				else
 				{
@@ -5674,6 +5774,77 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// N:1 cm_account_AccountManager_systemuser
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_accountmanager")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_account_AccountManager_systemuser")]
+		public Plugins.Models.SystemUser cm_account_AccountManager_systemuser
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("cm_account_AccountManager_systemuser", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_account_AccountManager_systemuser");
+				this.SetRelatedEntity<Plugins.Models.SystemUser>("cm_account_AccountManager_systemuser", null, value);
+				this.OnPropertyChanged("cm_account_AccountManager_systemuser");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_accountbase_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_accountbase_createdby")]
+		public Plugins.Models.SystemUser lk_accountbase_createdby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_accountbase_createdby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_accountbase_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_accountbase_createdonbehalfby")]
+		public Plugins.Models.SystemUser lk_accountbase_createdonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_accountbase_createdonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_accountbase_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_accountbase_modifiedby")]
+		public Plugins.Models.SystemUser lk_accountbase_modifiedby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_accountbase_modifiedby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_accountbase_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_accountbase_modifiedonbehalfby")]
+		public Plugins.Models.SystemUser lk_accountbase_modifiedonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("lk_accountbase_modifiedonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
 		/// N:1 msa_account_managingpartner
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msa_managingpartnerid")]
@@ -5712,6 +5883,25 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// N:1 system_user_accounts
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("preferredsystemuserid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("system_user_accounts")]
+		public Plugins.Models.SystemUser system_user_accounts
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("system_user_accounts", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("system_user_accounts");
+				this.SetRelatedEntity<Plugins.Models.SystemUser>("system_user_accounts", null, value);
+				this.OnPropertyChanged("system_user_accounts");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 team_accounts
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
@@ -5721,6 +5911,19 @@ namespace Plugins.Models
 			get
 			{
 				return this.GetRelatedEntity<Plugins.Models.Team>("team_accounts", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 user_accounts
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owninguser")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("user_accounts")]
+		public Plugins.Models.SystemUser user_accounts
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.SystemUser>("user_accounts", null);
 			}
 		}
 	}
