@@ -1,5 +1,4 @@
-﻿using Plugins.Models;
-using Microsoft.Xrm.Sdk;
+﻿using Microsoft.Xrm.Sdk;
 using Plugins.Models;
 using System;
 using System.Collections.Generic;
@@ -14,8 +13,8 @@ namespace Plugins {
         ///     Steps:
         ///         Sync Plugins.ShareRecordsByProgramAssociation: Create of opportunity contactid, customerid
         ///         Sync Plugins.ShareRecordsByProgramAssociation: Create of incident customerid, primarycontactid
-        ///         Sync Plugins.ShareRecordsByProgramAssociation: Update of cm_programassociation cm_program
-        ///         Sync Plugins.ShareRecordsByProgramAssociation: Create of cm_programassociation cm_program
+        ///         Sync Plugins.ShareRecordsByProgramAssociation: Update of cm_programassociation cm_account, cm_lead, cm_program
+        ///         Sync Plugins.ShareRecordsByProgramAssociation: Create of cm_programassociation cm_account, cm_lead, cm_program
         ///         Sync Plugins.ShareRecordsByProgramAssociation: Associate of any Entity
         ///     
         ///     Share records to teams depending on the message and entity
@@ -62,6 +61,7 @@ namespace Plugins {
                         ?? throw new InvalidPluginExecutionException("Account not found");
                     var contactRecord = commonBusinessLogic.GetRecordById<Contact>(incidentRecord.PrimaryContactId.Id)
                         ?? throw new InvalidPluginExecutionException("Account not found");
+                    SystemUser ownerRecord = commonBusinessLogic.GetRecordById<SystemUser>(incidentRecord.OwnerId.Id) ?? null;
                     Team accountTeamRecord = commonBusinessLogic.GetTeamByAccountRole(accountRecord);
                     #endregion
 
@@ -76,9 +76,11 @@ namespace Plugins {
                         commonBusinessLogic.ExecuteRecordShare(contactRecord, team.Id);
                     }
 
-                    if(incidentRecord.cm_SourceIdentifier == cm_sourceidentifiertype.ERP)
-                    {
-
+                    if (incidentRecord.cm_SourceIdentifier != cm_sourceidentifiertype.ERP) {
+                        return;
+                    }
+                    if (ownerRecord != null && ownerRecord.AccessMode == systemuser_accessmode.Noninteractive) {
+                        commonBusinessLogic.SetOwnerToAccountManager(incidentRecord);
                     }
                 }
                 #endregion

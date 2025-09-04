@@ -103,6 +103,9 @@ namespace Plugins {
                         case "ProcessStage":
                         return svcContext.ProcessStageSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
+                        case "SystemUser":
+                        return svcContext.ProcessStageSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+
                         default:
                         throw new ArgumentException($"GetRecordById: Unsupported entity type: {typeof(T).Name}.\nPlease add all entities from the modelbuilder.");
                     }
@@ -1078,6 +1081,40 @@ namespace Plugins {
             ExecuteRecordShare(record, program.Id);
 
             return true;
+        }
+
+        internal void SetOwnerToAccountManager(Incident incident) {
+
+            var accountRecord = GetRecordById<Account>(incident.CustomerId.Id);
+            string roleName = "account manager";
+            var caseTypeToTeamMap = new Dictionary<cm_casetypeoptions?, string>
+            {
+                { cm_casetypeoptions.Producer, "Customer Relations"},
+                { cm_casetypeoptions.StakeholderRelations, "Communications & Stakeholder Relations"},
+                { cm_casetypeoptions.ServiceProvider, "Service Provider Reporting"},
+                { cm_casetypeoptions.ResidentRelations, "Resident Relations"}
+            };
+
+            using (var svcContext = new OrgContext(_service)) {
+
+                EntityReference sysUserAccountMgr = svcContext.ConnectionSet
+                    .Where(sysUserConn => sysUserConn.Record1Id.Id == accountRecord.Id
+                        && sysUserConn.Record2ObjectTypeCode == connection_record2objecttypecode.User
+                        && sysUserConn.Record2RoleIdName.Equals(roleName, StringComparison.OrdinalIgnoreCase))
+                    .ToList().Select(conn => conn.Record2Id).FirstOrDefault();
+
+                if (sysUserAccountMgr != null) {
+                    ChangeRecordOwner(Incident.EntityLogicalName, incident.Id, sysUserAccountMgr.Id, true);
+                } else {
+                    if (!caseTypeToTeamMap.TryGetValue(incident.cm_CaseType, out var teamName)) {
+                        throw new InvalidPluginExecutionException($"Unsupported Case Type: {incident.cm_CaseType}");
+                    }
+
+                    Team teamRecord = svcContext.TeamSet.Where(team => team.Name == teamName).FirstOrDefault();
+
+                    ChangeRecordOwner(Incident.EntityLogicalName, incident.Id, teamRecord.Id);
+                }
+            }
         }
 
         /// <summary>

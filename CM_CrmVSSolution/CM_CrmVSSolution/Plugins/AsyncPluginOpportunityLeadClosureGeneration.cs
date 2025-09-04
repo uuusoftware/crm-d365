@@ -67,8 +67,14 @@ namespace Plugins {
                     throw new InvalidPluginExecutionException("No records in Lead Closure Checklist were found in the Catalog matching the current Checklist Master.");
                 }
 
-                // All Opportunity records should be shared with the same team as the Lead is shared with
-                commonBusinessLogic.ExecuteRecordShare(opportunityRecord, teamRecord.Id);
+                //// All Opportunity records should be shared with the same team as the Lead is shared with
+                //commonBusinessLogic.ExecuteRecordShare(opportunityRecord, teamRecord.Id);
+                //commonBusinessLogic.ExecuteRecordShare(
+                //    new Entity(Account.EntityLogicalCollectionName,
+                //    opportunityRecord.CustomerId.Id), teamRecord.Id);
+                //commonBusinessLogic.ExecuteRecordShare(
+                //    new Entity(Contact.EntityLogicalCollectionName,
+                //    opportunityRecord.ContactId.Id), teamRecord.Id);
 
             } catch (AggregateException aggregateException) {
                 var exceptions = aggregateException.InnerExceptions;
