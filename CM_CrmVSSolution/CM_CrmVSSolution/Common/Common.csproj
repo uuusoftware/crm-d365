@@ -47,36 +47,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Entities\account.cs" />
-    <Compile Include="Models\Entities\cm_programassociation.cs" />
-    <Compile Include="Models\Entities\cm_province.cs" />
-    <Compile Include="Models\Entities\connection.cs" />
-    <Compile Include="Models\Entities\contact.cs" />
-    <Compile Include="Models\Entities\lead.cs" />
-    <Compile Include="Models\Entities\opportunity.cs" />
-    <Compile Include="Models\Entities\salesorder.cs" />
-    <Compile Include="Models\Entities\team.cs" />
-    <Compile Include="Models\EntityOptionSetEnum.cs" />
-    <Compile Include="Models\Messages\DeleteMultiple.cs" />
-    <Compile Include="Models\Messages\ExecuteBackgroundOperation.cs" />
-    <Compile Include="Models\Messages\ExecuteFxExpression.cs" />
-    <Compile Include="Models\OptionSets\budgetstatus.cs" />
-    <Compile Include="Models\OptionSets\cm_leadopptype.cs" />
-    <Compile Include="Models\OptionSets\initialcommunication.cs" />
-    <Compile Include="Models\OptionSets\lead_salesstage.cs" />
-    <Compile Include="Models\OptionSets\msdyn_leadgradeoptset.cs" />
-    <Compile Include="Models\OptionSets\msdyn_leadscoretrendoptset.cs" />
-    <Compile Include="Models\OptionSets\msdyn_opportunitygradeoptset.cs" />
-    <Compile Include="Models\OptionSets\msdyn_opportunityscoretrendoptset.cs" />
-    <Compile Include="Models\OptionSets\need.cs" />
-    <Compile Include="Models\OptionSets\opportunity_salesstage.cs" />
-    <Compile Include="Models\OptionSets\powerpagelanguages.cs" />
-    <Compile Include="Models\OptionSets\purchaseprocess.cs" />
-    <Compile Include="Models\OptionSets\purchasetimeframe.cs" />
-    <Compile Include="Models\OptionSets\qooi_pricingerrorcode.cs" />
-    <Compile Include="Models\OptionSets\qooi_skippricecalculation.cs" />
-    <Compile Include="Models\OptionSets\salesordercreationmethod.cs" />
-    <Compile Include="Models\OrgContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -84,7 +54,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Common.snk" />
-    <None Include="Models\builderSettings.json" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CrmSdk.CoreAssemblies">
