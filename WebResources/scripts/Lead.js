@@ -22,12 +22,22 @@ CM.Lead = (function () {
         onLoad: async (executionContext) => {
             _formContext = executionContext.getFormContext(); // initialize once
 
+            // On Form Save Event
             _formContext.data.entity.addOnSave((cxt => Helpers.onSave(cxt)))
 
+            // On Form Load Functions
             Helpers.setDefaultCountryOnLoad();
             Helpers.toggleServiceTypeFieldOnLoad(executionContext);
             Helpers.handleContactAndCompanyFieldsOnload();
 
+            // On Tab Change EvenT
+            const programsTab = _formContext.ui.tabs.get("Programs");
+            if (programsTab) {
+                programsTab.removeTabStateChange(Helpers.onTabStateChange);
+                programsTab.addTabStateChange(Helpers.onTabStateChange);
+            }
+
+            // On Change Field Events
             _formContext.getAttribute("cm_existingcontact")?.addOnChange((ctx) =>
                 Helpers.onExistingContactChange(ctx)
             );
@@ -58,6 +68,38 @@ CM.Lead = (function () {
             console.log(`Lead with Id: ${leadId} saved`);
         },
 
+        onTabStateChange: (executionContext) => {
+            _formContext = _formContext || executionContext.getFormContext();
+
+            // "colapsed" = moving from this tab to another, "expanded" = moving from another to this
+            if(_formContext.ui.tabs.get("Programs").getDisplayState().toLowerCase() !== "expanded"){
+                return;
+            }
+
+            if (_formContext.data.getIsDirty()) {
+                const confirmStrings = {
+                    text: "You have unsaved changes. Please save before proceeding to Programs",
+                    title: "Save Reminder",
+                    confirmButtonLabel: "Save",
+                    cancelButtonLabel: "Continue Without Saving"
+                };
+                const confirmOptions = { height: 200, width: 450 };
+
+                Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions)
+                    .then(function (result) {
+                        if (result.confirmed) {
+                            console.log("User chose to save the form.");
+                            _formContext.data.save();
+                        } else {
+                            console.log("User chose to continue without saving.");
+                        }
+                    })
+                    .catch(function (err) {
+                        console.error("Error showing confirm dialog:", err);
+                    });
+            }
+        },
+
         handleContactAndCompanyFieldsOnload: () => {
             const isExistingCustomer = _formContext.getAttribute("cm_existingcustomer").getValue();
             const isExistingContact = _formContext.getAttribute("cm_existingcontact").getValue();
@@ -80,8 +122,6 @@ CM.Lead = (function () {
 
         handleIsExistingContact: (isExistingContact) => {
             const newContactFields = [
-                "fullname_compositionLinkControl_firstname", "firstname",
-                "fullname_compositionLinkControl_lastname", "lastname",
                 "jobtitle", "telephone1", "mobilephone", "emailaddress1"
             ];
             const newContactRequiredFields = [
@@ -100,6 +140,9 @@ CM.Lead = (function () {
                 Helpers.toggleFieldsVisibility(false, ...newContactFields);
                 Helpers.toggleFieldsRequirementLevel(Constants.notRequired, ...newContactFields);
 
+                Helpers.setFieldReadOnly("fullname_compositionLinkControl_firstname", true);
+                Helpers.setFieldReadOnly("fullname_compositionLinkControl_lastname", true);
+
                 Helpers.clearFieldsValues(...newContactFields);
             } else if (isExistingContact === false) {
                 Helpers.toggleFieldsVisibility(true, ...newContactFields);
@@ -107,6 +150,9 @@ CM.Lead = (function () {
 
                 Helpers.toggleFieldsVisibility(false, "parentcontactid");
                 Helpers.toggleFieldsRequirementLevel(Constants.notRequired, "parentcontactid");
+
+                Helpers.setFieldReadOnly("fullname_compositionLinkControl_firstname", false);
+                Helpers.setFieldReadOnly("fullname_compositionLinkControl_lastname", false);
 
                 Helpers.clearFieldsValues("parentcontactid");
             } else {
@@ -116,7 +162,7 @@ CM.Lead = (function () {
 
         handleIsExistingCustomer: (isExistingCustomer) => {
             const newCompanyFields = [
-                "companyname", "websiteurl", "address1_line1", "address1_line2",
+                "websiteurl", "address1_line1", "address1_line2",
                 "address1_line3", "address1_city", "cm_country", "cm_stateprovince", "address1_postalcode"
             ];
             const newCompanyRequiredFields = ["parentaccountid"]; //Customer
@@ -129,6 +175,8 @@ CM.Lead = (function () {
                 Helpers.toggleFieldsVisibility(false, ...newCompanyFields);
                 Helpers.toggleFieldsRequirementLevel(Constants.notRequired, ...newCompanyFields);
 
+                Helpers.setFieldReadOnly("companyname", true);
+
                 Helpers.clearFieldsValues(...newCompanyFields);
             } else if (isExistingCustomer === false) {
 
@@ -137,6 +185,8 @@ CM.Lead = (function () {
 
                 Helpers.toggleFieldsVisibility(false, ...newCompanyRequiredFields);
                 Helpers.toggleFieldsRequirementLevel(Constants.notRequired, ...newCompanyRequiredFields);
+
+                Helpers.setFieldReadOnly("companyname", false);
 
                 Helpers.clearFieldsValues(...newCompanyRequiredFields);
             } else {
@@ -196,8 +246,6 @@ CM.Lead = (function () {
             companyAttr.setValue(accountValue);
         },
         clearFieldsValues: (...attributes) => {
-            _formContext.getAttribute("firstname").setValue(null);
-            _formContext.getAttribute("lastname").setValue(null);
             attributes.forEach(attr => {
                 const attribute = _formContext.getAttribute(attr);
                 if (!attribute) return;
@@ -224,6 +272,16 @@ CM.Lead = (function () {
                 attribute && attribute.setRequiredLevel(requiredLevel); // "none", "required", or "recommended"
             }
             );
+        },
+        setFieldReadOnly: (fieldName, isReadOnly) => {
+            if (!_formContext || !fieldName) return;
+
+            const control = _formContext.getControl(fieldName);
+            if (control) {
+                control.setDisabled(isReadOnly);
+            } else {
+                console.warn(`Control for field '${fieldName}' not found.`);
+            }
         },
 
         toggleServiceTypeFieldOnLoad: (executionContext) => {
