@@ -49,7 +49,8 @@ namespace Plugins {
                     ?? throw new InvalidPluginExecutionException("Team not found");
                 tracingService.Trace($"teamRecord: {teamRecord.Id}");
 
-                List<cm_QuestionCatalog> questionsList = commonBusinessLogic.GetQuestionsListByTeam(teamRecord.Id, opportunityRecord.cm_OpportunityType);
+                List<cm_QuestionCatalog> questionsList = commonBusinessLogic
+                    .GetQuestionsListByTeam(teamRecord.Id, opportunityRecord.cm_OpportunityType);
                 tracingService.Trace($"questionsList {string.Join(" ,", questionsList.Select(q => q.Id))}");
                 #endregion
 

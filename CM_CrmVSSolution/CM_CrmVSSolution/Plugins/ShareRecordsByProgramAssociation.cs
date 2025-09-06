@@ -52,6 +52,7 @@ namespace Plugins {
             }
 
             try {
+
                 #region Incident/Case
                 if (context.PrimaryEntityName == Incident.EntityLogicalName) {
                     #region Load Records
@@ -139,28 +140,35 @@ namespace Plugins {
                 if (context.PrimaryEntityName == Opportunity.EntityLogicalName) {
                     tracingService.Trace($"Primary entity: {context.PrimaryEntityName}");
                     #region Load Records
-                    Opportunity opportunityRecord = commonBusinessLogic
+                    var opportunityRecord = commonBusinessLogic
                         .GetRecordById<Opportunity>(context.PrimaryEntityId)
                         ?? throw new InvalidPluginExecutionException("Opportunity not found");
 
-                    cm_ProgramAssociation programAssociationRecord = commonBusinessLogic
+                    var programAssociationRecord = opportunityRecord.cm_AssociatedProgram == null ? null : commonBusinessLogic
                         .GetRecordById<cm_ProgramAssociation>(opportunityRecord.cm_AssociatedProgram.Id)
                         ?? throw new InvalidPluginExecutionException("cm_ProgramAssociation not found");
 
-                    Team teamRecord = commonBusinessLogic
+                    var teamRecord = programAssociationRecord.cm_Program == null ? null : commonBusinessLogic
                         .GetRecordById<Team>(programAssociationRecord.cm_Program.Id)
                         ?? throw new InvalidPluginExecutionException("Team not found");
+
+                    var accountRecord = opportunityRecord.ParentAccountId == null ? null : commonBusinessLogic
+                        .GetRecordById<Account>(opportunityRecord.ParentAccountId.Id)
+                        ?? throw new InvalidPluginExecutionException("Account not found");
+
+                    var contactRecord = opportunityRecord.ParentContactId == null ? null : commonBusinessLogic
+                        .GetRecordById<Contact>(opportunityRecord.ParentContactId.Id)
+                        ?? throw new InvalidPluginExecutionException("Contact not found");
+
                     #endregion
 
-                    commonBusinessLogic.ExecuteRecordShare(opportunityRecord, teamRecord.Id);
-                    commonBusinessLogic.ExecuteRecordShare(
-                        new Entity(Account.EntityLogicalCollectionName,
-                        opportunityRecord.CustomerId.Id), teamRecord.Id);
-                    commonBusinessLogic.ExecuteRecordShare(
-                        new Entity(Contact.EntityLogicalCollectionName,
-                        opportunityRecord.ContactId.Id), teamRecord.Id);
+                    if (opportunityRecord != null) commonBusinessLogic.ExecuteRecordShare(opportunityRecord, teamRecord.Id);
+                    if (accountRecord != null) commonBusinessLogic.ExecuteRecordShare(accountRecord, teamRecord.Id);
+                    if (contactRecord != null) commonBusinessLogic.ExecuteRecordShare(contactRecord, teamRecord.Id);
+
                 }
                 #endregion
+
             } catch (Exception ex) {
                 context.InputParameters.TryGetValue("Target", out var target);
                 string detailedError = $"Unexpected error while processing {context.PrimaryEntityName ?? target?.ToString() ?? "Unknown"} record with ID " +

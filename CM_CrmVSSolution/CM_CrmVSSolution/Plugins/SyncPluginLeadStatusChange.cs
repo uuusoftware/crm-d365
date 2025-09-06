@@ -58,6 +58,7 @@ namespace Plugins {
 
                 // Creates an opportunity for each lead using the same account and contact
                 programAssociation.ForEach(association => {
+                    tracingService.Trace($"Processing Association: {association.Id}");
                     programAssociationGuids.Add(commonBusinessLogic.CreateOpportunityForLead(leadRecord, association, contactId, accountId));
                     commonBusinessLogic.UpdateProgramAsscAccount(association, accountId);
                 });

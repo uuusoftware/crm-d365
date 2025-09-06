@@ -65,6 +65,8 @@ namespace Plugins {
 
                 service.Update(newProgramAssoc);
 
+                tracingService.Trace($"Program Association with Id: {programAssocRecord.Id} updated with name: {newProgramAssoc.cm_Name} and province {newProgramAssoc.cm_Province}");
+
             } catch (Exception ex) {
                 string detailedError = $"Unexpected error while processing {context.PrimaryEntityName} record with ID " +
                     $"{context.PrimaryEntityId}: {ex.Message}\nStack Trace: {ex.StackTrace}";

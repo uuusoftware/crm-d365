@@ -283,10 +283,11 @@ namespace Plugins {
                 ParentContactId = new EntityReference(Contact.EntityLogicalName, contactId),
             };
             try {
-                _tracingService.Trace($"Opportunity for Program Association Record: {programAssociationRecord}");
                 return _service.Create(opportunityRecord);
             } catch {
                 throw;
+            } finally {
+                _tracingService.Trace($"Opportunity Id: {opportunityRecord.Id} created for Program Association Record: {programAssociationRecord.Id}");
             }
         }
 
@@ -952,7 +953,7 @@ namespace Plugins {
         public void ExecuteRecordShare(Entity record, Guid teamId) {
             AccessRights accessRights = AccessRights.ReadAccess | AccessRights.WriteAccess |
                                         AccessRights.AppendAccess | AccessRights.AppendToAccess;
-            GrantAccessToTeam(new EntityReference(record.LogicalName, record.Id), teamId, accessRights);
+            GrantAccessToTeam(record.ToEntityReference(), teamId, accessRights);
         }
 
         /// <summary>
