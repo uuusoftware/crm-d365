@@ -22,6 +22,8 @@ CM.Lead = (function () {
         onLoad: async (executionContext) => {
             _formContext = executionContext.getFormContext(); // initialize once
 
+            _formContext.data.entity.addOnSave((cxt => Helpers.onSave(cxt)))
+
             Helpers.setDefaultCountryOnLoad();
             Helpers.toggleServiceTypeFieldOnLoad(executionContext);
             Helpers.handleContactAndCompanyFieldsOnload();
@@ -39,8 +41,21 @@ CM.Lead = (function () {
             );
 
             _formContext.getAttribute("parentaccountid")?.addOnChange((ctx) =>
-                Helpers.removeContactWhenCustomerChanges(ctx)
+                Helpers.parentAccountOnChange(ctx)
             );
+
+            _formContext.getAttribute("parentcontactid")?.addOnChange((ctx) =>
+                Helpers.parentContactOnChange(ctx)
+            );
+        },
+        /**
+         * @description
+         * @param executionContext 
+         */
+        onSave: async (executionContext) => {
+            _formContext = _formContext || executionContext.getFormContext();
+            const leadId = _formContext.data.entity.getId().replace(/[{}]/g, "").toLowerCase();
+            console.log(`Lead with Id: ${leadId} saved`);
         },
 
         handleContactAndCompanyFieldsOnload: () => {
@@ -65,13 +80,13 @@ CM.Lead = (function () {
 
         handleIsExistingContact: (isExistingContact) => {
             const newContactFields = [
-                "fullname_compositionLinkControl_firstname","firstname",
-                "fullname_compositionLinkControl_lastname","lastname",
+                "fullname_compositionLinkControl_firstname", "firstname",
+                "fullname_compositionLinkControl_lastname", "lastname",
                 "jobtitle", "telephone1", "mobilephone", "emailaddress1"
             ];
             const newContactRequiredFields = [
-                "fullname_compositionLinkControl_firstname","firstname",
-                "fullname_compositionLinkControl_lastname","lastname",
+                "fullname_compositionLinkControl_firstname", "firstname",
+                "fullname_compositionLinkControl_lastname", "lastname",
             ];
 
             // on existing account change, also change existing contact to no
@@ -107,33 +122,82 @@ CM.Lead = (function () {
             const newCompanyRequiredFields = ["parentaccountid"]; //Customer
 
             if (isExistingCustomer === true) {
-                
+
                 Helpers.toggleFieldsVisibility(true, ...newCompanyRequiredFields);
                 Helpers.toggleFieldsRequirementLevel(Constants.required, ...newCompanyRequiredFields);
-                
+
                 Helpers.toggleFieldsVisibility(false, ...newCompanyFields);
                 Helpers.toggleFieldsRequirementLevel(Constants.notRequired, ...newCompanyFields);
 
                 Helpers.clearFieldsValues(...newCompanyFields);
             } else if (isExistingCustomer === false) {
-                
+
                 Helpers.toggleFieldsVisibility(true, ...newCompanyFields);
                 Helpers.toggleFieldsRequirementLevel(Constants.required, "companyname");
-                
+
                 Helpers.toggleFieldsVisibility(false, ...newCompanyRequiredFields);
                 Helpers.toggleFieldsRequirementLevel(Constants.notRequired, ...newCompanyRequiredFields);
-                
+
                 Helpers.clearFieldsValues(...newCompanyRequiredFields);
             } else {
                 throw new Error("Invalid value for isExistingCustomer");
             }
         },
-        removeContactWhenCustomerChanges: () => {
+        parentAccountOnChange: (executionContext) => {
+            _formContext = _formContext || executionContext.getFormContext();
+
             // Remove the values from contact lookup when the account/customer changes
             Helpers.clearFieldsValues("parentcontactid");
+            Helpers.setCompanyName();
+        },
+        /**
+         * @description Set first name and last name according to the chosen parent contact
+         * Both first and last names are hidden when parentcontactid is shown, but it's necessary for other logic to work.
+         * @param {*} executionContext 
+         * @returns 
+         */
+        parentContactOnChange: async (executionContext) => {
+            _formContext = _formContext || executionContext.getFormContext();
+
+            const firstNameAttr = _formContext.getAttribute("firstname");
+            const lastNameAttr = _formContext.getAttribute("lastname");
+
+            const contactValue = _formContext.getAttribute("parentcontactid").getValue()?.at(0).id;
+            if (!contactValue) {
+                firstNameAttr.setValue(null);
+                lastNameAttr.setValue(null);
+                return;
+            };
+
+            const contactId = contactValue.replace(/[{}]/g, "").toLowerCase();
+            const contactRecord = await Xrm.WebApi.retrieveRecord("contact", contactId, "?$select=firstname,lastname");
+            debugger;
+
+            firstNameAttr.setValue(contactRecord.firstname || "");
+            lastNameAttr.setValue(contactRecord.lastname || "");
         },
 
+        /**
+         * @description Set field companyname to the name of the company (parentaccountid).
+         * The Field companyname is hidden when parentaccountid is shown, but it's necessary for other logic to work.
+         * E.g. Program Association uses it to se the lead and account name  
+         */
+        setCompanyName: () => {
+            const accountValue = _formContext.getAttribute("parentaccountid").getValue()?.at(0).name;
+            const companyAttr = _formContext.getAttribute("companyname");
+            _formContext.getAttribute("firstname").setValue(null);
+            _formContext.getAttribute("lastname").setValue(null);
+
+            if (!accountValue) {
+                companyAttr.setValue(null);
+                return;
+            }
+
+            companyAttr.setValue(accountValue);
+        },
         clearFieldsValues: (...attributes) => {
+            _formContext.getAttribute("firstname").setValue(null);
+            _formContext.getAttribute("lastname").setValue(null);
             attributes.forEach(attr => {
                 const attribute = _formContext.getAttribute(attr);
                 if (!attribute) return;
@@ -158,7 +222,7 @@ CM.Lead = (function () {
             attributes.forEach(attr => {
                 const attribute = _formContext.getAttribute(attr);
                 attribute && attribute.setRequiredLevel(requiredLevel); // "none", "required", or "recommended"
-                }
+            }
             );
         },
 

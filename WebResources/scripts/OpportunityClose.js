@@ -5,7 +5,7 @@ if (!(window.hasOwnProperty("CM"))) {
 CM.OpportunityClose = (function () {
     "use strict";
 
-    // This global constiable must be set in any entry point to this file. E.g. OnSave, OnLoad, OnChange
+    // This global constant must be set in any entry point to this file. E.g. OnSave, OnLoad, OnChange
     let _formContext = null; // Global within CM.Lead scope
 
     const Constants = Object.freeze({
