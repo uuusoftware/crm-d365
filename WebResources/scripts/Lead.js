@@ -163,7 +163,7 @@ CM.Lead = (function () {
         handleIsExistingCustomer: (isExistingCustomer) => {
             const newCompanyFields = [
                 "websiteurl", "address1_line1", "address1_line2",
-                "address1_line3", "address1_city", "cm_country", "cm_stateprovince", "address1_postalcode"
+                "address1_line3", "address1_city", "cm_stateprovince", "address1_postalcode"
             ];
             const newCompanyRequiredFields = ["parentaccountid"]; //Customer
 
