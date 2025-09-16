@@ -63,20 +63,17 @@ namespace Plugins {
                                      $"leadClosureChecklistCatalogList count: {leadClosureChecklistCatalogList.Count} \n");
                 #endregion
 
-                if (leadClosureChecklistCatalogList.Any()) {
-                    commonBusinessLogic.CreateLeadClosureResponses(leadClosureChecklistCatalogList, opportunityRecord, teamRecord.Id);
-                } else {
+                // Closure Checklist questions are only mandatory for Producer and ServiceProvider (CD-825)
+                if (!leadClosureChecklistCatalogList.Any()
+                    && (opportunityRecord.cm_OpportunityType == cm_leadopptype.Producer
+                    || opportunityRecord.cm_OpportunityType == cm_leadopptype.ServiceProvider)
+                    ) {
                     throw new InvalidPluginExecutionException("No records in Lead Closure Checklist were found in the Catalog matching the current Checklist Master.");
                 }
 
-                //// All Opportunity records should be shared with the same team as the Lead is shared with
-                //commonBusinessLogic.ExecuteRecordShare(opportunityRecord, teamRecord.Id);
-                //commonBusinessLogic.ExecuteRecordShare(
-                //    new Entity(Account.EntityLogicalCollectionName,
-                //    opportunityRecord.CustomerId.Id), teamRecord.Id);
-                //commonBusinessLogic.ExecuteRecordShare(
-                //    new Entity(Contact.EntityLogicalCollectionName,
-                //    opportunityRecord.ContactId.Id), teamRecord.Id);
+                if (!leadClosureChecklistCatalogList.Any()) return;
+
+                commonBusinessLogic.CreateLeadClosureResponses(leadClosureChecklistCatalogList, opportunityRecord, teamRecord.Id);
 
             } catch (AggregateException aggregateException) {
                 var exceptions = aggregateException.InnerExceptions;
