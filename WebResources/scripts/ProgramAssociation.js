@@ -28,7 +28,18 @@ CM.ProgramAssociation = (function () {
                 await Helpers.setProgramAssociationName(ctx)
             );
 
-            await _formContext.getControl("cm_program").addPreSearch(Helpers.addCustomLookupFilter);
+            // First fetch the unique Ids asynchronously so it addPreSearch in only called when the new filter is complete.
+            const uniqueProgramIds = await Helpers.getUniqueProgramIds();
+            _formContext.getControl("cm_program").addPreSearch(() => {
+                let filter = "<filter type='or'>";
+
+                uniqueProgramIds.forEach(id => {
+                    filter += `<condition attribute='teamid' operator='eq' value='${id}' />`;
+                })
+
+                filter += "</filter>";
+                _formContext.getControl("cm_program").addCustomFilter(filter, "team");
+            })
         },
         /**
          * @description
@@ -41,9 +52,7 @@ CM.ProgramAssociation = (function () {
          * @description Adds a custom filter to the program/team look field to includo only programs that are related to the current leadtype
          * @param {*} executionContext 
          */
-        addCustomLookupFilter: async (executionContext) => {
-            _formContext = executionContext.getFormContext();
-
+        getUniqueProgramIds: async () => {
             try {
                 const leadId = _formContext.getAttribute("cm_lead").getValue()?.at(0)?.id.replace(/[{}]/g, "");
                 const programField = _formContext.getControl("cm_program");
@@ -61,20 +70,7 @@ CM.ProgramAssociation = (function () {
 
                 if (!programIds.length) throw new Error("No team/program found")
 
-                const uniqueProgramIds = [...new Set(programIds)];
-
-                // addPreSearch has to be called again since it can't handle async calls from within.
-                _formContext.getControl("cm_program").addPreSearch(() => {
-                    let filter = "<filter type='or'>";
-
-                    uniqueProgramIds.forEach(id => {
-                        filter += `<condition attribute='teamid' operator='eq' value='${id}' />`;
-                    })
-
-                    filter += "</filter>";
-                    programField.addCustomFilter(filter, "team");
-                })
-
+                return [...new Set(programIds)];
             } catch (error) {
                 Helpers.openStringifiedAlertDialog("", err);
                 console.error({ "Error": `An error occurred while retrieving Lead or Program: ${err}` });
