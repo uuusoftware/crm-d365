@@ -374,6 +374,12 @@ namespace Plugins {
             }
         }
 
+        /// <summary>
+        ///     Creates Qualification questions for the given Opportunity
+        /// </summary>
+        /// <param name="questions"></param>
+        /// <param name="opportunity"></param>
+        /// <param name="teamId"></param>
         internal void CreateQuestionResponses(List<cm_QuestionCatalog> questions, Opportunity opportunity, Guid teamId) {
             List<Guid> responseGuids = new List<Guid>();
 
@@ -435,6 +441,12 @@ namespace Plugins {
             }
         }
 
+        /// <summary>
+        ///     Creates closure checklist for the given Opportunity
+        /// </summary>
+        /// <param name="questions"></param>
+        /// <param name="opportunity"></param>
+        /// <param name="teamId"></param>
         internal void CreateLeadClosureResponses(List<cm_LeadClosureChecklistCatalog> questions, Opportunity opportunity, Guid teamId) {
             List<Guid> responseGuids = new List<Guid>();
 

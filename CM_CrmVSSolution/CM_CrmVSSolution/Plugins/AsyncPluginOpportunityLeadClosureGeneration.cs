@@ -13,6 +13,8 @@ namespace Plugins {
         ///     This async Dataverse plugin fires on creating an Opportunity, loads its related Program Association, Team, 
         ///     and the appropriate Lead-Closure Checklist Master, then retrieves checklist questions. 
         ///     If questions exist it generates response records, otherwise it throws an InvalidPluginExecutionException.
+        ///     
+        ///     Sync Plugins.AsyncPluginOpportunityLeadClosureGeneration: Create of opportunity All Attributes
         /// </summary>
         /// <param name="localPluginContext"></param>
         /// <exception cref="ArgumentNullException"></exception>
