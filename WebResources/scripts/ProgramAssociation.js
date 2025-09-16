@@ -6,7 +6,7 @@ CM.ProgramAssociation = (function () {
     "use strict";
 
     // This global constant must be set in any entry point to this file. E.g. OnSave, OnLoad, OnChange
-    let _formContext = null; // Global within CM.Lead scope
+    let _formContext = null; // Global within CM.ProgramAssociation scope
 
     const Constants = Object.freeze({
         entityName: "cm_ProgramAssociation",
@@ -23,23 +23,71 @@ CM.ProgramAssociation = (function () {
             _formContext.getAttribute("cm_program")?.addOnChange(async (ctx) =>
                 await Helpers.setProvinceFromProgram(ctx)
             );
+
             _formContext.getAttribute("cm_program")?.addOnChange(async (ctx) =>
                 await Helpers.setProgramAssociationName(ctx)
             );
+
+            await _formContext.getControl("cm_program").addPreSearch(Helpers.addCustomLookupFilter);
         },
         /**
          * @description
-         * @param executionContext 
+         * @param executionContext
          */
         onSave: async (executionContext) => {
             _formContext = executionContext.getFormContext();
         },
+        /**
+         * @description Adds a custom filter to the program/team look field to includo only programs that are related to the current leadtype
+         * @param {*} executionContext 
+         */
+        addCustomLookupFilter: async (executionContext) => {
+            _formContext = executionContext.getFormContext();
+
+            try {
+                const leadId = _formContext.getAttribute("cm_lead").getValue()?.at(0)?.id.replace(/[{}]/g, "");
+                const programField = _formContext.getControl("cm_program");
+
+                if (!programField) throw new Error("Field cm_program not found");
+
+                const leadRecord = await Xrm.WebApi.retrieveRecord("lead", leadId, "?$select=leadid,cm_leadtype");
+
+                if (!leadRecord || !leadRecord.cm_leadtype) throw new Error("Lead type not found for this lead record");
+
+                const questionRecords = await Xrm.WebApi.retrieveMultipleRecords(
+                    "cm_questioncatalog", `?$select=_cm_program_value,cm_questionfor&$filter=cm_questionfor eq ${leadRecord.cm_leadtype}`);
+
+                const programIds = questionRecords.entities.map(question => question._cm_program_value)
+
+                if (!programIds.length) throw new Error("No team/program found")
+
+                const uniqueProgramIds = [...new Set(programIds)];
+
+                // addPreSearch has to be called again since it can't handle async calls from within.
+                _formContext.getControl("cm_program").addPreSearch(() => {
+                    let filter = "<filter type='or'>";
+
+                    uniqueProgramIds.forEach(id => {
+                        filter += `<condition attribute='teamid' operator='eq' value='${id}' />`;
+                    })
+
+                    filter += "</filter>";
+                    programField.addCustomFilter(filter, "team");
+                })
+
+            } catch (error) {
+                Helpers.openStringifiedAlertDialog("", err);
+                console.error({ "Error": `An error occurred while retrieving Lead or Program: ${err}` });
+                if (err?.message?.raw) console.error(err.message.raw);
+                throw err;
+            }
+        },
         //Set Province from Program Lookup if Province data is not entered by the user
         setProvinceFromProgram: async (executionContext) => {
-            const formContext = executionContext.getFormContext();
+            const _formContext = executionContext.getFormContext();
 
-            const provinceAttr = formContext.getAttribute("cm_province");
-            const programAttr = formContext.getAttribute("cm_program");
+            const provinceAttr = _formContext.getAttribute("cm_province");
+            const programAttr = _formContext.getAttribute("cm_program");
 
             if (!provinceAttr || !programAttr) {
                 console.warn("Required fields not found on form.");
@@ -77,11 +125,11 @@ CM.ProgramAssociation = (function () {
 
         //Set Program Association Name automatically
         setProgramAssociationName: async (executionContext) => {
-            const formContext = executionContext.getFormContext();
+            const _formContext = executionContext.getFormContext();
 
-            const leadAttr = formContext.getAttribute("cm_lead");
-            const programAttr = formContext.getAttribute("cm_program");
-            const nameAttr = formContext.getAttribute("cm_name");
+            const leadAttr = _formContext.getAttribute("cm_lead");
+            const programAttr = _formContext.getAttribute("cm_program");
+            const nameAttr = _formContext.getAttribute("cm_name");
 
             if (!leadAttr || !programAttr || !nameAttr) {
                 console.warn("One or more required fields are missing on the form.");
