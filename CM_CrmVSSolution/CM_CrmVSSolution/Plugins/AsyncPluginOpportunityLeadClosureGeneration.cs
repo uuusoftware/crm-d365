@@ -50,8 +50,14 @@ namespace Plugins {
                     ?? throw new InvalidPluginExecutionException("Team not found");
 
                 cm_LeadClosureChecklistMaster leadClosureChecklistMasterRecord = commonBusinessLogic
-                    .GetLeadClosureCheckLMasterByTeam(teamRecord.Id, opportunityRecord.cm_OpportunityType)
-                    ?? throw new InvalidPluginExecutionException("cm_LeadClosureChecklistMaster not found. Please check your Lead Type");
+                    .GetLeadClosureCheckLMasterByTeam(teamRecord.Id, opportunityRecord.cm_OpportunityType);
+
+                if (leadClosureChecklistMasterRecord == null) {
+                    tracingService.Trace("No Lead Closure Checklist Master Record found for team: {0} and leadType: {1}",
+                        teamRecord.Id,
+                        opportunityRecord.cm_OpportunityType);
+                    return;
+                }
 
                 List<cm_LeadClosureChecklistCatalog> leadClosureChecklistCatalogList = commonBusinessLogic
                     .GetLeadClosureChecklistCatalogCat(leadClosureChecklistMasterRecord.Id)
