@@ -58,23 +58,37 @@ namespace Plugins {
                     #region Load Records
                     var incidentRecord = commonBusinessLogic.GetRecordById<Incident>(context.PrimaryEntityId)
                         ?? throw new InvalidPluginExecutionException("Incident not found");
-                    var accountRecord = commonBusinessLogic.GetRecordById<Account>(incidentRecord.CustomerId.Id)
-                        ?? throw new InvalidPluginExecutionException("Account not found");
-                    var contactRecord = commonBusinessLogic.GetRecordById<Contact>(incidentRecord.PrimaryContactId.Id)
-                        ?? throw new InvalidPluginExecutionException("Account not found");
-                    SystemUser ownerRecord = commonBusinessLogic.GetRecordById<SystemUser>(incidentRecord.OwnerId.Id) ?? null;
+
+                    var accountRecord = commonBusinessLogic.GetRecordById<Account>(incidentRecord.CustomerId?.Id)
+                        ?? throw new InvalidPluginExecutionException("Case must be created with an Account");
+
+                    var contactRecord = commonBusinessLogic.GetRecordById<Contact>(incidentRecord.PrimaryContactId?.Id);
+
+                    SystemUser ownerRecord = incidentRecord.OwnerId != null
+                        ? commonBusinessLogic.GetRecordById<SystemUser>(incidentRecord.OwnerId?.Id)
+                        : null;
+                    
                     Team accountTeamRecord = commonBusinessLogic.GetTeamByAccountRole(accountRecord);
                     #endregion
 
+                    tracingService.Trace(
+                        "Loaded records: " +
+                        $"IncidentId:{incidentRecord.Id}, " +
+                        $"AccountId:{accountRecord.Id}, " +
+                        $"ContactId:{(contactRecord != null ? contactRecord.Id.ToString() : "Not found")}, " +
+                        $"OwnerId:{(ownerRecord != null ? ownerRecord.Id.ToString() : "null")}, " +
+                        $"AccountTeamId:{(accountTeamRecord != null ? accountTeamRecord.Id.ToString() : "null")}"
+                    );
+
                     commonBusinessLogic.ExecuteRecordShare(accountRecord, accountTeamRecord.Id);
                     commonBusinessLogic.ExecuteRecordShare(incidentRecord, accountTeamRecord.Id);
-                    commonBusinessLogic.ExecuteRecordShare(contactRecord, accountTeamRecord.Id);
+                    if(contactRecord != null) commonBusinessLogic.ExecuteRecordShare(contactRecord, accountTeamRecord.Id);
 
                     List<Team> teamList = commonBusinessLogic.GetTeamListByAccountAndIncident(accountRecord, incidentRecord);
                     foreach (var team in teamList) {
                         commonBusinessLogic.ExecuteRecordShare(accountRecord, team.Id);
                         commonBusinessLogic.ExecuteRecordShare(incidentRecord, team.Id);
-                        commonBusinessLogic.ExecuteRecordShare(contactRecord, team.Id);
+                        if (contactRecord != null) commonBusinessLogic.ExecuteRecordShare(contactRecord, team.Id);
                     }
 
                     if (incidentRecord.cm_SourceIdentifier != cm_sourceidentifiertype.ERP) {

@@ -1,5 +1,5 @@
-﻿using Plugins.Models;
-using Microsoft.Xrm.Sdk;
+﻿using Microsoft.Xrm.Sdk;
+using Plugins.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,11 +42,11 @@ namespace Plugins {
                     ?? throw new InvalidPluginExecutionException("Opportunity not found");
 
                 cm_ProgramAssociation programAssociationRecord = commonBusinessLogic
-                    .GetRecordById<cm_ProgramAssociation>(opportunityRecord.cm_AssociatedProgram.Id)
+                    .GetRecordById<cm_ProgramAssociation>(opportunityRecord.cm_AssociatedProgram?.Id)
                     ?? throw new InvalidPluginExecutionException("cm_ProgramAssociation not found");
 
                 Team teamRecord = commonBusinessLogic
-                    .GetRecordById<Team>(programAssociationRecord.cm_Program.Id)
+                    .GetRecordById<Team>(programAssociationRecord.cm_Program?.Id)
                     ?? throw new InvalidPluginExecutionException("Team not found");
 
                 cm_LeadClosureChecklistMaster leadClosureChecklistMasterRecord = commonBusinessLogic
