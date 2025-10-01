@@ -62,6 +62,7 @@ namespace Plugins {
                     var accountRecord = commonBusinessLogic.GetRecordById<Account>(incidentRecord.CustomerId?.Id)
                         ?? throw new InvalidPluginExecutionException("Case must be created with an Account");
 
+                    // contactRecord must be optinal so that conversion from email to case can be complete.
                     var contactRecord = commonBusinessLogic.GetRecordById<Contact>(incidentRecord.PrimaryContactId?.Id);
 
                     SystemUser ownerRecord = incidentRecord.OwnerId != null

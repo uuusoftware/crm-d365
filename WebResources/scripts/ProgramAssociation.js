@@ -37,25 +37,35 @@ CM.ProgramAssociation = (function () {
                 await Helpers.setProgramAssociationName(ctx)
             );
 
+            const leadType = await Helpers.getLeadType();
+            if (leadType) {
+                _formContext.getControl("cm_program").addPreSearch(() => {
+                    let filter = "<filter type='and'>";
+                    filter += `<condition attribute='cm_leadtype' operator='eq' value='${leadType}' />`
+                    filter += "</filter>";
+                    _formContext.getControl("cm_program").addCustomFilter(filter, "team");
+                });
+            }
+
             // First fetch the unique Ids asynchronously so it addPreSearch in only called when the new filter is complete.
             const uniqueProgramIds = await Helpers.getUniqueProgramIds();
             if (uniqueProgramIds !== null) {
 
                 _formContext.getControl("cm_program").addPreSearch(() => {
                     let filter = "<filter type='or'>";
-                    
-                    if (!uniqueProgramIds.length){
-                    filter += "<condition attribute='teamid' operator='eq' value='00000000-0000-0000-0000-000000000000' />"
-                } else {
-                    uniqueProgramIds.forEach(id => {
-                        filter += `<condition attribute='teamid' operator='eq' value='${id}' />`;
-                    })
-                }
-                
-                filter += "</filter>";
-                _formContext.getControl("cm_program").addCustomFilter(filter, "team");
-            })
-        }
+
+                    if (!uniqueProgramIds.length) {
+                        filter += "<condition attribute='teamid' operator='eq' value='00000000-0000-0000-0000-000000000000' />"
+                    } else {
+                        uniqueProgramIds.forEach(id => {
+                            filter += `<condition attribute='teamid' operator='eq' value='${id}' />`;
+                        })
+                    }
+
+                    filter += "</filter>";
+                    _formContext.getControl("cm_program").addCustomFilter(filter, "team");
+                })
+            }
         },
         /**
          * @description
@@ -94,6 +104,24 @@ CM.ProgramAssociation = (function () {
                 }
 
                 return [...new Set(programIds)];
+            } catch (err) {
+                Helpers.openStringifiedAlertDialog("", err);
+                console.error({ "Error": `An error occurred while retrieving Lead or Program: ${err}` });
+                if (err?.message?.raw) console.error(err.message.raw);
+                throw err;
+            }
+        },
+        getLeadType: async () => {
+            try {
+                const leadId = _formContext.getAttribute("cm_lead").getValue()?.at(0)?.id.replace(/[{}]/g, "");
+                const programField = _formContext.getControl("cm_program");
+
+                if (!programField) throw new Error("Field cm_program not found");
+
+                const leadRecord = await Xrm.WebApi.retrieveRecord("lead", leadId, "?$select=leadid,cm_leadtype");
+
+                return leadRecord.cm_leadtype;
+
             } catch (err) {
                 Helpers.openStringifiedAlertDialog("", err);
                 console.error({ "Error": `An error occurred while retrieving Lead or Program: ${err}` });
