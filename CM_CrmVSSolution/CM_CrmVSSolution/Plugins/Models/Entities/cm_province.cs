@@ -87,6 +87,7 @@ namespace Plugins.Models
 			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
+			public const string cm_incident_Address1_ProvinceState_cm_province = "cm_incident_Address1_ProvinceState_cm_province";
 			public const string cm_programassociation_Province_cm_province = "cm_programassociation_Province_cm_province";
 			public const string cm_questioncatalog_Province_cm_province = "cm_questioncatalog_Province_cm_province";
 			public const string cm_questionresponse_Province_cm_province = "cm_questionresponse_Province_cm_province";
@@ -644,6 +645,24 @@ namespace Plugins.Models
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<long>>("versionnumber");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N cm_incident_Address1_ProvinceState_cm_province
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_incident_Address1_ProvinceState_cm_province")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.Incident> cm_incident_Address1_ProvinceState_cm_province
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.Incident>("cm_incident_Address1_ProvinceState_cm_province", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_incident_Address1_ProvinceState_cm_province");
+				this.SetRelatedEntities<Plugins.Models.Incident>("cm_incident_Address1_ProvinceState_cm_province", null, value);
+				this.OnPropertyChanged("cm_incident_Address1_ProvinceState_cm_province");
 			}
 		}
 		

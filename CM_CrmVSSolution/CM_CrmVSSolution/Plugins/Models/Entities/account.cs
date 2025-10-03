@@ -803,6 +803,9 @@ namespace Plugins.Models
 			public const string YomiName = "yominame";
 			public const string account_connections1 = "account_connections1";
 			public const string account_connections2 = "account_connections2";
+			public const string Account_Email_EmailSender = "Account_Email_EmailSender";
+			public const string Account_Email_SendersAccount = "Account_Email_SendersAccount";
+			public const string Account_Emails = "Account_Emails";
 			public const string Referencedaccount_master_account = "Referencedaccount_master_account";
 			public const string account_msfp_surveyinvites = "account_msfp_surveyinvites";
 			public const string account_OpportunityCloses = "account_OpportunityCloses";
@@ -5376,6 +5379,60 @@ namespace Plugins.Models
 				this.OnPropertyChanging("account_connections2");
 				this.SetRelatedEntities<Plugins.Models.Connection>("account_connections2", null, value);
 				this.OnPropertyChanged("account_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N Account_Email_EmailSender
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Account_Email_EmailSender")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.Email> Account_Email_EmailSender
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.Email>("Account_Email_EmailSender", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("Account_Email_EmailSender");
+				this.SetRelatedEntities<Plugins.Models.Email>("Account_Email_EmailSender", null, value);
+				this.OnPropertyChanged("Account_Email_EmailSender");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N Account_Email_SendersAccount
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Account_Email_SendersAccount")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.Email> Account_Email_SendersAccount
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.Email>("Account_Email_SendersAccount", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("Account_Email_SendersAccount");
+				this.SetRelatedEntities<Plugins.Models.Email>("Account_Email_SendersAccount", null, value);
+				this.OnPropertyChanged("Account_Email_SendersAccount");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N Account_Emails
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Account_Emails")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.Email> Account_Emails
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.Email>("Account_Emails", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("Account_Emails");
+				this.SetRelatedEntities<Plugins.Models.Email>("Account_Emails", null, value);
+				this.OnPropertyChanged("Account_Emails");
 			}
 		}
 		

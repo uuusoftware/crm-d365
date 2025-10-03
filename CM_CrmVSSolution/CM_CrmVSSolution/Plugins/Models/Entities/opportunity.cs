@@ -220,6 +220,8 @@ namespace Plugins.Models
 			public const string cm_confirmothernecessarydocumentsName = "cm_confirmothernecessarydocumentsname";
 			public const string cm_ConfirmVendorOnboardingform = "cm_confirmvendoronboardingform";
 			public const string cm_confirmvendoronboardingformName = "cm_confirmvendoronboardingformname";
+			public const string cm_DocumentContainer = "cm_documentcontainer";
+			public const string cm_DocumentContainerName = "cm_documentcontainername";
 			public const string cm_NPSAURL = "cm_npsaurl";
 			public const string cm_OpportunityType = "cm_opportunitytype";
 			public const string cm_opportunitytypeName = "cm_opportunitytypename";
@@ -407,6 +409,7 @@ namespace Plugins.Models
 			public const string lead_qualifying_opportunity = "lead_qualifying_opportunity";
 			public const string opportunity_connections1 = "opportunity_connections1";
 			public const string opportunity_connections2 = "opportunity_connections2";
+			public const string Opportunity_Emails = "Opportunity_Emails";
 			public const string opportunity_msfp_surveyinvites = "opportunity_msfp_surveyinvites";
 			public const string Opportunity_OpportunityClose = "Opportunity_OpportunityClose";
 			public const string opportunity_OpportunityCloses = "opportunity_OpportunityCloses";
@@ -850,6 +853,37 @@ namespace Plugins.Models
 				if (this.FormattedValues.Contains("cm_confirmvendoronboardingform"))
 				{
 					return this.FormattedValues["cm_confirmvendoronboardingform"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_documentcontainer")]
+		public Microsoft.Xrm.Sdk.EntityReference cm_DocumentContainer
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cm_documentcontainer");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_DocumentContainer");
+				this.SetAttributeValue("cm_documentcontainer", value);
+				this.OnPropertyChanged("cm_DocumentContainer");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_documentcontainername")]
+		public string cm_DocumentContainerName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_documentcontainer"))
+				{
+					return this.FormattedValues["cm_documentcontainer"];
 				}
 				else
 				{
@@ -3918,6 +3952,24 @@ namespace Plugins.Models
 				this.OnPropertyChanging("opportunity_connections2");
 				this.SetRelatedEntities<Plugins.Models.Connection>("opportunity_connections2", null, value);
 				this.OnPropertyChanged("opportunity_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N Opportunity_Emails
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Opportunity_Emails")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.Email> Opportunity_Emails
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.Email>("Opportunity_Emails", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("Opportunity_Emails");
+				this.SetRelatedEntities<Plugins.Models.Email>("Opportunity_Emails", null, value);
+				this.OnPropertyChanged("Opportunity_Emails");
 			}
 		}
 		

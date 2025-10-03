@@ -15,20 +15,20 @@ namespace Plugins.Models
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
-	public enum cm_sourceidentifiertype
+	public enum msdyn_queueassignmentstrategy
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		CRM = 121540000,
+		OmnichannelAssignment = 192350000,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		ERP = 121540001,
+		RoundRobin = 192350001,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		ZOHO = 121540002,
+		CustomAssignmentConfiguration = 192350002,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		ERMA = 121540003,
+		LongestIdle = 192350003,
 	}
 }
 #pragma warning restore CS1591

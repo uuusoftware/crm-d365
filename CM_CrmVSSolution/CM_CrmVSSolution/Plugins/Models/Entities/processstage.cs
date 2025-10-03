@@ -316,6 +316,7 @@ namespace Plugins.Models
 			public const string lk_cm_cmcaseresolution_activestageid = "lk_cm_cmcaseresolution_activestageid";
 			public const string processstage_account = "processstage_account";
 			public const string processstage_contact = "processstage_contact";
+			public const string processstage_emails = "processstage_emails";
 			public const string processstage_incident = "processstage_incident";
 			public const string processstage_lead = "processstage_lead";
 			public const string processstage_opportunity = "processstage_opportunity";
@@ -826,6 +827,24 @@ namespace Plugins.Models
 				this.OnPropertyChanging("processstage_contact");
 				this.SetRelatedEntities<Plugins.Models.Contact>("processstage_contact", null, value);
 				this.OnPropertyChanged("processstage_contact");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N processstage_emails
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("processstage_emails")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.Email> processstage_emails
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.Email>("processstage_emails", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("processstage_emails");
+				this.SetRelatedEntities<Plugins.Models.Email>("processstage_emails", null, value);
+				this.OnPropertyChanged("processstage_emails");
 			}
 		}
 		

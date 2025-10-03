@@ -17,6 +17,38 @@ namespace Plugins {
             _service = service ?? throw new ArgumentNullException(nameof(service));
             _tracingService = tracingService ?? throw new ArgumentNullException(nameof(tracingService));
         }
+
+        public string GetEnvironmentVariableValue(IOrganizationService svc, string schemaName, ITracingService tracing) {
+            try {
+                QueryExpression defQuery = new QueryExpression("environmentvariabledefinition") {
+                    ColumnSet = new ColumnSet("environmentvariabledefinitionid", "defaultvalue")
+                };
+
+                defQuery.Criteria.AddCondition("schemaname", ConditionOperator.Equal, schemaName);
+                
+                Entity def = svc.RetrieveMultiple(defQuery).Entities.FirstOrDefault();
+                
+                if (def == null) return null;
+
+                string defaultValue = def.GetAttributeValue<string>("defaultvalue");
+                Guid defId = def.Id;
+                QueryExpression valQuery = new QueryExpression("environmentvariablevalue") {
+                    ColumnSet = new ColumnSet("value")
+                };
+
+                valQuery.Criteria.AddCondition("environmentvariabledefinitionid", ConditionOperator.Equal, defId);
+                
+                Entity val = svc.RetrieveMultiple(valQuery).Entities.FirstOrDefault();
+                string value = val?.GetAttributeValue<string>("value");
+                
+                return string.IsNullOrWhiteSpace(value) ? defaultValue : value;
+            } catch (Exception e) {
+                tracing.Trace("GetEnvironmentVariableValue error: {0}", e.Message);
+                
+                return null;
+            }
+        }
+
         public T GetRecordById<T>(Guid id) where T : Entity {
             try {
                 using (var svcContext = new OrgContext(_service)) {
@@ -105,6 +137,12 @@ namespace Plugins {
 
                         case "SystemUser":
                         return svcContext.ProcessStageSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+
+                        case "Queue":
+                        return svcContext.QueueSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+
+                        case "Email":
+                        return svcContext.EmailSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
                         default:
                         throw new ArgumentException($"GetRecordById: Unsupported entity type: {typeof(T).Name}.\nPlease add all entities from the modelbuilder.");
@@ -1153,6 +1191,25 @@ namespace Plugins {
 
             var serializer = new JavaScriptSerializer();
             return serializer.Serialize(dict);
+        }
+
+        public IEnumerable<string> EmailPartyAddresses(IEnumerable<Entity> parties) {
+            if (parties == null) yield break;
+
+            foreach (var p in parties) {
+                var addr = p.GetAttributeValue<string>("addressused");
+                if (!string.IsNullOrWhiteSpace(addr))
+                    yield return addr;
+            }
+        }
+        public IEnumerable<string> EmailPartyIds(IEnumerable<Entity> parties) {
+            if (parties == null) yield break;
+
+            foreach (var p in parties) {
+                var partyRef = p.GetAttributeValue<EntityReference>("partyid");
+                if (partyRef != null)
+                    yield return $"{partyRef.LogicalName}:{partyRef.Id}";
+            }
         }
     }
 }

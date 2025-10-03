@@ -22,6 +22,9 @@ namespace Plugins.Models
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		IoT = 700610000,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Phone = 1,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -35,9 +38,6 @@ namespace Plugins.Models
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Twitter = 3986,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		IoT = 700610000,
 	}
 }
 #pragma warning restore CS1591
