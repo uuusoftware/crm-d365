@@ -80,7 +80,6 @@ CM.OpportunityClose = (function () {
             formContext.getControl("cm_npsaurl").setVisible(true);
             // formContext.getAttribute("cm_npsaurl").setRequiredLevel("required");
             formContext.getControl("cm_sapid").setVisible(true);
-            formContext.getAttribute("cm_sapid").setRequiredLevel("required");
             formContext.getControl("cm_scheduleurl").setVisible(true);
             // formContext.getAttribute("cm_scheduleurl").setRequiredLevel("required");
 
