@@ -22,7 +22,19 @@ CM.OpportunityClose = (function () {
             _formContext.getAttribute("cm_sapid")?.addOnChange(async (ctx) =>
                 await Helpers.checkForMergeAccountOnChange(ctx)
             );
+            Helpers.waitForAttribute(_formContext, "opportunitystatuscode")
+                .then(() => {
+                    const statusAttr = _formContext.getAttribute("opportunitystatuscode");
+
+                    // Attach onchange handler (fires when user switches Won/Lost)
+                    statusAttr?.addOnChange(() => Helpers.onChangeStatus(executionContext));
+
+                    // Immediately run once to set visibility & requirement on load
+                    Helpers.onChangeStatus(executionContext);
+                })
+                .catch((err) => console.warn(err));
             Helpers.setFieldsVisibility(executionContext);
+            Helpers.onChangeStatus(executionContext);
         },
         /**
          * @description Use CM.OpportunityClose.onSave to call it from the form on load event
@@ -43,6 +55,27 @@ CM.OpportunityClose = (function () {
             const accountRecord = records.entities.at(0);
 
             accountRecord && await Helpers.showConfirmDialog(accountRecord);
+        },
+        waitForAttribute: (formContext, attrName, retries = 10, delay = 200) =>
+            new Promise((resolve, reject) => {
+                const check = (attempt) => {
+                    const attr = formContext.getAttribute(attrName)?.getValue();
+                    if (attr) return resolve(attr);
+                    if (attempt >= retries) return reject(`Attribute ${attrName} not found after ${retries} retries`);
+                    setTimeout(() => check(attempt + 1), delay);
+                };
+                check(0);
+            }),
+        onChangeStatus: (executionContext) => {
+            const _formContext = executionContext.getFormContext();
+            const statusValue = _formContext.getAttribute("opportunitystatuscode")?.getValue();
+
+            // If status is "Won" (3) - SAP ID should required, otherwise (any Lost reason) - not required
+            if (statusValue === 3) {
+                _formContext.getAttribute("cm_sapid")?.setRequiredLevel("required");
+            } else {
+                _formContext.getAttribute("cm_sapid")?.setRequiredLevel("none");
+            }
         },
         showConfirmDialog: async (accountRecord) => {
             const confirmOptions = {
