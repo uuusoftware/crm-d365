@@ -22,10 +22,22 @@ namespace Plugins.Models
 	{
 		
 		/// <summary>
-		/// Organizational knowledge for internal and external use.
+		/// Organizational Knowledge Article Template for Internal and external creation of Knowledge Articles.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		KnowledgeArticle = 9953,
+		KnowledgeArticleTemplate = 10216,
+		
+		/// <summary>
+		/// Tracks the interactions between the agents and customer
+		/// </summary>
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Ongoingconversation_Deprecated = 10723,
+		
+		/// <summary>
+		/// Specify time groups consisting of multiple time windows to be used for scheduling, for example.
+		/// </summary>
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		FulfillmentPreference = 11083,
 		
 		/// <summary>
 		/// Activity that tracks a survey invitation sent to a person.
@@ -33,20 +45,11 @@ namespace Plugins.Models
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		CustomerVoicesurveyinvite = 10647,
 		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Attachments = 11512,
-		
 		/// <summary>
-		/// Task performed, or to be performed, by a user for planning or running a campaign.
+		/// Activity to track a telephone call.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		CampaignActivity = 4402,
-		
-		/// <summary>
-		/// System operation used to perform lengthy and asynchronous operations on large data sets, such as distributing a campaign activity or quick campaign.
-		/// </summary>
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		QuickCampaign = 4406,
+		PhoneCall = 4210,
 		
 		/// <summary>
 		/// Response to a survey.
@@ -55,58 +58,49 @@ namespace Plugins.Models
 		CustomerVoicesurveyresponse = 10649,
 		
 		/// <summary>
-		/// Service request case associated with a contract.
+		/// Alerts that notify schedule board users of booking issues or information.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Case = 112,
+		BookingAlert = 11067,
 		
 		/// <summary>
-		/// Task performed, or to be performed, by a user. An activity is any action for which an entry can be made on a calendar.
+		/// Organizational knowledge for internal and external use.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Activity = 4200,
+		KnowledgeArticle = 9953,
 		
 		/// <summary>
-		/// Organizational Knowledge Article Template for Internal and external creation of Knowledge Articles.
+		/// For internal use only. Entity which stores association data of Dynamics 365 records with Microsoft Teams chat
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		KnowledgeArticleTemplate = 10216,
+		Teamschat = 10200,
 		
 		/// <summary>
-		/// Response from an existing or a potential new customer for a campaign.
+		/// Session for interacting with a customer
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		CampaignResponse = 4401,
+		Session = 10752,
 		
 		/// <summary>
-		/// Commitment representing a time interval with start/end times and duration.
+		/// Task performed, or to be performed, by a user for planning or running a campaign.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Appointment = 4201,
-		
-		/// <summary>
-		/// An activity which is used to share information between the user and the customer on the portal.
-		/// </summary>
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		PortalComment = 10336,
-		
-		/// <summary>
-		/// Activity that tracks call outcome and number of pages for a fax and optionally stores an electronic copy of the document.
-		/// </summary>
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Fax = 4204,
-		
-		/// <summary>
-		/// Overflow action configurations.
-		/// </summary>
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		OverflowActionConfig = 10699,
+		CampaignActivity = 4402,
 		
 		/// <summary>
 		/// Activity that tracks the delivery of a letter. The activity can contain the electronic copy of the letter.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Letter = 4207,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Attachments = 11512,
+		
+		/// <summary>
+		/// Service request case associated with a contract.
+		/// </summary>
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Case = 112,
 		
 		/// <summary>
 		/// Activity offered by the organization to satisfy its customer's needs. Each service activity includes date, time, duration, and required resources.
@@ -115,25 +109,28 @@ namespace Plugins.Models
 		ServiceActivity = 4214,
 		
 		/// <summary>
-		/// Voicemail
+		/// Task performed, or to be performed, by a user. An activity is any action for which an entry can be made on a calendar.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Voicemail = 11434,
+		Activity = 4200,
 		
 		/// <summary>
-		/// Tracks the interaction between the agents and customer
+		/// Holds information about the redemption of an invite.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Conversation = 10735,
+		InviteRedemption = 10335,
 		
 		/// <summary>
-		/// For internal use only. Entity which stores association data of Dynamics 365 records with Microsoft Teams chat
+		/// Commitment representing a time interval with start/end times and duration.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Teamschat = 10200,
+		Appointment = 4201,
 		
+		/// <summary>
+		/// The Master appointment of a recurring appointment series.
+		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		CustomerVoicealert = 10637,
+		RecurringAppointment = 4251,
 		
 		/// <summary>
 		/// Specify individual time windows under a time group.
@@ -141,11 +138,17 @@ namespace Plugins.Models
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		TimeGroupDetail = 11084,
 		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		CustomerVoicealert = 10637,
+		
 		/// <summary>
-		/// Tracks the interactions between the agents and customer
+		/// An activity which is used to share information between the user and the customer on the portal.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Ongoingconversation_Deprecated = 10723,
+		PortalComment = 10336,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		IoTAlert = 10431,
 		
 		/// <summary>
 		/// Generic activity representing work needed to be done.
@@ -160,16 +163,16 @@ namespace Plugins.Models
 		SocialActivity = 4216,
 		
 		/// <summary>
-		/// Session for interacting with a customer
+		/// Voicemail
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Session = 10752,
+		Voicemail = 11434,
 		
 		/// <summary>
-		/// Holds information about the redemption of an invite.
+		/// Activity that tracks call outcome and number of pages for a fax and optionally stores an electronic copy of the document.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		InviteRedemption = 10335,
+		Fax = 4204,
 		
 		/// <summary>
 		/// Activity that is delivered using email protocols.
@@ -177,32 +180,29 @@ namespace Plugins.Models
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Email = 4202,
 		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		IoTAlert = 10431,
-		
 		/// <summary>
-		/// The Master appointment of a recurring appointment series.
+		/// Overflow action configurations.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		RecurringAppointment = 4251,
+		OverflowActionConfig = 10699,
 		
 		/// <summary>
-		/// Specify time groups consisting of multiple time windows to be used for scheduling, for example.
+		/// Response from an existing or a potential new customer for a campaign.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		FulfillmentPreference = 11083,
+		CampaignResponse = 4401,
 		
 		/// <summary>
-		/// Alerts that notify schedule board users of booking issues or information.
+		/// Tracks the interaction between the agents and customer
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		BookingAlert = 11067,
+		Conversation = 10735,
 		
 		/// <summary>
-		/// Activity to track a telephone call.
+		/// System operation used to perform lengthy and asynchronous operations on large data sets, such as distributing a campaign activity or quick campaign.
 		/// </summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		PhoneCall = 4210,
+		QuickCampaign = 4406,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		CopilotTranscript = 10947,

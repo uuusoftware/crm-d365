@@ -1,11 +1,13 @@
-﻿using Plugins.Models;
+﻿using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Messages;
+using Microsoft.Xrm.Sdk.Metadata;
+using Microsoft.Xrm.Sdk.Query;
+using Plugins.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Crm.Sdk.Messages;
 using System.Web.Script.Serialization;
-using Microsoft.Xrm.Sdk.Query;
 
 namespace Plugins {
 
@@ -141,6 +143,9 @@ namespace Plugins {
                         case "Queue":
                         return svcContext.QueueSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
+                        case "QueueItem":
+                        return svcContext.QueueItemSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+
                         case "Email":
                         return svcContext.EmailSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
 
@@ -150,6 +155,94 @@ namespace Plugins {
                 }
             } catch (Exception ex) {
                 throw new InvalidPluginExecutionException(ex.Message, ex);
+            }
+        }
+
+        public Entity GetRecordByColumn(string entityLogicalName, string columnName, object matchValue) {
+            try {
+                using (var svcContext = new OrgContext(_service)) {
+                    var query = new QueryExpression(entityLogicalName) {
+                        ColumnSet = new ColumnSet(true),
+                        Criteria =
+                        {
+                    Conditions =
+                    {
+                        new ConditionExpression(columnName, ConditionOperator.Equal, matchValue)
+                    }
+                },
+                        TopCount = 1
+                    };
+
+                    var results = _service.RetrieveMultiple(query);
+                    var entity = results.Entities.FirstOrDefault();
+
+                    if (entity != null) {
+                        _tracingService.Trace($"GetRecordByColumn: Found record in {entityLogicalName} where {columnName} = {matchValue} (Id: {entity.Id})");
+                        return entity;
+                    }
+
+                    _tracingService.Trace($"GetRecordByColumn: No record found in {entityLogicalName} where {columnName} = {matchValue}");
+                    return null;
+                }
+            } catch (Exception ex) {
+                _tracingService.Trace($"GetRecordByColumn Error ({entityLogicalName}.{columnName} = {matchValue}): {ex.Message}");
+                return null;
+            }
+        }
+
+        public OptionSetValue GetOptionSetValue(string entityLogicalName, string attributeLogicalName, string optionLabel) {
+            if (string.IsNullOrWhiteSpace(entityLogicalName)) {
+                _tracingService.Trace("GetOptionSetValue: entityLogicalName is null or empty.");
+                return null;
+            }
+            if (string.IsNullOrWhiteSpace(attributeLogicalName)) {
+                _tracingService.Trace("GetOptionSetValue: attributeLogicalName is null or empty.");
+                return null;
+            }
+            if (string.IsNullOrWhiteSpace(optionLabel)) {
+                _tracingService.Trace($"GetOptionSetValue: optionLabel is null or empty for {entityLogicalName}.{attributeLogicalName}");
+                return null;
+            }
+
+            _tracingService.Trace("GetOptionSetValue: entity={0}, attribute={1}, label='{2}'",
+                entityLogicalName, attributeLogicalName, optionLabel);
+
+            try {
+                var request = new RetrieveAttributeRequest {
+                    EntityLogicalName = entityLogicalName,
+                    LogicalName = attributeLogicalName,
+                    RetrieveAsIfPublished = true
+                };
+
+                var response = (RetrieveAttributeResponse)_service.Execute(request);
+
+                OptionMetadata[] options;
+
+                // Handle single and multi select
+                if (response.AttributeMetadata is PicklistAttributeMetadata single) {
+                    options = single.OptionSet.Options.ToArray();
+                } else if (response.AttributeMetadata is MultiSelectPicklistAttributeMetadata multi) {
+                    options = multi.OptionSet.Options.ToArray();
+                } else {
+                    throw new InvalidPluginExecutionException($"Attribute '{attributeLogicalName}' is not a picklist or multiselect.");
+                }
+
+                // Case-insensitive label match
+                var option = options.FirstOrDefault(o =>
+                    string.Equals(o.Label?.UserLocalizedLabel?.Label, optionLabel, StringComparison.OrdinalIgnoreCase));
+
+                if (option != null) {
+                    _tracingService.Trace("Resolved OptionSet value: {0} - {1}", optionLabel, option.Value);
+                    return new OptionSetValue(option.Value.Value);
+                }
+
+                _tracingService.Trace("Label '{0}' not found in OptionSet '{1}.{2}'.", optionLabel, entityLogicalName, attributeLogicalName);
+
+                return null;
+            } catch (Exception ex) {
+                _tracingService.Trace("Error retrieving OptionSet value for {0}.{1}: {2}", entityLogicalName, attributeLogicalName, ex.Message);
+                
+                throw new InvalidPluginExecutionException($"Failed to resolve OptionSet value for {attributeLogicalName}: {ex.Message}", ex);
             }
         }
 

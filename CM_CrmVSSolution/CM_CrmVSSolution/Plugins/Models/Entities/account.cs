@@ -606,6 +606,7 @@ namespace Plugins.Models
 			public const string cm_AccountManager = "cm_accountmanager";
 			public const string cm_AccountManagerName = "cm_accountmanagername";
 			public const string cm_AccountManagerYomiName = "cm_accountmanageryominame";
+			public const string cm_AccountNumber = "cm_accountnumber";
 			public const string cm_ComplianceFlag = "cm_complianceflag";
 			public const string cm_complianceflagName = "cm_complianceflagname";
 			public const string cm_Country = "cm_country";
@@ -2194,6 +2195,21 @@ namespace Plugins.Models
 				{
 					return default(string);
 				}
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_accountnumber")]
+		public string cm_AccountNumber
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("cm_accountnumber");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_AccountNumber");
+				this.SetAttributeValue("cm_accountnumber", value);
+				this.OnPropertyChanged("cm_AccountNumber");
 			}
 		}
 		

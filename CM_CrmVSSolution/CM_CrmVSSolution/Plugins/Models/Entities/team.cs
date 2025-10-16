@@ -160,6 +160,7 @@ namespace Plugins.Models
 			public const string team_connections2 = "team_connections2";
 			public const string team_contacts = "team_contacts";
 			public const string team_email = "team_email";
+			public const string team_environmentvariabledefinition = "team_environmentvariabledefinition";
 			public const string team_incidents = "team_incidents";
 			public const string team_msfp_customervoiceprocessor = "team_msfp_customervoiceprocessor";
 			public const string team_msfp_project = "team_msfp_project";
@@ -1705,6 +1706,24 @@ namespace Plugins.Models
 				this.OnPropertyChanging("team_email");
 				this.SetRelatedEntities<Plugins.Models.Email>("team_email", null, value);
 				this.OnPropertyChanged("team_email");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N team_environmentvariabledefinition
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_environmentvariabledefinition")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.EnvironmentVariableDefinition> team_environmentvariabledefinition
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.EnvironmentVariableDefinition>("team_environmentvariabledefinition", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("team_environmentvariabledefinition");
+				this.SetRelatedEntities<Plugins.Models.EnvironmentVariableDefinition>("team_environmentvariabledefinition", null, value);
+				this.OnPropertyChanged("team_environmentvariabledefinition");
 			}
 		}
 		
