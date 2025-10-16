@@ -418,6 +418,7 @@ namespace Plugins.Models
 			public const string VersionNumber = "versionnumber";
 			public const string msfp_surveyinvite_connections1 = "msfp_surveyinvite_connections1";
 			public const string msfp_surveyinvite_connections2 = "msfp_surveyinvite_connections2";
+			public const string msfp_surveyinvite_QueueItems = "msfp_surveyinvite_QueueItems";
 			public const string account_msfp_surveyinvites = "account_msfp_surveyinvites";
 			public const string cm_msfp_surveyinvite_ParentCase_incident = "cm_msfp_surveyinvite_ParentCase_incident";
 			public const string contact_msfp_surveyinvites = "contact_msfp_surveyinvites";
@@ -2769,6 +2770,24 @@ namespace Plugins.Models
 				this.OnPropertyChanging("msfp_surveyinvite_connections2");
 				this.SetRelatedEntities<Plugins.Models.Connection>("msfp_surveyinvite_connections2", null, value);
 				this.OnPropertyChanged("msfp_surveyinvite_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msfp_surveyinvite_QueueItems
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msfp_surveyinvite_QueueItems")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.QueueItem> msfp_surveyinvite_QueueItems
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.QueueItem>("msfp_surveyinvite_QueueItems", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("msfp_surveyinvite_QueueItems");
+				this.SetRelatedEntities<Plugins.Models.QueueItem>("msfp_surveyinvite_QueueItems", null, value);
+				this.OnPropertyChanged("msfp_surveyinvite_QueueItems");
 			}
 		}
 		

@@ -597,6 +597,8 @@ namespace Plugins.Models
 			public const string contact_originating_lead = "contact_originating_lead";
 			public const string lead_connections1 = "lead_connections1";
 			public const string lead_connections2 = "lead_connections2";
+			public const string Lead_Email_EmailSender = "Lead_Email_EmailSender";
+			public const string Lead_Emails = "Lead_Emails";
 			public const string Referencedlead_master_lead = "Referencedlead_master_lead";
 			public const string lead_msfp_surveyinvites = "lead_msfp_surveyinvites";
 			public const string lead_OpportunityCloses = "lead_OpportunityCloses";
@@ -4871,6 +4873,42 @@ namespace Plugins.Models
 				this.OnPropertyChanging("lead_connections2");
 				this.SetRelatedEntities<Plugins.Models.Connection>("lead_connections2", null, value);
 				this.OnPropertyChanged("lead_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N Lead_Email_EmailSender
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Lead_Email_EmailSender")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.Email> Lead_Email_EmailSender
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.Email>("Lead_Email_EmailSender", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("Lead_Email_EmailSender");
+				this.SetRelatedEntities<Plugins.Models.Email>("Lead_Email_EmailSender", null, value);
+				this.OnPropertyChanged("Lead_Email_EmailSender");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N Lead_Emails
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Lead_Emails")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.Email> Lead_Emails
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.Email>("Lead_Emails", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("Lead_Emails");
+				this.SetRelatedEntities<Plugins.Models.Email>("Lead_Emails", null, value);
+				this.OnPropertyChanged("Lead_Emails");
 			}
 		}
 		

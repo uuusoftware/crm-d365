@@ -159,6 +159,8 @@ namespace Plugins.Models
 			public const string team_connections1 = "team_connections1";
 			public const string team_connections2 = "team_connections2";
 			public const string team_contacts = "team_contacts";
+			public const string team_email = "team_email";
+			public const string team_environmentvariabledefinition = "team_environmentvariabledefinition";
 			public const string team_incidents = "team_incidents";
 			public const string team_msfp_customervoiceprocessor = "team_msfp_customervoiceprocessor";
 			public const string team_msfp_project = "team_msfp_project";
@@ -166,6 +168,7 @@ namespace Plugins.Models
 			public const string team_opportunities = "team_opportunities";
 			public const string team_opportunityclose = "team_opportunityclose";
 			public const string team_orders = "team_orders";
+			public const string team_queueitembase_workerid = "team_queueitembase_workerid";
 			public const string cm_Incident_Team_Team = "cm_Incident_Team_Team";
 			public const string teammembership_association = "teammembership_association";
 			public const string cm_Team_cm_Province_cm_Province = "cm_Team_cm_Province_cm_Province";
@@ -176,6 +179,7 @@ namespace Plugins.Models
 			public const string lk_teambase_modifiedby = "lk_teambase_modifiedby";
 			public const string opportunity_Teams = "opportunity_Teams";
 			public const string processstage_teams = "processstage_teams";
+			public const string queue_team = "queue_team";
 		}
 		
 		/// <summary>
@@ -1688,6 +1692,42 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// 1:N team_email
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_email")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.Email> team_email
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.Email>("team_email", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("team_email");
+				this.SetRelatedEntities<Plugins.Models.Email>("team_email", null, value);
+				this.OnPropertyChanged("team_email");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N team_environmentvariabledefinition
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_environmentvariabledefinition")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.EnvironmentVariableDefinition> team_environmentvariabledefinition
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.EnvironmentVariableDefinition>("team_environmentvariabledefinition", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("team_environmentvariabledefinition");
+				this.SetRelatedEntities<Plugins.Models.EnvironmentVariableDefinition>("team_environmentvariabledefinition", null, value);
+				this.OnPropertyChanged("team_environmentvariabledefinition");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N team_incidents
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_incidents")]
@@ -1810,6 +1850,24 @@ namespace Plugins.Models
 				this.OnPropertyChanging("team_orders");
 				this.SetRelatedEntities<Plugins.Models.SalesOrder>("team_orders", null, value);
 				this.OnPropertyChanged("team_orders");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N team_queueitembase_workerid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_queueitembase_workerid")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.QueueItem> team_queueitembase_workerid
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.QueueItem>("team_queueitembase_workerid", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("team_queueitembase_workerid");
+				this.SetRelatedEntities<Plugins.Models.QueueItem>("team_queueitembase_workerid", null, value);
+				this.OnPropertyChanged("team_queueitembase_workerid");
 			}
 		}
 		
@@ -1974,6 +2032,25 @@ namespace Plugins.Models
 				this.OnPropertyChanging("processstage_teams");
 				this.SetRelatedEntity<Plugins.Models.ProcessStage>("processstage_teams", null, value);
 				this.OnPropertyChanged("processstage_teams");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 queue_team
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("queueid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("queue_team")]
+		public Plugins.Models.Queue queue_team
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.Queue>("queue_team", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("queue_team");
+				this.SetRelatedEntity<Plugins.Models.Queue>("queue_team", null, value);
+				this.OnPropertyChanged("queue_team");
 			}
 		}
 	}

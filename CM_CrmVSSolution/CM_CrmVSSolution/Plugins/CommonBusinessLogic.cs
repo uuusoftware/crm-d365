@@ -1,11 +1,13 @@
-﻿using Plugins.Models;
+﻿using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Messages;
+using Microsoft.Xrm.Sdk.Metadata;
+using Microsoft.Xrm.Sdk.Query;
+using Plugins.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Crm.Sdk.Messages;
 using System.Web.Script.Serialization;
-using Microsoft.Xrm.Sdk.Query;
 
 namespace Plugins {
 
@@ -16,6 +18,37 @@ namespace Plugins {
         public CommonBusinessLogic(IOrganizationService service, ITracingService tracingService) {
             _service = service ?? throw new ArgumentNullException(nameof(service));
             _tracingService = tracingService ?? throw new ArgumentNullException(nameof(tracingService));
+        }
+
+        public string GetEnvironmentVariableValue(IOrganizationService svc, string schemaName, ITracingService tracing) {
+            try {
+                QueryExpression defQuery = new QueryExpression("environmentvariabledefinition") {
+                    ColumnSet = new ColumnSet("environmentvariabledefinitionid", "defaultvalue")
+                };
+
+                defQuery.Criteria.AddCondition("schemaname", ConditionOperator.Equal, schemaName);
+                
+                Entity def = svc.RetrieveMultiple(defQuery).Entities.FirstOrDefault();
+                
+                if (def == null) return null;
+
+                string defaultValue = def.GetAttributeValue<string>("defaultvalue");
+                Guid defId = def.Id;
+                QueryExpression valQuery = new QueryExpression("environmentvariablevalue") {
+                    ColumnSet = new ColumnSet("value")
+                };
+
+                valQuery.Criteria.AddCondition("environmentvariabledefinitionid", ConditionOperator.Equal, defId);
+                
+                Entity val = svc.RetrieveMultiple(valQuery).Entities.FirstOrDefault();
+                string value = val?.GetAttributeValue<string>("value");
+                
+                return string.IsNullOrWhiteSpace(value) ? defaultValue : value;
+            } catch (Exception e) {
+                tracing.Trace("GetEnvironmentVariableValue error: {0}", e.Message);
+                
+                return null;
+            }
         }
 
         public T GetRecordById<T>(Guid? id) where T : Entity {
@@ -107,12 +140,109 @@ namespace Plugins {
                         case "SystemUser":
                         return svcContext.ProcessStageSet.FirstOrDefault(record => record.Id == id.Value)?.ToEntity<T>();
 
+                        case "Queue":
+                        return svcContext.QueueSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+
+                        case "QueueItem":
+                        return svcContext.QueueItemSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+
+                        case "Email":
+                        return svcContext.EmailSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+
                         default:
                         throw new ArgumentException($"GetRecordById: Unsupported entity type: {typeof(T).Name}.\nPlease add all entities from the modelbuilder.");
                     }
                 }
             } catch (Exception ex) {
                 throw new InvalidPluginExecutionException(ex.Message, ex);
+            }
+        }
+
+        public Entity GetRecordByColumn(string entityLogicalName, string columnName, object matchValue) {
+            try {
+                using (var svcContext = new OrgContext(_service)) {
+                    var query = new QueryExpression(entityLogicalName) {
+                        ColumnSet = new ColumnSet(true),
+                        Criteria =
+                        {
+                    Conditions =
+                    {
+                        new ConditionExpression(columnName, ConditionOperator.Equal, matchValue)
+                    }
+                },
+                        TopCount = 1
+                    };
+
+                    var results = _service.RetrieveMultiple(query);
+                    var entity = results.Entities.FirstOrDefault();
+
+                    if (entity != null) {
+                        _tracingService.Trace($"GetRecordByColumn: Found record in {entityLogicalName} where {columnName} = {matchValue} (Id: {entity.Id})");
+                        return entity;
+                    }
+
+                    _tracingService.Trace($"GetRecordByColumn: No record found in {entityLogicalName} where {columnName} = {matchValue}");
+                    return null;
+                }
+            } catch (Exception ex) {
+                _tracingService.Trace($"GetRecordByColumn Error ({entityLogicalName}.{columnName} = {matchValue}): {ex.Message}");
+                return null;
+            }
+        }
+
+        public OptionSetValue GetOptionSetValue(string entityLogicalName, string attributeLogicalName, string optionLabel) {
+            if (string.IsNullOrWhiteSpace(entityLogicalName)) {
+                _tracingService.Trace("GetOptionSetValue: entityLogicalName is null or empty.");
+                return null;
+            }
+            if (string.IsNullOrWhiteSpace(attributeLogicalName)) {
+                _tracingService.Trace("GetOptionSetValue: attributeLogicalName is null or empty.");
+                return null;
+            }
+            if (string.IsNullOrWhiteSpace(optionLabel)) {
+                _tracingService.Trace($"GetOptionSetValue: optionLabel is null or empty for {entityLogicalName}.{attributeLogicalName}");
+                return null;
+            }
+
+            _tracingService.Trace("GetOptionSetValue: entity={0}, attribute={1}, label='{2}'",
+                entityLogicalName, attributeLogicalName, optionLabel);
+
+            try {
+                var request = new RetrieveAttributeRequest {
+                    EntityLogicalName = entityLogicalName,
+                    LogicalName = attributeLogicalName,
+                    RetrieveAsIfPublished = true
+                };
+
+                var response = (RetrieveAttributeResponse)_service.Execute(request);
+
+                OptionMetadata[] options;
+
+                // Handle single and multi select
+                if (response.AttributeMetadata is PicklistAttributeMetadata single) {
+                    options = single.OptionSet.Options.ToArray();
+                } else if (response.AttributeMetadata is MultiSelectPicklistAttributeMetadata multi) {
+                    options = multi.OptionSet.Options.ToArray();
+                } else {
+                    throw new InvalidPluginExecutionException($"Attribute '{attributeLogicalName}' is not a picklist or multiselect.");
+                }
+
+                // Case-insensitive label match
+                var option = options.FirstOrDefault(o =>
+                    string.Equals(o.Label?.UserLocalizedLabel?.Label, optionLabel, StringComparison.OrdinalIgnoreCase));
+
+                if (option != null) {
+                    _tracingService.Trace("Resolved OptionSet value: {0} - {1}", optionLabel, option.Value);
+                    return new OptionSetValue(option.Value.Value);
+                }
+
+                _tracingService.Trace("Label '{0}' not found in OptionSet '{1}.{2}'.", optionLabel, entityLogicalName, attributeLogicalName);
+
+                return null;
+            } catch (Exception ex) {
+                _tracingService.Trace("Error retrieving OptionSet value for {0}.{1}: {2}", entityLogicalName, attributeLogicalName, ex.Message);
+                
+                throw new InvalidPluginExecutionException($"Failed to resolve OptionSet value for {attributeLogicalName}: {ex.Message}", ex);
             }
         }
 
@@ -1172,6 +1302,25 @@ namespace Plugins {
 
             var serializer = new JavaScriptSerializer();
             return serializer.Serialize(dict);
+        }
+
+        public IEnumerable<string> EmailPartyAddresses(IEnumerable<Entity> parties) {
+            if (parties == null) yield break;
+
+            foreach (var p in parties) {
+                var addr = p.GetAttributeValue<string>("addressused");
+                if (!string.IsNullOrWhiteSpace(addr))
+                    yield return addr;
+            }
+        }
+        public IEnumerable<string> EmailPartyIds(IEnumerable<Entity> parties) {
+            if (parties == null) yield break;
+
+            foreach (var p in parties) {
+                var partyRef = p.GetAttributeValue<EntityReference>("partyid");
+                if (partyRef != null)
+                    yield return $"{partyRef.LogicalName}:{partyRef.Id}";
+            }
         }
     }
 }
