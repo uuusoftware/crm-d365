@@ -10,6 +10,9 @@ namespace Plugins {
             : base(typeof(AsyncPluginIncidentResponseGeneration)) {
         }
         /// <summary>
+        ///     This plugin runs on updating an Incident cm_generatechecklist but skips execution if cm_generatechecklist field false or null.
+        ///     Field cm_generatechecklist is set by "Case - Set Generate Checklist" (Case on-demand Workflow)
+        /// 
         ///     Steps: Sync Plugins.AsyncPluginIncidentResponseGeneration: Update of incident cm_generatechecklist
         /// </summary>
         /// <param name="localPluginContext"></param>
@@ -40,7 +43,14 @@ namespace Plugins {
                 Incident incidentRecord = commonBusinessLogic.GetRecordById<Incident>(context.PrimaryEntityId) ??
                     throw new InvalidPluginExecutionException("Invalid plugin execution: Incident/Case not found");
 
-                if (incidentRecord?.ParentCaseId != null) return;
+                // no need to get contact each iteration since every child will inherit the contact from the parent
+                tracingService.Trace($"Retrieving primary contact with ID: {incidentRecord.PrimaryContactId?.Id}");
+                Contact contactRecord = commonBusinessLogic.GetRecordById<Contact>(incidentRecord.PrimaryContactId.Id);
+
+                if (incidentRecord?.ParentCaseId != null) {
+                    tracingService.Trace($"SKIP: Incident {0} is parent case", incidentRecord.Id);
+                    return;
+                }
 
                 if (incidentRecord?.cm_GenerateChecklist.Value == null || incidentRecord.cm_GenerateChecklist.Value == false) return;
 
@@ -84,11 +94,13 @@ namespace Plugins {
                             continue;
                         }
 
+                        // EmailId is required to send the survey invite
+                        if (checklistMasterRecord != null && contactRecord.EMailAddress1 == null) {
+                            throw new InvalidPluginExecutionException("Missing email ID. Please add an email ID to the contact before proceeding");
+                        }
+
                         tracingService.Trace($"Retrieving survey with ID: {checklistMasterRecord.cm_Survey.Id}");
                         msfp_survey surveyRecord = commonBusinessLogic.GetRecordById<msfp_survey>(checklistMasterRecord.cm_Survey.Id);
-
-                        tracingService.Trace($"Retrieving primary contact with ID: {incident.PrimaryContactId?.Id}");
-                        Contact contactRecord = commonBusinessLogic.GetRecordById<Contact>(incident.PrimaryContactId.Id);
 
                         tracingService.Trace("Retrieving default MSFP project.");
                         msfp_project project = commonBusinessLogic.GetDefaultMSFPProject();

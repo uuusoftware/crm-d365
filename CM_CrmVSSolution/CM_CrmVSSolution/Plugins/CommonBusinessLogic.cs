@@ -51,94 +51,94 @@ namespace Plugins {
             }
         }
 
-        public T GetRecordById<T>(Guid id) where T : Entity {
+        public T GetRecordById<T>(Guid? id) where T : Entity {
+            if (id == null || !id.HasValue || id == Guid.Empty) return null;
             try {
                 using (var svcContext = new OrgContext(_service)) {
-                    switch (typeof(T).Name) // Using Name since switch does not support Type directly
-                    {
+                    switch (typeof(T).Name) {  // Using Name since switch does not support Type directly
                         case "Account":
-                        return svcContext.AccountSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.AccountSet.FirstOrDefault(record => record.Id == id.Value)?.ToEntity<T>();
 
                         case "Contact":
-                        return svcContext.ContactSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.ContactSet.FirstOrDefault(record => record.Id == id.Value)?.ToEntity<T>();
 
                         case "cm_Province":
-                        return svcContext.cm_ProvinceSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.cm_ProvinceSet.FirstOrDefault(record => record.Id == id.Value)?.ToEntity<T>();
 
                         case "cm_ProgramAssociation":
-                        return svcContext.cm_ProgramAssociationSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.cm_ProgramAssociationSet.FirstOrDefault(record => record.Id == id.Value)?.ToEntity<T>();
 
                         case "cm_QuestionCatalog":
-                        return svcContext.cm_QuestionCatalogSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.cm_QuestionCatalogSet.FirstOrDefault(record => record.Id == id.Value)?.ToEntity<T>();
 
                         case "cm_QuestionResponse":
-                        return svcContext.cm_QuestionResponseSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.cm_QuestionResponseSet.FirstOrDefault(record => record.Id == id.Value)?.ToEntity<T>();
 
                         case "SalesOrder":
-                        return svcContext.SalesOrderSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.SalesOrderSet.FirstOrDefault(record => record.Id == id.Value)?.ToEntity<T>();
 
                         case "Connection":
-                        return svcContext.ConnectionSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.ConnectionSet.FirstOrDefault(record => record.Id == id.Value)?.ToEntity<T>();
 
                         case "Lead":
-                        return svcContext.LeadSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.LeadSet.FirstOrDefault(record => record.Id == id.Value)?.ToEntity<T>();
 
                         case "Opportunity":
-                        return svcContext.OpportunitySet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.OpportunitySet.FirstOrDefault(record => record.Id == id.Value)?.ToEntity<T>();
 
                         case "Team":
-                        return svcContext.TeamSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.TeamSet.FirstOrDefault(record => record.Id == id.Value)?.ToEntity<T>();
 
                         case "Incident":
-                        return svcContext.IncidentSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.IncidentSet.FirstOrDefault(record => record.Id == id.Value)?.ToEntity<T>();
 
                         case "cm_CaseCategory":
-                        return svcContext.cm_CaseCategorySet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.cm_CaseCategorySet.FirstOrDefault(record => record.Id == id.Value)?.ToEntity<T>();
 
                         case "cm_CaseChecklistResponse":
-                        return svcContext.cm_CaseChecklistResponseSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.cm_CaseChecklistResponseSet.FirstOrDefault(record => record.Id == id.Value)?.ToEntity<T>();
 
                         case "cm_CaseChecklistCatalog":
-                        return svcContext.cm_CaseChecklistCatalogSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.cm_CaseChecklistCatalogSet.FirstOrDefault(record => record.Id == id.Value)?.ToEntity<T>();
 
                         case "cm_CaseSubCategory":
-                        return svcContext.cm_CaseSubCategorySet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.cm_CaseSubCategorySet.FirstOrDefault(record => record.Id == id.Value)?.ToEntity<T>();
 
                         case "OpportunityClose":
-                        return svcContext.OpportunityCloseSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.OpportunityCloseSet.FirstOrDefault(record => record.Id == id.Value)?.ToEntity<T>();
 
                         case "cm_LeadClosureChecklistCatalog":
-                        return svcContext.cm_LeadClosureChecklistCatalogSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.cm_LeadClosureChecklistCatalogSet.FirstOrDefault(record => record.Id == id.Value)?.ToEntity<T>();
 
                         case "cm_LeadClosureChecklistResponse":
-                        return svcContext.cm_LeadClosureChecklistResponseSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.cm_LeadClosureChecklistResponseSet.FirstOrDefault(record => record.Id == id.Value)?.ToEntity<T>();
 
                         case "cm_LeadClosureChecklistMaster":
-                        return svcContext.cm_LeadClosureChecklistMasterSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.cm_LeadClosureChecklistMasterSet.FirstOrDefault(record => record.Id == id.Value)?.ToEntity<T>();
 
                         case "cm_incident_team":
-                        return svcContext.cm_Incident_TeamSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.cm_Incident_TeamSet.FirstOrDefault(record => record.Id == id.Value)?.ToEntity<T>();
 
                         case "cm_checklistmaster":
-                        return svcContext.cm_ChecklistMasterSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.cm_ChecklistMasterSet.FirstOrDefault(record => record.Id == id.Value)?.ToEntity<T>();
 
                         case "msfp_survey":
-                        return svcContext.msfp_surveySet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.msfp_surveySet.FirstOrDefault(record => record.Id == id.Value)?.ToEntity<T>();
 
                         case "msfp_project":
-                        return svcContext.msfp_projectSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.msfp_projectSet.FirstOrDefault(record => record.Id == id.Value)?.ToEntity<T>();
 
                         case "msfp_customervoiceprocessor":
-                        return svcContext.msfp_customervoiceprocessorSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.msfp_customervoiceprocessorSet.FirstOrDefault(record => record.Id == id.Value)?.ToEntity<T>();
 
                         case "cm_cmcaseresolution":
-                        return svcContext.cm_cmcaseresolutionSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.cm_cmcaseresolutionSet.FirstOrDefault(record => record.Id == id.Value)?.ToEntity<T>();
 
                         case "ProcessStage":
-                        return svcContext.ProcessStageSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.ProcessStageSet.FirstOrDefault(record => record.Id == id.Value)?.ToEntity<T>();
 
                         case "SystemUser":
-                        return svcContext.ProcessStageSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
+                        return svcContext.ProcessStageSet.FirstOrDefault(record => record.Id == id.Value)?.ToEntity<T>();
 
                         case "Queue":
                         return svcContext.QueueSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
@@ -505,6 +505,12 @@ namespace Plugins {
             }
         }
 
+        /// <summary>
+        ///     Creates Qualification questions for the given Opportunity
+        /// </summary>
+        /// <param name="questions"></param>
+        /// <param name="opportunity"></param>
+        /// <param name="teamId"></param>
         internal void CreateQuestionResponses(List<cm_QuestionCatalog> questions, Opportunity opportunity, Guid teamId) {
             List<Guid> responseGuids = new List<Guid>();
 
@@ -566,6 +572,12 @@ namespace Plugins {
             }
         }
 
+        /// <summary>
+        ///     Creates closure checklist for the given Opportunity
+        /// </summary>
+        /// <param name="questions"></param>
+        /// <param name="opportunity"></param>
+        /// <param name="teamId"></param>
         internal void CreateLeadClosureResponses(List<cm_LeadClosureChecklistCatalog> questions, Opportunity opportunity, Guid teamId) {
             List<Guid> responseGuids = new List<Guid>();
 
@@ -653,7 +665,7 @@ namespace Plugins {
             }
         }
 
-         internal List<Team> GetTeamListByAccountAndIncident(Account account, Incident incident) {
+        internal List<Team> GetTeamListByAccountAndIncident(Account account, Incident incident) {
             _tracingService.Trace($"Searching for teams with Account: {account.Id} and Incident/Case: {incident.Id}");
             try {
                 if (!account.cm_Role.Any()) {
@@ -668,6 +680,12 @@ namespace Plugins {
                     // account is expected to have only one role.
                     _tracingService.Trace($"Associating Incident {incident.Id} to caseProgram: {caseProgram}");
                     teamList.AddRange(GetTeamsByCaseProgramLeadType(caseProgram, account.cm_Role.FirstOrDefault()));
+                }
+
+                if (teamList.Count >= 0) {
+                    _tracingService.Trace($"No teams were found");
+                } else {
+                    _tracingService.Trace($"Teams found: {String.Join(", ", teamList.Select(team => team.Id))}");
                 }
 
                 return teamList;

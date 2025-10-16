@@ -1,5 +1,5 @@
-﻿using Plugins.Models;
-using Microsoft.Xrm.Sdk;
+﻿using Microsoft.Xrm.Sdk;
+using Plugins.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +13,8 @@ namespace Plugins {
         ///     This async Dataverse plugin fires on creating an Opportunity, loads its related Program Association, Team, 
         ///     and the appropriate Lead-Closure Checklist Master, then retrieves checklist questions. 
         ///     If questions exist it generates response records, otherwise it throws an InvalidPluginExecutionException.
+        ///     
+        ///     Sync Plugins.AsyncPluginOpportunityLeadClosureGeneration: Create of opportunity All Attributes
         /// </summary>
         /// <param name="localPluginContext"></param>
         /// <exception cref="ArgumentNullException"></exception>
@@ -40,16 +42,22 @@ namespace Plugins {
                     ?? throw new InvalidPluginExecutionException("Opportunity not found");
 
                 cm_ProgramAssociation programAssociationRecord = commonBusinessLogic
-                    .GetRecordById<cm_ProgramAssociation>(opportunityRecord.cm_AssociatedProgram.Id)
+                    .GetRecordById<cm_ProgramAssociation>(opportunityRecord.cm_AssociatedProgram?.Id)
                     ?? throw new InvalidPluginExecutionException("cm_ProgramAssociation not found");
 
                 Team teamRecord = commonBusinessLogic
-                    .GetRecordById<Team>(programAssociationRecord.cm_Program.Id)
+                    .GetRecordById<Team>(programAssociationRecord.cm_Program?.Id)
                     ?? throw new InvalidPluginExecutionException("Team not found");
 
                 cm_LeadClosureChecklistMaster leadClosureChecklistMasterRecord = commonBusinessLogic
-                    .GetLeadClosureCheckLMasterByTeam(teamRecord.Id, opportunityRecord.cm_OpportunityType)
-                    ?? throw new InvalidPluginExecutionException("cm_LeadClosureChecklistMaster not found. Please check your Lead Type");
+                    .GetLeadClosureCheckLMasterByTeam(teamRecord.Id, opportunityRecord.cm_OpportunityType);
+
+                if (leadClosureChecklistMasterRecord == null) {
+                    tracingService.Trace("No Lead Closure Checklist Master Record found for team: {0} and leadType: {1}",
+                        teamRecord.Id,
+                        opportunityRecord.cm_OpportunityType);
+                    return;
+                }
 
                 List<cm_LeadClosureChecklistCatalog> leadClosureChecklistCatalogList = commonBusinessLogic
                     .GetLeadClosureChecklistCatalogCat(leadClosureChecklistMasterRecord.Id)
@@ -61,20 +69,17 @@ namespace Plugins {
                                      $"leadClosureChecklistCatalogList count: {leadClosureChecklistCatalogList.Count} \n");
                 #endregion
 
-                if (leadClosureChecklistCatalogList.Any()) {
-                    commonBusinessLogic.CreateLeadClosureResponses(leadClosureChecklistCatalogList, opportunityRecord, teamRecord.Id);
-                } else {
+                // Closure Checklist questions are only mandatory for Producer and ServiceProvider (CD-825)
+                if (!leadClosureChecklistCatalogList.Any()
+                    && (opportunityRecord.cm_OpportunityType == cm_leadopptype.Producer
+                    || opportunityRecord.cm_OpportunityType == cm_leadopptype.ServiceProvider)
+                    ) {
                     throw new InvalidPluginExecutionException("No records in Lead Closure Checklist were found in the Catalog matching the current Checklist Master.");
                 }
 
-                //// All Opportunity records should be shared with the same team as the Lead is shared with
-                //commonBusinessLogic.ExecuteRecordShare(opportunityRecord, teamRecord.Id);
-                //commonBusinessLogic.ExecuteRecordShare(
-                //    new Entity(Account.EntityLogicalCollectionName,
-                //    opportunityRecord.CustomerId.Id), teamRecord.Id);
-                //commonBusinessLogic.ExecuteRecordShare(
-                //    new Entity(Contact.EntityLogicalCollectionName,
-                //    opportunityRecord.ContactId.Id), teamRecord.Id);
+                if (!leadClosureChecklistCatalogList.Any()) return;
+
+                commonBusinessLogic.CreateLeadClosureResponses(leadClosureChecklistCatalogList, opportunityRecord, teamRecord.Id);
 
             } catch (AggregateException aggregateException) {
                 var exceptions = aggregateException.InnerExceptions;

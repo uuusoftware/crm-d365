@@ -16,7 +16,7 @@ namespace Plugins {
         ///     
         ///     It mimics the OOB lead to opportunity behavior but instead of one, it creates multiple opportunities
         ///     
-        ///     Plugins.SyncPluginLeadStatusChange: Update of lead Attribute Filter: statecode
+        ///     Plugins.SyncPluginLeadStatusChange: Update of lead statecode
         /// </summary>
         /// <param name="localPluginContext"></param>
         /// <exception cref="ArgumentNullException"></exception>

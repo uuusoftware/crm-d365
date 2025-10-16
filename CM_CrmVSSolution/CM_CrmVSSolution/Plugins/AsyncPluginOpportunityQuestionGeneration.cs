@@ -54,11 +54,14 @@ namespace Plugins {
                 tracingService.Trace($"questionsList {string.Join(" ,", questionsList.Select(q => q.Id))}");
                 #endregion
 
-                if (questionsList.Any()) {
-                    commonBusinessLogic.CreateQuestionResponses(questionsList, opportunityRecord, teamRecord.Id);
-                } else {
+                // Qualification questions are only mandatory for Producer (CD-825)
+                if (!questionsList.Any() && opportunityRecord.cm_OpportunityType == cm_leadopptype.Producer) {
                     throw new InvalidPluginExecutionException("No Qualification questions were found in the Catalog matching team and opportunity type.");
                 }
+
+                if (!questionsList.Any()) return;
+
+                commonBusinessLogic.CreateQuestionResponses(questionsList, opportunityRecord, teamRecord.Id);
 
             } catch (AggregateException aggregateException) {
                 var exceptions = aggregateException.InnerExceptions;

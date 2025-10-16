@@ -23,6 +23,8 @@ namespace Plugins {
         ///     It loads the related Opportunity, its program association, team, and the appropriate lead‐closure checklist master, tracing each lookup. 
         ///     Finally, it validates required closure responses (yes/no or text) against expected criteria, 
         ///     throwing an InvalidPluginExecutionException if any closure condition isn’t met.
+        ///     
+        ///     Plugins.SyncPluginOppoCloseCreateValidation: Create of opportunityclose All Attributes
         /// </summary>
         /// <param name="localPluginContext"></param>
         /// <exception cref="ArgumentNullException"></exception>

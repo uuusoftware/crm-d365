@@ -10,6 +10,8 @@ CM.Case = (function () {
         SubCatEntityName: "cm_casesubcategory",
         CaseCatEntityName: "cm_casecategory",
         CheckListCatalogEntity: "cm_casechecklistcatalog",
+        SurveyEntityName: "msfp_surveyinvite",
+        ContactEntityName: "contact",
         BpfStages: {
             Identify: "Identify",
             Research: "Research",
@@ -53,17 +55,38 @@ CM.Case = (function () {
                 await Helpers.showProgressPromise("Loading Responses...");
                 const caseId = formContext.data.entity.getId().replace(/[{}]/g, "").toLowerCase();
 
-                const caseRecord = await Xrm.WebApi.retrieveMultipleRecords(
-                    Constants.CaseEntityName, `?$select=_cm_causecategory_value,_cm_incidentcategory_value&$filter=incidentid eq ${caseId}`);
+                const caseRecord = await Helpers.retrieveRecords(
+                    Constants.CaseEntityName, 
+                    "incidentid", 
+                    caseId, 
+                    ["_cm_causecategory_value","_cm_incidentcategory_value", "_primarycontactid_value"]);
+                
+                const subCatId = caseRecord.at(0)._cm_causecategory_value;
+                const caseCatId = caseRecord.at(0)._cm_incidentcategory_value;
+                const contactId = caseRecord.at(0)._primarycontactid_value;
+                    
+                const surveyRecord = await Helpers.retrieveRecords(
+                    Constants.SurveyEntityName, 
+                    "_regardingobjectid_value", 
+                    caseId);
+                        
+                const contactRecord = await Helpers.retrieveRecords(
+                    Constants.ContactEntityName, 
+                    "contactid", 
+                    contactId,
+                    ["emailaddress1"]);
 
-                const subCatId = caseRecord.entities.at(0)._cm_causecategory_value;
-                const caseCatId = caseRecord.entities.at(0)._cm_incidentcategory_value;
-
+                if (surveyRecord.length > 0 && !contactRecord.at(0).emailaddress1){
+                    formContext.data.process.setActiveStage(identifyId);
+                    Helpers.openStringifiedErrorDialog("An error occurred ", 
+                        "Missing email ID. Please add an email ID to the contact before proceeding");
+                    return;
+                }
                 if (!subCatId || !caseCatId){
                     formContext.data.process.setActiveStage(identifyId);
                     Helpers.openStringifiedErrorDialog("An error occurred ", 
                         "Please add Case Category and Sub Category");
-                        return;
+                    return;
                 }
             /*
                   
@@ -87,8 +110,6 @@ CM.Case = (function () {
             } catch (err) {
                 Helpers.openStringifiedErrorDialog("An error occurred ", err);
                 console.error({ "Error": `An error occurred: ${err}` });
-                throw err;
-
             } finally {
                 Xrm.Utility.closeProgressIndicator();
             }
@@ -237,6 +258,21 @@ CM.Case = (function () {
                 }
             );
         },
+        retrieveRecords: async (entityName, lookupField, lookupValue, retrievedFields = []) => {
+            try {
+                let selectClause = retrievedFields.length > 0 ? `$select=${retrievedFields.join(",")}` : "";
+
+                let filterClause = `$filter=${lookupField} eq ${lookupValue}`;
+
+                let query = [selectClause, filterClause].filter(Boolean).join("&");
+
+                const response = await Xrm.WebApi.retrieveMultipleRecords(entityName, `?${query}`);
+                return response.entities; // returns array of records
+            } catch (error) {
+                console.error(`Error retrieving ${entityName}:`, error);
+                throw error;
+            }
+        }
     };    
     return {
         onLoad: Helpers.onLoad
