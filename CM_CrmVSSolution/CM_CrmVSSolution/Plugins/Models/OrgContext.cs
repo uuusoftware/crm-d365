@@ -218,6 +218,39 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// Gets a binding to the set of all <see cref="Plugins.Models.Email"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<Plugins.Models.Email> EmailSet
+		{
+			get
+			{
+				return this.CreateQuery<Plugins.Models.Email>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="Plugins.Models.EnvironmentVariableDefinition"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<Plugins.Models.EnvironmentVariableDefinition> EnvironmentVariableDefinitionSet
+		{
+			get
+			{
+				return this.CreateQuery<Plugins.Models.EnvironmentVariableDefinition>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="Plugins.Models.EnvironmentVariableValue"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<Plugins.Models.EnvironmentVariableValue> EnvironmentVariableValueSet
+		{
+			get
+			{
+				return this.CreateQuery<Plugins.Models.EnvironmentVariableValue>();
+			}
+		}
+		
+		/// <summary>
 		/// Gets a binding to the set of all <see cref="Plugins.Models.Incident"/> entities.
 		/// </summary>
 		public System.Linq.IQueryable<Plugins.Models.Incident> IncidentSet
@@ -313,6 +346,28 @@ namespace Plugins.Models
 			get
 			{
 				return this.CreateQuery<Plugins.Models.ProcessStage>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="Plugins.Models.Queue"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<Plugins.Models.Queue> QueueSet
+		{
+			get
+			{
+				return this.CreateQuery<Plugins.Models.Queue>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="Plugins.Models.QueueItem"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<Plugins.Models.QueueItem> QueueItemSet
+		{
+			get
+			{
+				return this.CreateQuery<Plugins.Models.QueueItem>();
 			}
 		}
 		

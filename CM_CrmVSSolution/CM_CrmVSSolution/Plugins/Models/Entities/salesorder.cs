@@ -311,6 +311,7 @@ namespace Plugins.Models
 			public const string WillCallName = "willcallname";
 			public const string salesorder_connections1 = "salesorder_connections1";
 			public const string salesorder_connections2 = "salesorder_connections2";
+			public const string SalesOrder_Emails = "SalesOrder_Emails";
 			public const string salesorder_msfp_surveyinvites = "salesorder_msfp_surveyinvites";
 			public const string contactorders_association = "contactorders_association";
 			public const string lk_salesorder_createdonbehalfby = "lk_salesorder_createdonbehalfby";
@@ -2633,6 +2634,24 @@ namespace Plugins.Models
 				this.OnPropertyChanging("salesorder_connections2");
 				this.SetRelatedEntities<Plugins.Models.Connection>("salesorder_connections2", null, value);
 				this.OnPropertyChanged("salesorder_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N SalesOrder_Emails
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("SalesOrder_Emails")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.Email> SalesOrder_Emails
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.Email>("SalesOrder_Emails", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("SalesOrder_Emails");
+				this.SetRelatedEntities<Plugins.Models.Email>("SalesOrder_Emails", null, value);
+				this.OnPropertyChanged("SalesOrder_Emails");
 			}
 		}
 		

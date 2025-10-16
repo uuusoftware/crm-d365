@@ -827,6 +827,8 @@ namespace Plugins.Models
 			public const string contact_connections1 = "contact_connections1";
 			public const string contact_connections2 = "contact_connections2";
 			public const string Referencedcontact_customer_contacts = "Referencedcontact_customer_contacts";
+			public const string Contact_Email_EmailSender = "Contact_Email_EmailSender";
+			public const string Contact_Emails = "Contact_Emails";
 			public const string Referencedcontact_master_contact = "Referencedcontact_master_contact";
 			public const string contact_msfp_surveyinvites = "contact_msfp_surveyinvites";
 			public const string Referencedcontact_parent_contact = "Referencedcontact_parent_contact";
@@ -6816,6 +6818,42 @@ namespace Plugins.Models
 				this.OnPropertyChanging("Referencedcontact_customer_contacts");
 				this.SetRelatedEntities<Plugins.Models.Contact>("contact_customer_contacts", Microsoft.Xrm.Sdk.EntityRole.Referenced, value);
 				this.OnPropertyChanged("Referencedcontact_customer_contacts");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N Contact_Email_EmailSender
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Contact_Email_EmailSender")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.Email> Contact_Email_EmailSender
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.Email>("Contact_Email_EmailSender", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("Contact_Email_EmailSender");
+				this.SetRelatedEntities<Plugins.Models.Email>("Contact_Email_EmailSender", null, value);
+				this.OnPropertyChanged("Contact_Email_EmailSender");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N Contact_Emails
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Contact_Emails")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.Email> Contact_Emails
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.Email>("Contact_Emails", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("Contact_Emails");
+				this.SetRelatedEntities<Plugins.Models.Email>("Contact_Emails", null, value);
+				this.OnPropertyChanged("Contact_Emails");
 			}
 		}
 		

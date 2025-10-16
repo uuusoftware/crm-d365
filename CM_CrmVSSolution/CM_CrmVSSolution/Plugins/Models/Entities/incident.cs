@@ -70,7 +70,16 @@ namespace Plugins.Models
 		Chat = 121540001,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Email = 121540004,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Form = 121540005,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		SocialMedia = 121540002,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Web = 121540006,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Other = 121540003,
@@ -320,6 +329,15 @@ namespace Plugins.Models
 			public const string CheckEmail = "checkemail";
 			public const string CheckEmailName = "checkemailname";
 			public const string cm_AccountNumberText = "cm_accountnumbertext";
+			public const string cm_Address1_City = "cm_address1_city";
+			public const string cm_Address1_Country = "cm_address1_country";
+			public const string cm_Address1_CountryName = "cm_address1_countryname";
+			public const string cm_Address1_PostalZIPCode = "cm_address1_postalzipcode";
+			public const string cm_Address1_ProvinceState = "cm_address1_provincestate";
+			public const string cm_Address1_ProvinceStateName = "cm_address1_provincestatename";
+			public const string cm_Address1_Street1 = "cm_address1_street1";
+			public const string cm_Address1_Street2 = "cm_address1_street2";
+			public const string cm_Address1_Street3 = "cm_address1_street3";
 			public const string cm_CasePriority = "cm_casepriority";
 			public const string cm_casepriorityName = "cm_casepriorityname";
 			public const string cm_CaseProgram = "cm_caseprogram";
@@ -343,6 +361,8 @@ namespace Plugins.Models
 			public const string cm_ContractName = "cm_contractname";
 			public const string cm_ContractorName = "cm_contractorname";
 			public const string cm_ContractorNameName = "cm_contractornamename";
+			public const string cm_DocumentContainer = "cm_documentcontainer";
+			public const string cm_DocumentContainerName = "cm_documentcontainername";
 			public const string cm_EffectiveDate = "cm_effectivedate";
 			public const string cm_From = "cm_from";
 			public const string cm_GenerateChecklist = "cm_generatechecklist";
@@ -530,14 +550,17 @@ namespace Plugins.Models
 			public const string cm_msfp_surveyinvite_ParentCase_incident = "cm_msfp_surveyinvite_ParentCase_incident";
 			public const string incident_connections1 = "incident_connections1";
 			public const string incident_connections2 = "incident_connections2";
+			public const string Incident_Emails = "Incident_Emails";
 			public const string Referencedincident_existingcase = "Referencedincident_existingcase";
 			public const string Referencedincident_master_incident = "Referencedincident_master_incident";
 			public const string incident_msfp_surveyinvites = "incident_msfp_surveyinvites";
 			public const string incident_OpportunityCloses = "incident_OpportunityCloses";
 			public const string Referencedincident_parent_incident = "Referencedincident_parent_incident";
+			public const string Incident_QueueItem = "Incident_QueueItem";
 			public const string OriginatingCase_Lead = "OriginatingCase_Lead";
 			public const string cm_Incident_Team_Team = "cm_Incident_Team_Team";
 			public const string cm_incident_account_cm_ReportedById = "cm_incident_account_cm_ReportedById";
+			public const string cm_incident_Address1_ProvinceState_cm_province = "cm_incident_Address1_ProvinceState_cm_province";
 			public const string cm_incident_CauseCategory_cm_casesubcategory = "cm_incident_CauseCategory_cm_casesubcategory";
 			public const string cm_incident_contact_cm_ReportedById = "cm_incident_contact_cm_ReportedById";
 			public const string cm_incident_IncidentCategory_cm_casecategory = "cm_incident_IncidentCategory_cm_casecategory";
@@ -872,6 +895,143 @@ namespace Plugins.Models
 				this.OnPropertyChanging("cm_AccountNumberText");
 				this.SetAttributeValue("cm_accountnumbertext", value);
 				this.OnPropertyChanged("cm_AccountNumberText");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_address1_city")]
+		public string cm_Address1_City
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("cm_address1_city");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_Address1_City");
+				this.SetAttributeValue("cm_address1_city", value);
+				this.OnPropertyChanged("cm_Address1_City");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_address1_country")]
+		public Microsoft.Xrm.Sdk.EntityReference cm_Address1_Country
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cm_address1_country");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_Address1_Country");
+				this.SetAttributeValue("cm_address1_country", value);
+				this.OnPropertyChanged("cm_Address1_Country");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_address1_countryname")]
+		public string cm_Address1_CountryName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_address1_country"))
+				{
+					return this.FormattedValues["cm_address1_country"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_address1_postalzipcode")]
+		public string cm_Address1_PostalZIPCode
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("cm_address1_postalzipcode");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_Address1_PostalZIPCode");
+				this.SetAttributeValue("cm_address1_postalzipcode", value);
+				this.OnPropertyChanged("cm_Address1_PostalZIPCode");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_address1_provincestate")]
+		public Microsoft.Xrm.Sdk.EntityReference cm_Address1_ProvinceState
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cm_address1_provincestate");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_Address1_ProvinceState");
+				this.SetAttributeValue("cm_address1_provincestate", value);
+				this.OnPropertyChanged("cm_Address1_ProvinceState");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_address1_provincestatename")]
+		public string cm_Address1_ProvinceStateName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_address1_provincestate"))
+				{
+					return this.FormattedValues["cm_address1_provincestate"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_address1_street1")]
+		public string cm_Address1_Street1
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("cm_address1_street1");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_Address1_Street1");
+				this.SetAttributeValue("cm_address1_street1", value);
+				this.OnPropertyChanged("cm_Address1_Street1");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_address1_street2")]
+		public string cm_Address1_Street2
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("cm_address1_street2");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_Address1_Street2");
+				this.SetAttributeValue("cm_address1_street2", value);
+				this.OnPropertyChanged("cm_Address1_Street2");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_address1_street3")]
+		public string cm_Address1_Street3
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("cm_address1_street3");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_Address1_Street3");
+				this.SetAttributeValue("cm_address1_street3", value);
+				this.OnPropertyChanged("cm_Address1_Street3");
 			}
 		}
 		
@@ -1223,6 +1383,37 @@ namespace Plugins.Models
 				if (this.FormattedValues.Contains("cm_contractorname"))
 				{
 					return this.FormattedValues["cm_contractorname"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_documentcontainer")]
+		public Microsoft.Xrm.Sdk.EntityReference cm_DocumentContainer
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cm_documentcontainer");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_DocumentContainer");
+				this.SetAttributeValue("cm_documentcontainer", value);
+				this.OnPropertyChanged("cm_DocumentContainer");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_documentcontainername")]
+		public string cm_DocumentContainerName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_documentcontainer"))
+				{
+					return this.FormattedValues["cm_documentcontainer"];
 				}
 				else
 				{
@@ -4256,6 +4447,24 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// 1:N Incident_Emails
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Incident_Emails")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.Email> Incident_Emails
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.Email>("Incident_Emails", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("Incident_Emails");
+				this.SetRelatedEntities<Plugins.Models.Email>("Incident_Emails", null, value);
+				this.OnPropertyChanged("Incident_Emails");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N incident_existingcase
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("incident_existingcase", Microsoft.Xrm.Sdk.EntityRole.Referenced)]
@@ -4346,6 +4555,24 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// 1:N Incident_QueueItem
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Incident_QueueItem")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.QueueItem> Incident_QueueItem
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.QueueItem>("Incident_QueueItem", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("Incident_QueueItem");
+				this.SetRelatedEntities<Plugins.Models.QueueItem>("Incident_QueueItem", null, value);
+				this.OnPropertyChanged("Incident_QueueItem");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N OriginatingCase_Lead
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("OriginatingCase_Lead")]
@@ -4397,6 +4624,25 @@ namespace Plugins.Models
 				this.OnPropertyChanging("cm_incident_account_cm_ReportedById");
 				this.SetRelatedEntity<Plugins.Models.Account>("cm_incident_account_cm_ReportedById", null, value);
 				this.OnPropertyChanged("cm_incident_account_cm_ReportedById");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 cm_incident_Address1_ProvinceState_cm_province
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_address1_provincestate")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_incident_Address1_ProvinceState_cm_province")]
+		public Plugins.Models.cm_Province cm_incident_Address1_ProvinceState_cm_province
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.cm_Province>("cm_incident_Address1_ProvinceState_cm_province", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_incident_Address1_ProvinceState_cm_province");
+				this.SetRelatedEntity<Plugins.Models.cm_Province>("cm_incident_Address1_ProvinceState_cm_province", null, value);
+				this.OnPropertyChanged("cm_incident_Address1_ProvinceState_cm_province");
 			}
 		}
 		

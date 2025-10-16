@@ -604,6 +604,7 @@ namespace Plugins.Models
 			public const string cm_incident_systemuser_cm_ReportedById = "cm_incident_systemuser_cm_ReportedById";
 			public const string contact_owning_user = "contact_owning_user";
 			public const string createdby_connection = "createdby_connection";
+			public const string email_acceptingentity_systemuser = "email_acceptingentity_systemuser";
 			public const string lead_owning_user = "lead_owning_user";
 			public const string lk_accountbase_createdby = "lk_accountbase_createdby";
 			public const string lk_accountbase_createdonbehalfby = "lk_accountbase_createdonbehalfby";
@@ -667,6 +668,18 @@ namespace Plugins.Models
 			public const string lk_contact_modifiedonbehalfby = "lk_contact_modifiedonbehalfby";
 			public const string lk_contactbase_createdby = "lk_contactbase_createdby";
 			public const string lk_contactbase_modifiedby = "lk_contactbase_modifiedby";
+			public const string lk_email_createdby = "lk_email_createdby";
+			public const string lk_email_createdonbehalfby = "lk_email_createdonbehalfby";
+			public const string lk_email_modifiedby = "lk_email_modifiedby";
+			public const string lk_email_modifiedonbehalfby = "lk_email_modifiedonbehalfby";
+			public const string lk_environmentvariabledefinition_createdby = "lk_environmentvariabledefinition_createdby";
+			public const string lk_environmentvariabledefinition_createdonbehalfby = "lk_environmentvariabledefinition_createdonbehalfby";
+			public const string lk_environmentvariabledefinition_modifiedby = "lk_environmentvariabledefinition_modifiedby";
+			public const string lk_environmentvariabledefinition_modifiedonbehalfby = "lk_environmentvariabledefinition_modifiedonbehalfby";
+			public const string lk_environmentvariablevalue_createdby = "lk_environmentvariablevalue_createdby";
+			public const string lk_environmentvariablevalue_createdonbehalfby = "lk_environmentvariablevalue_createdonbehalfby";
+			public const string lk_environmentvariablevalue_modifiedby = "lk_environmentvariablevalue_modifiedby";
+			public const string lk_environmentvariablevalue_modifiedonbehalfby = "lk_environmentvariablevalue_modifiedonbehalfby";
 			public const string lk_incidentbase_createdby = "lk_incidentbase_createdby";
 			public const string lk_incidentbase_createdonbehalfby = "lk_incidentbase_createdonbehalfby";
 			public const string lk_incidentbase_modifiedby = "lk_incidentbase_modifiedby";
@@ -695,6 +708,15 @@ namespace Plugins.Models
 			public const string lk_opportunityclose_createdonbehalfby = "lk_opportunityclose_createdonbehalfby";
 			public const string lk_opportunityclose_modifiedby = "lk_opportunityclose_modifiedby";
 			public const string lk_opportunityclose_modifiedonbehalfby = "lk_opportunityclose_modifiedonbehalfby";
+			public const string lk_queue_createdonbehalfby = "lk_queue_createdonbehalfby";
+			public const string lk_queue_modifiedonbehalfby = "lk_queue_modifiedonbehalfby";
+			public const string lk_queuebase_createdby = "lk_queuebase_createdby";
+			public const string lk_queuebase_modifiedby = "lk_queuebase_modifiedby";
+			public const string lk_queueitem_createdonbehalfby = "lk_queueitem_createdonbehalfby";
+			public const string lk_queueitem_modifiedonbehalfby = "lk_queueitem_modifiedonbehalfby";
+			public const string lk_queueitembase_createdby = "lk_queueitembase_createdby";
+			public const string lk_queueitembase_modifiedby = "lk_queueitembase_modifiedby";
+			public const string lk_queueitembase_workerid = "lk_queueitembase_workerid";
 			public const string lk_salesorder_createdonbehalfby = "lk_salesorder_createdonbehalfby";
 			public const string lk_salesorder_modifiedonbehalfby = "lk_salesorder_modifiedonbehalfby";
 			public const string lk_salesorderbase_createdby = "lk_salesorderbase_createdby";
@@ -716,12 +738,14 @@ namespace Plugins.Models
 			public const string msfp_surveyinvite_systemuser_owninguser = "msfp_surveyinvite_systemuser_owninguser";
 			public const string msfp_systemuser_msfp_survey_publishedby = "msfp_systemuser_msfp_survey_publishedby";
 			public const string opportunity_owning_user = "opportunity_owning_user";
+			public const string queue_primary_user = "queue_primary_user";
 			public const string system_user_accounts = "system_user_accounts";
 			public const string system_user_contacts = "system_user_contacts";
 			public const string system_user_incidents = "system_user_incidents";
 			public const string system_user_orders = "system_user_orders";
 			public const string systemuser_connections1 = "systemuser_connections1";
 			public const string systemuser_connections2 = "systemuser_connections2";
+			public const string SystemUser_Email_EmailSender = "SystemUser_Email_EmailSender";
 			public const string user_accounts = "user_accounts";
 			public const string user_cm_casecategory = "user_cm_casecategory";
 			public const string user_cm_casechecklistcatalog = "user_cm_casechecklistcatalog";
@@ -735,17 +759,21 @@ namespace Plugins.Models
 			public const string user_cm_province = "user_cm_province";
 			public const string user_cm_questioncatalog = "user_cm_questioncatalog";
 			public const string user_cm_questionresponse = "user_cm_questionresponse";
+			public const string user_email = "user_email";
+			public const string user_environmentvariabledefinition = "user_environmentvariabledefinition";
 			public const string user_msfp_customervoiceprocessor = "user_msfp_customervoiceprocessor";
 			public const string user_msfp_project = "user_msfp_project";
 			public const string user_msfp_survey = "user_msfp_survey";
 			public const string user_opportunityclose = "user_opportunityclose";
 			public const string Referenceduser_parent_user = "Referenceduser_parent_user";
+			public const string queuemembership_association = "queuemembership_association";
 			public const string teammembership_association = "teammembership_association";
 			public const string Referencinglk_systemuser_createdonbehalfby = "lk_systemuser_createdonbehalfby";
 			public const string Referencinglk_systemuser_modifiedonbehalfby = "lk_systemuser_modifiedonbehalfby";
 			public const string Referencinglk_systemuserbase_createdby = "lk_systemuserbase_createdby";
 			public const string Referencinglk_systemuserbase_modifiedby = "lk_systemuserbase_modifiedby";
 			public const string processstage_systemusers = "processstage_systemusers";
+			public const string queue_system_user = "queue_system_user";
 			public const string Referencinguser_parent_user = "user_parent_user";
 		}
 		
@@ -4320,6 +4348,24 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// 1:N email_acceptingentity_systemuser
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("email_acceptingentity_systemuser")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.Email> email_acceptingentity_systemuser
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.Email>("email_acceptingentity_systemuser", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("email_acceptingentity_systemuser");
+				this.SetRelatedEntities<Plugins.Models.Email>("email_acceptingentity_systemuser", null, value);
+				this.OnPropertyChanged("email_acceptingentity_systemuser");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N lead_owning_user
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lead_owning_user")]
@@ -5454,6 +5500,222 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// 1:N lk_email_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_email_createdby")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.Email> lk_email_createdby
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.Email>("lk_email_createdby", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("lk_email_createdby");
+				this.SetRelatedEntities<Plugins.Models.Email>("lk_email_createdby", null, value);
+				this.OnPropertyChanged("lk_email_createdby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_email_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_email_createdonbehalfby")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.Email> lk_email_createdonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.Email>("lk_email_createdonbehalfby", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("lk_email_createdonbehalfby");
+				this.SetRelatedEntities<Plugins.Models.Email>("lk_email_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_email_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_email_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_email_modifiedby")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.Email> lk_email_modifiedby
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.Email>("lk_email_modifiedby", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("lk_email_modifiedby");
+				this.SetRelatedEntities<Plugins.Models.Email>("lk_email_modifiedby", null, value);
+				this.OnPropertyChanged("lk_email_modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_email_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_email_modifiedonbehalfby")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.Email> lk_email_modifiedonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.Email>("lk_email_modifiedonbehalfby", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("lk_email_modifiedonbehalfby");
+				this.SetRelatedEntities<Plugins.Models.Email>("lk_email_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_email_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_environmentvariabledefinition_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_environmentvariabledefinition_createdby")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.EnvironmentVariableDefinition> lk_environmentvariabledefinition_createdby
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.EnvironmentVariableDefinition>("lk_environmentvariabledefinition_createdby", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("lk_environmentvariabledefinition_createdby");
+				this.SetRelatedEntities<Plugins.Models.EnvironmentVariableDefinition>("lk_environmentvariabledefinition_createdby", null, value);
+				this.OnPropertyChanged("lk_environmentvariabledefinition_createdby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_environmentvariabledefinition_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_environmentvariabledefinition_createdonbehalfby")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.EnvironmentVariableDefinition> lk_environmentvariabledefinition_createdonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.EnvironmentVariableDefinition>("lk_environmentvariabledefinition_createdonbehalfby", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("lk_environmentvariabledefinition_createdonbehalfby");
+				this.SetRelatedEntities<Plugins.Models.EnvironmentVariableDefinition>("lk_environmentvariabledefinition_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_environmentvariabledefinition_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_environmentvariabledefinition_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_environmentvariabledefinition_modifiedby")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.EnvironmentVariableDefinition> lk_environmentvariabledefinition_modifiedby
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.EnvironmentVariableDefinition>("lk_environmentvariabledefinition_modifiedby", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("lk_environmentvariabledefinition_modifiedby");
+				this.SetRelatedEntities<Plugins.Models.EnvironmentVariableDefinition>("lk_environmentvariabledefinition_modifiedby", null, value);
+				this.OnPropertyChanged("lk_environmentvariabledefinition_modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_environmentvariabledefinition_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_environmentvariabledefinition_modifiedonbehalfby")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.EnvironmentVariableDefinition> lk_environmentvariabledefinition_modifiedonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.EnvironmentVariableDefinition>("lk_environmentvariabledefinition_modifiedonbehalfby", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("lk_environmentvariabledefinition_modifiedonbehalfby");
+				this.SetRelatedEntities<Plugins.Models.EnvironmentVariableDefinition>("lk_environmentvariabledefinition_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_environmentvariabledefinition_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_environmentvariablevalue_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_environmentvariablevalue_createdby")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.EnvironmentVariableValue> lk_environmentvariablevalue_createdby
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.EnvironmentVariableValue>("lk_environmentvariablevalue_createdby", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("lk_environmentvariablevalue_createdby");
+				this.SetRelatedEntities<Plugins.Models.EnvironmentVariableValue>("lk_environmentvariablevalue_createdby", null, value);
+				this.OnPropertyChanged("lk_environmentvariablevalue_createdby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_environmentvariablevalue_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_environmentvariablevalue_createdonbehalfby")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.EnvironmentVariableValue> lk_environmentvariablevalue_createdonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.EnvironmentVariableValue>("lk_environmentvariablevalue_createdonbehalfby", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("lk_environmentvariablevalue_createdonbehalfby");
+				this.SetRelatedEntities<Plugins.Models.EnvironmentVariableValue>("lk_environmentvariablevalue_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_environmentvariablevalue_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_environmentvariablevalue_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_environmentvariablevalue_modifiedby")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.EnvironmentVariableValue> lk_environmentvariablevalue_modifiedby
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.EnvironmentVariableValue>("lk_environmentvariablevalue_modifiedby", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("lk_environmentvariablevalue_modifiedby");
+				this.SetRelatedEntities<Plugins.Models.EnvironmentVariableValue>("lk_environmentvariablevalue_modifiedby", null, value);
+				this.OnPropertyChanged("lk_environmentvariablevalue_modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_environmentvariablevalue_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_environmentvariablevalue_modifiedonbehalfby")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.EnvironmentVariableValue> lk_environmentvariablevalue_modifiedonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.EnvironmentVariableValue>("lk_environmentvariablevalue_modifiedonbehalfby", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("lk_environmentvariablevalue_modifiedonbehalfby");
+				this.SetRelatedEntities<Plugins.Models.EnvironmentVariableValue>("lk_environmentvariablevalue_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_environmentvariablevalue_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N lk_incidentbase_createdby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_incidentbase_createdby")]
@@ -5958,6 +6220,168 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// 1:N lk_queue_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_queue_createdonbehalfby")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.Queue> lk_queue_createdonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.Queue>("lk_queue_createdonbehalfby", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("lk_queue_createdonbehalfby");
+				this.SetRelatedEntities<Plugins.Models.Queue>("lk_queue_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_queue_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_queue_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_queue_modifiedonbehalfby")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.Queue> lk_queue_modifiedonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.Queue>("lk_queue_modifiedonbehalfby", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("lk_queue_modifiedonbehalfby");
+				this.SetRelatedEntities<Plugins.Models.Queue>("lk_queue_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_queue_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_queuebase_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_queuebase_createdby")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.Queue> lk_queuebase_createdby
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.Queue>("lk_queuebase_createdby", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("lk_queuebase_createdby");
+				this.SetRelatedEntities<Plugins.Models.Queue>("lk_queuebase_createdby", null, value);
+				this.OnPropertyChanged("lk_queuebase_createdby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_queuebase_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_queuebase_modifiedby")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.Queue> lk_queuebase_modifiedby
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.Queue>("lk_queuebase_modifiedby", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("lk_queuebase_modifiedby");
+				this.SetRelatedEntities<Plugins.Models.Queue>("lk_queuebase_modifiedby", null, value);
+				this.OnPropertyChanged("lk_queuebase_modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_queueitem_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_queueitem_createdonbehalfby")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.QueueItem> lk_queueitem_createdonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.QueueItem>("lk_queueitem_createdonbehalfby", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("lk_queueitem_createdonbehalfby");
+				this.SetRelatedEntities<Plugins.Models.QueueItem>("lk_queueitem_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_queueitem_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_queueitem_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_queueitem_modifiedonbehalfby")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.QueueItem> lk_queueitem_modifiedonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.QueueItem>("lk_queueitem_modifiedonbehalfby", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("lk_queueitem_modifiedonbehalfby");
+				this.SetRelatedEntities<Plugins.Models.QueueItem>("lk_queueitem_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_queueitem_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_queueitembase_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_queueitembase_createdby")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.QueueItem> lk_queueitembase_createdby
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.QueueItem>("lk_queueitembase_createdby", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("lk_queueitembase_createdby");
+				this.SetRelatedEntities<Plugins.Models.QueueItem>("lk_queueitembase_createdby", null, value);
+				this.OnPropertyChanged("lk_queueitembase_createdby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_queueitembase_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_queueitembase_modifiedby")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.QueueItem> lk_queueitembase_modifiedby
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.QueueItem>("lk_queueitembase_modifiedby", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("lk_queueitembase_modifiedby");
+				this.SetRelatedEntities<Plugins.Models.QueueItem>("lk_queueitembase_modifiedby", null, value);
+				this.OnPropertyChanged("lk_queueitembase_modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_queueitembase_workerid
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_queueitembase_workerid")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.QueueItem> lk_queueitembase_workerid
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.QueueItem>("lk_queueitembase_workerid", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("lk_queueitembase_workerid");
+				this.SetRelatedEntities<Plugins.Models.QueueItem>("lk_queueitembase_workerid", null, value);
+				this.OnPropertyChanged("lk_queueitembase_workerid");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N lk_salesorder_createdonbehalfby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_salesorder_createdonbehalfby")]
@@ -6336,6 +6760,24 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// 1:N queue_primary_user
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("queue_primary_user")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.Queue> queue_primary_user
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.Queue>("queue_primary_user", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("queue_primary_user");
+				this.SetRelatedEntities<Plugins.Models.Queue>("queue_primary_user", null, value);
+				this.OnPropertyChanged("queue_primary_user");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N system_user_accounts
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("system_user_accounts")]
@@ -6440,6 +6882,24 @@ namespace Plugins.Models
 				this.OnPropertyChanging("systemuser_connections2");
 				this.SetRelatedEntities<Plugins.Models.Connection>("systemuser_connections2", null, value);
 				this.OnPropertyChanged("systemuser_connections2");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N SystemUser_Email_EmailSender
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("SystemUser_Email_EmailSender")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.Email> SystemUser_Email_EmailSender
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.Email>("SystemUser_Email_EmailSender", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("SystemUser_Email_EmailSender");
+				this.SetRelatedEntities<Plugins.Models.Email>("SystemUser_Email_EmailSender", null, value);
+				this.OnPropertyChanged("SystemUser_Email_EmailSender");
 			}
 		}
 		
@@ -6678,6 +7138,42 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// 1:N user_email
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("user_email")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.Email> user_email
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.Email>("user_email", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("user_email");
+				this.SetRelatedEntities<Plugins.Models.Email>("user_email", null, value);
+				this.OnPropertyChanged("user_email");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N user_environmentvariabledefinition
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("user_environmentvariabledefinition")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.EnvironmentVariableDefinition> user_environmentvariabledefinition
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.EnvironmentVariableDefinition>("user_environmentvariabledefinition", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("user_environmentvariabledefinition");
+				this.SetRelatedEntities<Plugins.Models.EnvironmentVariableDefinition>("user_environmentvariabledefinition", null, value);
+				this.OnPropertyChanged("user_environmentvariabledefinition");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N user_msfp_customervoiceprocessor
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("user_msfp_customervoiceprocessor")]
@@ -6768,6 +7264,24 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// N:N queuemembership_association
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("queuemembership_association")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.Queue> queuemembership_association
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.Queue>("queuemembership_association", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("queuemembership_association");
+				this.SetRelatedEntities<Plugins.Models.Queue>("queuemembership_association", null, value);
+				this.OnPropertyChanged("queuemembership_association");
+			}
+		}
+		
+		/// <summary>
 		/// N:N teammembership_association
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("teammembership_association")]
@@ -6853,6 +7367,25 @@ namespace Plugins.Models
 				this.OnPropertyChanging("processstage_systemusers");
 				this.SetRelatedEntity<Plugins.Models.ProcessStage>("processstage_systemusers", null, value);
 				this.OnPropertyChanged("processstage_systemusers");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 queue_system_user
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("queueid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("queue_system_user")]
+		public Plugins.Models.Queue queue_system_user
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.Queue>("queue_system_user", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("queue_system_user");
+				this.SetRelatedEntity<Plugins.Models.Queue>("queue_system_user", null, value);
+				this.OnPropertyChanged("queue_system_user");
 			}
 		}
 		

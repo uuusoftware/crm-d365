@@ -13,22 +13,25 @@ namespace Plugins.Models
 {
 	
 	
+	/// <summary>
+	/// The state of this component.
+	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("Dataverse Model Builder", "2.0.0.16")]
-	public enum cm_sourceidentifiertype
+	public enum componentstate
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		CRM = 121540000,
+		Published = 0,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		ERP = 121540001,
+		Unpublished = 1,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		ZOHO = 121540002,
+		Deleted = 2,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		ERMA = 121540003,
+		DeletedUnpublished = 3,
 	}
 }
 #pragma warning restore CS1591
