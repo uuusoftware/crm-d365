@@ -11,7 +11,9 @@ namespace Plugins {
         }
         /// <summary>
         ///     This plugin runs on updating an Incident cm_generatechecklist but skips execution if cm_generatechecklist field false or null.
-        ///     Field cm_generatechecklist is set by "Case - Set Generate Checklist" (Case on-demand Workflow)
+        ///     Field cm_generatechecklist is set by "Case - Set Generate Checklist" (Case on-demand Workflow). This gets called in Case Lifecycle (BPF).
+        ///     The plugin creates a msfp_customervoiceprocessor record which triggers a flow called "Send survey on create of custom entity record" which sends 
+        ///     the survey to the primary contact of the case record.
         /// 
         ///     Steps: Sync Plugins.AsyncPluginIncidentResponseGeneration: Update of incident cm_generatechecklist
         /// </summary>
