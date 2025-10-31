@@ -220,8 +220,6 @@ namespace Plugins.Models
 			public const string cm_confirmothernecessarydocumentsName = "cm_confirmothernecessarydocumentsname";
 			public const string cm_ConfirmVendorOnboardingform = "cm_confirmvendoronboardingform";
 			public const string cm_confirmvendoronboardingformName = "cm_confirmvendoronboardingformname";
-			public const string cm_DocumentContainer = "cm_documentcontainer";
-			public const string cm_DocumentContainerName = "cm_documentcontainername";
 			public const string cm_NPSAURL = "cm_npsaurl";
 			public const string cm_OpportunityType = "cm_opportunitytype";
 			public const string cm_opportunitytypeName = "cm_opportunitytypename";
@@ -853,37 +851,6 @@ namespace Plugins.Models
 				if (this.FormattedValues.Contains("cm_confirmvendoronboardingform"))
 				{
 					return this.FormattedValues["cm_confirmvendoronboardingform"];
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_documentcontainer")]
-		public Microsoft.Xrm.Sdk.EntityReference cm_DocumentContainer
-		{
-			get
-			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cm_documentcontainer");
-			}
-			set
-			{
-				this.OnPropertyChanging("cm_DocumentContainer");
-				this.SetAttributeValue("cm_documentcontainer", value);
-				this.OnPropertyChanged("cm_DocumentContainer");
-			}
-		}
-		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_documentcontainername")]
-		public string cm_DocumentContainerName
-		{
-			get
-			{
-				if (this.FormattedValues.Contains("cm_documentcontainer"))
-				{
-					return this.FormattedValues["cm_documentcontainer"];
 				}
 				else
 				{

@@ -358,22 +358,25 @@ namespace Plugins.Models
 			public const string cm_ComplianceFlagSetonAccount = "cm_complianceflagsetonaccount";
 			public const string cm_complianceflagsetonaccountName = "cm_complianceflagsetonaccountname";
 			public const string cm_Contract = "cm_contract";
+			public const string cm_ContractDescription = "cm_contractdescription";
 			public const string cm_ContractName = "cm_contractname";
 			public const string cm_ContractorName = "cm_contractorname";
 			public const string cm_ContractorNameName = "cm_contractornamename";
-			public const string cm_DocumentContainer = "cm_documentcontainer";
-			public const string cm_DocumentContainerName = "cm_documentcontainername";
 			public const string cm_EffectiveDate = "cm_effectivedate";
 			public const string cm_From = "cm_from";
 			public const string cm_GenerateChecklist = "cm_generatechecklist";
 			public const string cm_generatechecklistName = "cm_generatechecklistname";
 			public const string cm_IncidentCategory = "cm_incidentcategory";
 			public const string cm_IncidentCategoryName = "cm_incidentcategoryname";
+			public const string cm_LegacyCreatedByName = "cm_legacycreatedbyname";
 			public const string cm_ManagerEscalation = "cm_managerescalation";
 			public const string cm_managerescalationName = "cm_managerescalationname";
 			public const string cm_Municipality = "cm_municipality";
 			public const string cm_MunicipalityName = "cm_municipalityname";
 			public const string cm_ObjectID = "cm_objectid";
+			public const string cm_OriginatingSite = "cm_originatingsite";
+			public const string cm_OriginatingSiteName = "cm_originatingsitename";
+			public const string cm_OriginatingSiteYomiName = "cm_originatingsiteyominame";
 			public const string cm_OtherChannel = "cm_otherchannel";
 			public const string cm_Program = "cm_program";
 			public const string cm_ProgramName = "cm_programname";
@@ -387,6 +390,7 @@ namespace Plugins.Models
 			public const string cm_ReportedByName = "cm_reportedbyname";
 			public const string cm_ReportedByYomiName = "cm_reportedbyyominame";
 			public const string cm_ReportedOn = "cm_reportedon";
+			public const string cm_ResidentName = "cm_residentname";
 			public const string cm_ServiceandSupportTeam = "cm_serviceandsupportteam";
 			public const string cm_ServiceandSupportTeamName = "cm_serviceandsupportteamname";
 			public const string cm_ServiceandSupportTeamYomiName = "cm_serviceandsupportteamyominame";
@@ -564,6 +568,7 @@ namespace Plugins.Models
 			public const string cm_incident_CauseCategory_cm_casesubcategory = "cm_incident_CauseCategory_cm_casesubcategory";
 			public const string cm_incident_contact_cm_ReportedById = "cm_incident_contact_cm_ReportedById";
 			public const string cm_incident_IncidentCategory_cm_casecategory = "cm_incident_IncidentCategory_cm_casecategory";
+			public const string cm_incident_OriginatingSite_account = "cm_incident_OriginatingSite_account";
 			public const string cm_incident_Program_team = "cm_incident_Program_team";
 			public const string cm_incident_ReportedBy_systemuser = "cm_incident_ReportedBy_systemuser";
 			public const string cm_incident_ServiceandSupportTeam_team = "cm_incident_ServiceandSupportTeam_team";
@@ -1344,6 +1349,24 @@ namespace Plugins.Models
 			}
 		}
 		
+		/// <summary>
+		/// A field to show the description from the related Contract
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_contractdescription")]
+		public string cm_ContractDescription
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("cm_contractdescription");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_ContractDescription");
+				this.SetAttributeValue("cm_contractdescription", value);
+				this.OnPropertyChanged("cm_ContractDescription");
+			}
+		}
+		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_contractname")]
 		public string cm_ContractName
 		{
@@ -1383,37 +1406,6 @@ namespace Plugins.Models
 				if (this.FormattedValues.Contains("cm_contractorname"))
 				{
 					return this.FormattedValues["cm_contractorname"];
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_documentcontainer")]
-		public Microsoft.Xrm.Sdk.EntityReference cm_DocumentContainer
-		{
-			get
-			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cm_documentcontainer");
-			}
-			set
-			{
-				this.OnPropertyChanging("cm_DocumentContainer");
-				this.SetAttributeValue("cm_documentcontainer", value);
-				this.OnPropertyChanged("cm_DocumentContainer");
-			}
-		}
-		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_documentcontainername")]
-		public string cm_DocumentContainerName
-		{
-			get
-			{
-				if (this.FormattedValues.Contains("cm_documentcontainer"))
-				{
-					return this.FormattedValues["cm_documentcontainer"];
 				}
 				else
 				{
@@ -1515,6 +1507,24 @@ namespace Plugins.Models
 		}
 		
 		/// <summary>
+		/// Stores the "Created By" value from a legacy system where this row was imported from.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_legacycreatedbyname")]
+		public string cm_LegacyCreatedByName
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("cm_legacycreatedbyname");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_LegacyCreatedByName");
+				this.SetAttributeValue("cm_legacycreatedbyname", value);
+				this.OnPropertyChanged("cm_LegacyCreatedByName");
+			}
+		}
+		
+		/// <summary>
 		/// Manager escalation indicator
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_managerescalation")]
@@ -1594,6 +1604,56 @@ namespace Plugins.Models
 				this.OnPropertyChanging("cm_ObjectID");
 				this.SetAttributeValue("cm_objectid", value);
 				this.OnPropertyChanged("cm_ObjectID");
+			}
+		}
+		
+		/// <summary>
+		/// Originating Site to hold related Contract Accounts from Connections table
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_originatingsite")]
+		public Microsoft.Xrm.Sdk.EntityReference cm_OriginatingSite
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cm_originatingsite");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_OriginatingSite");
+				this.SetAttributeValue("cm_originatingsite", value);
+				this.OnPropertyChanged("cm_OriginatingSite");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_originatingsitename")]
+		public string cm_OriginatingSiteName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_originatingsite"))
+				{
+					return this.FormattedValues["cm_originatingsite"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_originatingsiteyominame")]
+		public string cm_OriginatingSiteYomiName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("cm_originatingsite"))
+				{
+					return this.FormattedValues["cm_originatingsite"];
+				}
+				else
+				{
+					return default(string);
+				}
 			}
 		}
 		
@@ -1796,6 +1856,24 @@ namespace Plugins.Models
 				this.OnPropertyChanging("cm_ReportedOn");
 				this.SetAttributeValue("cm_reportedon", value);
 				this.OnPropertyChanged("cm_ReportedOn");
+			}
+		}
+		
+		/// <summary>
+		/// Name of the Resident
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_residentname")]
+		public string cm_ResidentName
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("cm_residentname");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_ResidentName");
+				this.SetAttributeValue("cm_residentname", value);
+				this.OnPropertyChanged("cm_ResidentName");
 			}
 		}
 		
@@ -4700,6 +4778,25 @@ namespace Plugins.Models
 				this.OnPropertyChanging("cm_incident_IncidentCategory_cm_casecategory");
 				this.SetRelatedEntity<Plugins.Models.cm_CaseCategory>("cm_incident_IncidentCategory_cm_casecategory", null, value);
 				this.OnPropertyChanged("cm_incident_IncidentCategory_cm_casecategory");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 cm_incident_OriginatingSite_account
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_originatingsite")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_incident_OriginatingSite_account")]
+		public Plugins.Models.Account cm_incident_OriginatingSite_account
+		{
+			get
+			{
+				return this.GetRelatedEntity<Plugins.Models.Account>("cm_incident_OriginatingSite_account", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_incident_OriginatingSite_account");
+				this.SetRelatedEntity<Plugins.Models.Account>("cm_incident_OriginatingSite_account", null, value);
+				this.OnPropertyChanged("cm_incident_OriginatingSite_account");
 			}
 		}
 		

@@ -813,6 +813,7 @@ namespace Plugins.Models
 			public const string Referencedaccount_parent_account = "Referencedaccount_parent_account";
 			public const string cm_Account_Account_cm_ProgramAssociation = "cm_Account_Account_cm_ProgramAssociation";
 			public const string cm_incident_account_cm_ReportedById = "cm_incident_account_cm_ReportedById";
+			public const string cm_incident_OriginatingSite_account = "cm_incident_OriginatingSite_account";
 			public const string cm_leadclosurechecklistresponse_Account_account = "cm_leadclosurechecklistresponse_Account_account";
 			public const string cm_questionresponse_Account_account = "cm_questionresponse_Account_account";
 			public const string contact_customer_accounts = "contact_customer_accounts";
@@ -5557,6 +5558,24 @@ namespace Plugins.Models
 				this.OnPropertyChanging("cm_incident_account_cm_ReportedById");
 				this.SetRelatedEntities<Plugins.Models.Incident>("cm_incident_account_cm_ReportedById", null, value);
 				this.OnPropertyChanged("cm_incident_account_cm_ReportedById");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N cm_incident_OriginatingSite_account
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cm_incident_OriginatingSite_account")]
+		public System.Collections.Generic.IEnumerable<Plugins.Models.Incident> cm_incident_OriginatingSite_account
+		{
+			get
+			{
+				return this.GetRelatedEntities<Plugins.Models.Incident>("cm_incident_OriginatingSite_account", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_incident_OriginatingSite_account");
+				this.SetRelatedEntities<Plugins.Models.Incident>("cm_incident_OriginatingSite_account", null, value);
+				this.OnPropertyChanged("cm_incident_OriginatingSite_account");
 			}
 		}
 		

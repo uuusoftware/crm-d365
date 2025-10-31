@@ -538,6 +538,8 @@ namespace Plugins.Models
 			public const string msdyn_ischatintentenabledName = "msdyn_ischatintentenabledname";
 			public const string msdyn_isexpertenabledforswarm = "msdyn_isexpertenabledforswarm";
 			public const string msdyn_isexpertenabledforswarmName = "msdyn_isexpertenabledforswarmname";
+			public const string msdyn_IsMultichannelIntentEnabled = "msdyn_ismultichannelintentenabled";
+			public const string msdyn_ismultichannelintentenabledName = "msdyn_ismultichannelintentenabledname";
 			public const string msdyn_IsVoiceIntentEnabled = "msdyn_isvoiceintentenabled";
 			public const string msdyn_isvoiceintentenabledName = "msdyn_isvoiceintentenabledname";
 			public const string msdyn_OwningEnvironmentId = "msdyn_owningenvironmentid";
@@ -3209,6 +3211,40 @@ namespace Plugins.Models
 				if (this.FormattedValues.Contains("msdyn_isexpertenabledforswarm"))
 				{
 					return this.FormattedValues["msdyn_isexpertenabledforswarm"];
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		/// <summary>
+		/// Indicates whether multichannel intent is enabled for the user.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_ismultichannelintentenabled")]
+		public System.Nullable<bool> msdyn_IsMultichannelIntentEnabled
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("msdyn_ismultichannelintentenabled");
+			}
+			set
+			{
+				this.OnPropertyChanging("msdyn_IsMultichannelIntentEnabled");
+				this.SetAttributeValue("msdyn_ismultichannelintentenabled", value);
+				this.OnPropertyChanged("msdyn_IsMultichannelIntentEnabled");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msdyn_ismultichannelintentenabledname")]
+		public string msdyn_ismultichannelintentenabledName
+		{
+			get
+			{
+				if (this.FormattedValues.Contains("msdyn_ismultichannelintentenabled"))
+				{
+					return this.FormattedValues["msdyn_ismultichannelintentenabled"];
 				}
 				else
 				{

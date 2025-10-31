@@ -25,6 +25,9 @@ namespace Plugins.Models
 		ServiceProvider = 121540001,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		FirstNations = 121540014,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Broker = 121540004,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]

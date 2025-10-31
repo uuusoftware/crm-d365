@@ -262,6 +262,7 @@ namespace Plugins.Models
 			public const string Bcc = "bcc";
 			public const string Category = "category";
 			public const string Cc = "cc";
+			public const string cm_LegacyCreatedByName = "cm_legacycreatedbyname";
 			public const string cm_ObjectID = "cm_objectid";
 			public const string Compressed = "compressed";
 			public const string CompressedName = "compressedname";
@@ -791,6 +792,24 @@ namespace Plugins.Models
 					this.SetAttributeValue("cc", new Microsoft.Xrm.Sdk.EntityCollection(new System.Collections.Generic.List<Microsoft.Xrm.Sdk.Entity>(value)));
 				}
 				this.OnPropertyChanged("Cc");
+			}
+		}
+		
+		/// <summary>
+		/// Stores the "Created By" value from a legacy system where this row was imported from.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cm_legacycreatedbyname")]
+		public string cm_LegacyCreatedByName
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("cm_legacycreatedbyname");
+			}
+			set
+			{
+				this.OnPropertyChanging("cm_LegacyCreatedByName");
+				this.SetAttributeValue("cm_legacycreatedbyname", value);
+				this.OnPropertyChanged("cm_LegacyCreatedByName");
 			}
 		}
 		
