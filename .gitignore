@@ -7,6 +7,8 @@
 *.dbmdl
 *.dbproj.schemaview
 *.jfm
+*.env
+*.webm
 
 # Build results
 [Dd]ebug/
