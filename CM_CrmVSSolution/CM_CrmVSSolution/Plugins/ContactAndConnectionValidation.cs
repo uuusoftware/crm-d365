@@ -83,15 +83,7 @@ namespace Plugins {
                 var contactRecord = commonBusinessLogic.GetRecordById<Contact>(context.PrimaryEntityId)
                     ?? throw new InvalidPluginExecutionException("Invalid plugin execution: Contact not found");
                 tracingService.Trace($"contactRecord: {contactRecord.Id}");
-
-                var accountRecord = commonBusinessLogic.GetRecordById<Account>(contactRecord.ParentCustomerId.Id)
-                    ?? throw new InvalidPluginExecutionException("Invalid plugin execution: Contact not found");
-                tracingService.Trace($"accountRecord: {accountRecord.Id}");
                 #endregion
-
-                if (contactRecord.FullName == null || contactRecord.EMailAddress1 == null) {
-                    throw new InvalidPluginExecutionException("Contact must have Full Name and Email Address");
-                }
 
                 // Contact uniqueness validation is defined by Parent Account + Full Name + Email Address
                 if (commonBusinessLogic.IsContactDuplicated(contactRecord)) {
