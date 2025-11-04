@@ -1325,12 +1325,14 @@ namespace Plugins {
         }
 
         internal bool IsContactDuplicated(Contact contactRecord) {
-            if (contactRecord.ParentCustomerId == null) return true;
+            if (contactRecord.ParentCustomerId == null) return false;
 
             using (var svcContext = new OrgContext(_service)) {
+
+                // List.Any method doesn't work on D365. Must use FirstOrDefault Id and compare to Guid.Empty (deafult if not found)
                 return svcContext.ContactSet
                     .Where(c => c.ParentCustomerId.Id == contactRecord.ParentCustomerId.Id
-                             && c.EMailAddress1 == contactRecord.EMailAddress1
+                             && c.EMailAddress1 == contactRecord.EMailAddress1 
                              && c.FullName == contactRecord.FullName
                              && c.ContactId != contactRecord.ContactId)
                     .Select(c => c.Id)
