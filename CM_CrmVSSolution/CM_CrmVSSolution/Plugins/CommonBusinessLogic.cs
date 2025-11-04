@@ -138,7 +138,7 @@ namespace Plugins {
                         return svcContext.ProcessStageSet.FirstOrDefault(record => record.Id == id.Value)?.ToEntity<T>();
 
                         case "SystemUser":
-                        return svcContext.ProcessStageSet.FirstOrDefault(record => record.Id == id.Value)?.ToEntity<T>();
+                        return svcContext.SystemUserSet.FirstOrDefault(record => record.Id == id.Value)?.ToEntity<T>();
 
                         case "Queue":
                         return svcContext.QueueSet.FirstOrDefault(record => record.Id == id)?.ToEntity<T>();
@@ -707,7 +707,7 @@ namespace Plugins {
                 }
 
                 // Disassociate the records before associating to make sure it doesn't cause a "Cannot insert duplicate key" error.
-                _tracingService.Trace($"incidentRecordincidentRecord.cm_ServiceandSupportTeam: {incidentRecord.cm_ServiceandSupportTeam}");
+                _tracingService.Trace($"incidentRecordincidentRecord.cm_ServiceandSupportTeam: {incidentRecord.cm_ServiceandSupportTeam.Id}");
 
                 if (incidentRecord.cm_ServiceandSupportTeam != null) {
                     _tracingService.Trace($"Disassociate");
@@ -1320,6 +1320,20 @@ namespace Plugins {
                 var partyRef = p.GetAttributeValue<EntityReference>("partyid");
                 if (partyRef != null)
                     yield return $"{partyRef.LogicalName}:{partyRef.Id}";
+            }
+        }
+
+        internal bool IsContactDuplicated(Contact contactRecord) {
+            if (contactRecord.ParentCustomerId == null) return true;
+
+            using (var svcContext = new OrgContext(_service)) {
+                return svcContext.ContactSet
+                    .Where(c => c.ParentCustomerId.Id == contactRecord.ParentCustomerId.Id
+                             && c.EMailAddress1 == contactRecord.EMailAddress1
+                             && c.FullName == contactRecord.FullName
+                             && c.ContactId != contactRecord.ContactId)
+                    .Select(c => c.Id)
+                    .FirstOrDefault() != Guid.Empty;
             }
         }
     }
