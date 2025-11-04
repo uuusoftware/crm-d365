@@ -47,25 +47,31 @@ CM.ProgramAssociation = (function () {
                 });
             }
 
+            /**
+             * This filter is here for reference only.
+             * It prevents the user from seeing Programs in the program association that will cause an error.
+             * When qualifying the lead 
+             */
+
             // First fetch the unique Ids asynchronously so it addPreSearch in only called when the new filter is complete.
-            const uniqueProgramIds = await Helpers.getUniqueProgramIds();
-            if (uniqueProgramIds !== null) {
+            // const uniqueProgramIds = await Helpers.getUniqueProgramIds();
+            // if (uniqueProgramIds !== null) {
 
-                _formContext.getControl("cm_program").addPreSearch(() => {
-                    let filter = "<filter type='or'>";
+            //     _formContext.getControl("cm_program").addPreSearch(() => {
+            //         let filter = "<filter type='or'>";
 
-                    if (!uniqueProgramIds.length) {
-                        filter += "<condition attribute='teamid' operator='eq' value='00000000-0000-0000-0000-000000000000' />"
-                    } else {
-                        uniqueProgramIds.forEach(id => {
-                            filter += `<condition attribute='teamid' operator='eq' value='${id}' />`;
-                        })
-                    }
+            //         if (!uniqueProgramIds.length) {
+            //             filter += "<condition attribute='teamid' operator='eq' value='00000000-0000-0000-0000-000000000000' />"
+            //         } else {
+            //             uniqueProgramIds.forEach(id => {
+            //                 filter += `<condition attribute='teamid' operator='eq' value='${id}' />`;
+            //             })
+            //         }
 
-                    filter += "</filter>";
-                    _formContext.getControl("cm_program").addCustomFilter(filter, "team");
-                })
-            }
+            //         filter += "</filter>";
+            //         _formContext.getControl("cm_program").addCustomFilter(filter, "team");
+            //     })
+            // }
         },
         /**
          * @description
