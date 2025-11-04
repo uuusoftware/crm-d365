@@ -51,22 +51,15 @@ namespace Plugins {
                 localPluginContext.Trace($"Exception: {orgServiceFault.ToString()}");
 
                 throw new InvalidPluginExecutionException($"OrganizationServiceFault: {orgServiceFault.Message}");
-            }
-            catch (InvalidPluginExecutionException ex)
-            {
+            } catch (InvalidPluginExecutionException ex) {
                 new ExceptionHandler(
                     //traceService: _tracingService,
                     exception: ex
                 ).Process();
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 throw new InvalidPluginExecutionException(ex.Message + "\n Exception");
-            }
-            finally
-            {
-                if (!context.SharedVariables.Contains("isRecursion") && !context.SharedVariables.Contains("mustSkip"))
-                {
+            } finally {
+                if (!context.SharedVariables.Contains("isRecursion") && !context.SharedVariables.Contains("mustSkip")) {
                     localPluginContext.Trace($"{PluginClassName}.Execute() \n" +
                         $"Correlation Id: {localPluginContext.PluginExecutionContext.CorrelationId}, \n" +
                         $"Initiating User: {localPluginContext.PluginExecutionContext.InitiatingUserId} \n" +

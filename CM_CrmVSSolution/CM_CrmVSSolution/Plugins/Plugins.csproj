@@ -10,8 +10,7 @@
     <ProjectTypeGuids>{4C25E9B5-9FA6-436c-8E19-B395D2A65FAF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
   </PropertyGroup>
 
-  <Import Project="$(PowerAppsTargetsPath)\Microsoft.PowerApps.VisualStudio.Plugin.props"
-          Condition="Exists('$(PowerAppsTargetsPath)\Microsoft.PowerApps.VisualStudio.Plugin.props')" />
+  <Import Project="$(PowerAppsTargetsPath)\Microsoft.PowerApps.VisualStudio.Plugin.props" Condition="Exists('$(PowerAppsTargetsPath)\Microsoft.PowerApps.VisualStudio.Plugin.props')" />
 
   <!-- NuGet pack and restore -->
   <PropertyGroup>
@@ -56,6 +55,13 @@
     <ExcludeFromPluginPackage Include="Microsoft.IdentityModel.Clients.ActiveDirectory*.dll" />
   </ItemGroup>
 
-  <Import Project="$(PowerAppsTargetsPath)\Microsoft.PowerApps.VisualStudio.Plugin.targets"
-          Condition="Exists('$(PowerAppsTargetsPath)\Microsoft.PowerApps.VisualStudio.Plugin.targets')" />
+  <Import Project="$(PowerAppsTargetsPath)\Microsoft.PowerApps.VisualStudio.Plugin.targets" Condition="Exists('$(PowerAppsTargetsPath)\Microsoft.PowerApps.VisualStudio.Plugin.targets')" />
+
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Users\CircularMaterials\source\repos\circularmaterials\crm-d365\CM_CrmVSSolution\CM_CrmVSSolution\Plugins\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\Users\CircularMaterials\source\repos\circularmaterials\crm-d365\CM_CrmVSSolution\CM_CrmVSSolution\Plugins\.editorconfig" />
+  </ItemGroup>
 </Project>

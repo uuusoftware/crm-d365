@@ -251,7 +251,7 @@ Case Summary:
                     $"{context.PrimaryEntityId}: {ex.Message}\nStack Trace: {ex.StackTrace}";
 
                 tracingService.Trace($"Error: {detailedError}");
-                
+
                 throw new InvalidPluginExecutionException(ex.Message);
             } finally {
                 tracingService.Trace($"QueueItemPureChatCaseCreate Process End");

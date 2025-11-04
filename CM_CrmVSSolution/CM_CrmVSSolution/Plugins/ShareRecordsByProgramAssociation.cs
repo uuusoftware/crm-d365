@@ -68,7 +68,7 @@ namespace Plugins {
                     SystemUser ownerRecord = incidentRecord.OwnerId != null
                         ? commonBusinessLogic.GetRecordById<SystemUser>(incidentRecord.OwnerId?.Id)
                         : null;
-                    
+
                     Team accountTeamRecord = commonBusinessLogic.GetTeamByAccountRole(accountRecord);
                     #endregion
 
@@ -83,7 +83,7 @@ namespace Plugins {
 
                     commonBusinessLogic.ExecuteRecordShare(accountRecord, accountTeamRecord.Id);
                     commonBusinessLogic.ExecuteRecordShare(incidentRecord, accountTeamRecord.Id);
-                    if(contactRecord != null) commonBusinessLogic.ExecuteRecordShare(contactRecord, accountTeamRecord.Id);
+                    if (contactRecord != null) commonBusinessLogic.ExecuteRecordShare(contactRecord, accountTeamRecord.Id);
 
                     List<Team> teamList = commonBusinessLogic.GetTeamListByAccountAndIncident(accountRecord, incidentRecord);
                     foreach (var team in teamList) {

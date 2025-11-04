@@ -1,5 +1,5 @@
-﻿using Plugins.Models;
-using Microsoft.Xrm.Sdk;
+﻿using Microsoft.Xrm.Sdk;
+using Plugins.Models;
 using System;
 
 namespace Plugins {

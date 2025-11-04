@@ -1,8 +1,8 @@
-﻿using Plugins.Models;
-using Microsoft.Xrm.Sdk;
+﻿using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Query;
+using Plugins.Models;
 using System;
 using System.Linq;
-using Microsoft.Xrm.Sdk.Query;
 
 namespace Plugins {
     /// <summary>

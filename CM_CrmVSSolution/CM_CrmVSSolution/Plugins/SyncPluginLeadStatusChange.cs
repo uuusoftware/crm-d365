@@ -1,5 +1,5 @@
-using Plugins.Models;
 using Microsoft.Xrm.Sdk;
+using Plugins.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,7 +52,7 @@ namespace Plugins {
                     throw new InvalidPluginExecutionException("No Program Association found for this Lead");
                 }
 
-                (Guid contactId, Guid accountId ) = commonBusinessLogic.HandleLeadContactAndAccount(leadRecord);
+                (Guid contactId, Guid accountId) = commonBusinessLogic.HandleLeadContactAndAccount(leadRecord);
 
                 List<Guid> programAssociationGuids = new List<Guid>();
 

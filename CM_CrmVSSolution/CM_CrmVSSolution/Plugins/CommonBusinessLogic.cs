@@ -27,9 +27,9 @@ namespace Plugins {
                 };
 
                 defQuery.Criteria.AddCondition("schemaname", ConditionOperator.Equal, schemaName);
-                
+
                 Entity def = svc.RetrieveMultiple(defQuery).Entities.FirstOrDefault();
-                
+
                 if (def == null) return null;
 
                 string defaultValue = def.GetAttributeValue<string>("defaultvalue");
@@ -39,14 +39,14 @@ namespace Plugins {
                 };
 
                 valQuery.Criteria.AddCondition("environmentvariabledefinitionid", ConditionOperator.Equal, defId);
-                
+
                 Entity val = svc.RetrieveMultiple(valQuery).Entities.FirstOrDefault();
                 string value = val?.GetAttributeValue<string>("value");
-                
+
                 return string.IsNullOrWhiteSpace(value) ? defaultValue : value;
             } catch (Exception e) {
                 tracing.Trace("GetEnvironmentVariableValue error: {0}", e.Message);
-                
+
                 return null;
             }
         }
@@ -241,7 +241,7 @@ namespace Plugins {
                 return null;
             } catch (Exception ex) {
                 _tracingService.Trace("Error retrieving OptionSet value for {0}.{1}: {2}", entityLogicalName, attributeLogicalName, ex.Message);
-                
+
                 throw new InvalidPluginExecutionException($"Failed to resolve OptionSet value for {attributeLogicalName}: {ex.Message}", ex);
             }
         }
@@ -715,7 +715,7 @@ namespace Plugins {
                         incidentRecord.Id,
                         new Relationship(cm_Incident_Team.Fields.cm_Incident_Team_Team),
                         CreateEntityReferenceCollection(teamList));
-                };
+                }                
 
                 _tracingService.Trace($"Associate");
 
@@ -1313,6 +1313,7 @@ namespace Plugins {
                     yield return addr;
             }
         }
+
         public IEnumerable<string> EmailPartyIds(IEnumerable<Entity> parties) {
             if (parties == null) yield break;
 

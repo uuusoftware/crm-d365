@@ -1,12 +1,12 @@
-﻿using Plugins.Models;
-using Microsoft.Xrm.Sdk;
+﻿using Microsoft.Xrm.Sdk;
+using Plugins.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Opportunity = Plugins.Models.Opportunity;
-using cm_ProgramAssociation = Plugins.Models.cm_ProgramAssociation;
-using Team = Plugins.Models.Team;
 using cm_leadopptype = Plugins.Models.cm_leadopptype;
+using cm_ProgramAssociation = Plugins.Models.cm_ProgramAssociation;
+using Opportunity = Plugins.Models.Opportunity;
+using Team = Plugins.Models.Team;
 
 namespace Plugins {
     /// <summary>
@@ -110,7 +110,7 @@ namespace Plugins {
                 Account importedAccount = commonBusinessLogic.GetAccountByAccountNumber(opportunityCloseRecord.cm_SAPID);
 
                 // No imported account means there's nothing to merge
-                if(importedAccount == null) {
+                if (importedAccount == null) {
                     // Update account Relationship Type Code according to the Role and skip account merge
                     var typeCode = commonBusinessLogic.UpdateAccountRelationshipType(accountRecord);
                     tracingService.Trace($"No import account found. Account {accountRecord.Name} CustomerTypeCode updated to {typeCode}");

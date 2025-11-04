@@ -1,5 +1,5 @@
-﻿using Plugins.Models;
-using Microsoft.Xrm.Sdk;
+﻿using Microsoft.Xrm.Sdk;
+using Plugins.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +33,7 @@ namespace Plugins {
             if (context.PrimaryEntityName != Opportunity.EntityLogicalName || context.MessageName != "Create") {
                 throw new InvalidPluginExecutionException("Invalid plugin execution: Entity must be Opportunity and message must be Create");
             }
-            
+
             CommonBusinessLogic commonBusinessLogic = new CommonBusinessLogic(service, tracingService);
 
             try {
