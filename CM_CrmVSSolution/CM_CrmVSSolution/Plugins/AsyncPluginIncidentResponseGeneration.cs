@@ -9,6 +9,9 @@ namespace Plugins {
         public AsyncPluginIncidentResponseGeneration(string unsecureConfiguration, string secureConfiguration)
             : base(typeof(AsyncPluginIncidentResponseGeneration)) {
         }
+
+        static readonly string CONNECTOR_USER_NAME = "# D365_CRM_Odata_connector";
+
         /// <summary>
         ///     This plugin runs on updating an Incident cm_generatechecklist but skips execution if cm_generatechecklist field false or null.
         ///     Field cm_generatechecklist is set by "Case - Set Generate Checklist" (Case on-demand Workflow). This gets called in Case Lifecycle (BPF).
@@ -51,6 +54,11 @@ namespace Plugins {
 
                 if (incidentRecord?.ParentCaseId != null) {
                     tracingService.Trace($"SKIP: Incident {0} is parent case", incidentRecord.Id);
+                    return;
+                }
+
+                if (incidentRecord.CreatedByName == CONNECTOR_USER_NAME) {
+                    tracingService.Trace($"[Skip]: Data Migration user should not trigger the plugin");
                     return;
                 }
 

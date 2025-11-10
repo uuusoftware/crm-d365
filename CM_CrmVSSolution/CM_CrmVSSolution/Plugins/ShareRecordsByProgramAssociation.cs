@@ -13,6 +13,7 @@ namespace Plugins {
         ///     Steps:
         ///         Sync Plugins.ShareRecordsByProgramAssociation: Create of opportunity contactid, customerid
         ///         Sync Plugins.ShareRecordsByProgramAssociation: Create of incident customerid, primarycontactid
+        ///         Sync Plugins.ShareRecordsByProgramAssociation: Update of incident productserialnumber
         ///         Sync Plugins.ShareRecordsByProgramAssociation: Update of cm_programassociation cm_account, cm_lead, cm_program
         ///         Sync Plugins.ShareRecordsByProgramAssociation: Create of cm_programassociation cm_account, cm_lead, cm_program
         ///         Sync Plugins.ShareRecordsByProgramAssociation: Associate of any Entity

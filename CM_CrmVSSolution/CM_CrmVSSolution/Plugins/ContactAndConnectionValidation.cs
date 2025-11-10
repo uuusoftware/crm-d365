@@ -65,6 +65,13 @@ namespace Plugins {
             // Non-interactive users (e.g., App Registrations / Service Principals) are used for API or integration calls.
             bool isUser = user.AccessMode != systemuser_accessmode.Noninteractive;
 
+            // Skip validation for non-interactive users (e.g., data migration)
+            // Must remove after the data migration
+            if (!isUser) {
+                tracingService.Trace($"Must remove after the data migration to avoid blocking data import");
+                return;
+            }
+
             if (context.PrimaryEntityName == Connection.EntityLogicalName) {
                 ExecuteConnectionValidation(commonBusinessLogic, localPluginContext, isUser);
             } else if (context.PrimaryEntityName == Contact.EntityLogicalName) {
